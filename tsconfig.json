@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "noLib": false,
+    "outDir": "dist",
+    "removeComments": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "target": "ES2018"
+  },
+  "exclude": [
+    "**/node_modules/**",
+    "node_modules",
+    "**node_modules",
+    "test/**/*"
+  ],
+  "include": [
+    "src/**/*"
+  ]
+}
