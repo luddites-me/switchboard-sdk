@@ -1,5 +1,5 @@
 {
-  "integrationId": "{platform-name}",
+  "id": "{platform-name}",
   "modules": [
     {
       "name": "{switches-project-name}",

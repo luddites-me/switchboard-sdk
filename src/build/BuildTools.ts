@@ -24,7 +24,6 @@ export class BuildTools {
         console.error(er);
       }
       files.forEach((fileName, index) => {
-        console.log(fileName);
         try {
           sortJson.overwrite(fileName);
         } catch (err) {

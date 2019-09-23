@@ -1,7 +1,7 @@
 import { Switchboard, Switch } from 'ns8-switchboard-interfaces';
 import { readFileSync, writeFileSync } from 'fs';
 import { SwitchboardOptions } from '.';
-
+import switchboardDefaults from '../models/json/switchboard.json';
 /**
  * Utility methods for generating/modifying the switchboard.json needed for AWS
  */
@@ -19,12 +19,12 @@ export class SwitchboardTools {
    * Writes an instance of the Serverless object to disk
    */
   static writeJson = (switchboard: Switchboard, path: string): void => {
-    writeFileSync(path, switchboard);
+    writeFileSync(path, JSON.stringify(switchboard, null, 2));
   }
 
   /** */
   static getDefaults = (): Switchboard => {
-    return SwitchboardTools.jsonToSwitchboard('../models/json/switchboard.json');
+    return switchboardDefaults as unknown as Switchboard;
   }
 
   static setIntegration = (switchboard: Switchboard, opts: SwitchboardOptions): Switchboard => {

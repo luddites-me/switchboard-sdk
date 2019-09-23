@@ -2,6 +2,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { Serverless } from '..';
 const YAML = require('yamljs');
+import serverlessDefault from '../models/json/serverless.json';
 
 /**
  * A collection of utility methods to work with generating/updating the serverless.yaml file required for AWS
@@ -12,7 +13,7 @@ export class ServerlessTools {
    * Converts an instance of the Serverless object to YAML
    */
   static serverlessToYaml = (serverless: Serverless): string => {
-    return YAML.stringify(serverless);
+    return YAML.stringify(serverless, 10, 2);
   }
 
   /**
@@ -35,10 +36,10 @@ export class ServerlessTools {
    * Writes an instance of the Serverless object to disk
    */
   static writeYaml = (serverless: Serverless, path: string): void => {
-    writeFileSync(path, serverless);
+    writeFileSync(path, ServerlessTools.serverlessToYaml(serverless));
   }
 
   static getDefaults = (): Serverless => {
-    return ServerlessTools.jsonToServerless('../models/json/serverless.json');
+    return serverlessDefault as Serverless;
   }
 }

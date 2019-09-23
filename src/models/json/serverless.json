@@ -88,7 +88,7 @@
     "stage": "${opt:stage, env:DEV_NAME}",
     "timeout": 30
   },
-  "service": "ns8-switchboard-${file(./switchboard.json):integrationId}",
+  "service": "ns8-switchboard-${file(./switchboard.json):id}",
   "stepFunctions": {
     "stateMachines": {
       "createOrderAction": {
