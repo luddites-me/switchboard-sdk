@@ -11,7 +11,7 @@
   "author": "ns8inc",
   "license": "MIT",
   "scripts": {
-    "build": "rimraf dist && tsc -d && yarn install --production=true",
+    "build": "rimraf dist && yarn install && tsc -d",
     "build:dev": "yarn && yarn build && yarn link"
   },
   "devDependencies": {
@@ -27,6 +27,7 @@
     "ns8-protect-models": "^1.0.204",
     "sort-json": "^2.0.0",
     "ns8-switchboard-interfaces": "^1.0.77",
-    "@ns8/ns8-switchboard-operator": "1.0.91"
+    "@ns8/ns8-switchboard-operator": "1.0.91",
+    "aws-sdk": "^2.533.0"
   }
 }

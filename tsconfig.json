@@ -11,7 +11,7 @@
     "removeComments": true,
     "skipLibCheck": true,
     "sourceMap": true,
-    "target": "ES2018"
+    "target": "ES2017"
   },
   "exclude": [
     "**/node_modules/**",
