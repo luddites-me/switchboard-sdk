@@ -2,6 +2,9 @@ import { Switchboard, Switch } from 'ns8-switchboard-interfaces';
 import { readFileSync, writeFileSync } from 'fs';
 import { SwitchboardOptions } from '.';
 
+/**
+ * Utility methods for generating/modifying the switchboard.json needed for AWS
+ */
 export class SwitchboardTools {
 
   /**
@@ -19,6 +22,7 @@ export class SwitchboardTools {
     writeFileSync(path, switchboard);
   }
 
+  /** */
   static getDefaults = (): Switchboard => {
     return SwitchboardTools.jsonToSwitchboard('../models/json/switchboard.json');
   }

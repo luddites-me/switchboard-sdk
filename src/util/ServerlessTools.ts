@@ -3,6 +3,9 @@ import { readFileSync, writeFileSync } from 'fs';
 import { Serverless } from '..';
 const YAML = require('yamljs');
 
+/**
+ * A collection of utility methods to work with generating/updating the serverless.yaml file required for AWS
+ */
 export class ServerlessTools {
 
   /**

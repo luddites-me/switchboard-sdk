@@ -1,2 +1,2 @@
-import { sortJsonFiles } from '../src/build/build';
-sortJsonFiles();
+import { BuildTools } from '../src/build/BuildTools';
+BuildTools.sortJsonFiles();

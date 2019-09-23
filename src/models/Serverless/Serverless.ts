@@ -1,12 +1,7 @@
-// To parse this data:
-//
-//   import { Convert, Serverless } from "./file";
-//
-//   const serverless = Convert.toServerless(json);
-//
-// These functions will throw an error if the JSON doesn't
-// match the expected interface, even if the JSON is valid.
-
+/**
+ * Serverless is a typed representation of the serverless.yaml file to be used in serializing/deserializing from JSON,
+ * in order to allow us to easily generate customized version of this file using the ServerlessTools utility class.
+ */
 export interface Serverless {
   service: string;
   custom: Custom;
