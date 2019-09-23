@@ -1,19 +1,16 @@
 {
-  "name": "@ns8/ns8-protect-sdk",
-  "version": "0.0.1",
-  "description": "Common utility library",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
-  "repository": "https://github.com/ns8inc/ns8-protect-sdk.git",
   "author": "ns8inc",
-  "license": "MIT",
-  "scripts": {
-    "build": "rimraf dist && yarn install && tsc -d",
-    "build:dev": "yarn && yarn build && yarn link"
+  "dependencies": {
+    "@ns8/ns8-switchboard-operator": "1.0.91",
+    "aws-sdk": "^2.533.0",
+    "glob": "^7.1.4",
+    "minimist": "^1.2.0",
+    "ns8-protect-models": "^1.0.204",
+    "ns8-switchboard-interfaces": "^1.0.77",
+    "sort-json": "^2.0.0",
+    "yamljs": "^0.3.0"
   },
+  "description": "Common utility library",
   "devDependencies": {
     "@types/glob": "^7.1.1",
     "@types/minimist": "^1.2.0",
@@ -21,13 +18,18 @@
     "rimraf": "2.6.3",
     "typescript": "^3.6.3"
   },
-  "dependencies": {
-    "glob": "^7.1.4",
-    "minimist": "^1.2.0",
-    "ns8-protect-models": "^1.0.204",
-    "sort-json": "^2.0.0",
-    "ns8-switchboard-interfaces": "^1.0.77",
-    "@ns8/ns8-switchboard-operator": "1.0.91",
-    "aws-sdk": "^2.533.0"
-  }
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "name": "@ns8/ns8-protect-sdk",
+  "repository": "https://github.com/ns8inc/ns8-protect-sdk.git",
+  "scripts": {
+    "beautify": "node ./dist/scripts/build.js",
+    "build": "rimraf dist && yarn install && tsc -d && yarn beautify",
+    "build:dev": "yarn && yarn build && yarn link"
+  },
+  "types": "dist/index.d.ts",
+  "version": "0.0.1"
 }
