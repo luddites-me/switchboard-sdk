@@ -18,12 +18,15 @@ export class BuildTools {
     callback(env);
   };
 
+  /**
+   * Sorts all properties of JSON files by key
+   */
   public static sortJsonFiles = (): void => {
-    glob('**/*.json', globOptions, (er, files) => {
+    glob('**/*.json', globOptions, (er, files: string[]) => {
       if (er) {
         console.error(er);
       }
-      files.forEach((fileName, index) => {
+      files.forEach((fileName, index: number) => {
         try {
           sortJson.overwrite(fileName);
         } catch (err) {

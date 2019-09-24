@@ -9,10 +9,11 @@
     "noImplicitAny": false,
     "noLib": false,
     "outDir": "dist",
-    "removeComments": true,
+    "removeComments": false,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "sourceMap": true,
+    "strictNullChecks": true,
     "target": "ES2017"
   },
   "exclude": [

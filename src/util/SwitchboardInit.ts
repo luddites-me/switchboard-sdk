@@ -9,11 +9,13 @@ const exec = util.promisify(require('child_process').exec);
 export class SwitchboardInit {
 
   /**
-   *
+   * Dynamically instantiates the handler for a switch function
    */
   public static instantiateHandler = (switchboard: Switchboard, name: string) => {
-    const switchboardSwitch: Switch = switchboard.switches
-      .find((currSwitch: Switch) => currSwitch.name === name);
+    const switchboardSwitch: Switch | null = switchboard.switches
+      .find((currSwitch: Switch) => currSwitch.name === name) || null;
+
+    if (null == switchboardSwitch) throw new Error(`No switch found for ${name}`);
 
     const switches = switchboardSwitch.sources
       .map((source: Source) => {
