@@ -17,11 +17,15 @@ export class SwitchboardInit {
 
     if (null == switchboardSwitch) throw new Error(`No switch found for ${name}`);
 
+    if (null == switchboardSwitch.sources) throw new Error('No sources defined on Switchboard');
+
     const switches = switchboardSwitch.sources
       .map((source: Source) => {
         const module = require(source.moduleName);
         return new module[source.fileName]();
       });
+
+    if (null == switchboardSwitch.operator) throw new Error('No operator defined on Switchboard');
 
     const operator = new operatorModule[switchboardSwitch.operator](switches);
     return operator.handle;
@@ -36,6 +40,8 @@ export class SwitchboardInit {
    * Dynamically install modules
    */
   public static installModules = async (switchboard: Switchboard): Promise<void> => {
+    if (null == switchboard.modules) throw new Error('No modules defined on Switchboard');
+
     for (const mdl of switchboard.modules) {
       if (mdl.version === 'link') {
         const dependency = mdl.name;
