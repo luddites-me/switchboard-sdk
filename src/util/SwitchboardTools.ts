@@ -29,13 +29,17 @@ export class SwitchboardTools {
 
   static setIntegration = (switchboard: Switchboard, opts: SwitchboardOptions): Switchboard => {
     switchboard.id = opts.id;
-    switchboard.modules[0].name = opts.repoName;
-    switchboard.modules[0].version = opts.version;
-    switchboard.switches.forEach((s) => {
-      s.sources.forEach((src) => {
-        src.moduleName = opts.repoName;
+    if (switchboard.modules) {
+      switchboard.modules[0].name = opts.repoName;
+      switchboard.modules[0].version = opts.version;
+      switchboard.switches.forEach((s) => {
+        if (s.sources) {
+          s.sources.forEach((src) => {
+            src.moduleName = opts.repoName;
+          });
+        }
       });
-    });
+    }
     return switchboard;
   }
 }
