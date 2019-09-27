@@ -33,5 +33,5 @@
     "build:dev": "yarn && yarn build && yarn link"
   },
   "types": "dist/index.d.ts",
-  "version": "0.1.4"
+  "version": "0.1.5"
 }
