@@ -2,11 +2,12 @@
 # yarn lockfile v1
 
 
-"@ns8/ns8-switchboard-operator@^1.0.91":
-  version "1.0.91"
-  resolved "https://registry.yarnpkg.com/@ns8/ns8-switchboard-operator/-/ns8-switchboard-operator-1.0.91.tgz#e43b9f5001e07edd5da3ab096ec7db6eb88492a2"
-  integrity sha512-1ZkqT4N5IcHXGDGV6x0VdMV4ATPxkiqRcnq9uqZ8glXLas0BNWwgjIG7ql5i1QINLZKg6Hho/AWbhMk8Fri5uQ==
+"@ns8/ns8-switchboard-operator@^1.0.93":
+  version "1.0.93"
+  resolved "https://registry.yarnpkg.com/@ns8/ns8-switchboard-operator/-/ns8-switchboard-operator-1.0.93.tgz#477478ce2a4e012f28c6a3042c4008874a7582f8"
+  integrity sha512-2+TXn7ig8DmxCH3eUpv+pDztOjBzmEBrhI/iXzEdWvMyUBr0jOLIBQ2zQS0bQs7qu26/VYWycTzCZ+qDnWzLPg==
   dependencies:
+    aws-lambda "^0.1.2"
     isomorphic-fetch "^2.2.1"
     ns8-protect-models "^1.0.205"
     ns8-switchboard-interfaces "^1.0.80"
@@ -47,7 +48,16 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
-aws-sdk@^2.538.0:
+aws-lambda@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/aws-lambda/-/aws-lambda-0.1.2.tgz#19b1585075df31679597b976a5f1def61f12ccee"
+  integrity sha1-GbFYUHXfMWeVl7l2pfHe9h8SzO4=
+  dependencies:
+    aws-sdk "^*"
+    commander "^2.5.0"
+    dotenv "^0.4.0"
+
+aws-sdk@^*, aws-sdk@^2.538.0:
   version "2.538.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.538.0.tgz#c2a6b482c191615457993d9cfb28a79d0847bb71"
   integrity sha512-mQTo1eWoU8UB2Pp1PyBBSrFKfaFIVNKeLjJslrhHV5eW/orv2Lw07shnbY4cSt+n2oumw45WStWORyLekRvjyA==
@@ -89,6 +99,11 @@ buffer@4.9.1:
     ieee754 "^1.1.4"
     isarray "^1.0.0"
 
+commander@^2.5.0:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.1.tgz#3863ce3ca92d0831dcf2a102f5fb4b5926afd0f9"
+  integrity sha512-cCuLsMhJeWQ/ZpsFTbE765kvVfoeSddc4nU3up4fV+fDBcfUXnbITJ+JzhkdjzOqhURjZgujxaioam4RM9yGUg==
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -103,6 +118,11 @@ detect-newline@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/detect-newline/-/detect-newline-2.1.0.tgz#f41f1c10be4b00e87b5f13da680759f2c5bfd3e2"
   integrity sha1-9B8cEL5LAOh7XxPaaAdZ8sW/0+I=
+
+dotenv@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-0.4.0.tgz#f6fb351363c2d92207245c737802c9ab5ae1495a"
+  integrity sha1-9vs1E2PC2SIHJFxzeALJq1rhSVo=
 
 encoding@^0.1.11:
   version "0.1.12"
