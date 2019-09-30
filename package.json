@@ -4,8 +4,9 @@
     "@ns8/ns8-switchboard-operator": "^1.0.91",
     "aws-sdk": "^2.538.0",
     "glob": "^7.1.4",
+    "libphonenumber-js": "^1.7.25",
     "minimist": "^1.2.0",
-    "ns8-protect-models": "^1.0.205",
+    "ns8-protect-models": "^1.0.206",
     "ns8-switchboard-interfaces": "^1.0.81",
     "sort-json": "^2.0.0",
     "yamljs": "^0.3.0"
