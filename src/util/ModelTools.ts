@@ -3,7 +3,7 @@ import {
   CountryCode,
   PhoneNumber,
 } from 'libphonenumber-js';
-import { AddressType, TransactionMethod } from "ns8-protect-models";
+import { AddressType, TransactionMethod, TransactionStatus, CreditCardTransactionType } from "ns8-protect-models";
 
 export class ModelTools {
 
@@ -48,14 +48,64 @@ export class ModelTools {
     switch (type.toLowerCase().trim()) {
       case 'bankwire':
         return TransactionMethod.BANK_WIRE;
+
       case 'creditcard':
         return TransactionMethod.CC;
+
+      case 'checkmo':
       case 'check':
         return TransactionMethod.CHECK;
+
       case 'moneyorder':
         return TransactionMethod.COD;
+
       default:
         return TransactionMethod.OTHER;
     }
+  }
+
+  public static stringToTransactionStatus = (type: string): TransactionStatus => {
+    switch (type.toLowerCase().trim()) {
+      case 'processing':
+      case 'pending':
+        return TransactionStatus.PENDING;
+
+      case 'error':
+        return TransactionStatus.ERROR;
+
+      case 'successful':
+      case 'success':
+        return TransactionStatus.SUCCESS;
+
+      case 'failed':
+      case 'failure':
+        return TransactionStatus.FAILURE;
+
+      default:
+        return TransactionStatus.PENDING;
+    }
+  }
+
+  public static stringToCreditCardTransactionType = (type: string): CreditCardTransactionType => {
+    switch (type.toLowerCase().trim()) {
+      case 'authorization':
+        return CreditCardTransactionType.AUTHORIZATION;
+
+      case 'capture':
+        return CreditCardTransactionType.CAPTURE;
+
+      case 'refund':
+        return CreditCardTransactionType.REFUND;
+
+      case 'sale':
+        return CreditCardTransactionType.SALE;
+
+      case 'void':
+        return CreditCardTransactionType.VOID;
+
+      default:
+        return CreditCardTransactionType.AUTHORIZATION;
+    }
+
   }
 }
