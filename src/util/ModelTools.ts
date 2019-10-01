@@ -97,6 +97,7 @@ export class ModelTools {
       case 'refund':
         return CreditCardTransactionType.REFUND;
 
+      case 'order':
       case 'sale':
         return CreditCardTransactionType.SALE;
 
