@@ -1,5 +1,6 @@
 import { Switchboard, Source, Switch } from 'ns8-switchboard-interfaces';
 import operatorModule from '@ns8/ns8-switchboard-operator';
+import { Logger } from '.';
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
@@ -32,7 +33,7 @@ export class SwitchboardInit {
   };
 
   private static logAndExit = (error): void => {
-    console.error(error);
+    Logger.error('Failed', error);
     process.exit(1);
   };
 
@@ -45,11 +46,11 @@ export class SwitchboardInit {
     for (const mdl of switchboard.modules) {
       if (mdl.version === 'link') {
         const dependency = mdl.name;
-        console.log(`running yarn link ${dependency}`);
+        Logger.log(`running yarn link ${dependency}`);
         await exec(`yarn link ${dependency}`).catch(SwitchboardInit.logAndExit);
       } else {
         const dependency = mdl.name + "@" + mdl.version;
-        console.log(`running yarn add ${dependency}`);
+        Logger.log(`running yarn add ${dependency}`);
         await exec(`yarn add ${dependency}`).catch(SwitchboardInit.logAndExit);
       }
     }

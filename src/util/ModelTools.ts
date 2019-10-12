@@ -1,9 +1,15 @@
 import {
+  AddressType,
+  CreditCardTransactionType,
+  TransactionMethod,
+  TransactionStatus
+  } from 'ns8-protect-models';
+import { Logger } from './Logger';
+import {
   parsePhoneNumberFromString,
   CountryCode,
   PhoneNumber,
 } from 'libphonenumber-js';
-import { AddressType, TransactionMethod, TransactionStatus, CreditCardTransactionType } from "ns8-protect-models";
 
 export class ModelTools {
 
@@ -17,7 +23,7 @@ export class ModelTools {
     try {
       phoneNumber = parsePhoneNumberFromString(phoneNumberString, countryCode as CountryCode);
     } catch (error) {
-      console.log('Could not format phone number: ', error.toString());
+      Logger.log('Could not format phone number: ', error);
     }
 
     if (phoneNumber && phoneNumber.number) {
@@ -28,10 +34,12 @@ export class ModelTools {
   };
 
   /**
- * Converts a string to an AddressType
- * @param type
- */
+   * Safely converts a string to an [[AddressType]]
+   * @param type
+  */
   public static stringToProtectAddressType = (type: string): AddressType => {
+    if (!type) return AddressType.DEVICE;
+
     switch (type.toLowerCase().trim()) {
       case 'billing':
         return AddressType.BILLING;
@@ -44,7 +52,13 @@ export class ModelTools {
     }
   }
 
+  /**
+  * Safely converts a string to a [[TransactionMethod]]
+  * @param type
+  */
   public static stringToTransactionMethod = (type: string): TransactionMethod => {
+    if (!type) return TransactionMethod.OTHER;
+
     switch (type.toLowerCase().trim()) {
       case 'bankwire':
         return TransactionMethod.BANK_WIRE;
@@ -64,7 +78,13 @@ export class ModelTools {
     }
   }
 
+  /**
+  * Safely converts a string to a [[TransactionStatus]]
+  * @param type
+  */
   public static stringToTransactionStatus = (type: string): TransactionStatus => {
+    if (!type) return TransactionStatus.PENDING;
+
     switch (type.toLowerCase().trim()) {
       case 'processing':
       case 'pending':
@@ -86,7 +106,13 @@ export class ModelTools {
     }
   }
 
+  /**
+  * Safely converts a string to a [[CreditCardTransactionType]]
+  * @param type
+  */
   public static stringToCreditCardTransactionType = (type: string): CreditCardTransactionType => {
+    if (!type) return CreditCardTransactionType.AUTHORIZATION;
+
     switch (type.toLowerCase().trim()) {
       case 'authorization':
         return CreditCardTransactionType.AUTHORIZATION;
@@ -107,6 +133,5 @@ export class ModelTools {
       default:
         return CreditCardTransactionType.AUTHORIZATION;
     }
-
   }
 }
