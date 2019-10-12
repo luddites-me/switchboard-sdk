@@ -1,6 +1,6 @@
-import { Switchboard, Source, Switch } from 'ns8-switchboard-interfaces';
 import operatorModule from '@ns8/ns8-switchboard-operator';
 import { Logger } from '.';
+import { Source, Switch, Switchboard } from 'ns8-switchboard-interfaces';
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 

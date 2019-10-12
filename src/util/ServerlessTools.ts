@@ -1,8 +1,8 @@
-
+import serverlessDefault from '../models/json/serverless.json';
 import { readFileSync, writeFileSync } from 'fs';
 import { Serverless } from '..';
+
 const YAML = require('yamljs');
-import serverlessDefault from '../models/json/serverless.json';
 
 /**
  * A collection of utility methods to work with generating/updating the serverless.yaml file required for AWS

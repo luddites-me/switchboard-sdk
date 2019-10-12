@@ -1,7 +1,7 @@
-import { Switchboard, Switch } from 'ns8-switchboard-interfaces';
-import { readFileSync, writeFileSync } from 'fs';
-import { SwitchboardOptions } from '.';
 import switchboardDefaults from '../models/json/switchboard.json';
+import { readFileSync, writeFileSync } from 'fs';
+import { Switch, Switchboard } from 'ns8-switchboard-interfaces';
+import { SwitchboardOptions } from '.';
 /**
  * Utility methods for generating/modifying the switchboard.json needed for AWS
  */
