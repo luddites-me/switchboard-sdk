@@ -16,14 +16,16 @@ export class ModelTools {
   /**
    * Generic utility to format a phone number correctly
    */
-  public static formatPhoneNumber = (phoneNumberString: string, countryCode?: string): string => {
+  public static formatPhoneNumber = (phoneNumberString: string | undefined, countryCode?: string | undefined): string | undefined => {
     let phoneNumber: PhoneNumber | undefined;
-    let e164PhoneNumberString: string = phoneNumberString;
+    let e164PhoneNumberString: string | undefined = phoneNumberString;
 
     try {
-      phoneNumber = parsePhoneNumberFromString(phoneNumberString, countryCode as CountryCode);
-    } catch (error) {
-      Logger.log('Could not format phone number: ', error);
+      if (phoneNumberString) {
+        phoneNumber = parsePhoneNumberFromString(phoneNumberString, countryCode as CountryCode);
+      }
+    } catch (e) {
+      Logger.log('Could not format phone number: ', e);
     }
 
     if (phoneNumber && phoneNumber.number) {
@@ -37,7 +39,7 @@ export class ModelTools {
    * Safely converts a string to an [[AddressType]]
    * @param type
   */
-  public static stringToProtectAddressType = (type: string): AddressType => {
+  public static stringToProtectAddressType = (type: string | undefined): AddressType => {
     if (!type) return AddressType.DEVICE;
 
     switch (type.toLowerCase().trim()) {
@@ -56,7 +58,7 @@ export class ModelTools {
   * Safely converts a string to a [[TransactionMethod]]
   * @param type
   */
-  public static stringToTransactionMethod = (type: string): TransactionMethod => {
+  public static stringToTransactionMethod = (type: string | undefined): TransactionMethod => {
     if (!type) return TransactionMethod.OTHER;
 
     switch (type.toLowerCase().trim()) {
@@ -82,7 +84,7 @@ export class ModelTools {
   * Safely converts a string to a [[TransactionStatus]]
   * @param type
   */
-  public static stringToTransactionStatus = (type: string): TransactionStatus => {
+  public static stringToTransactionStatus = (type: string | undefined): TransactionStatus => {
     if (!type) return TransactionStatus.PENDING;
 
     switch (type.toLowerCase().trim()) {
@@ -110,7 +112,7 @@ export class ModelTools {
   * Safely converts a string to a [[CreditCardTransactionType]]
   * @param type
   */
-  public static stringToCreditCardTransactionType = (type: string): CreditCardTransactionType => {
+  public static stringToCreditCardTransactionType = (type: string | undefined): CreditCardTransactionType => {
     if (!type) return CreditCardTransactionType.AUTHORIZATION;
 
     switch (type.toLowerCase().trim()) {
