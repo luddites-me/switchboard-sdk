@@ -24,14 +24,14 @@ export class Utilities {
    * Mechanism for synchronous wait.
    * Usage: `await this.sleep(5000)`
    */
-  public static sleep = async (milliseconds: number) => {
+  public static sleep = async (milliseconds: number = 1000) => {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
   }
 
   /**
    * Safely converts a country code (e.g. 'US') to a country (e.g. 'United States')
    */
-  public static getCountryNameFromCountryCode = (code: string): string => {
+  public static getCountryNameFromCountryCode = (code: string | undefined): string => {
     if (!code) return '';
     return getName(code);
   }
