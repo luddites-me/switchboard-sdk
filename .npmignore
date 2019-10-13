@@ -1,1 +1,10 @@
+.awcache/
+.env
+.env.template
+.tmp/
+*.log
+jest.config.js
 node_modules/
+src/
+test/
+webpack.config.js
