@@ -1,27 +1,20 @@
-const minimist = require('minimist');
-const sortJson = require('sort-json');
-const glob = require('glob');
-
-const args = minimist(process.argv.slice(2));
-const { env } = args;
-
-const globOptions: any = {
-  ignore: '**/node_modules/**',
-  realPath: true
-}
+import * as sortJson from 'sort-json';
+import glob from 'glob';
 
 /**
  * Collection of utilities for use in the build of a project
  */
 export class BuildTools {
-  public static runTasks = (callback: (env: string) => void): void => {
-    callback(env);
-  };
-
   /**
    * Sorts all properties of JSON files by key
    */
   public static sortJsonFiles = (): void => {
+
+    const globOptions: any = {
+      ignore: '**/node_modules/**',
+      realPath: true
+    }
+
     glob('**/*.json', globOptions, (er, files: string[]) => {
       if (er) {
         console.error(er);
@@ -32,7 +25,7 @@ export class BuildTools {
         } catch (err) {
           console.error(err);
         }
-      });
-    });
-  };
+      })
+    })
+  }
 }

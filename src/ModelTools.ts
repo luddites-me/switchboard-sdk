@@ -1,15 +1,11 @@
-import {
-  AddressType,
-  CreditCardTransactionType,
-  TransactionMethod,
-  TransactionStatus
-  } from 'ns8-protect-models';
+import { AddressType } from 'ns8-protect-models';
+import { CreditCardTransactionType } from 'ns8-protect-models';
+import { TransactionStatus } from 'ns8-protect-models';
+import { TransactionMethod } from 'ns8-protect-models';
 import { Logger } from './Logger';
-import {
-  parsePhoneNumberFromString,
-  CountryCode,
-  PhoneNumber,
-} from 'libphonenumber-js';
+import { parsePhoneNumberFromString } from 'libphonenumber-js';
+import { PhoneNumber } from 'libphonenumber-js';
+import { CountryCode } from 'libphonenumber-js';
 
 export class ModelTools {
 
@@ -33,7 +29,7 @@ export class ModelTools {
     }
 
     return e164PhoneNumberString;
-  };
+  }
 
   /**
    * Safely converts a string to an [[AddressType]]

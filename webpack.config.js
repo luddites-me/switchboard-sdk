@@ -4,8 +4,8 @@
 /* eslint-disable func-names */
 /* eslint-disable global-require */
 const path = require('path');
+// This plugin can increase the performance of the build by caching and incrementally building
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-
 /**
  * This is the webpack plugin that compiles the TSD file for use in the final bundle.
  * NOTE: Using legacy JavaScript concepts to build this plugin, because it works as-is.
@@ -35,13 +35,13 @@ const config = {
     umdNamedDefine: true,
   },
   resolve: {
-    extensions: ['.webpack.js', '.web.js', '.ts', '.js'],
+    extensions: ['.webpack.js', '.web.js', '.ts', '.tsx', '.js'],
     modules: ['node_modules'],
   },
   devtool: 'source-map',
-
   module: {
     rules: [{
+      test: /\.tsx?$/,
       use: [{
         loader: 'awesome-typescript-loader',
       }],
