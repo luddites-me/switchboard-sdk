@@ -46,5 +46,5 @@
     "rebuild:dev": "yarn clean && yarn build:dev"
   },
   "types": "dist/index.d.ts",
-  "version": "0.1.16"
+  "version": "0.1.17"
 }
