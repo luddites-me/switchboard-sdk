@@ -26,8 +26,8 @@ DtsBundlePlugin.prototype.apply = function (compiler) {
 };
 
 let mode = 'production';
-if (process.env.NODE_ENV === 'development') {
-   mode = 'development';
+if (process.env.NODE_ENV && process.env.NODE_ENV.startsWith('dev')) {
+  mode = 'development';
 }
 
 const config = {
