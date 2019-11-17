@@ -2,16 +2,16 @@
 # yarn lockfile v1
 
 
-"@ns8/ns8-switchboard-operator@1.0.105":
-  version "1.0.105"
-  resolved "https://registry.yarnpkg.com/@ns8/ns8-switchboard-operator/-/ns8-switchboard-operator-1.0.105.tgz#58745957eb23708e66dbf283ae003aff93513d1d"
-  integrity sha512-OSjjIGPvJxAmNqHWoq13uVF5Gj6yURVd/KOy2i9bi98RovnctgWq//JmINqmbCbTqOzKDVj5hX0qa9ue+nOkpg==
+"@ns8/ns8-switchboard-operator@1.0.108":
+  version "1.0.108"
+  resolved "https://registry.yarnpkg.com/@ns8/ns8-switchboard-operator/-/ns8-switchboard-operator-1.0.108.tgz#711992fc6c27f18302e50482a1a22410cfdc91df"
+  integrity sha512-y3KVPvsc3Tvu/lU1ana40bn4BMd3pDkHblJ9YmkdizpV8hWeCr68Qfr0IYM658i0WLALEDB5PeLVXnlkAn6fOQ==
   dependencies:
     aws-lambda "0.1.2"
-    aws-sdk "2.561.0"
+    aws-sdk "2.572.0"
     isomorphic-fetch "2.2.1"
-    ns8-protect-models "1.0.212"
-    ns8-switchboard-interfaces "1.0.89"
+    ns8-protect-models "1.0.213"
+    ns8-switchboard-interfaces "1.0.90"
 
 "@types/detect-indent@0.1.30":
   version "0.1.30"
@@ -65,10 +65,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.7.tgz#01e4ea724d9e3bd50d90c11fd5980ba317d8fa11"
   integrity sha512-E6Zn0rffhgd130zbCbAr/JdXfXkoOUFAKNs/rF8qnafSJ8KYaA/j3oz7dcwal+lYjLA7xvdd5J4wdYpCTlP8+w==
 
-"@types/node@12.7.8":
-  version "12.7.8"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.8.tgz#cb1bf6800238898bc2ff6ffa5702c3cadd350708"
-  integrity sha512-FMdVn84tJJdV+xe+53sYiZS4R5yn1mAIxfj+DVoNiQjTYz1+OYmjwEZr1ev9nU0axXwda0QDbYl06QHanRVH3A==
+"@types/node@12.12.8":
+  version "12.12.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.12.8.tgz#dab418655af39ce2fa99286a0bed21ef8072ac9d"
+  integrity sha512-XLla8N+iyfjvsa0KKV+BP/iGSoTmwxsu5Ci5sM33z9TjohF72DEz95iNvD6pPmemvbQgxAv/909G73gUn8QR7w==
 
 "@types/node@8.0.0":
   version "8.0.0"
@@ -450,25 +450,25 @@ aws-lambda@0.1.2:
     commander "^2.5.0"
     dotenv "^0.4.0"
 
-aws-sdk@2.561.0:
-  version "2.561.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.561.0.tgz#d96fb509b902768eb5105b67742ea5485c6ffa3e"
-  integrity sha512-UXsjWDZFIIcfXULAEBeE42Eae1xHq4mkDfhPIw1VBlfsIzOVB2Bp+Y3+EvxH31OzO5SN0x03VracLlZFo4HElQ==
+aws-sdk@2.572.0:
+  version "2.572.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.572.0.tgz#80c82c075bdfb21fad7c66d7efbb14e75b970284"
+  integrity sha512-sE9SdbnJoQTr2+rLjLlHQTfSunayhi0FuI18MmrJVgbzBu54UZoHhD9MNTYhhZqU8/vBa25Ji99BWStIwuu5Vw==
   dependencies:
-    buffer "4.9.1"
-    events "1.1.1"
-    ieee754 "1.1.13"
-    jmespath "0.15.0"
-    querystring "0.2.0"
-    sax "1.2.1"
-    url "0.10.3"
-    uuid "3.3.2"
-    xml2js "0.4.19"
+    buffer "^4.9.1"
+    events "^1.1.1"
+    ieee754 "^1.1.13"
+    jmespath "^0.15.0"
+    querystring "^0.2.0"
+    sax "^1.2.1"
+    url "^0.10.3"
+    uuid "^3.3.2"
+    xml2js "^0.4.19"
 
-aws-sdk@2.571.0:
-  version "2.571.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.571.0.tgz#cc3eb65c6ba0f7e535d2ead2ba205f4fd1c4a91c"
-  integrity sha512-u1wW6Ib0OIT2VlyDXMRp+xyH8viGu775Ctx08F8AKT3i06plB7kcf+WXmmvBnLeCXKdmE87GT/0WKb3wruzH6g==
+aws-sdk@2.573.0:
+  version "2.573.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.573.0.tgz#e4d35b6ac7e039eda2b1a365574380521b87e065"
+  integrity sha512-NC6A0d96aowA1L1UW8idNTUnDTzjoCysiZY0rDiumMu9jhAouLp07ffc2sXgTWg9pWvXrEex2Aeps9oQWq/6OA==
   dependencies:
     buffer "^4.9.1"
     events "^1.1.1"
@@ -2986,20 +2986,20 @@ ns8-billing-core@^1.0.128:
   resolved "https://registry.yarnpkg.com/ns8-billing-core/-/ns8-billing-core-1.0.675.tgz#65ff8c68d00f5d03cd5f3b300a032c76eb350244"
   integrity sha512-7wSMF7hNfUxbULXrOiZxKFJaDXgt83wg4Hxc87FwkDJNfnz2pc7U1mh4Z9m2Z15sbcrrNbe6Mc+E3HSsWOrahw==
 
-ns8-protect-models@1.0.212:
-  version "1.0.212"
-  resolved "https://registry.yarnpkg.com/ns8-protect-models/-/ns8-protect-models-1.0.212.tgz#85eb62f53c1c461f71f25c3203bbdbd30c85c768"
-  integrity sha512-KXu06getaOnQXRZCrLPAbLdiT1gXPMAbfwhKnAq6QtCyzV/RzHTYjCP/0Z++yc3jUSimvmGgNSKpLYU5Mzok6Q==
+ns8-protect-models@1.0.213:
+  version "1.0.213"
+  resolved "https://registry.yarnpkg.com/ns8-protect-models/-/ns8-protect-models-1.0.213.tgz#dfef0aa461a2b8744558849febab0607fd231522"
+  integrity sha512-mQfmRSGNOqMflZ5ml9PGuY/G/ktab7J/y5TNryZejRhqOiwHh1HBTufTePuJ2ioBcdZ7TsPrWrU8tqQJ78Nq4A==
   dependencies:
     ns8-billing-core "^1.0.128"
 
-ns8-switchboard-interfaces@1.0.89:
-  version "1.0.89"
-  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.89.tgz#23874f3a6e9c4727a305b99c45893cf941582bfc"
-  integrity sha512-SIyQ2XBYfgkfeXZzVsSEKfrrXNBPaJu8D1ttkOQLxuc8rDgW9fPJ42Ck9YRqMRkjFdQwpm38idfIpCjx5yD3PA==
+ns8-switchboard-interfaces@1.0.90:
+  version "1.0.90"
+  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.90.tgz#682599e5847ba631aaccca41739a206a75c86851"
+  integrity sha512-Km5zEaqyCuVmXyWyIN89XLN3wZJW3MQLNWs5UyN8NfSi8HuGp96fNrbFpa5lH/3/PejHjkVE/tduUK9dJB6D1g==
   dependencies:
-    "@types/node" "12.7.8"
-    ns8-protect-models "1.0.212"
+    "@types/node" "12.12.7"
+    ns8-protect-models "1.0.213"
 
 number-is-nan@^1.0.0:
   version "1.0.1"
@@ -4202,10 +4202,10 @@ ts-loader@6.2.1:
     micromatch "^4.0.0"
     semver "^6.0.0"
 
-ts-node@8.5.0:
-  version "8.5.0"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.5.0.tgz#bc7d5a39133d222bf25b1693651e4d893785f884"
-  integrity sha512-fbG32iZEupNV2E2Fd2m2yt1TdAwR3GTCrJQBHDevIiEBNy1A8kqnyl1fv7jmRmmbtcapFab2glZXHJvfD1ed0Q==
+ts-node@8.5.2:
+  version "8.5.2"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.5.2.tgz#434f6c893bafe501a30b32ac94ee36809ba2adce"
+  integrity sha512-W1DK/a6BGoV/D4x/SXXm6TSQx6q3blECUzd5TN+j56YEMX3yPVMpHsICLedUw3DvGF3aTQ8hfdR9AKMaHjIi+A==
   dependencies:
     arg "^4.1.0"
     diff "^4.0.1"
