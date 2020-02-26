@@ -1,2 +1,2 @@
-import { BuildTools } from '../src/BuildTools';
-BuildTools.sortJsonFiles();
+import { sortJson } from '@ns8/protect-js-tools';
+sortJson();

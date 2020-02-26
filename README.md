@@ -1,1 +1,3 @@
-# ns8-protect-sdk
+# Getting Started
+
+Please [read the docs](public/en/platform/protect-switchboard-sdk/getting-started.md)

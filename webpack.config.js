@@ -12,13 +12,13 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
  * NOTE: Using legacy JavaScript concepts to build this plugin, because it works as-is.
  */
 function DtsBundlePlugin() {}
-DtsBundlePlugin.prototype.apply = function (compiler) {
+DtsBundlePlugin.prototype.apply = function(compiler) {
   const dts = require('dts-bundle');
   compiler.plugin('done', () => {
     dts.bundle({
       name: 'app',
       main: '.tmp/index.d.ts',
-      out: '../dist/index.d.ts',
+      out: '../dist/switchboard-sdk.d.ts',
       removeSource: false,
       outputAsModuleFolder: true, // to use npm in-package typings
     });
@@ -29,14 +29,14 @@ let mode = 'production';
 if (process.env.NODE_ENV && process.env.NODE_ENV.startsWith('dev')) {
   mode = 'development';
 }
-
+const filename = 'switchboard-sdk';
 const config = {
   entry: './src/index.ts',
-  mode: mode,
+  mode,
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js',
-    library: 'index',
+    filename: mode === 'production' ? `${filename}.min.js` : `${filename}.js`,
+    library: 'SwitchboardSDK',
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
@@ -46,17 +46,18 @@ const config = {
   },
   devtool: 'source-map',
   module: {
-    rules: [{
-      test: /\.tsx?$/,
-      use: [{
-        loader: 'awesome-typescript-loader',
-      }],
-    }],
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: [
+          {
+            loader: 'awesome-typescript-loader',
+          },
+        ],
+      },
+    ],
   },
-  plugins: [
-    new DtsBundlePlugin(),
-    new HardSourceWebpackPlugin(),
-  ],
+  plugins: [new DtsBundlePlugin(), new HardSourceWebpackPlugin()],
   target: 'node',
   node: {
     __dirname: false,
