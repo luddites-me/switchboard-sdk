@@ -11,16 +11,15 @@ export const formatPhoneNumber = (phoneNumberString = '', countryCode = ''): str
   let phoneNumber: PhoneNumber | undefined;
   let e164PhoneNumberString: string = phoneNumberString;
 
-  try {
-    if (phoneNumberString) {
-      phoneNumber = parsePhoneNumberFromString(phoneNumberString, countryCode?.toUpperCase() as CountryCode);
+  if (phoneNumberString) {
+    if (countryCode) {
+      phoneNumber = parsePhoneNumberFromString(phoneNumberString, countryCode.toUpperCase() as CountryCode);
+    } else {
+      phoneNumber = parsePhoneNumberFromString(phoneNumberString);
     }
-  } catch (e) {
-    console.log('Could not format phone number: ', e);
   }
-
   if (phoneNumber && phoneNumber.number) {
     e164PhoneNumberString = phoneNumber.format('E.164');
   }
-  return e164PhoneNumberString || '';
+  return e164PhoneNumberString;
 };

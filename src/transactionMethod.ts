@@ -7,7 +7,7 @@ import { TransactionMethod } from 'ns8-protect-models';
  */
 export const stringToTransactionMethod = (transactionMethod = ''): TransactionMethod => {
   const method = transactionMethod
-    ?.toLowerCase()
+    .toLowerCase()
     .trim()
     .replace(' ', '')
     .replace('_', '');

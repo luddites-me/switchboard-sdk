@@ -35,4 +35,10 @@ describe('address types', () => {
     const convert = stringToProtectAddressType(input);
     expect(convert).to.equal(output);
   });
+
+  it('converts "" to an AddressType', async () => {
+    const output = AddressType.DEVICE;
+    const convert = stringToProtectAddressType();
+    expect(convert).to.equal(output);
+  });
 });

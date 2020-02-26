@@ -56,4 +56,10 @@ describe('credit cards', () => {
     const convert = stringToCreditCardTransactionType(input);
     expect(convert).to.equal(output);
   });
+
+  it('converts "" to an CreditCardTransactionType', async () => {
+    const output = CreditCardTransactionType.AUTHORIZATION;
+    const convert = stringToCreditCardTransactionType();
+    expect(convert).to.equal(output);
+  });
 });

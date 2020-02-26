@@ -63,4 +63,10 @@ describe('transaction statuses', () => {
     const convert = stringToTransactionStatus(input);
     expect(convert).to.equal(output);
   });
+
+  it('converts "" to an TransactionStatus', async () => {
+    const output = TransactionStatus.PENDING;
+    const convert = stringToTransactionStatus();
+    expect(convert).to.equal(output);
+  });
 });

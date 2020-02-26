@@ -77,4 +77,10 @@ describe('transaction methods', () => {
     const convert = stringToTransactionMethod(input);
     expect(convert).to.equal(output);
   });
+
+  it('converts "" to an TransactionMethod', async () => {
+    const output = TransactionMethod.OTHER;
+    const convert = stringToTransactionMethod();
+    expect(convert).to.equal(output);
+  });
 });
