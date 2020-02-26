@@ -6,7 +6,7 @@ import { CreditCardTransactionType } from 'ns8-protect-models';
  * @returns CreditCardTransactionType; defaults to 'AUTHORIZATION' if not parsable
  */
 export const stringToCreditCardTransactionType = (creditCardTransactionType = ''): CreditCardTransactionType => {
-  switch (creditCardTransactionType?.toLowerCase().trim()) {
+  switch (creditCardTransactionType.toLowerCase().trim()) {
     case 'authorization':
       return CreditCardTransactionType.AUTHORIZATION;
     case 'capture':

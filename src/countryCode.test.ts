@@ -22,9 +22,8 @@ describe('country codes', () => {
   });
 
   it('converts "" to an empty string', async () => {
-    const input = '';
     const output = '';
-    const convert = getCountryNameFromCountryCode(input);
+    const convert = getCountryNameFromCountryCode();
     expect(convert).to.equal(output);
   });
 });

@@ -6,7 +6,7 @@ import { AddressType } from 'ns8-protect-models';
  * @returns AddressType; defaults to 'DEVICE' if not parsable
  */
 export const stringToProtectAddressType = (addressType = ''): AddressType => {
-  switch (addressType?.toLowerCase().trim()) {
+  switch (addressType.toLowerCase().trim()) {
     case 'billing':
       return AddressType.BILLING;
     case 'shipping':
