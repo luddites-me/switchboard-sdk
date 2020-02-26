@@ -13,7 +13,7 @@ export const formatPhoneNumber = (phoneNumberString = '', countryCode = ''): str
 
   try {
     if (phoneNumberString) {
-      phoneNumber = parsePhoneNumberFromString(phoneNumberString, countryCode as CountryCode);
+      phoneNumber = parsePhoneNumberFromString(phoneNumberString, countryCode?.toUpperCase() as CountryCode);
     }
   } catch (e) {
     console.log('Could not format phone number: ', e);
@@ -22,5 +22,5 @@ export const formatPhoneNumber = (phoneNumberString = '', countryCode = ''): str
   if (phoneNumber && phoneNumber.number) {
     e164PhoneNumberString = phoneNumber.format('E.164');
   }
-  return (e164PhoneNumberString || '').replace('++', '+');
+  return e164PhoneNumberString || '';
 };
