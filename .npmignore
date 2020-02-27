@@ -1,5 +1,5 @@
-
 .awcache/
+.ctirc
 .editorconfig
 .env
 .env.defaults
@@ -16,8 +16,11 @@
 .nycrc.json
 .prettierrc.json
 .tmp/
+.tmp/
 .vscode/
+*.lock
 *.log
+*.yml
 build/
 codealike.json
 CODEOWNERS
@@ -27,8 +30,6 @@ jest.config.js
 node_modules/
 src/
 test/
-tmp/
 tsconfig.json
 typedoc.json
 webpack.config.js
-yarn.lock

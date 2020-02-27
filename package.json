@@ -53,7 +53,7 @@
     "build": "yarn install && yarn generate:exports && tsc -d && yarn beautify && yarn bundle",
     "build:dev": "NODE_ENV=development yarn && yarn build && yarn link",
     "bundle": "webpack",
-    "clean": "rm -rf .awcache .tmp dist",
+    "clean": "rm -rf .awcache .tmp dist .nyc_output coverage *.log",
     "generate:exports": "yarn cti create ./src -w",
     "lint": "yarn eslint src/**/*.ts",
     "lint:fix": "yarn eslint --fix src/**/*.ts",
