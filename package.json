@@ -3,13 +3,13 @@
   "dependencies": {
     "country-list": "2.2.0",
     "libphonenumber-js": "1.7.44",
-    "ns8-protect-models": "1.0.245",
+    "ns8-protect-models": "1.0.246",
     "typescript": "3.8.2"
   },
   "description": "Protect Switchboard SDK",
   "devDependencies": {
     "@ns8/eslint-config-ns8-typescript-eslint": "0.0.7",
-    "@ns8/protect-js-tools": "0.0.1",
+    "@ns8/protect-js-tools": "0.0.3",
     "@types/chai": "4.2.9",
     "@types/chai-as-promised": "7.1.2",
     "@types/country-list": "^2.1.0",
@@ -32,7 +32,7 @@
     "eslint-plugin-tsdoc": "0.2.3",
     "hard-source-webpack-plugin": "0.13.1",
     "husky": "4.2.3",
-    "mocha": "7.0.1",
+    "mocha": "7.1.0",
     "nyc": "15.0.0",
     "prettier": "1.19.1",
     "source-map-support": "0.5.16",
@@ -64,5 +64,5 @@
     "test:debug": "mocha -r ts-node/register '**/*/*.test.ts'"
   },
   "types": "dist/switchboard-sdk.d.ts",
-  "version": "0.2.0"
+  "version": "0.2.1"
 }
