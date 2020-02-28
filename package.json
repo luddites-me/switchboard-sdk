@@ -8,7 +8,8 @@
     "ns8-protect-models": "1.0.247",
     "ns8-switchboard-interfaces": "1.0.103",
     "typescript": "3.8.2",
-    "ua-parser-js": "0.7.21"
+    "ua-parser-js": "0.7.21",
+    "uuid": "7.0.1"
   },
   "description": "Protect Switchboard SDK",
   "devDependencies": {
@@ -19,6 +20,7 @@
     "@types/mocha": "7.0.1",
     "@types/node": "13.7.6",
     "@types/ua-parser-js": "0.7.33",
+    "@types/uuid": "7.0.0",
     "@typescript-eslint/eslint-plugin": "2.21.0",
     "@typescript-eslint/parser": "2.21.0",
     "awesome-typescript-loader": "5.2.1",
