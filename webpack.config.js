@@ -4,7 +4,7 @@
 /* eslint-disable func-names */
 /* eslint-disable global-require */
 const path = require('path');
-require('dotenv').config();
+const env = require('@ns8/protect-js-tools').loadEnv();
 // This plugin can increase the performance of the build by caching and incrementally building
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 /**
@@ -26,9 +26,11 @@ DtsBundlePlugin.prototype.apply = function(compiler) {
 };
 
 let mode = 'production';
-if (process.env.NODE_ENV && process.env.NODE_ENV.startsWith('dev')) {
+if (env.NODE_ENV && env.NODE_ENV.startsWith('dev')) {
   mode = 'development';
 }
+console.log(`Building in ${mode} mode`);
+
 const filename = 'switchboard-sdk';
 const config = {
   entry: './src/index.ts',
