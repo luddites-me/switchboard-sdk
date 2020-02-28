@@ -13,7 +13,6 @@
   "description": "Protect Switchboard SDK",
   "devDependencies": {
     "@ns8/eslint-config-ns8-typescript-eslint": "0.0.7",
-    "@ns8/protect-js-tools": "0.0.3",
     "@types/chai": "4.2.9",
     "@types/chai-as-promised": "7.1.2",
     "@types/country-list": "^2.1.0",
@@ -26,8 +25,6 @@
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "create-ts-index": "1.12.0",
-    "dotenv": "8.2.0",
-    "dotenv-extended": "2.7.1",
     "dts-bundle": "0.7.3",
     "eslint": "6.8.0",
     "eslint-config-airbnb-base": "14.0.0",
@@ -51,8 +48,8 @@
   ],
   "license": "UNLICENSED",
   "main": "dist/switchboard-sdk.min.js",
-  "name": "@ns8/protect-switchboard-sdk",
-  "repository": "https://github.com/ns8inc/protect-switchboard-sdk.git",
+  "name": "@ns8/protect-sdk-switchboard",
+  "repository": "https://github.com/ns8inc/protect-sdk-switchboard.git",
   "scripts": {
     "beautify": "ts-node ./scripts/build.ts",
     "build": "yarn install && yarn generate:exports && tsc -d && yarn beautify && yarn bundle",
@@ -69,5 +66,5 @@
     "test:debug": "mocha -r ts-node/register '**/*/*.test.ts'"
   },
   "types": "dist/switchboard-sdk.d.ts",
-  "version": "0.2.3"
+  "version": "0.2.4"
 }
