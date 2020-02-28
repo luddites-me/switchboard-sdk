@@ -1,10 +1,14 @@
 {
   "author": "ns8inc",
   "dependencies": {
+    "@ns8/protect-js-tools": "0.0.4",
     "country-list": "2.2.0",
+    "is-ip": "3.1.0",
     "libphonenumber-js": "1.7.44",
-    "ns8-protect-models": "1.0.246",
-    "typescript": "3.8.2"
+    "ns8-protect-models": "1.0.247",
+    "ns8-switchboard-interfaces": "1.0.103",
+    "typescript": "3.8.2",
+    "ua-parser-js": "0.7.21"
   },
   "description": "Protect Switchboard SDK",
   "devDependencies": {
@@ -15,6 +19,7 @@
     "@types/country-list": "^2.1.0",
     "@types/mocha": "7.0.1",
     "@types/node": "13.7.6",
+    "@types/ua-parser-js": "0.7.33",
     "@typescript-eslint/eslint-plugin": "2.21.0",
     "@typescript-eslint/parser": "2.21.0",
     "awesome-typescript-loader": "5.2.1",
@@ -64,5 +69,5 @@
     "test:debug": "mocha -r ts-node/register '**/*/*.test.ts'"
   },
   "types": "dist/switchboard-sdk.d.ts",
-  "version": "0.2.2"
+  "version": "0.2.3"
 }
