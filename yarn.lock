@@ -3547,14 +3547,6 @@ ns8-billing-core@^1.0.128:
   resolved "https://registry.yarnpkg.com/ns8-billing-core/-/ns8-billing-core-1.0.1175.tgz#b59c52ea05839e13ed1526c10c742303acff8da9"
   integrity sha512-0W8YsmLdEyG047MnTjzr5Jm3NjPRF1J1I88lG5EKjNweIPEMH1Lvyn6R58oNPl7c/u2oZWddHIdyyDV2COucDw==
 
-ns8-protect-models@1.0.246:
-  version "1.0.246"
-  resolved "https://registry.yarnpkg.com/ns8-protect-models/-/ns8-protect-models-1.0.246.tgz#8acd8dc6d497e3d5a91f5ebf042487207444ceba"
-  integrity sha512-puHsSBBqtRzZU5guYhtezu29zG7zXxQ3ebWwlmbk/F960pFhrmZEdzC+ApCv/jm1NzBeTPwe4j2ldCb94GKH8g==
-  dependencies:
-    class-validator "^0.11.0"
-    ns8-billing-core "^1.0.128"
-
 ns8-protect-models@1.0.247:
   version "1.0.247"
   resolved "https://registry.yarnpkg.com/ns8-protect-models/-/ns8-protect-models-1.0.247.tgz#3f125859e3b7226acc050d13101c79b840a6de7d"
@@ -3563,12 +3555,12 @@ ns8-protect-models@1.0.247:
     class-validator "^0.11.0"
     ns8-billing-core "^1.0.128"
 
-ns8-switchboard-interfaces@1.0.103:
-  version "1.0.103"
-  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.103.tgz#bfd1a5c435ad5a591b48e574d6a9274e958e3d6c"
-  integrity sha512-XD2wde/zOc96oarigvgQnw7QeD7PsVDZunAvRC9/iZkoydlWBmSee+GV74ygZnPMqXEvQjQW4oy8+pDpV7R0vw==
+ns8-switchboard-interfaces@1.0.104:
+  version "1.0.104"
+  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.104.tgz#3f8c1434153bdbff5b55c4c1fe1f82638f97da56"
+  integrity sha512-04fNbqHWnviCd40UHNsBWMV5lWf3akOmIJcp5WeEwpNq0iF8dYXWU79NWJFTChbjk8CsC+Xbn5MFrabwas66yw==
   dependencies:
-    ns8-protect-models "1.0.246"
+    ns8-protect-models "1.0.247"
 
 nyc@15.0.0:
   version "15.0.0"
