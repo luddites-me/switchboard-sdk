@@ -16,7 +16,6 @@
 .nycrc.json
 .prettierrc.json
 .tmp/
-.tmp/
 .vscode/
 *.lock
 *.log
