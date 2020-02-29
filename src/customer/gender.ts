@@ -1,14 +1,12 @@
 import { Gender } from '../enums/Gender';
 
 /**
- *
- * @param g - Converts an integer between 0-2 into a gender
+ * Converts an integer into a gender
+ * @param g - 1: male; 2: female
  * @returns M (male); F (female); U (unknown)
  */
 export const getGender = (g = 0): string => {
   switch (g) {
-    case 0:
-      return Gender.UNKNOWN;
     case 1:
       return Gender.MALE;
     case 2:
