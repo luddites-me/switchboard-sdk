@@ -28,8 +28,7 @@ export class RetryConfig {
 /* eslint no-param-reassign: ["error", { "props": false }] */
 export const handleApiError = async (
   error: { statusCode: number },
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  retryCallback: () => any,
+  retryCallback: () => boolean,
   retryConfig: RetryConfig = new RetryConfig(),
 ): Promise<boolean> => {
   if (error?.statusCode === 404 && retryConfig.attempts < retryConfig.maxRetry) {
