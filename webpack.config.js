@@ -4,7 +4,7 @@
 /* eslint-disable func-names */
 /* eslint-disable global-require */
 const path = require('path');
-const env = require('@ns8/protect-js-tools').loadEnv();
+const env = require('@ns8/protect-tools-js').loadEnv();
 // This plugin can increase the performance of the build by caching and incrementally building
 const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 /**
@@ -12,7 +12,7 @@ const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
  * NOTE: Using legacy JavaScript concepts to build this plugin, because it works as-is.
  */
 function DtsBundlePlugin() {}
-DtsBundlePlugin.prototype.apply = function(compiler) {
+DtsBundlePlugin.prototype.apply = function (compiler) {
   const dts = require('dts-bundle');
   compiler.plugin('done', () => {
     dts.bundle({
@@ -48,16 +48,12 @@ const config = {
   },
   devtool: 'source-map',
   module: {
-    rules: [
-      {
-        test: /\.tsx?$/,
-        use: [
-          {
-            loader: 'awesome-typescript-loader',
-          },
-        ],
-      },
-    ],
+    rules: [{
+      test: /\.tsx?$/,
+      use: [{
+        loader: 'awesome-typescript-loader',
+      }, ],
+    }, ],
   },
   plugins: [new DtsBundlePlugin(), new HardSourceWebpackPlugin()],
   target: 'node',

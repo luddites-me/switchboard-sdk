@@ -1,7 +1,7 @@
 {
   "author": "ns8inc",
   "dependencies": {
-    "@ns8/protect-js-tools": "0.0.4",
+    "@ns8/protect-tools-js": "0.0.4",
     "country-list": "2.2.0",
     "is-ip": "3.1.0",
     "libphonenumber-js": "1.7.44",

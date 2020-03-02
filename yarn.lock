@@ -165,9 +165,9 @@
     "@typescript-eslint/parser" "^2.3.3"
     eslint-config-airbnb "^18.0.1"
 
-"@ns8/protect-js-tools@0.0.4":
+"@ns8/protect-tools-js@0.0.4":
   version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@ns8/protect-js-tools/-/protect-js-tools-0.0.4.tgz#67b0834114a73ef83ec82a1819a1fcfffe09bad4"
+  resolved "https://registry.yarnpkg.com/@ns8/protect-tools-js/-/protect-tools-js-0.0.4.tgz#67b0834114a73ef83ec82a1819a1fcfffe09bad4"
   integrity sha512-tO66uqlGDdodzZ1bJQ0OlHMiWKydGAt2GzMUqUGp0ua1X7kbwavNwZrMzyp+M6gEH+B2shO8R/cxcKnxR541ww==
   dependencies:
     dotenv-extended "2.7.1"

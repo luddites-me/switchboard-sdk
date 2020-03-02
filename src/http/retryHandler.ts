@@ -1,4 +1,4 @@
-import { LogLevel, LogOutput, getLogger } from '@ns8/protect-js-tools';
+import { LogLevel, LogOutput, getLogger } from '@ns8/protect-tools-js';
 import { sleep } from '../util';
 
 const logger = getLogger({ logLevel: LogLevel.INFO, serviceName: 'switchboard-sdk', transports: [LogOutput.CONSOLE] });
