@@ -3,33 +3,42 @@ import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
 import { formatPhoneNumber } from './phoneNumber';
 
-// Phone Number tests
-describe('phone numbers', () => {
+interface Assertion {
+  input?: string;
+  output: string;
+  countryCode?: string;
+}
+
+const tests: Assertion[] = [
+  {
+    input: '(216) 208-0460',
+    output: '+12162080460',
+    countryCode: 'us',
+  },
+  {
+    input: '(216) 208-0460',
+    output: '(216) 208-0460',
+  },
+  {
+    input: '020 7183 8750',
+    output: '020 7183 8750',
+    countryCode: 'uk',
+  },
+  {
+    input: '',
+    output: '',
+  },
+  {
+    output: '',
+  },
+];
+
+describe('phone number suite', () => {
   use(chaiAsPromised);
-
-  it('converts "(216) 208-0460" to "+12162080460" as "US"', async () => {
-    const input = '(216) 208-0460';
-    const output = '+12162080460';
-    const convert = formatPhoneNumber(input, 'us');
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "(216) 208-0460" to "+12162080460"', async () => {
-    const input = '(216) 208-0460';
-    const convert = formatPhoneNumber(input);
-    expect(convert).to.equal(input);
-  });
-
-  it('converts "020 7183 8750" to "020 7183 8750" as "UK"', async () => {
-    const input = '020 7183 8750';
-    const output = '020 7183 8750';
-    const convert = formatPhoneNumber(input, 'uk');
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "" to ""', async () => {
-    const output = '';
-    const convert = formatPhoneNumber();
-    expect(convert).to.equal(output);
+  tests.forEach((test) => {
+    it(`converts "${test.input}" to "${test.output}" as countryCode: ${test.countryCode}`, () => {
+      const convert = formatPhoneNumber(test.input, test.countryCode);
+      expect(convert).to.equal(test.output);
+    });
   });
 });

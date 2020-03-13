@@ -14,9 +14,11 @@ export const stringToTransactionStatus = (transactionStatus = ''): TransactionSt
       return TransactionStatus.ERROR;
     case 'successful':
     case 'success':
+    case 'succeeded':
       return TransactionStatus.SUCCESS;
     case 'failed':
     case 'failure':
+    case 'fail':
       return TransactionStatus.FAILURE;
     default:
       return TransactionStatus.PENDING;

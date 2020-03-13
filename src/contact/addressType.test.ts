@@ -4,41 +4,43 @@ import 'mocha';
 import { AddressType } from 'ns8-protect-models';
 import { stringToProtectAddressType } from './addressType';
 
-// Address Type tests
-describe('address types', () => {
+interface AddressAssertion {
+  input?: string;
+  output: AddressType;
+}
+
+export const tests: AddressAssertion[] = [
+  {
+    input: 'billing',
+    output: AddressType.BILLING,
+  },
+  {
+    input: 'shipping',
+    output: AddressType.SHIPPING,
+  },
+  {
+    input: 'device',
+    output: AddressType.DEVICE,
+  },
+  {
+    output: AddressType.DEVICE,
+  },
+  {
+    input: 'unknown',
+    output: AddressType.DEVICE,
+  },
+  {
+    input: '',
+    output: AddressType.DEVICE,
+  },
+];
+
+describe('address type suite', () => {
   use(chaiAsPromised);
-
-  it('converts "billing" to an AddressType', async () => {
-    const input = 'billing';
-    const output = AddressType.BILLING;
-    const convert = stringToProtectAddressType(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "shipping" to an AddressType', async () => {
-    const input = 'shipping';
-    const output = AddressType.SHIPPING;
-    const convert = stringToProtectAddressType(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "device" to an AddressType', async () => {
-    const input = 'device';
-    const output = AddressType.DEVICE;
-    const convert = stringToProtectAddressType(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "unknown" to an AddressType', async () => {
-    const input = 'unknown';
-    const output = AddressType.DEVICE;
-    const convert = stringToProtectAddressType(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "" to an AddressType', async () => {
-    const output = AddressType.DEVICE;
-    const convert = stringToProtectAddressType();
-    expect(convert).to.equal(output);
+  tests.forEach((test) => {
+    it(`converts "${test.input}" to AddressType.${test.output.toUpperCase()}`, () => {
+      const convert = stringToProtectAddressType(test.input);
+      expect(convert).to.equal(test.output);
+    });
   });
 });

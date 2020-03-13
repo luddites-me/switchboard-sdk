@@ -5,11 +5,15 @@ import { Gender } from '../enums/Gender';
  * @param g - 1: male; 2: female
  * @returns M (male); F (female); U (unknown)
  */
-export const getGender = (g = 0): string => {
-  switch (g) {
-    case 1:
+export const getGender = (g: string | number = 0): string => {
+  switch (g.toString().toLowerCase()) {
+    case 'm':
+    case 'male':
+    case '1':
       return Gender.MALE;
-    case 2:
+    case 'f':
+    case 'female':
+    case '2':
       return Gender.FEMALE;
     default:
       return Gender.UNKNOWN;
