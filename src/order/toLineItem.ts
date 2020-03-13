@@ -1,3 +1,6 @@
+/* eslint-disable
+  sonarjs/cognitive-complexity,
+*/
 import { LineItem } from 'ns8-protect-models';
 
 export interface LineItemData {
