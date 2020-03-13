@@ -12,6 +12,7 @@ export interface TransactionDataAssertion {
 }
 
 const creditCard = creditCardAssertionMocks.map((mock) => mock.input)[0];
+const baseDate = '01/01/1979';
 
 export const transactionAssertionMocks: TransactionDataAssertion[] = [
   {
@@ -21,7 +22,7 @@ export const transactionAssertionMocks: TransactionDataAssertion[] = [
       currency: 'USD',
       method: '',
       platformId: 1,
-      processedAt: '01/01/1979',
+      processedAt: baseDate,
       status: '',
       statusDetails: '',
     },
@@ -34,7 +35,7 @@ export const transactionAssertionMocks: TransactionDataAssertion[] = [
       currency: 'USD',
       method: TransactionMethod.BANK_WIRE,
       platformId: 1,
-      processedAt: '01/01/1979',
+      processedAt: baseDate,
     },
     assert: 'currency',
   },
@@ -44,7 +45,7 @@ export const transactionAssertionMocks: TransactionDataAssertion[] = [
       creditCard,
       currency: 'USD',
       platformId: 1,
-      processedAt: '01/01/1979',
+      processedAt: baseDate,
       status: TransactionStatus.PENDING,
       statusDetails: 'Pedning Approval',
     },

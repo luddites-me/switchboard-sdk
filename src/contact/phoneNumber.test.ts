@@ -9,19 +9,22 @@ interface Assertion {
   countryCode?: string;
 }
 
+const inputUsNumber = '(216) 208-0460';
+const inputUkNumber = '020 7183 8750';
+
 const tests: Assertion[] = [
   {
-    input: '(216) 208-0460',
+    input: inputUsNumber,
     output: '+12162080460',
     countryCode: 'us',
   },
   {
-    input: '(216) 208-0460',
-    output: '(216) 208-0460',
+    input: inputUsNumber,
+    output: inputUsNumber,
   },
   {
-    input: '020 7183 8750',
-    output: '020 7183 8750',
+    input: inputUkNumber,
+    output: inputUkNumber,
     countryCode: 'uk',
   },
   {
