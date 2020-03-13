@@ -1,23 +1,24 @@
 {
   "author": "ns8inc",
   "dependencies": {
-    "@ns8/protect-tools-js": "0.0.4",
+    "@ns8/protect-tools-js": "0.0.6",
     "country-list": "2.2.0",
     "is-ip": "3.1.0",
-    "libphonenumber-js": "1.7.44",
-    "ns8-protect-models": "1.0.247",
-    "ns8-switchboard-interfaces": "1.0.104",
-    "typescript": "3.8.2",
+    "libphonenumber-js": "1.7.46",
+    "moment": "2.24.0",
+    "ns8-protect-models": "1.0.250",
+    "ns8-switchboard-interfaces": "1.0.105",
+    "typescript": "3.8.3",
     "ua-parser-js": "0.7.21",
-    "uuid": "7.0.1"
+    "uuid": "7.0.2"
   },
   "description": "Protect Switchboard SDK",
   "devDependencies": {
-    "@types/chai": "4.2.9",
+    "@types/chai": "4.2.10",
     "@types/chai-as-promised": "7.1.2",
     "@types/country-list": "^2.1.0",
-    "@types/mocha": "7.0.1",
-    "@types/node": "13.7.6",
+    "@types/mocha": "7.0.2",
+    "@types/node": "13.9.1",
     "@types/ua-parser-js": "0.7.33",
     "@types/uuid": "7.0.0",
     "awesome-typescript-loader": "5.2.1",
@@ -33,7 +34,7 @@
     "source-map-support": "0.5.16",
     "ts-mocha": "6.0.0",
     "ts-node": "8.6.2",
-    "webpack": "4.41.6",
+    "webpack": "4.42.0",
     "webpack-cli": "3.3.11"
   },
   "files": [
@@ -59,5 +60,5 @@
     "test:debug": "mocha -r ts-node/register '**/*/*.test.ts'"
   },
   "types": "dist/switchboard-sdk.d.ts",
-  "version": "0.2.5"
+  "version": "0.2.6"
 }

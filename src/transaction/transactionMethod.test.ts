@@ -4,83 +4,67 @@ import 'mocha';
 import { TransactionMethod } from 'ns8-protect-models';
 import { stringToTransactionMethod } from './transactionMethod';
 
-// Transaction Method tests
-describe('transaction methods', () => {
+interface Assertion {
+  input?: string;
+  output: TransactionMethod;
+}
+
+const tests: Assertion[] = [
+  {
+    input: 'bankwire',
+    output: TransactionMethod.BANK_WIRE,
+  },
+  {
+    input: 'cc',
+    output: TransactionMethod.CC,
+  },
+  {
+    input: 'creditcard',
+    output: TransactionMethod.CC,
+  },
+  {
+    input: 'check',
+    output: TransactionMethod.CHECK,
+  },
+  {
+    input: 'checkmo',
+    output: TransactionMethod.CHECK,
+  },
+  {
+    input: 'check',
+    output: TransactionMethod.CHECK,
+  },
+  {
+    input: 'cod',
+    output: TransactionMethod.COD,
+  },
+  {
+    input: 'cashondelivery',
+    output: TransactionMethod.COD,
+  },
+  {
+    input: 'moneyorder',
+    output: TransactionMethod.COD,
+  },
+  {
+    input: 'other',
+    output: TransactionMethod.OTHER,
+  },
+  {
+    input: '',
+    output: TransactionMethod.OTHER,
+  },
+  {
+    output: TransactionMethod.OTHER,
+  },
+];
+
+describe('transaction method suite', () => {
   use(chaiAsPromised);
-
-  it('converts "bankwire" to an TransactionMethod', async () => {
-    const input = 'bankwire';
-    const output = TransactionMethod.BANK_WIRE;
-    const convert = stringToTransactionMethod(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "cc" to an TransactionMethod', async () => {
-    const input = 'cc';
-    const output = TransactionMethod.CC;
-    const convert = stringToTransactionMethod(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "creditcard" to an TransactionMethod', async () => {
-    const input = 'creditcard';
-    const output = TransactionMethod.CC;
-    const convert = stringToTransactionMethod(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "check" to an TransactionMethod', async () => {
-    const input = 'check';
-    const output = TransactionMethod.CHECK;
-    const convert = stringToTransactionMethod(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "checkmo" to an TransactionMethod', async () => {
-    const input = 'checkmo';
-    const output = TransactionMethod.CHECK;
-    const convert = stringToTransactionMethod(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "cod" to an TransactionMethod', async () => {
-    const input = 'cod';
-    const output = TransactionMethod.COD;
-    const convert = stringToTransactionMethod(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "cashondelivery" to an TransactionMethod', async () => {
-    const input = 'cashondelivery';
-    const output = TransactionMethod.COD;
-    const convert = stringToTransactionMethod(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "moneyorder" to an TransactionMethod', async () => {
-    const input = 'moneyorder';
-    const output = TransactionMethod.COD;
-    const convert = stringToTransactionMethod(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "other" to an TransactionMethod', async () => {
-    const input = 'other';
-    const output = TransactionMethod.OTHER;
-    const convert = stringToTransactionMethod(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "unknown" to an TransactionMethod', async () => {
-    const input = 'unknown';
-    const output = TransactionMethod.OTHER;
-    const convert = stringToTransactionMethod(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "" to an TransactionMethod', async () => {
-    const output = TransactionMethod.OTHER;
-    const convert = stringToTransactionMethod();
-    expect(convert).to.equal(output);
+  tests.forEach((test) => {
+    it(`converts "${test.input}" to CreditCardTransactionType.${test.output.toUpperCase()}`, () => {
+      const convert = stringToTransactionMethod(test.input);
+      expect(convert).to.equal(test.output);
+    });
   });
 });

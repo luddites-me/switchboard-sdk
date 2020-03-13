@@ -7,15 +7,15 @@ import { CountryCode, PhoneNumber, parsePhoneNumberFromString } from 'libphonenu
  * @param countryCode - a country code, like 'US' to attempt to parse
  * @returns an E.164 formatted phone number string or an empty string if failed to parse
  */
-export const formatPhoneNumber = (phoneNumberString = '', countryCode = ''): string => {
+export const formatPhoneNumber = (phoneNumberString: string | number = '', countryCode = ''): string => {
   let phoneNumber: PhoneNumber | undefined;
-  let e164PhoneNumberString: string = phoneNumberString;
+  let e164PhoneNumberString = `${phoneNumberString}`;
 
   if (phoneNumberString) {
     if (countryCode) {
-      phoneNumber = parsePhoneNumberFromString(phoneNumberString, countryCode.toUpperCase() as CountryCode);
+      phoneNumber = parsePhoneNumberFromString(`${phoneNumberString}`, countryCode.toUpperCase() as CountryCode);
     } else {
-      phoneNumber = parsePhoneNumberFromString(phoneNumberString);
+      phoneNumber = parsePhoneNumberFromString(`${phoneNumberString}`);
     }
   }
   if (phoneNumber && phoneNumber.number) {

@@ -4,62 +4,55 @@ import 'mocha';
 import { CreditCardTransactionType } from 'ns8-protect-models';
 import { stringToCreditCardTransactionType } from './creditCard';
 
-// Credit Card tests
-describe('credit cards', () => {
+interface Assertion {
+  input?: string;
+  output: CreditCardTransactionType;
+}
+
+const tests: Assertion[] = [
+  {
+    input: 'authorization',
+    output: CreditCardTransactionType.AUTHORIZATION,
+  },
+  {
+    input: 'authorize',
+    output: CreditCardTransactionType.AUTHORIZATION,
+  },
+  {
+    input: 'capture',
+    output: CreditCardTransactionType.CAPTURE,
+  },
+  {
+    input: 'refund',
+    output: CreditCardTransactionType.REFUND,
+  },
+  {
+    input: 'sale',
+    output: CreditCardTransactionType.SALE,
+  },
+  {
+    input: 'order',
+    output: CreditCardTransactionType.SALE,
+  },
+  {
+    input: 'void',
+    output: CreditCardTransactionType.VOID,
+  },
+  {
+    input: 'unknown',
+    output: CreditCardTransactionType.AUTHORIZATION,
+  },
+  {
+    output: CreditCardTransactionType.AUTHORIZATION,
+  },
+];
+
+describe('credit card transaction type suite', () => {
   use(chaiAsPromised);
-
-  it('converts "authorization" to an CreditCardTransactionType', async () => {
-    const input = 'authorization';
-    const output = CreditCardTransactionType.AUTHORIZATION;
-    const convert = stringToCreditCardTransactionType(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "capture" to an CreditCardTransactionType', async () => {
-    const input = 'capture';
-    const output = CreditCardTransactionType.CAPTURE;
-    const convert = stringToCreditCardTransactionType(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "refund" to an CreditCardTransactionType', async () => {
-    const input = 'refund';
-    const output = CreditCardTransactionType.REFUND;
-    const convert = stringToCreditCardTransactionType(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "sale" to an CreditCardTransactionType', async () => {
-    const input = 'sale';
-    const output = CreditCardTransactionType.SALE;
-    const convert = stringToCreditCardTransactionType(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "order" to an CreditCardTransactionType', async () => {
-    const input = 'order';
-    const output = CreditCardTransactionType.SALE;
-    const convert = stringToCreditCardTransactionType(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "void" to an CreditCardTransactionType', async () => {
-    const input = 'void';
-    const output = CreditCardTransactionType.VOID;
-    const convert = stringToCreditCardTransactionType(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "unknown" to an CreditCardTransactionType', async () => {
-    const input = 'unknown';
-    const output = CreditCardTransactionType.AUTHORIZATION;
-    const convert = stringToCreditCardTransactionType(input);
-    expect(convert).to.equal(output);
-  });
-
-  it('converts "" to an CreditCardTransactionType', async () => {
-    const output = CreditCardTransactionType.AUTHORIZATION;
-    const convert = stringToCreditCardTransactionType();
-    expect(convert).to.equal(output);
+  tests.forEach((test) => {
+    it(`converts "${test.input}" to CreditCardTransactionType.${test.output.toUpperCase()}`, () => {
+      const convert = stringToCreditCardTransactionType(test.input);
+      expect(convert).to.equal(test.output);
+    });
   });
 });
