@@ -60,5 +60,5 @@
     "test:debug": "mocha -r ts-node/register '**/*/*.test.ts'"
   },
   "types": "dist/switchboard-sdk.d.ts",
-  "version": "0.2.9"
+  "version": "0.2.11"
 }
