@@ -6,7 +6,7 @@
     "is-ip": "3.1.0",
     "libphonenumber-js": "1.7.46",
     "moment": "2.24.0",
-    "ns8-protect-models": "1.0.250",
+    "ns8-protect-models": "1.0.251",
     "ns8-switchboard-interfaces": "1.0.105",
     "typescript": "3.8.3",
     "ua-parser-js": "0.7.21",
@@ -14,7 +14,7 @@
   },
   "description": "Protect Switchboard SDK",
   "devDependencies": {
-    "@types/chai": "4.2.10",
+    "@types/chai": "4.2.11",
     "@types/chai-as-promised": "7.1.2",
     "@types/country-list": "^2.1.0",
     "@types/mocha": "7.0.2",
