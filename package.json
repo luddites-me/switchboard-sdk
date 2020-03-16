@@ -7,7 +7,7 @@
     "libphonenumber-js": "1.7.46",
     "moment": "2.24.0",
     "ns8-protect-models": "1.0.251",
-    "ns8-switchboard-interfaces": "1.0.105",
+    "ns8-switchboard-interfaces": "1.0.106",
     "typescript": "3.8.3",
     "ua-parser-js": "0.7.21",
     "uuid": "7.0.2"
@@ -60,5 +60,5 @@
     "test:debug": "mocha -r ts-node/register '**/*/*.test.ts'"
   },
   "types": "dist/switchboard-sdk.d.ts",
-  "version": "0.2.12"
+  "version": "0.2.13"
 }
