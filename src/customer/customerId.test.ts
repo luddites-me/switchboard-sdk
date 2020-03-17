@@ -21,12 +21,12 @@ const customerIdAssertionMocks: CustomerIdDataAssertion[] = [
   {
     id: '1',
     email: '',
-  }
+  },
 ];
 
 describe('customer convert suite', () => {
   use(chaiAsPromised);
-  customerIdAssertionMocks.forEach(test => {
+  customerIdAssertionMocks.forEach((test) => {
     it(`ensures customer id is generated matching ${test.id}`, () => {
       const convert = getUniqueCustomerId(test.id, test.email);
       expect(convert).to.not.be.undefined;
