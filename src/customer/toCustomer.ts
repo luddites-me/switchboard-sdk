@@ -11,11 +11,14 @@ export interface CustomerData {
   gender?: string;
   lastName?: string;
   phone?: string | number;
+  /**
+   * platformId is required. If not supplied, a UUID will be generated.
+   */
   platformId?: string | number;
 }
 
 /**
- * Converts platform data to a strongly typed Customer object
+ * Converts a generic object representing a customer into a Protect model
  * @param data - generic data structure representing a customer
  */
 export const toCustomer = (data: CustomerData): Customer => {

@@ -1,6 +1,9 @@
 import { Address } from 'ns8-protect-models';
 import { getCountryNameFromCountryCode, stringToProtectAddressType } from '.';
 
+/**
+ * Generic object representing data that can be converted to an Address
+ */
 export interface AddressData {
   address1?: string;
   address2?: string;
@@ -17,6 +20,10 @@ export interface AddressData {
   zip?: string | number;
 }
 
+/**
+ * Converts a generic object representing an address into a Protect model
+ * @param data - generic object representing an address
+ */
 export const toAddress = (data: AddressData): Address => {
   const {
     address1,

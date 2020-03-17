@@ -3,6 +3,9 @@
 */
 import { LineItem } from 'ns8-protect-models';
 
+/**
+ * Generic object representing a line item
+ */
 export interface LineItemData {
   ean13?: string;
   isbn?: string;
@@ -22,6 +25,10 @@ export interface LineItemData {
   vendor?: string;
 }
 
+/**
+ * Converts a generic object representing a line item into a Protect model
+ * @param data - object to transform
+ */
 export const toLineItem = (data: LineItemData): LineItem => {
   const {
     ean13,

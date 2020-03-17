@@ -1,6 +1,9 @@
 import { CreditCard } from 'ns8-protect-models';
 import { stringToCreditCardTransactionType } from './creditCard';
 
+/**
+ * Generic object representing a credit card
+ */
 export interface CreditCardData {
   avsResultCode?: string | number;
   cardExpiration?: string;
@@ -10,9 +13,16 @@ export interface CreditCardData {
   creditCardNumber?: string | number;
   cvvResultCode?: string | number;
   gateway?: string;
+  /**
+   * Should be convertable to a CreditCardTransactionType
+   */
   transactionType?: string;
 }
 
+/**
+ * Converts a generic object representing a credit card into a Protect model
+ * @param data - an object to convert
+ */
 export const toCreditCard = (data: CreditCardData): CreditCard => {
   const {
     avsResultCode,

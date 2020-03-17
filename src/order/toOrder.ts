@@ -6,6 +6,9 @@ import { CustomerData, toCustomer } from '../customer/toCustomer';
 import { SessionData, toSession } from '../session/toSession';
 import { LineItemData, toLineItem } from './toLineItem';
 
+/**
+ * Generic object representing an order
+ */
 export interface OrderData {
   addresses?: AddressData[];
   createdAt?: string | Date;
@@ -23,6 +26,10 @@ export interface OrderData {
   updatedAt?: string | Date;
 }
 
+/**
+ * Converts a generic object representing an order into a Protect model
+ * @param orderData - object to convert
+ */
 export const toOrder = (orderData: OrderData): Order => {
   const {
     addresses,
