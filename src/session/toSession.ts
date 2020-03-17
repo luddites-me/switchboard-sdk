@@ -27,12 +27,10 @@ export interface SessionData {
  */
 export const toSession = (data: SessionData): Session => {
   const { acceptLanguage, ip, screenHeight, screenWidth, userAgent } = data;
-  /* istanbul ignore next */
   if (!ip || !isIp(ip)) {
     throw new Error(`${ip} is not a valid IP Address, and IP Address is required.`);
   }
   const ua = new UAParser(userAgent);
-  /* istanbul ignore next */
   if (!userAgent || !ua.getUA()) {
     throw new Error(`${userAgent} is not a valid User Agent string, and a UA string is required.`);
   }

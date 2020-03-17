@@ -48,11 +48,7 @@ describe('session convert suite', () => {
   sessionAssertionMocks.forEach((test) => {
     it(`converts SessionData to Session matching ${test.assert}`, () => {
       if (test.assert === 'throws') {
-        const badFn = function() {
-          toSession(test.input);
-        };
-        // This does not execute the method; which requires an unfortunate istanbul ignore in the two cases that are not covered
-        expect(badFn).to.throw;
+        expect(() => toSession(test.input)).to.throw();
       } else {
         const convert = toSession(test.input);
         expect(convert[test.assert]).to.not.be.undefined;
