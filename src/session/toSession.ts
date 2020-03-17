@@ -1,5 +1,6 @@
 import { Session } from 'ns8-protect-models';
 import { UAParser } from 'ua-parser-js';
+
 const isIp = require('is-ip');
 
 export interface SessionData {

@@ -50,8 +50,6 @@ export const toCreditCard = (data: CreditCardData): CreditCard => {
   if (gateway) {
     creditCard.gateway = gateway;
   }
-  if (transactionType) {
-    creditCard.transactionType = stringToCreditCardTransactionType(transactionType);
-  }
+  creditCard.transactionType = stringToCreditCardTransactionType(transactionType);
   return creditCard;
 };

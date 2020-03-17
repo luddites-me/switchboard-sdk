@@ -1,7 +1,6 @@
 import { Customer } from 'ns8-protect-models';
 import { toDate } from '../util';
 import { getGender } from './gender';
-import { formatPhoneNumber } from '../contact';
 
 export interface CustomerData {
   birthday?: string | Date;
@@ -23,7 +22,7 @@ export const toCustomer = (data: CustomerData): Customer => {
   }
   customer.gender = getGender(gender);
   if (phone) {
-    customer.phone = formatPhoneNumber(phone);
+    customer.phone = `${phone}`;
   }
   if (platformId) {
     customer.platformId = `${platformId}`;
