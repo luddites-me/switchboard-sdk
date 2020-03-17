@@ -3,14 +3,28 @@ import { UAParser } from 'ua-parser-js';
 
 const isIp = require('is-ip');
 
+/**
+ * Generic object representing a session
+ */
 export interface SessionData {
   acceptLanguage?: string;
-  ip?: string;
+  /**
+   * IP Address is required for tracking
+   */
+  ip: string;
   screenHeight?: string | number;
   screenWidth?: string | number;
-  userAgent?: string;
+  /**
+   * User Agent is required for tracking
+   */
+  userAgent: string;
 }
 
+/**
+ * Converts a generic object representing a session into a Protect model
+ * @throws if IP Address or User Agent is invalid
+ * @param data - object to convert
+ */
 export const toSession = (data: SessionData): Session => {
   const { acceptLanguage, ip, screenHeight, screenWidth, userAgent } = data;
   if (!isIp(ip)) {
