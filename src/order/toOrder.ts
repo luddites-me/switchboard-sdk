@@ -17,6 +17,9 @@ export interface OrderData {
   hasGiftCard?: string | boolean;
   lineItems?: LineItemData[];
   merchantId?: string;
+  /**
+   * Name is required
+   */
   name: string;
   platformCreatedAt?: string | Date;
   platformId?: string | number;
