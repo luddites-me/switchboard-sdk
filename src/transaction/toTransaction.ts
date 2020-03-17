@@ -27,9 +27,7 @@ export const toTransaction = (data: TransactionData): Transaction => {
   if (currency) {
     transaction.currency = currency;
   }
-  if (method) {
-    transaction.method = stringToTransactionMethod(method);
-  }
+  transaction.method = stringToTransactionMethod(method);
   if (platformId) {
     transaction.platformId = `${platformId}`;
   }
@@ -37,9 +35,7 @@ export const toTransaction = (data: TransactionData): Transaction => {
   if (processedAtDate) {
     transaction.processedAt = processedAtDate;
   }
-  if (status) {
-    transaction.status = stringToTransactionStatus(status);
-  }
+  transaction.status = stringToTransactionStatus(status);
   if (statusDetails) {
     transaction.statusDetails = statusDetails;
   }
