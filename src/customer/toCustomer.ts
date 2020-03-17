@@ -1,6 +1,7 @@
 import { Customer } from 'ns8-protect-models';
-import { toDate } from '../util';
 import { getGender } from './gender';
+import { getUniqueCustomerId } from './customerId';
+import { toDate } from '../util';
 
 export interface CustomerData {
   birthday?: string | Date;
@@ -13,6 +14,10 @@ export interface CustomerData {
   platformId?: string | number;
 }
 
+/**
+ * Converts platform data to a strongly typed Customer object
+ * @param data - generic data structure representing a customer
+ */
 export const toCustomer = (data: CustomerData): Customer => {
   const { birthday, company, email, firstName, gender, lastName, phone, platformId } = data;
   const customer = new Customer({ email, company, firstName, lastName });
@@ -25,7 +30,9 @@ export const toCustomer = (data: CustomerData): Customer => {
     customer.phone = `${phone}`;
   }
   if (platformId) {
-    customer.platformId = `${platformId}`;
+    customer.platformId = getUniqueCustomerId(`${platformId}`, email || '');
+  } else {
+    customer.platformId = getUniqueCustomerId('', email || '');
   }
   return customer;
 };
