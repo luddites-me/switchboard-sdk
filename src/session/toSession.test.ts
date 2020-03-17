@@ -27,14 +27,32 @@ export const sessionAssertionMocks: SessionDataAssertion[] = [
     },
     assert: 'ip',
   },
+  {
+    input: {
+      ip: '',
+      userAgent: 'mozilla',
+    },
+    assert: 'throws',
+  },
+  {
+    input: {
+      ip: '127.0.0.1',
+      userAgent: '',
+    },
+    assert: 'throws',
+  },
 ];
 
 describe('session convert suite', () => {
   use(chaiAsPromised);
   sessionAssertionMocks.forEach((test) => {
     it(`converts SessionData to Session matching ${test.assert}`, () => {
-      const convert = toSession(test.input);
-      expect(convert[test.assert]).to.not.be.undefined;
+      if (test.assert === 'throws') {
+        expect(() => toSession(test.input)).to.throw;
+      } else {
+        const convert = toSession(test.input);
+        expect(convert[test.assert]).to.not.be.undefined;
+      }
     });
   });
 });
