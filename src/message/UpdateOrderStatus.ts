@@ -2,7 +2,9 @@ import { Status } from 'ns8-protect-models';
 import { MessageBase } from './MessageBase';
 
 /**
- * Message to indicate a change to the NS8 Status of an order
+ * Message to change the status of an order on the platform.
+ * This should indicate whether to (1) approve an order or
+ * (2) cancel an order or (3) place the order into fraud review
  */
 export interface UpdateOrderStatus extends MessageBase {
   /**

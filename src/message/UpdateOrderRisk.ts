@@ -2,7 +2,7 @@ import { FraudAssessment, Risk } from 'ns8-protect-models';
 import { MessageBase } from './MessageBase';
 
 /**
- * Message to
+ * Message to update the status and set risk on the platform
  */
 export interface UpdateOrderRisk extends MessageBase {
   /**
