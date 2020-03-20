@@ -1,4 +1,7 @@
-/* eslint-disable no-unused-expressions */
+/* eslint-disable
+  no-unused-expressions,
+  sonarjs/no-duplicate-string
+*/
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
@@ -22,7 +25,7 @@ export const merchantAssertionMocks: MerchantDataAssertion[] = [
       name: 'Merchant 1',
       storeFrontUrl: 'https://my.site.com',
     },
-    assert: 'name'
+    assert: 'name',
   },
   {
     input: {
@@ -35,7 +38,7 @@ export const merchantAssertionMocks: MerchantDataAssertion[] = [
       name: 'Merchant 1',
       storeFrontUrl: 'https://my.site.com',
     },
-    assert: 'name'
+    assert: 'name',
   },
   {
     input: {
@@ -46,7 +49,7 @@ export const merchantAssertionMocks: MerchantDataAssertion[] = [
         phone: '(800) 555-5555',
       },
     },
-    assert: 'contact'
+    assert: 'contact',
   },
   {
     input: {
@@ -57,7 +60,7 @@ export const merchantAssertionMocks: MerchantDataAssertion[] = [
       name: 'Merchant 1',
       storeFrontUrl: 'https://my.site.com',
     },
-    assert: 'name'
+    assert: 'name',
   },
   {
     input: {
@@ -67,20 +70,20 @@ export const merchantAssertionMocks: MerchantDataAssertion[] = [
       name: 'Merchant 1',
       storeFrontUrl: 'https://my.site.com',
     },
-    assert: 'name'
+    assert: 'name',
   },
   {
     input: {
       name: 'Merchant 1',
       storeFrontUrl: 'https://my.site.com',
     },
-    assert: 'name'
+    assert: 'name',
   },
 ];
 
 describe('merchant convert suite', () => {
   use(chaiAsPromised);
-  merchantAssertionMocks.forEach(test => {
+  merchantAssertionMocks.forEach((test) => {
     it(`converts MerchantData to Merchant matching ${test.assert}`, () => {
       const convert = toMerchant(test.input);
       expect(convert[test.assert]).to.not.be.undefined;
