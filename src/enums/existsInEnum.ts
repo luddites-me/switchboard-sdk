@@ -7,13 +7,7 @@
  */
 export const existsInEnum = (enm: object, key: string, caseInsensitive = false): boolean => {
   if (caseInsensitive) {
-    return Object.values(enm).some(
-      (v) =>
-        v
-          .toString()
-          .toLowerCase()
-          .trim() === key.toLowerCase().trim(),
-    );
+    return Object.values(enm).some((v) => v.toString().toLowerCase().trim() === key.toLowerCase().trim());
   }
   return Object.values(enm).some((v) => v === key);
 };
