@@ -4254,15 +4254,7 @@ ns8-billing-core@^1.0.1185:
   resolved "https://registry.yarnpkg.com/ns8-billing-core/-/ns8-billing-core-1.0.1267.tgz#6b12dd960a849fcc5cdb2e82a2c0b8ff828c4092"
   integrity sha512-5NldsNxhfiYue64px0w6Kc6BidXAExg8SJQrJbEAoRozzrChIBTC60PGbBC56/kipXX7ES5OB6N29NssNoIKGg==
 
-ns8-protect-models@1.0.251:
-  version "1.0.251"
-  resolved "https://registry.yarnpkg.com/ns8-protect-models/-/ns8-protect-models-1.0.251.tgz#0021d696f8c5e5935f3765bed54d12b04a36d898"
-  integrity sha512-Zhmmvfhkro5KJ+B0Bl9CV3PtqK8n0xXVlMwIzldCLlQNHdANc2WokvlRb5hyCRwshkhuXi3KdnOS8uy5yCmPAQ==
-  dependencies:
-    class-validator "^0.11.0"
-    ns8-billing-core "^1.0.1185"
-
-ns8-protect-models@1.0.258:
+ns8-protect-models@1.0.258, ns8-protect-models@^1.0.258:
   version "1.0.258"
   resolved "https://registry.yarnpkg.com/ns8-protect-models/-/ns8-protect-models-1.0.258.tgz#d9244e1b729a6e17586382b1ab45ea0a2c842fe5"
   integrity sha512-HF+VhhkREzyiT87C8LPvXGi6tDq1n+IsqMbm88Cd3ifUpvrsVB/6OXE59Vj6D0nTEK7QE+AtsSVz7hHxa44fRQ==
@@ -4270,12 +4262,12 @@ ns8-protect-models@1.0.258:
     class-validator "^0.11.0"
     ns8-billing-core "^1.0.1185"
 
-ns8-switchboard-interfaces@1.0.106:
-  version "1.0.106"
-  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.106.tgz#50b602c30040c0d29e103717b69436806a799cf6"
-  integrity sha512-q0Zoi8ZcddTGwqiuwGrUruMzHSiMZgQkYfV0Z1huDaSrCjoTqfsbYulevR2K2aFCg7Ii+swCqGpdl3tHOQWVAQ==
+ns8-switchboard-interfaces@1.0.107:
+  version "1.0.107"
+  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.107.tgz#156a361bc8a94199bc9a15fa094ddfbf962a3c7c"
+  integrity sha512-HfOEve6rcjBPWZuzSfqoYveYAvnfe4BBy22vRgN/3mKtShyaq+btpsuLtbCSAOy/7/MFU2NPS55vuuacMnWUJw==
   dependencies:
-    ns8-protect-models "1.0.251"
+    ns8-protect-models "^1.0.258"
 
 number-is-nan@^1.0.0:
   version "1.0.1"
