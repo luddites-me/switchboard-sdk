@@ -6,11 +6,7 @@ import { TransactionMethod } from 'ns8-protect-models';
  * @returns TransactionMethod; defaults to 'OTHER' if not parsable
  */
 export const stringToTransactionMethod = (transactionMethod = ''): TransactionMethod => {
-  const method = transactionMethod
-    .toLowerCase()
-    .trim()
-    .replace(' ', '')
-    .replace('_', '');
+  const method = transactionMethod.toLowerCase().trim().replace(' ', '').replace('_', '');
   switch (method) {
     case 'bankwire':
       return TransactionMethod.BANK_WIRE;
