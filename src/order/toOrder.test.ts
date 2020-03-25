@@ -47,6 +47,10 @@ export const orderAssertionMocks: OrderDataAssertion[] = [
     input: {
       name: 'My Order',
       updatedAt: '01/01/1979',
+      currency: 'USD',
+      merchantId: 1,
+      totalPrice: 1.23,
+      platformId: 1,
     },
     assert: 'updatedAt',
   },
@@ -54,6 +58,12 @@ export const orderAssertionMocks: OrderDataAssertion[] = [
     input: {
       name: 'My order',
       platformCreatedAt: '01/01/1979',
+      currency: 'USD',
+      merchantId: 1,
+      totalPrice: 1.23,
+      platformId: 1,
+      platformStatus: 'review',
+      status: 'approved'
     },
     assert: 'name',
   },

@@ -4,18 +4,20 @@ import { UAParser } from 'ua-parser-js';
 const isIp = require('is-ip');
 
 /**
- * Generic object representing a session
+ * Generic object representing a session.
+ * All properties are optional unless otherwise documented.
+ * Not all sessions will have all of this data.
  */
 export interface SessionData {
   acceptLanguage?: string;
   /**
-   * IP Address is required for tracking
+   * Required. IP Address is required for tracking
    */
   ip: string;
   screenHeight?: string | number;
   screenWidth?: string | number;
   /**
-   * User Agent is required for tracking
+   * Required. User Agent is required for tracking
    */
   userAgent: string;
 }

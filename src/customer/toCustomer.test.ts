@@ -64,6 +64,19 @@ export const customerAssertionMocks: CustomerDataAssertion[] = [
     },
     assert: 'firstName',
   },
+  {
+    input: {
+      company: 'My Co',
+      email: '',
+      firstName: 'Bob',
+      lastName: 'Smith',
+      isEmailVerified: true,
+      isPayingCustomer: true,
+      totalSpent: 5000,
+      platformCreatedAt: '12/12/1980',
+    },
+    assert: 'firstName',
+  },
 ];
 
 describe('customer convert suite', () => {

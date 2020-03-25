@@ -5,26 +5,70 @@ import { TransactionData, toTransaction } from '../transaction/toTransaction';
 import { CustomerData, toCustomer } from '../customer/toCustomer';
 import { SessionData, toSession } from '../session/toSession';
 import { LineItemData, toLineItem } from './toLineItem';
+import { stringToProtectStatus } from './toOrderStatus';
 
 /**
- * Generic object representing an order
+ * Generic object representing an order.
+ * All properties are optional unless otherwise documented.
+ * Not all Orders will have all of this data.
  */
 export interface OrderData {
+  /**
+   * Required for Order Create, optional for Update.
+   */
   addresses?: AddressData[];
   createdAt?: string | Date;
-  currency?: string;
+  /**
+   * Required. Should be the type of currency,
+   * such as USD, EUR, JPY, GBP, etc.
+   */
+  currency: string;
+  /**
+   * Required for Order Create, optional for Update.
+   */
   customer?: CustomerData;
   hasGiftCard?: string | boolean;
-  lineItems?: LineItemData[];
-  merchantId?: string;
   /**
-   * Name is required
+   * * Required for Order Create, optional for Update.
+   */
+  lineItems?: LineItemData[];
+  /**
+   * Required.
+   */
+  merchantId: string | number;
+  /**
+   * Required.
    */
   name: string;
   platformCreatedAt?: string | Date;
-  platformId?: string | number;
+  /**
+   * Required. This should be the platform's Order Id:
+   *  the unique Id that identifies an order.
+   */
+  platformId: string | number;
+  /**
+   * The current order status/state on the platform.
+   */
+  platformStatus?: string;
+  /**
+   * Required for Order Create, optional for Update.
+   */
   session?: SessionData;
-  totalPrice?: string | number;
+  /**
+   * Should be convertable to a Status:
+   *  Approved, Merchant Review, Cancelled (case-insensitive)
+   * Converter will attempt to loosely parse the passed string,
+   *  if an exact match cannot be found.
+   * @default 'Merchant Review'
+   */
+  status?: string;
+  /**
+   * Required.
+   */
+  totalPrice: string | number;
+  /**
+   * Required for Order Create, optional for Update.
+   */
   transactions?: TransactionData[];
   updatedAt?: string | Date;
 }
@@ -45,13 +89,15 @@ export const toOrder = (orderData: OrderData): Order => {
     name,
     platformCreatedAt,
     platformId,
+    platformStatus,
     session,
+    status,
     totalPrice,
     transactions,
     updatedAt,
   } = orderData;
 
-  const order = new Order({ name, merchantId });
+  const order = new Order({ name, currency });
   if (addresses) {
     order.addresses = [];
     addresses.forEach((address) => {
@@ -61,9 +107,6 @@ export const toOrder = (orderData: OrderData): Order => {
   const createdAtDate = toDate(createdAt);
   if (createdAtDate) {
     order.createdAt = createdAtDate;
-  }
-  if (currency) {
-    order.currency = currency;
   }
   if (customer) {
     order.customer = toCustomer(customer);
@@ -75,18 +118,21 @@ export const toOrder = (orderData: OrderData): Order => {
       order.lineItems.push(toLineItem(lineItem));
     });
   }
+  order.merchantId = `${merchantId}`;
   const platformCreatedAtDate = toDate(platformCreatedAt);
   if (platformCreatedAtDate) {
     order.platformCreatedAt = platformCreatedAtDate;
   }
-  if (platformId) {
-    order.platformId = platformId.toString();
+  order.platformId = `${platformId}`;
+  if (platformStatus) {
+    order.platformStatus = platformStatus;
   }
-  if (totalPrice) {
-    order.totalPrice = +totalPrice;
-  }
+  order.totalPrice = +totalPrice;
   if (session) {
     order.session = toSession(session);
+  }
+  if (status) {
+    order.status = stringToProtectStatus(status);
   }
   if (transactions) {
     order.transactions = [];

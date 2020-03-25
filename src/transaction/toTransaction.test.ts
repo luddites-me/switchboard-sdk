@@ -55,6 +55,8 @@ export const transactionAssertionMocks: TransactionDataAssertion[] = [
     input: {
       status: TransactionStatus.PENDING,
       statusDetails: 'Pedning Approval',
+      amount: 2,
+      currency: 'EUR',
     },
     assert: 'status',
   },
