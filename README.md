@@ -36,7 +36,6 @@ import {
   toOrder,
   toSession,
   toTransactions,
-  to
 } from '@ns8/protect-sdk-switchboard';
 
 const order = toOrder({
