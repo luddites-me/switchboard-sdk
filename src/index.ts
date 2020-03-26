@@ -4,6 +4,7 @@ export * from './enums';
 export * from './merchant';
 export * from './message';
 export * from './order';
+export * from './polling';
 export * from './session';
 export * from './transaction';
 export * from './util';

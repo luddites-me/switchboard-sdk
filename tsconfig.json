@@ -1,25 +1,17 @@
 {
-  "awesomeTypescriptLoaderOptions": {
-    "doTypeCheck": true,
-    "forkChecker": true,
-    "isolatedModules": true,
-    "reportFiles": [
-      "src/**/*.{ts}"
-    ],
-    "useCache": true,
-    "useTranspileModule": true,
-    "useWebpackText": true
-  },
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
     "declaration": true,
+    "declarationDir": "dist/types",
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
     "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
     "noImplicitAny": false,
     "noLib": false,
-    "outDir": ".tmp",
     "removeComments": false,
     "resolveJsonModule": true,
     "skipLibCheck": true,
@@ -27,15 +19,12 @@
     "strict": true,
     "target": "es2019",
     "types": [
-      "node",
-      "mocha"
+      "mocha",
+      "node"
     ]
   },
   "exclude": [
-    "*/**/*.test.ts",
-    "node_modules",
-    "dist",
-    ".tmp"
+    "src/**/*.test.ts"
   ],
   "include": [
     "src/**/*"
