@@ -1,26 +1,54 @@
 import { sign } from 'aws4';
 import { SQS, STS } from 'aws-sdk';
 import { Handler as LambdaHandler } from 'aws-lambda';
-import { CreateQueueResult } from 'aws-sdk/clients/sqs';
+import { CreateQueueRequest, CreateQueueResult } from 'aws-sdk/clients/sqs';
 
+/**
+ * This is how long a URL returned from GetPollUrl will work before returning
+ * 401s.  Logic on the integration side uses this value (15 minutes); if we
+ * change it here we have to change it on the integration side too (i.e. in the
+ * code that's calling the polling URL)
+ */
 const POLLING_SESSION_TIMEOUT_SECONDS = 15 * 60;
 
-interface DeletePolledMessageEvent {
+/**
+ * The number of queues that we expect to match a merchant-specific-queue
+ * name prefix (1 for the queue itself, and one for the dead letter queue).
+ */
+const EXPECTED_LISTQUEUES_LENGTH = 2;
+
+/**
+ * The number of times a message can be received, but not deleted, before
+ * it's moved to the dead letter queue
+ */
+const MAX_RECEIVE_COUNT = 5;
+
+/**
+ * Queue attributes: https://docs.aws.amazon.com/cli/latest/reference/sqs/create-queue.html
+ */
+const VISIBILITY_TIMEOUT = 60;
+const RECEIVE_MESSAGE_WAIT_TIME = 3;
+
+/**
+ * TODO: move to ns8-switchboard-interfaces
+ */
+export interface PollQueueLambdaPayload {
   merchantId: string;
   merchantIntegrationPlatformType: string;
+}
+
+/**
+ * TODO: move to ns8-switchboard-interfaces
+ */
+export interface DeletePolledMessageLambdaPayload extends PollQueueLambdaPayload {
   receiptHandle: string;
 }
 
-interface GetPollUrlResult {
+interface GetPollUrlResultPayload {
   url: string;
 }
 
-interface PollQueueEvent {
-  merchantId: string;
-  merchantIntegrationPlatformType: string;
-}
-
-const getQueueName = (pollQueueEvent: PollQueueEvent, forDeadLetter = false): string => {
+const getQueueName = (pollQueueEvent: PollQueueLambdaPayload, forDeadLetter = false): string => {
   const dlqSuffix = forDeadLetter ? '-dlq' : '';
   return [
     process.env.STAGE,
@@ -29,8 +57,25 @@ const getQueueName = (pollQueueEvent: PollQueueEvent, forDeadLetter = false): st
   ].join('-');
 };
 
-export const CreatePollingQueue: LambdaHandler<PollQueueEvent, void> = async (event: PollQueueEvent): Promise<void> => {
+/**
+ * Check if a merchant's SQS queue already exists, and create it if not.
+ *
+ * We check if the queue exists by calling `listQueues` with a prefix set to the expected
+ * queue name.  We expect 2 (EXPECTED_LISTQUEUES_LENGH) queues to be found: one for the
+ * actual queue and one that's created as a "dead letter queue", where problematic events
+ * are moved to if they're received but not deleted `MAX_RECEIVE_COUNT` times:
+ * https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html
+ *
+ * @param event attributes used to identify the merchant-specific queue
+ */
+const CreatePollingQueueIfNotExist = async (event: PollQueueLambdaPayload): Promise<void> => {
   const sqsClient = new SQS();
+
+  const { QueueUrls } = await sqsClient.listQueues({ QueueNamePrefix: getQueueName(event) }).promise();
+  if (QueueUrls?.length === EXPECTED_LISTQUEUES_LENGTH) {
+    return;
+  }
+
   const deadLetterQueue: CreateQueueResult = await sqsClient
     .createQueue({
       QueueName: getQueueName(event, true),
@@ -52,21 +97,28 @@ export const CreatePollingQueue: LambdaHandler<PollQueueEvent, void> = async (ev
     throw new Error('Unable to get DLQ attributes');
   }
 
-  await sqsClient
-    .createQueue({
-      QueueName: getQueueName(event),
-      Attributes: {
-        RedrivePolicy: JSON.stringify({
-          deadLetterTargetArn: deadLetterQueueAttributes.Attributes.QueueArn,
-          maxReceiveCount: 5,
-        }),
-      },
-    })
-    .promise();
+  const createQueueRequest: CreateQueueRequest = {
+    QueueName: getQueueName(event),
+    Attributes: {
+      RedrivePolicy: JSON.stringify({
+        deadLetterTargetArn: deadLetterQueueAttributes.Attributes.QueueArn,
+        maxReceiveCount: MAX_RECEIVE_COUNT,
+      }),
+      VisibilityTimeout: `${VISIBILITY_TIMEOUT}`,
+      ReceiveMessageWaitTimeSeconds: `${RECEIVE_MESSAGE_WAIT_TIME}`,
+    },
+  };
+  await sqsClient.createQueue(createQueueRequest).promise();
 };
 
-export const DeletePolledMessage: LambdaHandler<DeletePolledMessageEvent, void> = async (
-  event: DeletePolledMessageEvent,
+/**
+ * Delete a message that has been processed by the merchant-platform.
+ *
+ * @param event attributes used to identify the merchant-specific queue and the
+ * message to be deleted
+ */
+export const DeletePolledMessage: LambdaHandler<DeletePolledMessageLambdaPayload, void> = async (
+  event: DeletePolledMessageLambdaPayload,
 ): Promise<void> => {
   const sqsClient = new SQS();
   const { QueueUrl } = await sqsClient.getQueueUrl({ QueueName: getQueueName(event) }).promise();
@@ -80,9 +132,16 @@ export const DeletePolledMessage: LambdaHandler<DeletePolledMessageEvent, void> 
   await sqsClient.deleteMessage(req).promise();
 };
 
-export const GetPollUrl: LambdaHandler<PollQueueEvent, GetPollUrlResult> = async (
-  event: PollQueueEvent,
-): Promise<GetPollUrlResult> => {
+/**
+ * Get a URL that can be used to poll/receive new messages from the queue.
+ *
+ * @param event attributes used to identify the merchant-specific queue
+ */
+export const GetPollUrl: LambdaHandler<PollQueueLambdaPayload, GetPollUrlResultPayload> = async (
+  event: PollQueueLambdaPayload,
+): Promise<GetPollUrlResultPayload> => {
+  await CreatePollingQueueIfNotExist(event);
+
   const sts = new STS();
   const { Arn } = await sts.getCallerIdentity().promise();
   if (Arn == null) {
