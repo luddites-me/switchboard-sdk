@@ -52,34 +52,7 @@ functions:
       STAGE: ${opt:stage}
 package:
   exclude:
-    - .awcache/**
-    - .circleci/**
-    - .env
-    - .env.template
-    - .idea/**
-    - .npmignore
-    - .npmrc
-    - .tmp/**
-    - .vscode/**
-    - '?*.d.ts'
-    - '?*.json'
-    - '?*.lock'
-    - '?*.log'
-    - '?*/**.map'
-    - '?*/**.template'
-    - build/**
-    - ci/**
-    - CODEOWNERS
-    - LICENSE
-    - module/**
-    - node_modules/**
-    - public/**
-    - README.md
-    - release/**
-    - scripts/**
-    - switchboard/**
-    - test/**
-    - webpack.config.js
+    - ./**
   include:
     - dist/**
     - serverless.yml
