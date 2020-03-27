@@ -63,7 +63,7 @@ export const orderAssertionMocks: OrderDataAssertion[] = [
       totalPrice: 1.23,
       platformId: 1,
       platformStatus: 'review',
-      status: 'approved'
+      status: 'approved',
     },
     assert: 'name',
   },
