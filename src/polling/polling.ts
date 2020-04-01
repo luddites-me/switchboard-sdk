@@ -5,8 +5,8 @@ import { CreateQueueRequest, CreateQueueResult } from 'aws-sdk/clients/sqs';
 import {
   CreatePolledMessageLambdaPayload,
   DeletePolledMessageLambdaPayload,
-  PollingFunctionName,
   PollQueueLambdaPayload,
+  PollingFunctionName,
 } from 'ns8-switchboard-interfaces';
 
 /**
