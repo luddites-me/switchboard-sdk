@@ -49,7 +49,7 @@
   "repository": "https://github.com/ns8inc/protect-sdk-switchboard.git",
   "scripts": {
     "beautify": "ts-node ./scripts/build.ts",
-    "build": "yarn install && yarn generate:exports && tsc --emitDeclarationOnly && yarn beautify && yarn bundle",
+    "build": "yarn install && yarn generate:exports && tsc -p tsconfig.build.json --outDir dist/build && tsc --emitDeclarationOnly && yarn beautify && yarn bundle",
     "build:dev": "NODE_ENV=development yarn && yarn build && yarn link",
     "bundle": "webpack",
     "clean": "rm -rf .awcache .tmp dist .nyc_output coverage *.log",
