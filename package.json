@@ -9,7 +9,7 @@
     "is-ip": "3.1.0",
     "moment": "2.24.0",
     "ns8-protect-models": "1.0.258",
-    "ns8-switchboard-interfaces": "1.0.107",
+    "ns8-switchboard-interfaces": "1.0.108",
     "typescript": "3.8.3",
     "ua-parser-js": "0.7.21",
     "uuid": "7.0.2"
