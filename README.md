@@ -1,6 +1,6 @@
 # Protect SDK Switchboard
-[![CI](https://concourse.ns8-infrastructure.com/api/v1/teams/main/pipelines/protect-sdk-switchboard/jobs/test/badge)](https://concourse.ns8-infrastructure.com/teams/main/pipelines/protect-sdk-switchboard/jobs/test)
-[![CI](https://concourse.ns8-infrastructure.com/api/v1/teams/main/pipelines/protect-sdk-switchboard/jobs/test/badge?title=tests)](https://concourse.ns8-infrastructure.com/teams/main/pipelines/protect-sdk-switchboard/jobs/test)
+
+[![CircleCI](https://circleci.com/gh/ns8inc/protect-sdk-switchboard.svg?style=svg&circle-token=0d7a67144dc51908cf0aa3ca1a025a23d64c8bef)](https://app.circleci.com/pipelines/github/ns8inc/protect-sdk-switchboard)
 
 ## Getting Started
 
@@ -111,3 +111,9 @@ const order = toOrder({
     updatedAt: new Date(), //Also accepts '09/15/2020'
   });
 ```
+
+## License
+
+See [License](./LICENSE)
+
+ © [ns8inc](https://ns8.com)
