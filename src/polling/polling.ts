@@ -59,7 +59,7 @@ const getQueueName = (pollQueueEvent: PollQueueLambdaPayload, forDeadLetter = fa
  *
  * @param event attributes used to identify the merchant-specific queue
  */
-const CreatePollingQueueIfNotExist = async (event: PollQueueLambdaPayload): Promise<void> => {
+const createPollingQueueIfNotExist = async (event: PollQueueLambdaPayload): Promise<void> => {
   const sqsClient = new SQS();
 
   const { QueueUrls } = await sqsClient.listQueues({ QueueNamePrefix: getQueueName(event) }).promise();
@@ -108,7 +108,7 @@ const CreatePollingQueueIfNotExist = async (event: PollQueueLambdaPayload): Prom
  * @param event attributes used to identify the merchant-specific queue and the
  * message to be deleted
  */
-export const CreatePolledMessage: LambdaHandler<CreatePolledMessageLambdaPayload, void> = async (
+export const createPolledMessage: LambdaHandler<CreatePolledMessageLambdaPayload, void> = async (
   event: CreatePolledMessageLambdaPayload,
 ): Promise<void> => {
   const sqsClient = new SQS();
@@ -129,7 +129,7 @@ export const CreatePolledMessage: LambdaHandler<CreatePolledMessageLambdaPayload
  * @param event attributes used to identify the merchant-specific queue and the
  * message to be deleted
  */
-export const DeletePolledMessage: LambdaHandler<DeletePolledMessageLambdaPayload, void> = async (
+export const deletePolledMessage: LambdaHandler<DeletePolledMessageLambdaPayload, void> = async (
   event: DeletePolledMessageLambdaPayload,
 ): Promise<void> => {
   const sqsClient = new SQS();
@@ -149,10 +149,10 @@ export const DeletePolledMessage: LambdaHandler<DeletePolledMessageLambdaPayload
  *
  * @param event attributes used to identify the merchant-specific queue
  */
-export const GetPollUrl: LambdaHandler<PollQueueLambdaPayload, GetPollUrlResultPayload> = async (
+export const getPollUrl: LambdaHandler<PollQueueLambdaPayload, GetPollUrlResultPayload> = async (
   event: PollQueueLambdaPayload,
 ): Promise<GetPollUrlResultPayload> => {
-  await CreatePollingQueueIfNotExist(event);
+  await createPollingQueueIfNotExist(event);
 
   const sts = new STS();
   const { Arn } = await sts.getCallerIdentity().promise();
