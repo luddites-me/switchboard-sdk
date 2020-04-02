@@ -17,8 +17,8 @@
   },
   "description": "Protect Switchboard SDK",
   "devDependencies": {
-    "@ns8/protect-tools-js": "0.0.9",
     "@ns8/protect-tools-bundle": "0.0.13",
+    "@ns8/protect-tools-js": "0.0.9",
     "@types/aws-lambda": "^8.10.47",
     "@types/aws-sdk": "^2.7.0",
     "@types/aws4": "^1.5.1",
@@ -132,5 +132,5 @@
     }
   },
   "types": "dist/types/index.d.ts",
-  "version": "0.2.17"
+  "version": "0.2.18"
 }
