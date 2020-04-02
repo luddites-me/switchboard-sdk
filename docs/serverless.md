@@ -4,12 +4,12 @@
 
 Pull the `protect-sdk-switchboard` repo into your integration as a dependency by running:
 
-```
+```bash
 yarn add @ns8/protect-switchboard-sdk
 ```
 
 Since the example build scripts below rely on `ts-node`, you might also want to run `yarn add ts-node` as well.
- 
+
 ## Using the `lambdaDeploy` script
 
 The `protect-sdk-switchboard` repo has a fairly straightforward script located at `build/lambdaDeploy.ts` that shells out to the AWS serverless CLI command (`sls`). It will delploy the lambdas defined in your `serverless.yml` file to an AWS stack of step functions with a stage value of `test`, `prod`, or whatever the value of your ENV `DEV_SUFFIX` variable is (a three-letter string identifying you). The default stage value for this script is `test`.
@@ -18,8 +18,8 @@ Here's how you would consume the build script from your integration repo's `pack
 
 ```json
 {
-  "deploy": "METHOD=deploy ts-node -P ./build/tsconfig.json ./node_modules/@ns8/protect-switchboard-sdk/build/lambdaDeploy.ts",  
-  "undeploy": "METHOD=remove ts-node -P ./build/tsconfig.json ./node_modules/@ns8/protect-switchboard-sdk/build/lambdaDeploy.ts",   
+  "deploy": "METHOD=deploy ts-node -P ./build/tsconfig.json ./node_modules/@ns8/protect-switchboard-sdk/build/lambdaDeploy.ts",
+  "undeploy": "METHOD=remove ts-node -P ./build/tsconfig.json ./node_modules/@ns8/protect-switchboard-sdk/build/lambdaDeploy.ts",
 }
 ```
 
@@ -32,10 +32,10 @@ For your reference, below is a `serverless.yml` file copied `@ns8/protect-switch
 - inside brackets, `self` refers to the yaml configuration, allowing you to reference properties within the file
 - inside brackets, `opt` refers to options passed in via the `sls` cli. For example, if `sls` is called like this: `sls --stage=xyz`, then `{opt.stage}` in the `serverless.yml` resolves to `xyz`.
 - the step function handler names (e.g. `UpdateMerchantAction`) are hard-coded in the sdk, but their `handler` path and contents are configurable.
-- In the opposite fashion of a Typescript `tsconfig.json`, the `include` directive overrides `exclude`. 
+- In the opposite fashion of a Typescript `tsconfig.json`, the `include` directive overrides `exclude`.
 - For the below config, if you ran the `sls` command with a stage of 'xyz', the integration name would expand to  `magento-integration-xyz`.
 
-```
+```yaml
 RetryDefault:
   Retry: &ref_0
     - BackoffRate: 2

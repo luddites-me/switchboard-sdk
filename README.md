@@ -6,6 +6,9 @@
 
 The Protect Switchboard SDK houses utitlity methods to assist in the transformation of data from a platform into the data model expected by Protect.
 
+- [Polling](docs/polling.md)
+- [Serverless](docs/serverless.md)
+
 ## Basic Usage
 
 The majority of the current use cases for the Switchboard SDK hinge on converting generic objects into typed model objects that can be consumed by Protect.

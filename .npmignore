@@ -1,4 +1,5 @@
 .awcache/
+.circleci/
 .ctirc
 .editorconfig
 .env
@@ -19,7 +20,6 @@
 .vscode/
 *.lock
 *.log
-*.yml
 build/
 codealike.json
 CODEOWNERS
@@ -29,6 +29,8 @@ jest.config.js
 node_modules/
 src/
 test/
+serverless.yml
+tsconfig.build.json
 tsconfig.json
 typedoc.json
-webpack.config.js
+webpack.config.ts
