@@ -4,20 +4,20 @@
 
 ## Table of Contents
 
-- [Protect SDK Switchboard](#protect-sdk-switchboard)
-  - [Getting Started](#getting-started)
-  - [`package.json` scripts](#packagejson-scripts)
-  - [Basic Usage](#basic-usage)
-    - [Utility Methods](#utility-methods)
-    - [Examples](#examples)
-  - [License](#license)
+- [Table of Contents](#table-of-contents)
+- [Getting Started](#getting-started)
+- [`package.json` scripts](#packagejson-scripts)
+- [Basic Usage](#basic-usage)
+  - [Utility Methods](#utility-methods)
+  - [Examples](#examples)
+- [License](#license)
 
 ## Getting Started
 
 To get started, take a look at the documentation listed below:
 
-- [Message Queue Architecture and Polling](docs\polling.md)
-- [Serverless Configuration](docs\serverless.md)
+- [Message Queue Architecture and Polling](docs/polling.md)
+- [Serverless Configuration](docs/serverless.md)
 
 ## `package.json` scripts
 
