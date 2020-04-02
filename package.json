@@ -1,7 +1,6 @@
 {
   "author": "ns8inc",
   "dependencies": {
-    "@ns8/protect-tools-js": "0.0.9",
     "aws-lambda": "^1.0.5",
     "aws-sdk": "^2.651.0",
     "aws4": "^1.9.1",
@@ -18,6 +17,7 @@
   },
   "description": "Protect Switchboard SDK",
   "devDependencies": {
+    "@ns8/protect-tools-js": "0.0.9",
     "@ns8/protect-tools-bundle": "0.0.13",
     "@types/aws-lambda": "^8.10.47",
     "@types/aws-sdk": "^2.7.0",
