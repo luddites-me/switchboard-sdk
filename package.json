@@ -133,5 +133,5 @@
     }
   },
   "types": "dist/types/index.d.ts",
-  "version": "0.2.19"
+  "version": "0.2.20"
 }
