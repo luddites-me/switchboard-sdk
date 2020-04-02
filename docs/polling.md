@@ -10,6 +10,10 @@ The `protect-sdk-switchboard` provides message queueing functionality (via AWS S
 
 An integration should call out to the protect API with the aforementioned data to fetch the queue URL associated with its `merchantId`.
 
+### `CreatePolledMessage`
+
+This function should be called once a queue message has been processed. It receives an `message` payload that should be an object which can be serialized to/from a string. On success, the message will be pushed into the queue.
+
 ### `DeletePolledMessage`
 
 This function should be called once a queue message has been processed. It receives an `event` payload that should include a receipt handle, taken from the message processed.  That receipt handle, in conjunction with the information required for the queue name, is then used to identify the message to be deleted.
