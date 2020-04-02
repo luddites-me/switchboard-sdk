@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 import { execSync } from 'child_process';
-import { env } from './loadEnv';
+import { loadEnv } from '@ns8/protect-tools-js';
+
+const env = loadEnv();
 
 let stage = 'test';
 if (process.env.NODE_ENV?.toLowerCase().startsWith('prod')) {
