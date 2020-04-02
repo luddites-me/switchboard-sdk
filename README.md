@@ -16,8 +16,8 @@
 
 To get started, take a look at the documentation listed below:
 
-- [Message Queue Architecture and Polling](docs/polling.md)
-- [Serverless Configuration](docs/serverless.md)
+- [Message Queue Architecture and Polling](docs\polling.md)
+- [Serverless Configuration](docs\serverless.md)
 
 ## `package.json` scripts
 
