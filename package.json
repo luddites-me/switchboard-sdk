@@ -51,7 +51,7 @@
   "name": "@ns8/protect-sdk-switchboard",
   "repository": "https://github.com/ns8inc/protect-sdk-switchboard.git",
   "scripts": {
-    "build": "yarn install && yarn generate:exports && tsc -p tsconfig.build.json --outDir dist && tsc --emitDeclarationOnly && yarn sortJson && yarn bundle && docs:sync-readme",
+    "build": "yarn install && yarn generate:exports && tsc -p tsconfig.build.json --outDir dist && tsc --emitDeclarationOnly && yarn sortJson && yarn bundle && yarn docs:sync-readme",
     "build:dev": "NODE_ENV=development yarn && yarn build && yarn link",
     "bundle": "webpack",
     "clean": "rm -rf .awcache .tmp dist .nyc_output coverage *.log",
