@@ -41,7 +41,7 @@ jobs:
           command: yarn
           name: Install Dependencies
       - run:
-          command: yarn build
+          command: yarn build:prod
           name: Build
       - run:
           command: npm publish
