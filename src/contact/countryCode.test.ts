@@ -1,5 +1,4 @@
 import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
 import { getCountryNameFromCountryCode } from './countryCode';
 
@@ -27,7 +26,6 @@ const tests: Assertion[] = [
 ];
 
 describe('country code suite', () => {
-  use(chaiAsPromised);
   tests.forEach((test) => {
     it(`converts "${test.input}" to "${test.output}"`, () => {
       const convert = getCountryNameFromCountryCode(test.input);

@@ -3,7 +3,6 @@
   sonarjs/no-duplicate-string,
 */
 import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
 import { AddressData, toAddress } from './toAddress';
 
@@ -111,7 +110,6 @@ export const addressAssertionMocks: AddressDataAssertion[] = [
 ];
 
 describe('address convert suite', () => {
-  use(chaiAsPromised);
   addressAssertionMocks.forEach((test) => {
     it(`converts AddressData to Address matching ${test.assert}`, () => {
       const convert = toAddress(test.input);

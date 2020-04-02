@@ -4,18 +4,33 @@
 import { LineItem } from 'ns8-protect-models';
 
 /**
- * Generic object representing a line item
+ * Generic object representing a line item:
+ *  the items a customer has ordered.
+ * All properties are optional unless otherwise documented.
+ * Not all orders will have Line Items with all of this data.
  */
 export interface LineItemData {
   ean13?: string;
   isbn?: string;
   isGiftCard?: string | number | boolean;
   manufacturer?: string;
-  name?: string;
+  /**
+   * Required.
+   */
+  name: string;
+  /**
+   * This is the unique identifer for the Line Item on the platform.
+   */
   platformId?: string | number;
   platformProductId?: string | number;
-  price?: string | number;
-  quantity?: string | number;
+  /**
+   * Required.
+   */
+  price: string | number;
+  /**
+   * Required.
+   */
+  quantity: string | number;
   sku?: string;
   title?: string;
   totalDiscount?: string | number;
@@ -48,7 +63,7 @@ export const toLineItem = (data: LineItemData): LineItem => {
     variantTitle,
     vendor,
   } = data;
-  const lineItem = new LineItem();
+  const lineItem = new LineItem({ name });
   if (ean13) {
     lineItem.ean13 = ean13;
   }
@@ -61,21 +76,14 @@ export const toLineItem = (data: LineItemData): LineItem => {
   if (manufacturer) {
     lineItem.manufacturer = manufacturer;
   }
-  if (name) {
-    lineItem.name = name;
-  }
   if (platformId) {
     lineItem.platformId = `${platformId}`;
   }
   if (platformProductId) {
     lineItem.platformProductId = `${platformProductId}`;
   }
-  if (price) {
-    lineItem.price = +price;
-  }
-  if (quantity) {
-    lineItem.quantity = +quantity;
-  }
+  lineItem.price = +price;
+  lineItem.quantity = +quantity;
   if (sku) {
     lineItem.sku = sku;
   }

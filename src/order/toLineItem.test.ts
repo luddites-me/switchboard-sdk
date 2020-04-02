@@ -48,6 +48,9 @@ export const lineItemsAssertionMocks: LineItemDataAssertion[] = [
     input: {
       isGiftCard: true,
       totalDiscount: 1.0,
+      name: 'Bar',
+      price: 1.2,
+      quantity: 1,
     },
     assert: 'isGiftCard',
   },

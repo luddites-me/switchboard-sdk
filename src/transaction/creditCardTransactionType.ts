@@ -8,16 +8,21 @@ import { CreditCardTransactionType } from 'ns8-protect-models';
 export const stringToCreditCardTransactionType = (creditCardTransactionType = ''): CreditCardTransactionType => {
   switch (creditCardTransactionType.toLowerCase().trim()) {
     case 'authorize':
+    case 'authorized':
     case 'authorization':
       return CreditCardTransactionType.AUTHORIZATION;
     case 'capture':
+    case 'captured':
       return CreditCardTransactionType.CAPTURE;
     case 'refund':
+    case 'refunded':
       return CreditCardTransactionType.REFUND;
     case 'order':
+    case 'ordered':
     case 'sale':
       return CreditCardTransactionType.SALE;
     case 'void':
+    case 'voided':
       return CreditCardTransactionType.VOID;
     default:
       return CreditCardTransactionType.AUTHORIZATION;

@@ -1,4 +1,4 @@
-export * from './creditCard';
+export * from './creditCardTransactionType';
 export * from './toCreditCard';
 export * from './toTransaction';
 export * from './transactionMethod';

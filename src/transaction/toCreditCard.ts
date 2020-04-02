@@ -1,8 +1,10 @@
 import { CreditCard } from 'ns8-protect-models';
-import { stringToCreditCardTransactionType } from './creditCard';
+import { stringToCreditCardTransactionType } from './creditCardTransactionType';
 
 /**
- * Generic object representing a credit card
+ * Generic object representing a credit card.
+ * All properties are optional unless otherwise documented.
+ * Not all payment providers will have all of this data.
  */
 export interface CreditCardData {
   avsResultCode?: string | number;
@@ -10,11 +12,19 @@ export interface CreditCardData {
   cardHolder?: string;
   creditCardBin?: string | number;
   creditCardCompany?: string;
+  /**
+   * The full number is not expected or required.
+   * This is frequently just the last 4 digits.
+   */
   creditCardNumber?: string | number;
   cvvResultCode?: string | number;
   gateway?: string;
   /**
-   * Should be convertable to a CreditCardTransactionType
+   * Should be convertable to a CreditCardTransactionType:
+   *  Authorization, Sale, Capture, Refund, Void (case-insensitive)
+   * Converter will attempt to loosely parse the passed string,
+   * if an exact match cannot be found.
+   * @default 'Sale'
    */
   transactionType?: string;
 }

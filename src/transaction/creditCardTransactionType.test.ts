@@ -2,7 +2,7 @@ import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
 import { CreditCardTransactionType } from 'ns8-protect-models';
-import { stringToCreditCardTransactionType } from './creditCard';
+import { stringToCreditCardTransactionType } from './creditCardTransactionType';
 
 interface Assertion {
   input?: string;
