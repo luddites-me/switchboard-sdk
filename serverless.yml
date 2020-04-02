@@ -1,0 +1,54 @@
+RetryDefault:
+  Retry: &ref_0
+    - BackoffRate: 2
+      ErrorEquals:
+        - States.ALL
+      IntervalSeconds: 2
+      MaxAttempts: 1
+custom:
+  integrationName: '${self:service}-${self:provider.stage}'
+functions:
+  CreatePolledMessage:
+    environment:
+      STAGE: '${self:provider.stage}'
+    handler: dist/index.createPolledMessage
+    name: '${self:custom.integrationName}-createPolledMessage'
+  DeletePolledMessage:
+    environment:
+      STAGE: '${self:provider.stage}'
+    handler: dist/index.deletePolledMessage
+    name: '${self:custom.integrationName}-deletePolledMessage'
+  GetPollUrl:
+    environment:
+      STAGE: '${self:provider.stage}'
+    handler: dist/index.getPollUrl
+    name: '${self:custom.integrationName}-getPollUrl'
+package:
+  exclude:
+    - ./**
+  include:
+    - dist/index.js
+    - serverless.yml
+plugins:
+  - serverless-step-functions
+  - serverless-pseudo-parameters
+provider:
+  deploymentBucket:
+    name: '${ssm:/serverless/deployment/bucket/name}'
+  iamRoleStatements:
+    - Action: 's3:GetObject'
+      Effect: Allow
+      Resource: 'arn:aws:s3:::protect-api-switch-data-${self:provider.stage}/*'
+    - Action: 'sqs:*'
+      Effect: Allow
+      Resource: 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:${self:provider.stage}-*'
+    - Action: 'sts:AssumeRole'
+      Effect: Allow
+      Resource: 'arn:aws:iam::#{AWS::AccountId}:role/${self:custom.integrationName}-#{AWS::Region}-lambdaRole'
+  name: aws
+  region: us-west-2
+  runtime: nodejs12.x
+  stage: '${opt:stage}'
+  timeout: 29
+  versionFunctions: false
+service: protect-switchboard-sdk

@@ -2,12 +2,84 @@
 
 [![CircleCI](https://circleci.com/gh/ns8inc/protect-sdk-switchboard.svg?style=svg&circle-token=0d7a67144dc51908cf0aa3ca1a025a23d64c8bef)](https://app.circleci.com/pipelines/github/ns8inc/protect-sdk-switchboard)
 
+## Table of Contents
+
+- [Protect SDK Switchboard](#protect-sdk-switchboard)
+  - [Getting Started](#getting-started)
+  - [`package.json` scripts](#packagejson-scripts)
+  - [Basic Usage](#basic-usage)
+    - [Utility Methods](#utility-methods)
+    - [Examples](#examples)
+  - [License](#license)
+
 ## Getting Started
 
-The Protect Switchboard SDK houses utitlity methods to assist in the transformation of data from a platform into the data model expected by Protect.
+To get started, take a look at the documentation listed below:
 
-- [Polling](docs/polling.md)
-- [Serverless](docs/serverless.md)
+- [Message Queue Architecture and Polling](docs/polling.md)
+- [Serverless Configuration](docs/serverless.md)
+
+## `package.json` scripts
+
+`yarn build`
+
+- Assembles `src` code into a single, minified JS module with type definitions. Exports `build` scripts into a build folder.
+
+`yarn build:dev`
+
+- Builds in dev mode
+
+`yarn bundle`
+
+- Runs WebPack on the `src` code
+
+`yarn clean`
+
+- Purges all temporary folders
+
+`yarn count`
+
+- Counts lines of source code
+
+`yarn deploy`
+
+- Deploys the polling lamdbas to AWS
+
+`yarn docs:sync-readme`
+
+- Creates or updates a new readme with a standard set of readme sections, including a toc, yarn script documention, links to repo documentation files and an NS8 license
+
+`yarn generate:exports`
+
+- Generates index.ts files for all exports recursively in the 'src' folder
+
+`yarn lint`
+
+- Lints the codebase and the documentation
+
+`yarn lint:fix`
+
+- Lints the codebase and automatically fixes what it can
+
+`yarn sortJson`
+
+- Performs aesthetic operations to make the project files easier to navigate and read
+
+`yarn test`
+
+- Runs tests and calculates test coverage
+
+`yarn test:coverage`
+
+- Calculates test coverage
+
+`yarn test:debug`
+
+- Runs tests with the debugger
+
+`yarn undeploy`
+
+- Removes the polling lamdbas from AWS
 
 ## Basic Usage
 
@@ -15,7 +87,6 @@ The majority of the current use cases for the Switchboard SDK hinge on convertin
 The basic utility methods provided cover most use cases: `toOrder` would normally be the starting point, and you can chain construction entirely inside that method,
 or you can assemble the object as you see fit. Each Protect model maps to an interface, e.g. Protect's `Order` is mapped from the `OrderData` interface.
 All interfaces should line up to the Protect naming conventions, with the exception of the interface name which is `${ModelName}Data`.
-
 Each of these interfaces is designed to be as flexible as possible, so that the consumer doesn't need to worry about converting data. For example,
 if a property in Protect is expected to be a `Date`, the corresponding property in the SDK will allow `string` or `Date` and handle the conversion for you.
 Likewise, if a property in Protect is expected to be an `enum`, the corresponding property in the SDK will be an optional string, and the parser will
@@ -30,7 +101,6 @@ other primitive converters to allow the interfaces to be as flexible as possible
 ### Examples
 
 A basic order construction looks like this:
-
 ```ts
 import {
   toAddress,
@@ -40,7 +110,6 @@ import {
   toSession,
   toTransactions,
 } from '@ns8/protect-sdk-switchboard';
-
 const order = toOrder({
     name: '00001',
     currency: 'USD',
@@ -118,5 +187,4 @@ const order = toOrder({
 ## License
 
 See [License](./LICENSE)
-
  © [ns8inc](https://ns8.com)

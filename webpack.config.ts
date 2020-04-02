@@ -8,7 +8,7 @@ const config = getWebpackConfig({
   bundleTarget: BundleTarget.NODE,
   distDirectory: './dist',
   sourceDirectory: './src',
-  libraryName: 'switchboard-sdk',
+  libraryName: 'index',
 });
 
 

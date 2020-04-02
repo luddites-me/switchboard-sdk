@@ -1,35 +1,38 @@
 {
   "author": "ns8inc",
   "dependencies": {
-    "@ns8/protect-tools-js": "0.0.7",
+    "@ns8/protect-tools-js": "0.0.9",
     "aws-lambda": "^1.0.5",
-    "aws-sdk": "^2.645.0",
+    "aws-sdk": "^2.651.0",
     "aws4": "^1.9.1",
     "country-list": "2.2.0",
     "is-ip": "3.1.0",
     "moment": "2.24.0",
-    "ns8-protect-models": "1.0.258",
+    "ns8-protect-models": "1.0.262",
     "ns8-switchboard-interfaces": "1.0.108",
+    "serverless-pseudo-parameters": "2.5.0",
+    "serverless-step-functions": "2.17.4",
     "typescript": "3.8.3",
     "ua-parser-js": "0.7.21",
-    "uuid": "7.0.2"
+    "uuid": "7.0.3"
   },
   "description": "Protect Switchboard SDK",
   "devDependencies": {
     "@ns8/protect-tools-bundle": "0.0.13",
-    "@types/aws-lambda": "^8.10.46",
+    "@types/aws-lambda": "^8.10.47",
     "@types/aws-sdk": "^2.7.0",
     "@types/aws4": "^1.5.1",
     "@types/chai": "4.2.11",
     "@types/chai-as-promised": "7.1.2",
     "@types/country-list": "^2.1.0",
     "@types/mocha": "7.0.2",
-    "@types/node": "13.9.3",
+    "@types/node": "13.9.8",
     "@types/ua-parser-js": "0.7.33",
     "@types/uuid": "7.0.2",
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
-    "create-ts-index": "1.12.0",
+    "cloc": "2.5.1",
+    "create-ts-index": "1.12.1",
     "hard-source-webpack-plugin": "0.13.1",
     "husky": "4.2.3",
     "mocha": "7.1.1",
@@ -44,23 +47,89 @@
     "dist"
   ],
   "license": "UNLICENSED",
-  "main": "dist/switchboard-sdk.min.js",
+  "main": "dist/index.min.js",
   "name": "@ns8/protect-sdk-switchboard",
   "repository": "https://github.com/ns8inc/protect-sdk-switchboard.git",
   "scripts": {
-    "beautify": "ts-node ./scripts/build.ts",
-    "build": "yarn install && yarn generate:exports && tsc -p tsconfig.build.json --outDir dist/build && tsc --emitDeclarationOnly && yarn beautify && yarn bundle",
+    "build": "yarn install && yarn generate:exports && tsc -p tsconfig.build.json --outDir dist && tsc --emitDeclarationOnly && yarn sortJson && yarn bundle && docs:sync-readme",
     "build:dev": "NODE_ENV=development yarn && yarn build && yarn link",
     "bundle": "webpack",
     "clean": "rm -rf .awcache .tmp dist .nyc_output coverage *.log",
+    "count": "cloc ./src ./build ./docs",
+    "deploy": "METHOD=deploy ts-node -P ./build/tsconfig.json ./build/lambdaDeploy.ts",
+    "docs:sync-readme": "npx ./node_modules/@ns8/protect-tools-js/dist/readme/standardizeReadme.js --repo-root .",
     "generate:exports": "yarn cti create ./src -w",
-    "lint": "yarn eslint -c 'node_modules/protect-tools-lint/eslintrc.yml' 'src/**/*.ts'",
-    "lint:fix": "yarn eslint -c 'node_modules/protect-tools-lint/eslintrc.yml' --fix 'src/**/*.ts'",
+    "lint": "yarn eslint -c 'node_modules/protect-tools-lint/eslintrc.yml' 'src/**/*.ts' 'docs/**/*.md'",
+    "lint:fix": "yarn eslint -c 'node_modules/protect-tools-lint/eslintrc.yml' --fix 'src/**/*.ts' 'docs/**/*.md'",
     "rebuild": "yarn clean && yarn build",
     "rebuild:dev": "yarn clean && yarn build:dev",
-    "test": "nyc --nycrc-path 'node_modules/protect-tools-lint/nycrc.yml' mocha '**/*/*.test.ts'",
-    "test:coverage": "nyc yarn test:debug",
-    "test:debug": "mocha -r ts-node/register '**/*/*.test.ts'"
+    "sortJson": "npx ./node_modules/@ns8/protect-tools-js/dist/sortJson/sortJson.js",
+    "test": "nyc --nycrc-path 'node_modules/protect-tools-lint/nycrc.yml' mocha 'src/*/*.test.ts' && yarn count",
+    "test:coverage": "nyc yarn test:debug && yarn count",
+    "test:debug": "mocha -r ts-node/register 'src/*/*.test.ts'",
+    "undeploy": "METHOD=undeploy ts-node -P ./build/tsconfig.json ./build/lambdaDeploy.ts"
+  },
+  "scriptsDocumentation": {
+    "build": {
+      "description": "Assembles `src` code into a single, minified JS module with type definitions. Exports `build` scripts into a build folder.",
+      "dev": false
+    },
+    "build:dev": {
+      "description": "Builds in dev mode",
+      "dev": true
+    },
+    "bundle": {
+      "description": "Runs WebPack on the `src` code",
+      "dev": false
+    },
+    "clean": {
+      "description": "Purges all temporary folders",
+      "dev": true
+    },
+    "count": {
+      "description": "Counts lines of source code",
+      "dev": true
+    },
+    "deploy": {
+      "description": "Deploys the polling lamdbas to AWS",
+      "dev": true
+    },
+    "docs:sync-readme": {
+      "description": "Creates or updates a new readme with a standard set of readme sections, including a toc, yarn script documention, links to repo documentation files and an NS8 license",
+      "dev": true
+    },
+    "generate:exports": {
+      "description": "Generates index.ts files for all exports recursively in the 'src' folder",
+      "dev": true
+    },
+    "lint": {
+      "description": "Lints the codebase and the documentation",
+      "dev": true
+    },
+    "lint:fix": {
+      "description": "Lints the codebase and automatically fixes what it can",
+      "dev": true
+    },
+    "sortJson": {
+      "description": "Performs aesthetic operations to make the project files easier to navigate and read",
+      "dev": true
+    },
+    "test": {
+      "description": "Runs tests and calculates test coverage",
+      "dev": true
+    },
+    "test:coverage": {
+      "description": "Calculates test coverage",
+      "dev": true
+    },
+    "test:debug": {
+      "description": "Runs tests with the debugger",
+      "dev": true
+    },
+    "undeploy": {
+      "description": "Removes the polling lamdbas from AWS",
+      "dev": true
+    }
   },
   "types": "dist/types/index.d.ts",
   "version": "0.2.17"
