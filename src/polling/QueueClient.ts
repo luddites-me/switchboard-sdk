@@ -1,17 +1,21 @@
 import axios from 'axios';
 
-import { MessageBase, UpdateEQ8Score, UpdateOrderStatus, UpdateOrderRisk } from '../message';
-import { logger, env } from '../util';
+import { MessageBase, UpdateEQ8Score, UpdateOrderRisk, UpdateOrderStatus } from '../message';
+import { env, logger } from '../util';
 
 /**
  * Used to create events on the queue.
  */
 export class QueueClient {
+  public readonly apiUrl: string;
+
   /**
    * Creates a queue client.
    * @param apiUrl - Base URL of the API, defaults to `NS8_CLIENT_URL` from .env file.
    */
-  public constructor(public readonly apiUrl: string = env.NS8_CLIENT_URL) {}
+  public constructor(baseApiUrl?: string) {
+    this.apiUrl = baseApiUrl || env.NS8_CLIENT_URL;
+  }
 
   /**
    * Creates an update order status event on the queue.
