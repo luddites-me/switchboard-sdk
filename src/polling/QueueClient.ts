@@ -46,19 +46,19 @@ export class QueueClient {
   public createUpdateOrderRiskEvent = (updateOrderRisk: UpdateOrderRisk) => this.createEvent(updateOrderRisk);
 
   private createEvent = async <T extends MessageBase>(message: T): Promise<boolean> => {
-    const { merchant } = this.switchContext;
-    if (!merchant.accessTokens.length) {
-      throw new Error('No access tokens found for merchant');
+    const merchant = this.switchContext.merchant;
+    const accessToken = merchant.accessTokens.find((token) => token.subjectType === 'MERCHANT');
+    if (!accessToken) {
+      throw new Error('No access token found for merchant');
     }
 
     try {
-      const accessToken = merchant.accessTokens[0].id;
       const response = await axios({
         method: 'post',
         url: `${this.apiBaseUrl}/${CREATE_QUEUE_MESSAGE_ENDPOINT}`,
         data: message,
         headers: {
-          Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken.id}`,
         },
       });
 
