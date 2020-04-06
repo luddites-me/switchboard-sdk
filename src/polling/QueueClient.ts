@@ -46,7 +46,7 @@ export class QueueClient {
   public createUpdateOrderRiskEvent = (updateOrderRisk: UpdateOrderRisk) => this.createEvent(updateOrderRisk);
 
   private createEvent = async <T extends MessageBase>(message: T): Promise<boolean> => {
-    const merchant = this.switchContext.merchant;
+    const { merchant } = this.switchContext;
     const accessToken = merchant.accessTokens.find((token) => token.subjectType === 'MERCHANT');
     if (!accessToken) {
       throw new Error('No access token found for merchant');
