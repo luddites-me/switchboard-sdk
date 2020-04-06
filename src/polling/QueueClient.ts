@@ -29,23 +29,26 @@ export class QueueClient {
   /**
    * Creates an update order status event on the queue.
    * @param updateOrderStatus - Data payload to attach to event.
-   * @return True if event was created successfully, false otherwise.
+   * @returns True if event was created successfully, false otherwise.
    */
-  public createUpdateOrderStatusEvent = (updateOrderStatus: UpdateOrderStatus) => this.createEvent(updateOrderStatus);
+  public createUpdateOrderStatusEvent = (updateOrderStatus: UpdateOrderStatus): Promise<boolean> =>
+    this.createEvent(updateOrderStatus);
 
   /**
    * Creates an update EQ8 score event on the queue.
    * @param updateEQ8Score - Data payload to attach to event.
-   * @return True if event was created successfully, false otherwise.
+   * @returns True if event was created successfully, false otherwise.
    */
-  public createUpdateEQ8ScoreEvent = (updateEQ8Score: UpdateEQ8Score) => this.createEvent(updateEQ8Score);
+  public createUpdateEQ8ScoreEvent = (updateEQ8Score: UpdateEQ8Score): Promise<boolean> =>
+    this.createEvent(updateEQ8Score);
 
   /**
    * Creates an update order risk event on the queue.
    * @param updateOrderRisk - Data payload to attach to event.
-   * @return True if event was created successfully, false otherwise.
+   * @returns True if event was created successfully, false otherwise.
    */
-  public createUpdateOrderRiskEvent = (updateOrderRisk: UpdateOrderRisk) => this.createEvent(updateOrderRisk);
+  public createUpdateOrderRiskEvent = (updateOrderRisk: UpdateOrderRisk): Promise<boolean> =>
+    this.createEvent(updateOrderRisk);
 
   private createEvent = async <T extends MessageBase>(message: T): Promise<boolean> => {
     const { merchant } = this.switchContext;
@@ -55,10 +58,7 @@ export class QueueClient {
     }
 
     try {
-      const response = await axios({
-        method: 'post',
-        url: `${this.apiBaseUrl}/${CREATE_QUEUE_MESSAGE_ENDPOINT}`,
-        data: message,
+      const response = await axios.post(`${this.apiBaseUrl}/${CREATE_QUEUE_MESSAGE_ENDPOINT}`, message, {
         headers: {
           Authorization: `Bearer ${accessToken.id}`,
         },
