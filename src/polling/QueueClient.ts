@@ -1,20 +1,27 @@
 import axios from 'axios';
+import { SwitchContext } from 'ns8-switchboard-interfaces';
 
 import { MessageBase, UpdateEQ8Score, UpdateOrderRisk, UpdateOrderStatus } from '../message';
 import { env, logger } from '../util';
+
+const CREATE_QUEUE_MESSAGE_ENDPOINT = 'api/polling/createQueueMessage';
 
 /**
  * Used to create events on the queue.
  */
 export class QueueClient {
-  public readonly apiUrl: string;
+  private readonly switchContext: SwitchContext;
+
+  private readonly apiBaseUrl: string;
 
   /**
    * Creates a queue client.
-   * @param baseApiUrl - Base URL of the API, defaults to `NS8_CLIENT_URL` from .env file.
+   * @param switchContext - The current switch context.
+   * @param apiBaseUrl - The base API url, defaults to `NS8_PROTECT_CLIENT` from .env file.
    */
-  public constructor(baseApiUrl?: string) {
-    this.apiUrl = baseApiUrl || env.NS8_CLIENT_URL;
+  public constructor(switchContext: SwitchContext, apiBaseUrl?: string) {
+    this.switchContext = switchContext;
+    this.apiBaseUrl = apiBaseUrl || env.NS8_PROTECT_CLIENT;
   }
 
   /**
@@ -39,14 +46,23 @@ export class QueueClient {
   public createUpdateOrderRiskEvent = (updateOrderRisk: UpdateOrderRisk) => this.createEvent(updateOrderRisk);
 
   private createEvent = async <T extends MessageBase>(message: T): Promise<boolean> => {
+    const { merchant } = this.switchContext;
+    if (!merchant.accessTokens.length) {
+      throw new Error('No access tokens found for merchant');
+    }
+
     try {
-      const res = await axios({
+      const accessToken = merchant.accessTokens[0].id;
+      const response = await axios({
         method: 'post',
-        url: `${this.apiUrl}/api/polling/createQueueMessage`,
+        url: `${this.apiBaseUrl}/${CREATE_QUEUE_MESSAGE_ENDPOINT}`,
         data: message,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
       });
 
-      return res.status === 200 && res.data && !!res.data.successful;
+      return response.status === 200 && response.data && !!response.data.successful;
     } catch (error) {
       logger.error('Failed to create queue event', error);
       return false;
