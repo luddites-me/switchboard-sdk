@@ -4,13 +4,13 @@
 
 ## Table of Contents
 
-- [Protect SDK Switchboard](#protect-sdk-switchboard)
-  - [Getting Started](#getting-started)
-  - [`package.json` scripts](#packagejson-scripts)
-  - [Basic Usage](#basic-usage)
-    - [Utility Methods](#utility-methods)
-    - [Examples](#examples)
-  - [License](#license)
+- [Table of Contents](#table-of-contents)
+- [Getting Started](#getting-started)
+- [`package.json` scripts](#packagejson-scripts)
+- [Basic Usage](#basic-usage)
+  - [Utility Methods](#utility-methods)
+  - [Examples](#examples)
+- [License](#license)
 
 ## Getting Started
 
