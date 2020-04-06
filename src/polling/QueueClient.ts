@@ -11,7 +11,7 @@ export class QueueClient {
 
   /**
    * Creates a queue client.
-   * @param apiUrl - Base URL of the API, defaults to `NS8_CLIENT_URL` from .env file.
+   * @param baseApiUrl - Base URL of the API, defaults to `NS8_CLIENT_URL` from .env file.
    */
   public constructor(baseApiUrl?: string) {
     this.apiUrl = baseApiUrl || env.NS8_CLIENT_URL;
