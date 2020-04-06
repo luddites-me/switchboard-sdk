@@ -24,7 +24,7 @@ const mockContext = ({
 
 const mockApiUrl = 'localhost';
 
-describe('QueueClient', () => {
+describe('queue client', () => {
   afterEach(() => sinon.restore());
 
   it('attaches access token to authorization header', async () => {
@@ -70,7 +70,7 @@ describe('QueueClient', () => {
     expect(client.createUpdateOrderStatusEvent({} as UpdateOrderStatus)).to.eventually.be.false;
   });
 
-  it('throws if no access token is found', () => {
+  it('throws if no access token is found for merchant', () => {
     sinon.replace(logger, 'error', sinon.fake()); // Replacing so it doesn't write out a huge error message
 
     const badContext = ({ merchant: { accessTokens: [] } } as unknown) as SwitchContext;

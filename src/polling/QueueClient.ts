@@ -1,11 +1,9 @@
 import axios from 'axios';
 import { SwitchContext } from 'ns8-switchboard-interfaces';
-import { loadEnv } from '@ns8/protect-tools-js';
 
 import { MessageBase, UpdateEQ8Score, UpdateOrderRisk, UpdateOrderStatus } from '../message';
 import { logger } from '../util';
 
-const env = loadEnv();
 const CREATE_QUEUE_MESSAGE_ENDPOINT = 'api/polling/createQueueMessage';
 
 /**
@@ -19,11 +17,11 @@ export class QueueClient {
   /**
    * Creates a queue client.
    * @param switchContext - The current switch context.
-   * @param apiBaseUrl - The base API url, defaults to `NS8_PROTECT_CLIENT` from .env file.
+   * @param apiBaseUrl - The base API url.
    */
-  public constructor(switchContext: SwitchContext, apiBaseUrl?: string) {
+  public constructor(switchContext: SwitchContext, apiBaseUrl: string) {
     this.switchContext = switchContext;
-    this.apiBaseUrl = apiBaseUrl || env.NS8_PROTECT_CLIENT;
+    this.apiBaseUrl = apiBaseUrl;
   }
 
   /**
