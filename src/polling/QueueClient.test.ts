@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import 'mocha';
@@ -24,13 +24,21 @@ const mockContext = ({
 
 const mockApiUrl = 'localhost';
 
+const mockResponseSuccess: AxiosResponse = {
+  status: 200,
+  data: { successful: true },
+  statusText: 'OK',
+  headers: {},
+  config: {},
+};
+
 describe('queue client', () => {
   afterEach(() => sinon.restore());
 
   it('attaches access token to authorization header', async () => {
-    const fakePost = (_url: string, _data: any, config: AxiosRequestConfig) => {
+    const fakePost = (_url: string, _data: any, config: AxiosRequestConfig): AxiosResponse => {
       expect(config.headers.Authorization).to.equal(`Bearer ${mockAccessToken.id}`);
-      return { status: 200, data: { successful: true } };
+      return mockResponseSuccess;
     };
 
     sinon.replace(axios, 'post', sinon.fake(fakePost));
@@ -41,9 +49,9 @@ describe('queue client', () => {
   });
 
   it('uses the correct api url and endpoint', async () => {
-    const fakePost = (url: string, _data: any, _config: AxiosRequestConfig) => {
+    const fakePost = (url: string, _data: any, _config: AxiosRequestConfig): AxiosResponse => {
       expect(url).to.equal(`${mockApiUrl}/api/polling/createQueueMessage`);
-      return { status: 200, data: { successful: true } };
+      return mockResponseSuccess;
     };
 
     sinon.replace(axios, 'post', sinon.fake(fakePost));
