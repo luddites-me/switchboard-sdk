@@ -1,7 +1,5 @@
 import axios from 'axios';
-import { SwitchContext } from 'ns8-switchboard-interfaces';
-
-import { MessageBase, UpdateEQ8Score, UpdateOrderRisk, UpdateOrderStatus } from '../message';
+import { MessageBase, UpdateEQ8Score, UpdateOrderRisk, UpdateOrderStatus, SwitchContext } from 'ns8-switchboard-interfaces';
 import { logger } from '../util';
 
 const CREATE_QUEUE_MESSAGE_ENDPOINT = 'api/polling/createQueueMessage';
