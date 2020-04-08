@@ -21,65 +21,21 @@ To get started, take a look at the documentation listed below:
 
 ## `package.json` scripts
 
-`yarn build`
-
-- Assembles `src` code into a single, minified JS module with type definitions. Exports `build` scripts into a build folder.
-
-`yarn build:dev`
-
-- Builds in dev mode
-
-`yarn bundle`
-
-- Runs WebPack on the `src` code
-
-`yarn clean`
-
-- Purges all temporary folders
-
-`yarn count`
-
-- Counts lines of source code
-
-`yarn deploy`
-
-- Deploys the polling lamdbas to AWS
-
-`yarn docs:sync-readme`
-
-- Creates or updates a new readme with a standard set of readme sections, including a toc, yarn script documention, links to repo documentation files and an NS8 license
-
-`yarn generate:exports`
-
-- Generates index.ts files for all exports recursively in the 'src' folder
-
-`yarn lint`
-
-- Lints the codebase and the documentation
-
-`yarn lint:fix`
-
-- Lints the codebase and automatically fixes what it can
-
-`yarn sortJson`
-
-- Performs aesthetic operations to make the project files easier to navigate and read
-
-`yarn test`
-
-- Runs tests and calculates test coverage
-
-`yarn test:coverage`
-
-- Calculates test coverage
-
-`yarn test:debug`
-
-- Runs tests with the debugger
-
-`yarn undeploy`
-
-- Removes the polling lamdbas from AWS
+- `yarn build`: Assembles `src` code into a single, minified JS module with type definitions. Exports `build` scripts into a build folder.
+- `yarn build:dev`: Builds in dev mode
+- `yarn bundle`: Runs WebPack on the `src` code
+- `yarn clean`: Purges all temporary folders
+- `yarn count`: Counts lines of source code
+- `yarn deploy`: Deploys the polling lamdbas to AWS
+- `yarn docs:standardize`: Creates or updates a new readme with a standard set of readme sections, including a toc, yarn script documention, links to repo documentation files and an NS8 license
+- `yarn generate:exports`: Generates index.ts files for all exports recursively in the 'src' folder
+- `yarn lint`: Lints the codebase and the documentation
+- `yarn lint:fix`: Lints the codebase and automatically fixes what it can
+- `yarn sortJson`: Performs aesthetic operations to make the project files easier to navigate and read
+- `yarn test`: Runs tests and calculates test coverage
+- `yarn test:coverage`: Calculates test coverage
+- `yarn test:debug`: Runs tests with the debugger
+- `yarn undeploy`: Removes the polling lamdbas from AWS
 
 ## Basic Usage
 
@@ -101,6 +57,7 @@ other primitive converters to allow the interfaces to be as flexible as possible
 ### Examples
 
 A basic order construction looks like this:
+
 ```ts
 import {
   toAddress,
@@ -109,82 +66,82 @@ import {
   toOrder,
   toSession,
   toTransactions,
-} from '@ns8/protect-sdk-switchboard';
+} from "@ns8/protect-sdk-switchboard";
 const order = toOrder({
-    name: '00001',
-    currency: 'USD',
-    merchantId: 9,
-    session: toSession({
-      acceptLanguage: 'en',
-      ip: '127.0.0.1',
-      screenHeight: 400,
-      screenWidth: 800,
-      userAgent: 'mozilla',
+  name: "00001",
+  currency: "USD",
+  merchantId: 9,
+  session: toSession({
+    acceptLanguage: "en",
+    ip: "127.0.0.1",
+    screenHeight: 400,
+    screenWidth: 800,
+    userAgent: "mozilla",
+  }),
+  addresses: [
+    toAddress({
+      address1: "Any street",
+      city: "Ithaca",
+      company: "",
+      country: "United States",
+      countryCode: "US",
+      region: "New York",
+      type: "billing",
+      zip: "14850-2911",
     }),
-    addresses: [
-      toAddress({
-        address1: 'Any street',
-        city: 'Ithaca',
-        company: '',
-        country: 'United States',
-        countryCode: 'US',
-        region: 'New York',
-        type: 'billing',
-        zip: '14850-2911',
-      }),
-    ],
-    platformId: 1,
-    platformCreatedAt: new Date(),
-    transactions: [
-      toTransactions({
-        amount: 10,
-        creditCard,
-        currency: 'USD',
-        method: '',
-        platformId: 1,
-        processedAt: baseDate,
-        status: '',
-        statusDetails: '',
-      }),
-    ],
-    lineItems: [
-      toLineItems({
-        ean13: '1',
-        isGiftCard: false,
-        isbn: '1',
-        manufacturer: 'GE',
-        name: 'Bar',
-        platformId: 1,
-        platformProductId: 1,
-        price: 2.01,
-        quantity: 7,
-        sku: '123',
-        title: 'A barbell',
-        totalDiscount: 0,
-        upc: '123',
-        variantId: '1',
-        variantTitle: 'A barbell',
-        vendor: 'Amazon',
-      }),
-    ],
-    createdAt: new Date(),
-    customer: toCustomer({
-      birthday: '01/01/1979',
-      company: 'My Co',
-      email: 'a@b.com',
-      firstName: 'Bob',
-      lastName: 'Smith',
-      gender: '1',
-      phone: '800555555',
-      platformId: 9,
+  ],
+  platformId: 1,
+  platformCreatedAt: new Date(),
+  transactions: [
+    toTransactions({
+      amount: 10,
+      creditCard,
+      currency: "USD",
+      method: "",
+      platformId: 1,
+      processedAt: baseDate,
+      status: "",
+      statusDetails: "",
     }),
-    hasGiftCard: false,
-    totalPrice: 20.53,
-    updatedAt: new Date(), //Also accepts '09/15/2020'
-  });
+  ],
+  lineItems: [
+    toLineItems({
+      ean13: "1",
+      isGiftCard: false,
+      isbn: "1",
+      manufacturer: "GE",
+      name: "Bar",
+      platformId: 1,
+      platformProductId: 1,
+      price: 2.01,
+      quantity: 7,
+      sku: "123",
+      title: "A barbell",
+      totalDiscount: 0,
+      upc: "123",
+      variantId: "1",
+      variantTitle: "A barbell",
+      vendor: "Amazon",
+    }),
+  ],
+  createdAt: new Date(),
+  customer: toCustomer({
+    birthday: "01/01/1979",
+    company: "My Co",
+    email: "a@b.com",
+    firstName: "Bob",
+    lastName: "Smith",
+    gender: "1",
+    phone: "800555555",
+    platformId: 9,
+  }),
+  hasGiftCard: false,
+  totalPrice: 20.53,
+  updatedAt: new Date(), //Also accepts '09/15/2020'
+});
 ```
 
 ## License
 
 See [License](./LICENSE)
- © [ns8inc](https://ns8.com)
+© [ns8inc](https://ns8.com)
