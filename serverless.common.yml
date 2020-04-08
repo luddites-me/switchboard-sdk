@@ -9,31 +9,31 @@ custom:
   integrationName: '${self:service}-${self:provider.stage}'
 functions:
   CreateOrderAction:
-    handler: dist/switchboard.CreateOrderAction
+    handler: dist/index.CreateOrderAction
     name: '${self:custom.integrationName}-createOrderAction'
   OnInstallEvent:
-    handler: dist/switchboard.OnInstallEvent
+    handler: dist/index.OnInstallEvent
     name: '${self:custom.integrationName}-onInstallEvent'
   UninstallAction:
-    handler: dist/switchboard.UninstallAction
+    handler: dist/index.UninstallAction
     name: '${self:custom.integrationName}-uninstallAction'
   UpdateCustVerifyStatusEvent:
-    handler: dist/switchboard.UpdateCustVerifyStatusEvent
+    handler: dist/index.UpdateCustVerifyStatusEvent
     name: '${self:custom.integrationName}-updateCustVerifyStatusEvent'
   UpdateEQ8ScoreEvent:
-    handler: dist/switchboard.UpdateEQ8ScoreEvent
+    handler: dist/index.UpdateEQ8ScoreEvent
     name: '${self:custom.integrationName}-updateEQ8ScoreEvent'
   UpdateMerchantAction:
-    handler: dist/switchboard.UpdateMerchantAction
+    handler: dist/index.UpdateMerchantAction
     name: '${self:custom.integrationName}-updateMerchantAction'
   UpdateOrderRiskEvent:
-    handler: dist/switchboard.UpdateOrderRiskEvent
+    handler: dist/index.UpdateOrderRiskEvent
     name: '${self:custom.integrationName}-updateOrderRiskEvent'
   UpdateOrderStatusAction:
-    handler: dist/switchboard.UpdateOrderStatusAction
+    handler: dist/index.UpdateOrderStatusAction
     name: '${self:custom.integrationName}-updateOrderStatusAction'
   UpdateOrderStatusEvent:
-    handler: dist/switchboard.UpdateOrderStatusEvent
+    handler: dist/index.UpdateOrderStatusEvent
     name: '${self:custom.integrationName}-updateOrderStatusEvent'
 package:
   exclude:
