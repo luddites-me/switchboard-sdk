@@ -137,5 +137,5 @@
     }
   },
   "types": "dist/types/index.d.ts",
-  "version": "0.2.21"
+  "version": "0.2.22"
 }
