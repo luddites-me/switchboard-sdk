@@ -47,6 +47,7 @@ export class QueueClient {
     this.createEvent(updateOrderRisk);
 
   private createEvent = async <T extends MessageBase>(message: T): Promise<boolean> => {
+    console.log('ding dong ding!!!!!!')
     const { merchant } = this.switchContext;
     const accessToken = merchant.accessTokens.find((token) => token.subjectType === 'MERCHANT');
     if (!accessToken) {
