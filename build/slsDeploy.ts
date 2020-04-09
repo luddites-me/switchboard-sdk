@@ -18,8 +18,8 @@ export const slsDeploy = async (params?: string): Promise<void> => {
   // Determine if we are going to force deploy
   const force = args?.find((a) => a.startsWith('--force')) === '--force';
 
-  // Define the stage and default to 'dev'
-  let stage: string | Environment = Environment.DEV;
+  // Define the stage
+  let stage: string | Environment | undefined;
 
   // If we passed in a stage, use it and ignore the environment variables
   const stageArg = args?.find((a) => a.startsWith('--stage='));
