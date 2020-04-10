@@ -18,19 +18,22 @@ export const slsDeploy = async (params?: string): Promise<void> => {
   // Define the stage
   let stage: string | Environment | undefined;
 
-  // If we passed in a stage, use it and ignore the environment variables
+  // If we passed in a stage, use it and attempt to ignore the environment variables
   const stageArg = args?.find((a) => a.startsWith('--stage='));
   if (stageArg) {
     stage = stageArg.split('=')?.[1];
   }
 
-  // If CircleCI asks for prod, map it correctly
-  if (stage?.toLowerCase().startsWith(Environment.PROD) && process.env.CI) {
-    stage = Environment.PROD;
+  if (stage?.toLowerCase().startsWith(Environment.PROD)) {
+    // If CircleCI asks for prod, map it correctly
+    if (process.env.CI) {
+      stage = Environment.PROD;
+    } else {
+      console.log('Attempted to deploy to prod outside of CI. Ignoring `stage` param.')
+    }
   }
 
   // If we don't yet have a stage, get it from our environment variables
-  // If the env variables specify PROD, ignore them
   if(!stage) {
     if (env.DEV_SUFFIX) {
       stage = env.DEV_SUFFIX;
