@@ -66,14 +66,10 @@ export const slsDeploy = async (params?: string): Promise<void> => {
 
   // If we're not in CI, allow the user to confirm before they deploy
   if (!process.env.CI) {
-    let confirmMessage = `You are about to run ${method} against stage '${stage}'. Are you sure? Y/n`;
-    if (stage === Environment.PROD) {
-      confirmMessage = `You are about to run ${method} against PRODUCTION! Are you sure? Y/n`;
-    }
     const confirm = await prompts({
       type: 'confirm',
       name: 'yesno',
-      message: confirmMessage,
+      message: `You are about to run ${method} against stage '${stage}'. Are you sure? Y/n`,
     });
     if (confirm.yesno) {
       processCommand();
