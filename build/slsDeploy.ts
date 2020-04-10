@@ -24,8 +24,8 @@ export const slsDeploy = async (params?: string): Promise<void> => {
     stage = stageArg.split('=')?.[1];
   }
 
-  // If someone does ask for prod, map it correctly
-  if (stage?.toLowerCase().startsWith(Environment.PROD)) {
+  // If CircleCI asks for prod, map it correctly
+  if (stage?.toLowerCase().startsWith(Environment.PROD) && process.env.CI) {
     stage = Environment.PROD;
   }
 
