@@ -29,6 +29,7 @@ export const slsDeploy = async (params?: string): Promise<void> => {
     if (process.env.CI) {
       stage = Environment.PROD;
     } else {
+      stage = undefined;
       console.log('Attempted to deploy to prod outside of CI. Ignoring `stage` param.')
     }
   }
