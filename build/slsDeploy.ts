@@ -15,9 +15,6 @@ export const slsDeploy = async (params?: string): Promise<void> => {
   // Get any command line arguments that might have been passed
   const args = process.argv.slice(2);
 
-  // Determine if we are going to force deploy
-  const force = args?.find((a) => a.startsWith('--force')) === '--force';
-
   // Define the stage
   let stage: string | Environment | undefined;
 
@@ -47,16 +44,17 @@ export const slsDeploy = async (params?: string): Promise<void> => {
   const method = (env.METHOD || Method.DEPLOY).trim().toLowerCase();
   if (method !== Method.DEPLOY && method !== Method.REMOVE) throw new Error(`Method ${method} is not supported`);
 
-  // If someone decides to force deploy, show a warning
-  let forceWarning = '';
-
   const processCommand = () => {
+    let ciInfo = '';
+    if (process.env.CI) {
+      ciInfo = ' through CircleCI.';
+    }
     let command = `sls ${method} --stage=${stage}`;
     if (params) {
       command += ` ${params}`;
     }
     const cwd = `${process.cwd()}`;
-    console.info(`Running ${command} in ${cwd}${forceWarning}`);
+    console.info(`Running ${command} in ${cwd}${ciInfo}`);
 
     try {
       execSync(command, { cwd, stdio: 'inherit' });
@@ -66,8 +64,8 @@ export const slsDeploy = async (params?: string): Promise<void> => {
     }
   };
 
-  // If we're not forcing, allow the user to confirm before they deploy
-  if (!force) {
+  // If we're not in CI, allow the user to confirm before they deploy
+  if (!process.env.CI) {
     let confirmMessage = `You are about to run ${method} against stage '${stage}'. Are you sure? Y/n`;
     if (stage === Environment.PROD) {
       confirmMessage = `You are about to run ${method} against PRODUCTION! Are you sure? Y/n`;
@@ -83,8 +81,6 @@ export const slsDeploy = async (params?: string): Promise<void> => {
       console.log('User cancelled operation');
     }
   } else {
-    // gods help you. This better be CI/CD running this command!
-    forceWarning = ' You are using `--force`. I hope you know what you are doing!';
     processCommand();
   }
 };

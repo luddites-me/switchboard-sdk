@@ -14,7 +14,7 @@ jobs:
           command: yarn build:prod
           name: Build for Production
       - run:
-          command: yarn deploy --stage=dev --force
+          command: yarn deploy --stage=dev
           name: Deploy Switchboard (dev)
   deploy_prod:
     docker:
@@ -62,7 +62,7 @@ jobs:
           command: yarn build:prod
           name: Build for Production
       - run:
-          command: yarn deploy --stage=prod --force
+          command: yarn deploy --stage=prod
           name: Deploy Switchboard (prod)
   publish:
     docker:
