@@ -51,7 +51,7 @@
     "serverless.common.yml"
   ],
   "license": "UNLICENSED",
-  "main": "dist/index.min.js",
+  "main": "dist/index.js",
   "name": "@ns8/protect-sdk-switchboard",
   "repository": "https://github.com/ns8inc/protect-sdk-switchboard.git",
   "scripts": {
