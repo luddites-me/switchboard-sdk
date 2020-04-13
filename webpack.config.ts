@@ -7,8 +7,9 @@ import {
 const config = getWebpackConfig({
   bundleTarget: BundleTarget.NODE,
   distDirectory: './dist',
-  sourceDirectory: './src',
+  fileName: 'index.js',
   libraryName: 'index',
+  sourceDirectory: './src',
 });
 
 
