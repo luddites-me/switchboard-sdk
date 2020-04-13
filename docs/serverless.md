@@ -2,9 +2,10 @@
 
 ## Table of Contents
 
-- [Installation](#installation)
-- [Using the `lambdaDeploy` script](#using-the-lambdadeploy-script)
-  - [The Local `serverless.yml` Configuration File](#the-local-serverlessyml-configuration-file)
+- [Serverless Configuration](#serverless-configuration)
+  - [Installation](#installation)
+  - [Using the `lambdaDeploy` script](#using-the-lambdadeploy-script)
+    - [The Local `serverless.yml` Configuration File](#the-local-serverlessyml-configuration-file)
 
 ## Installation
 

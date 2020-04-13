@@ -5421,6 +5421,11 @@ klaw@^1.0.0:
   optionalDependencies:
     graceful-fs "^4.1.9"
 
+kleur@^3.0.3:
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/kleur/-/kleur-3.0.3.tgz#a79c9ecc86ee1ce3fa6206d1216c501f147fc07e"
+  integrity sha512-eTIzlVOSUR+JxdDFepEYcBMtZ9Qqdef+rnzWdRZuMbOywu5tO2w2N7rqjoANZ5k9vywhL6Br1VRjUIgTQx4E8w==
+
 kuler@1.0.x:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/kuler/-/kuler-1.0.1.tgz#ef7c784f36c9fb6e16dd3150d152677b2b0228a6"
@@ -6266,10 +6271,10 @@ ns8-protect-models@^1.0.263:
     ns8-billing-core "^1.0.1185"
     uuid "^7.0.3"
 
-ns8-switchboard-interfaces@^1.0.111:
-  version "1.0.111"
-  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.111.tgz#0465efb6237b999490676649da2fd9efd463b172"
-  integrity sha512-wI/aEKlK911LQryhRuFEDy1bOy7gQn211RU1MreE1amYAmAl/mn43gxRCmKobcnCpJhRBCEtsqN10TqyO9I3wA==
+ns8-switchboard-interfaces@^1.0.112:
+  version "1.0.112"
+  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.112.tgz#3b82be7b3172ed7690bafe8da06500caf253d1ad"
+  integrity sha512-39tsA+bCdopdYk66Cirke2Hkbr+g65idS2fo+OMigyIjMuFd+1G4h+ABE4BzSC5doNDdJzHx+e5XDoxXDjf6hQ==
   dependencies:
     ns8-protect-models "^1.0.263"
 
@@ -6974,6 +6979,14 @@ promise-queue@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/promise-queue/-/promise-queue-2.2.5.tgz#2f6f5f7c0f6d08109e967659c79b88a9ed5e93b4"
   integrity sha1-L29ffA9tCBCelnZZx5uIqe1ek7Q=
+
+prompts@2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/prompts/-/prompts-2.3.2.tgz#480572d89ecf39566d2bd3fe2c9fccb7c4c0b068"
+  integrity sha512-Q06uKs2CkNYVID0VqwfAl9mipo99zkBv/n2JtWY89Yxa3ZabWSrs0e2KTudKVa3peLUvYXMefDqIleLPVUBZMA==
+  dependencies:
+    kleur "^3.0.3"
+    sisteransi "^1.0.4"
 
 proto-list@~1.2.1:
   version "1.2.4"
@@ -7817,6 +7830,11 @@ sinon@^9.0.2:
     diff "^4.0.2"
     nise "^4.0.1"
     supports-color "^7.1.0"
+
+sisteransi@^1.0.4:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
+  integrity sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==
 
 slash@^1.0.0:
   version "1.0.0"

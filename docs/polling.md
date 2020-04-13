@@ -4,10 +4,11 @@ The `protect-sdk-switchboard` provides message queueing functionality (via AWS S
 
 ## Table of Contents
 
-- [The Polling functions](#the-polling-functions)
-  - [`GetPollUrl`](#getpollurl)
-  - [`CreatePolledMessage`](#createpolledmessage)
-  - [`DeletePolledMessage`](#deletepolledmessage)
+- [Message Queue Architecture and Polling](#message-queue-architecture-and-polling)
+  - [The Polling functions](#the-polling-functions)
+    - [`GetPollUrl`](#getpollurl)
+    - [`CreatePolledMessage`](#createpolledmessage)
+    - [`DeletePolledMessage`](#deletepolledmessage)
 
 ## The Polling functions
 

@@ -1,5 +1,22 @@
 jobs:
-  deploy:
+  deploy_dev:
+    docker:
+      - image: node:12
+    steps:
+      - checkout
+      - run:
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+          name: Configure NPM
+      - run:
+          command: yarn
+          name: Install Dependencies
+      - run:
+          command: yarn build:prod
+          name: Build for Production
+      - run:
+          command: yarn deploy --stage=dev
+          name: Deploy Switchboard (dev)
+  deploy_prod:
     docker:
       - image: node:12
     steps:
@@ -29,6 +46,24 @@ jobs:
               exit 1
             fi
           name: Tag Release in GitHub
+      - run:
+          command: |
+            git checkout dev
+            git merge -m 'Merge branch `master` into `dev`' master
+            git push origin dev
+          name: Merge Changes Back to Development Branch
+      - run:
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+          name: Configure NPM
+      - run:
+          command: yarn
+          name: Install Dependencies
+      - run:
+          command: yarn build:prod
+          name: Build for Production
+      - run:
+          command: yarn deploy --stage=prod
+          name: Deploy Switchboard (prod)
   publish:
     docker:
       - image: node:12
@@ -85,7 +120,13 @@ workflows:
   test_and_deploy:
     jobs:
       - test
-      - deploy:
+      - deploy_dev:
+          filters:
+            branches:
+              only: dev
+          requires:
+            - test
+      - deploy_prod:
           filters:
             branches:
               only: master
