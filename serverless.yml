@@ -39,14 +39,19 @@ provider:
     - Action: 's3:GetObject'
       Effect: Allow
       Resource: 'arn:aws:s3:::protect-api-switch-data-${self:provider.stage}/*'
+      # Full access to queues with names that start with ${self:provider.stage}
     - Action: 'sqs:*'
       Effect: Allow
       Resource: 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:${self:provider.stage}-*'
     - Action: 'sts:AssumeRole'
       Effect: Allow
       Resource: 'arn:aws:iam::#{AWS::AccountId}:role/${self:custom.integrationName}-#{AWS::Region}-lambdaRole'
+      # sqs:ListQueues to all queues in region (can't restrict to specific queues)
+    - Action: 'sqs:ListQueues'
+      Effect: Allow
+      Resource: 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:*'
   name: aws
-  region: us-west-2
+  region: us-east-2
   runtime: nodejs12.x
   stage: '${opt:stage}'
   timeout: 29

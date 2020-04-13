@@ -2,7 +2,7 @@ import axios from 'axios';
 import { MessageBase, UpdateEQ8Score, UpdateOrderRisk, UpdateOrderStatus, SwitchContext } from 'ns8-switchboard-interfaces';
 import { logger } from '../util';
 
-const CREATE_QUEUE_MESSAGE_ENDPOINT = 'api/polling/createQueueMessage';
+const CREATE_QUEUE_MESSAGE_ENDPOINT = 'protect/eventqueue/create';
 
 /**
  * Used to create events on the queue.
@@ -47,7 +47,7 @@ export class QueueClient {
     this.createEvent(updateOrderRisk);
 
   private createEvent = async <T extends MessageBase>(message: T): Promise<boolean> => {
-    console.log('ding dong ding!!!!!!')
+    console.log('ding dong ding!!!!!!');
     const { merchant } = this.switchContext;
     const accessToken = merchant.accessTokens.find((token) => token.subjectType === 'MERCHANT');
     if (!accessToken) {
@@ -55,7 +55,9 @@ export class QueueClient {
     }
 
     try {
-      const response = await axios.post(`${this.apiBaseUrl}/${CREATE_QUEUE_MESSAGE_ENDPOINT}`, message, {
+      console.log(`${this.apiBaseUrl}`);
+      console.log(`${CREATE_QUEUE_MESSAGE_ENDPOINT}`);
+      const response = await axios.post(`${this.apiBaseUrl}${CREATE_QUEUE_MESSAGE_ENDPOINT}`, message, {
         headers: {
           Authorization: `Bearer ${accessToken.id}`,
         },
