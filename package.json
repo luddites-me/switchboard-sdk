@@ -19,7 +19,7 @@
   },
   "description": "Protect Switchboard SDK",
   "devDependencies": {
-    "@ns8/protect-tools-bundle": "0.0.13",
+    "@ns8/protect-tools-bundle": "0.0.14",
     "@ns8/protect-tools-js": "0.0.10",
     "@ns8/protect-tools-lint": "0.0.4",
     "@types/aws-lambda": "^8.10.48",
@@ -51,7 +51,7 @@
     "serverless.common.yml"
   ],
   "license": "UNLICENSED",
-  "main": "dist/index.min.js",
+  "main": "dist/index.js",
   "name": "@ns8/protect-sdk-switchboard",
   "repository": "https://github.com/ns8inc/protect-sdk-switchboard.git",
   "scripts": {
