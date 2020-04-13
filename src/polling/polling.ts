@@ -41,11 +41,7 @@ interface GetPollUrlResultPayload {
 
 const getQueueName = (pollQueueEvent: PollQueueLambdaPayload, forDeadLetter = false): string => {
   const dlqSuffix = forDeadLetter ? '-dlq' : '';
-  return [
-    process.env.STAGE,
-    pollQueueEvent.merchantIntegrationPlatformType,
-    `${pollQueueEvent.merchantId}${dlqSuffix}`,
-  ].join('-');
+  return [process.env.STAGE, `${pollQueueEvent.merchantId}${dlqSuffix}`].join('-');
 };
 
 /**
