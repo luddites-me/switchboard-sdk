@@ -6,7 +6,6 @@ import {
   CreatePolledMessageLambdaPayload,
   DeletePolledMessageLambdaPayload,
   PollQueueLambdaPayload,
-  PollingFunctionName,
 } from 'ns8-switchboard-interfaces';
 
 /**
@@ -53,7 +52,7 @@ const getQueueName = (pollQueueEvent: PollQueueLambdaPayload, forDeadLetter = fa
  * are moved to if they're received but not deleted `MAX_RECEIVE_COUNT` times:
  * https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-dead-letter-queues.html
  *
- * @param event attributes used to identify the merchant-specific queue
+ * @param event - attributes used to identify the merchant-specific queue
  */
 const createPollingQueueIfNotExist = async (event: PollQueueLambdaPayload): Promise<void> => {
   const sqsClient = new SQS();
@@ -101,7 +100,7 @@ const createPollingQueueIfNotExist = async (event: PollQueueLambdaPayload): Prom
 /**
  * Send a message from the merchant-platform to the queue.
  *
- * @param event attributes used to identify the merchant-specific queue and the
+ * @param event - attributes used to identify the merchant-specific queue and the
  * message to be deleted
  */
 export const createPolledMessage: LambdaHandler<CreatePolledMessageLambdaPayload, void> = async (
@@ -122,7 +121,7 @@ export const createPolledMessage: LambdaHandler<CreatePolledMessageLambdaPayload
 /**
  * Delete a message that has been processed by the merchant-platform.
  *
- * @param event attributes used to identify the merchant-specific queue and the
+ * @param event - attributes used to identify the merchant-specific queue and the
  * message to be deleted
  */
 export const deletePolledMessage: LambdaHandler<DeletePolledMessageLambdaPayload, void> = async (
@@ -143,7 +142,7 @@ export const deletePolledMessage: LambdaHandler<DeletePolledMessageLambdaPayload
 /**
  * Get a URL that can be used to poll/receive new messages from the queue.
  *
- * @param event attributes used to identify the merchant-specific queue
+ * @param event - attributes used to identify the merchant-specific queue
  */
 export const getPollUrl: LambdaHandler<PollQueueLambdaPayload, GetPollUrlResultPayload> = async (
   event: PollQueueLambdaPayload,

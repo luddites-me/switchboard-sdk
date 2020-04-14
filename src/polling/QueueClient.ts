@@ -1,5 +1,11 @@
 import axios from 'axios';
-import { MessageBase, UpdateEQ8Score, UpdateOrderRisk, UpdateOrderStatus, SwitchContext } from 'ns8-switchboard-interfaces';
+import {
+  MessageBase,
+  SwitchContext,
+  UpdateEQ8Score,
+  UpdateOrderRisk,
+  UpdateOrderStatus,
+} from 'ns8-switchboard-interfaces';
 import { logger } from '../util';
 
 const CREATE_QUEUE_MESSAGE_ENDPOINT = 'protect/eventqueue/create';
@@ -47,7 +53,6 @@ export class QueueClient {
     this.createEvent(updateOrderRisk);
 
   private createEvent = async <T extends MessageBase>(message: T): Promise<boolean> => {
-    console.log('ding dong ding!!!!!!');
     const { merchant } = this.switchContext;
     const accessToken = merchant.accessTokens.find((token) => token.subjectType === 'MERCHANT');
     if (!accessToken) {
@@ -55,8 +60,6 @@ export class QueueClient {
     }
 
     try {
-      console.log(`${this.apiBaseUrl}`);
-      console.log(`${CREATE_QUEUE_MESSAGE_ENDPOINT}`);
       const response = await axios.post(`${this.apiBaseUrl}${CREATE_QUEUE_MESSAGE_ENDPOINT}`, message, {
         headers: {
           Authorization: `Bearer ${accessToken.id}`,

@@ -3,9 +3,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import 'mocha';
-import { SwitchContext } from 'ns8-switchboard-interfaces';
-
-import { UpdateEQ8Score, UpdateOrderRisk, UpdateOrderStatus } from '../message';
+import { SwitchContext , UpdateEQ8Score, UpdateOrderRisk, UpdateOrderStatus } from 'ns8-switchboard-interfaces';
 import { QueueClient } from './QueueClient';
 import { logger } from '../util';
 
@@ -22,7 +20,7 @@ const mockContext = ({
   },
 } as unknown) as SwitchContext;
 
-const mockApiUrl = 'localhost';
+const mockApiUrl = 'localhost/';
 
 const mockResponseSuccess: AxiosResponse = {
   status: 200,
@@ -50,7 +48,7 @@ describe('queue client', () => {
 
   it('uses the correct api url and endpoint', async () => {
     const fakePost = (url: string, _data: any, _config: AxiosRequestConfig): AxiosResponse => {
-      expect(url).to.equal(`${mockApiUrl}/api/polling/createQueueMessage`);
+      expect(url).to.equal(`${mockApiUrl}protect/eventqueue/create`);
       return mockResponseSuccess;
     };
 
