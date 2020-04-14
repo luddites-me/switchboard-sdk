@@ -8,7 +8,7 @@ import {
 } from 'ns8-switchboard-interfaces';
 import { logger } from '../util';
 
-const CREATE_QUEUE_MESSAGE_ENDPOINT = 'protect/eventqueue/create';
+const CREATE_QUEUE_MESSAGE_ENDPOINT = '/protect/eventqueue/create';
 
 /**
  * Used to create events on the queue.
@@ -60,7 +60,7 @@ export class QueueClient {
     }
 
     try {
-      const apiUrl = this.apiBaseUrl.endsWith('/') ? this.apiBaseUrl : `${this.apiBaseUrl}/`;
+      const apiUrl = this.apiBaseUrl.replace(/\/$/, '');
       const response = await axios.post(`${apiUrl}${CREATE_QUEUE_MESSAGE_ENDPOINT}`, message, {
         headers: {
           Authorization: `Bearer ${accessToken.id}`,
