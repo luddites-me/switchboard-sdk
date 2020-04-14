@@ -60,7 +60,8 @@ export class QueueClient {
     }
 
     try {
-      const response = await axios.post(`${this.apiBaseUrl}${CREATE_QUEUE_MESSAGE_ENDPOINT}`, message, {
+      const apiUrl = this.apiBaseUrl.endsWith('/') ? this.apiBaseUrl : `${this.apiBaseUrl}/`;
+      const response = await axios.post(`${apiUrl}${CREATE_QUEUE_MESSAGE_ENDPOINT}`, message, {
         headers: {
           Authorization: `Bearer ${accessToken.id}`,
         },
