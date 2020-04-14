@@ -51,7 +51,7 @@ provider:
       Effect: Allow
       Resource: 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:*'
   name: aws
-  region: us-east-2
+  region: us-west-2
   runtime: nodejs12.x
   stage: '${opt:stage}'
   timeout: 29
