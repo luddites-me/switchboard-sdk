@@ -2,13 +2,13 @@ import axios from 'axios';
 import {
   MessageBase,
   SwitchContext,
+  SwitchEventType,
   UpdateEQ8Score,
   UpdateOrderRisk,
   UpdateOrderStatus,
-  SwitchEventType,
 } from 'ns8-switchboard-interfaces';
-import { logger } from '../util';
 import { FraudAssessment, ProviderType } from 'ns8-protect-models';
+import { logger } from '../util';
 
 const CREATE_QUEUE_MESSAGE_ENDPOINT = '/protect/eventqueue/create';
 
@@ -39,7 +39,7 @@ export class QueueClient {
     const assessments: FraudAssessment[] = this.switchContext.data.fraudAssessments as FraudAssessment[];
     const eq8Match = assessments?.find((a) => a.providerType === ProviderType.EQ8);
     return eq8Match?.score?.toString() || '';
-  }
+  };
 
   /**
    * Creates an update order status event on the queue.
@@ -48,16 +48,16 @@ export class QueueClient {
   public createUpdateOrderStatusEvent = async (): Promise<boolean> => {
     const eventDataMessage: UpdateOrderStatus = {
       action: SwitchEventType.UPDATE_ORDER_STATUS,
-      //fraudData: this.switchContext.data.fraudAssessments as FraudAssessment[],
+      // fraudData: this.switchContext.data.fraudAssessments as FraudAssessment[],
       newStatus: this.switchContext.data.status,
       orderId: this.switchContext.data.name,
       platformStatus: this.switchContext.data.platformStatus,
-      //risk: this.switchContext.data.risk,
+      // risk: this.switchContext.data.risk,
       score: this.getEQ8Score(),
       status: this.switchContext.data.status,
     };
     return this.createEvent(eventDataMessage);
-  }
+  };
 
   /**
    * Creates an update EQ8 score event on the queue.
@@ -71,7 +71,7 @@ export class QueueClient {
       status: this.switchContext.data.status,
     };
     return this.createEvent(eventDataMessage);
-  }
+  };
 
   /**
    * Creates an update order risk event on the queue.
@@ -82,15 +82,15 @@ export class QueueClient {
     const eventDataMessage: UpdateOrderRisk = {
       action: SwitchEventType.UPDATE_ORDER_STATUS,
       fraudData: this.switchContext.data.fraudAssessments as FraudAssessment[],
-      //newStatus: this.switchContext.data.status,
+      // newStatus: this.switchContext.data.status,
       orderId: this.switchContext.data.name,
-      //platformStatus: this.switchContext.data.platformStatus,
+      // platformStatus: this.switchContext.data.platformStatus,
       risk: this.switchContext.data.risk,
       score: this.getEQ8Score(),
       status: this.switchContext.data.status,
     };
     return this.createEvent(eventDataMessage);
-  }
+  };
 
   /**
    * Executes the call to SQS to create the new message.
