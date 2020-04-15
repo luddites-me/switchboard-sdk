@@ -3,9 +3,7 @@ import {
   MessageBase,
   SwitchContext,
   SwitchEventType,
-  UpdateEQ8Score,
   UpdateOrderRisk,
-  UpdateOrderStatus,
 } from 'ns8-switchboard-interfaces';
 import { FraudAssessment, ProviderType } from 'ns8-protect-models';
 import { logger } from '../util';
@@ -45,14 +43,16 @@ export class QueueClient {
    * Creates an update order status event on the queue.
    * @returns True if event was created successfully, false otherwise.
    */
-  public createUpdateOrderStatusEvent = async (): Promise<boolean> => {
-    const eventDataMessage: UpdateOrderStatus = {
-      action: SwitchEventType.UPDATE_ORDER_STATUS,
-      // fraudData: this.switchContext.data.fraudAssessments as FraudAssessment[],
-      newStatus: this.switchContext.data.status,
+  public createUpdateOrderStatusEvent = async (
+    eventType: SwitchEventType = SwitchEventType.UPDATE_ORDER_STATUS,
+  ): Promise<boolean> => {
+    const eventDataMessage: UpdateOrderRisk = {
+      action: eventType,
+      fraudData: this.switchContext.data.fraudAssessments as FraudAssessment[],
       orderId: this.switchContext.data.name,
-      platformStatus: this.switchContext.data.platformStatus,
-      // risk: this.switchContext.data.risk,
+      // TODO: restore this when switchboard-interfaces is updated
+      // platformStatus: this.switchContext.data.platformStatus,
+      risk: this.switchContext.data.risk,
       score: this.getEQ8Score(),
       status: this.switchContext.data.status,
     };
@@ -64,7 +64,7 @@ export class QueueClient {
    * @returns True if event was created successfully, false otherwise.
    */
   public createUpdateEQ8ScoreEvent = async (): Promise<boolean> => {
-    const eventDataMessage: UpdateEQ8Score = {
+    const eventDataMessage: MessageBase = {
       action: SwitchEventType.UPDATE_EQ8_SCORE,
       orderId: this.switchContext.data.name,
       score: this.getEQ8Score(),
@@ -75,22 +75,10 @@ export class QueueClient {
 
   /**
    * Creates an update order risk event on the queue.
-   * @param updateOrderRisk - Data payload to attach to event.
    * @returns True if event was created successfully, false otherwise.
    */
-  public createUpdateOrderRiskEvent = async (): Promise<boolean> => {
-    const eventDataMessage: UpdateOrderRisk = {
-      action: SwitchEventType.UPDATE_ORDER_STATUS,
-      fraudData: this.switchContext.data.fraudAssessments as FraudAssessment[],
-      // newStatus: this.switchContext.data.status,
-      orderId: this.switchContext.data.name,
-      // platformStatus: this.switchContext.data.platformStatus,
-      risk: this.switchContext.data.risk,
-      score: this.getEQ8Score(),
-      status: this.switchContext.data.status,
-    };
-    return this.createEvent(eventDataMessage);
-  };
+  public createUpdateOrderRiskEvent = async (): Promise<boolean> =>
+    this.createUpdateOrderStatusEvent(SwitchEventType.UPDATE_ORDER_RISK);
 
   /**
    * Executes the call to SQS to create the new message.

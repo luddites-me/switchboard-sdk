@@ -3,8 +3,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import 'mocha';
-import { SwitchContext, UpdateEQ8Score, UpdateOrderRisk, UpdateOrderStatus } from 'ns8-switchboard-interfaces';
-import { ProviderType } from 'ns8-protect-models';
+import { SwitchContext } from 'ns8-switchboard-interfaces';
 import { QueueClient } from './QueueClient';
 import { logger } from '../util';
 
