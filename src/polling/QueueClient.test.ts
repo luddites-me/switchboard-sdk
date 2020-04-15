@@ -16,14 +16,55 @@ const mockAccessToken = {
 };
 
 const mockContext = ({
+  apiBaseUrl: 'localhost',
+  data: {
+    status: 'CANCELLED',
+    createdAt: '2032-04-08T05:19:03.212Z',
+    updatedAt: '2033-04-08T05:24:05.447Z',
+    id: 'ab0e6353-03bb-434d-a574-399c4b7422b7',
+    merchantId: 'cf8a47f1-b41b-46a4-89a2-d1289469cfc5',
+    verificationHistory: null,
+    platformId: '00000000',
+    name: '00000000',
+    fraudAssessments: [
+      {
+        createdAt: '2023-04-08T05:19:04.467Z',
+        updatedAt: null,
+        id: '88e5cc74-1ca2-4583-83a6-6c13bbc6324d',
+        providerType: 'EQ8',
+        score: 999,
+        grade: 'A',
+      },
+      {
+        createdAt: '2030-04-08T05:19:04.467Z',
+        updatedAt: null,
+        id: '77e5cc74-1ca2-4583-83a6-6c13bbc6324d',
+        providerType: 'MIN_FRAUD',
+        score: 78,
+        grade: null,
+      },
+    ],
+  },
   merchant: {
     accessTokens: [mockAccessToken],
   },
+} as unknown) as SwitchContext;
+
+const mockContextWithoutScore = ({
   apiBaseUrl: 'localhost',
-  fraudAssessments: [{
-    provider: ProviderType.EQ8,
-    score: 1
-  }],
+  data: {
+    status: 'CANCELLED',
+    createdAt: '2030-04-08T05:19:03.212Z',
+    updatedAt: '2030-04-08T05:24:05.447Z',
+    id: 'ab0e6333-03bb-434d-a574-399c4b7422b7',
+    merchantId: 'cf6a47f1-b41b-46a4-89a2-d1289469cfc5',
+    verificationHistory: null,
+    platformId: '00000000',
+    name: '00000000',
+  },
+  merchant: {
+    accessTokens: [mockAccessToken],
+  },
 } as unknown) as SwitchContext;
 
 const mockApiUrl = 'localhost';
@@ -49,7 +90,7 @@ describe('queue client', () => {
 
     const client = new QueueClient(mockContext);
 
-    expect(client.createUpdateOrderStatusEvent()).to.eventually.be.true;
+    expect(client.createUpdateEQ8ScoreEvent()).to.eventually.be.true;
   });
 
   it('uses the correct api url and endpoint', async () => {
@@ -73,6 +114,14 @@ describe('queue client', () => {
     expect(client.createUpdateOrderRiskEvent()).to.eventually.be.true;
   });
 
+  it('returns true when successfully creating an event without an NS8 Score', () => {
+    sinon.replace(axios, 'post', sinon.fake.resolves({ status: 200, data: { successful: true } }));
+
+    const client = new QueueClient(mockContextWithoutScore);
+
+    expect(client.createUpdateOrderRiskEvent()).to.eventually.be.true;
+  });
+
   it('returns false when failing to create an event', () => {
     sinon.replace(axios, 'post', sinon.fake.rejects('Test failure'));
     sinon.replace(logger, 'error', sinon.fake()); // Replacing so it doesn't write out a huge error message
@@ -85,7 +134,40 @@ describe('queue client', () => {
   it('throws if no access token is found for merchant', () => {
     sinon.replace(logger, 'error', sinon.fake()); // Replacing so it doesn't write out a huge error message
 
-    const badContext = ({ merchant: { accessTokens: [] }, apiBaseUrl: 'localhost' } as unknown) as SwitchContext;
+    const badContext = ({
+      apiBaseUrl: 'localhost',
+      data: {
+        status: 'CANCELLED',
+        createdAt: '2030-04-08T05:19:03.212Z',
+        updatedAt: '2030-04-08T05:24:05.447Z',
+        id: 'ab0e6333-03bb-434d-a574-399c4b7422b7',
+        merchantId: 'cf6a47f1-b41b-46a4-89a2-d1289469cfc5',
+        verificationHistory: null,
+        platformId: '00000000',
+        name: '00000000',
+        fraudAssessments: [
+          {
+            createdAt: '2023-04-08T05:19:04.467Z',
+            updatedAt: null,
+            id: '88e5cc74-1ca2-4583-83a6-6c13bbc6324d',
+            providerType: 'EQ8',
+            score: 999,
+            grade: 'A',
+          },
+          {
+            createdAt: '2030-04-08T05:19:04.467Z',
+            updatedAt: null,
+            id: '77e5cc74-1ca2-4583-83a6-6c13bbc6324d',
+            providerType: 'MIN_FRAUD',
+            score: 78,
+            grade: null,
+          },
+        ],
+      },
+      merchant: {
+        accessTokens: [],
+      },
+    } as unknown) as SwitchContext;
     const client = new QueueClient(badContext);
 
     expect(client.createUpdateEQ8ScoreEvent()).to.eventually.be.rejected;
