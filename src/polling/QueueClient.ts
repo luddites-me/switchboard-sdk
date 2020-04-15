@@ -1,10 +1,5 @@
 import axios from 'axios';
-import {
-  MessageBase,
-  SwitchContext,
-  SwitchEventType,
-  UpdateOrderRisk,
-} from 'ns8-switchboard-interfaces';
+import { MessageBase, SwitchContext, SwitchEventType, UpdateOrderRisk } from 'ns8-switchboard-interfaces';
 import { FraudAssessment, ProviderType } from 'ns8-protect-models';
 import { logger } from '../util';
 
