@@ -5,6 +5,7 @@ import { TransactionMethod } from 'ns8-protect-models';
  * @param transactionMethod - a transaction method to attempt to parse
  * @returns TransactionMethod; defaults to 'OTHER' if not parsable
  */
+/* eslint-disable-next-line complexity */
 export const stringToTransactionMethod = (transactionMethod = ''): TransactionMethod => {
   const method = transactionMethod.toLowerCase().trim().replace(' ', '').replace('_', '');
   switch (method) {

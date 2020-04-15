@@ -33,6 +33,7 @@ export interface CreditCardData {
  * Converts a generic object representing a credit card into a Protect model
  * @param data - an object to convert
  */
+/* eslint-disable-next-line complexity */
 export const toCreditCard = (data: CreditCardData): CreditCard => {
   const {
     avsResultCode,

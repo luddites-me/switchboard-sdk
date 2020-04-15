@@ -44,6 +44,7 @@ export interface LineItemData {
  * Converts a generic object representing a line item into a Protect model
  * @param data - object to transform
  */
+/* eslint-disable-next-line complexity */
 export const toLineItem = (data: LineItemData): LineItem => {
   const {
     ean13,

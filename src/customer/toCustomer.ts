@@ -43,6 +43,7 @@ export interface CustomerData {
  * Converts a generic object representing a customer into a Protect model
  * @param data - generic data structure representing a customer
  */
+/* eslint-disable-next-line complexity */
 export const toCustomer = (data: CustomerData): Customer => {
   const {
     birthday,
