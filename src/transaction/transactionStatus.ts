@@ -5,6 +5,7 @@ import { TransactionStatus } from 'ns8-protect-models';
  * @param transactionStatus - a transaction status to attempt to parse
  * @returns TransactionStatus; defaults to 'PENDING' if not parsable
  */
+/* eslint-disable-next-line complexity */
 export const stringToTransactionStatus = (transactionStatus = ''): TransactionStatus => {
   switch (transactionStatus.toLowerCase().trim()) {
     case 'processing':

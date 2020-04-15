@@ -27,6 +27,7 @@ export interface SessionData {
  * @throws if IP Address or User Agent is invalid
  * @param data - object to convert
  */
+/* eslint-disable-next-line complexity */
 export const toSession = (data: SessionData): Session => {
   const { acceptLanguage, ip, screenHeight, screenWidth, userAgent } = data;
   if (!ip || !isIp(ip)) {

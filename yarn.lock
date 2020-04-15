@@ -318,10 +318,10 @@
     typescript "3.8.3"
     winston "3.2.1"
 
-"@ns8/protect-tools-lint@0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@ns8/protect-tools-lint/-/protect-tools-lint-0.0.4.tgz#9a541d5d9f4c8070e3f53698f9584382de96a551"
-  integrity sha512-nJ05lIgozx+h2Sgvj3ndcUgshuyPnBia4EmpLNL5jWFyNE8C2fKHEtXHJDPyxgYGpyMgRI89HskUUUoc7qVCcQ==
+"@ns8/protect-tools-lint@0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@ns8/protect-tools-lint/-/protect-tools-lint-0.0.7.tgz#9dc50de941c3cc196a4e6b22633c83b155284772"
+  integrity sha512-hCYiBQ4RnrM1oOOJOH7Pslklb5vD24t3vuoz7Pp1hqd0zV9k0/mMjQNcy6YH27ls6p/HzE4GerMgSmTGSPQA0A==
   dependencies:
     "@istanbuljs/nyc-config-typescript" "^1.0.1"
     "@typescript-eslint/eslint-plugin" "^2.25.0"
@@ -598,10 +598,10 @@
     request "^2.88.0"
     request-promise-native "^1.0.8"
 
-"@types/aws-lambda@^8.10.48":
-  version "8.10.48"
-  resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.48.tgz#9171dd239b53673281b81fc6e718bc440696c5ca"
-  integrity sha512-+qFDcssXvrdXIxBbKCJp0atg94TJVJSt5sx3Cu6LOQX/EV2mbInjgxGeKuLmFFBjoxD7G6fSytZoeC6A9fzTuw==
+"@types/aws-lambda@^8.10.49":
+  version "8.10.49"
+  resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.49.tgz#8deaabd94f32f2397da32d0b90ea85dfcbee2ad2"
+  integrity sha512-Caa6ltucxIHF/JEV4nSAgCOhVmYZ2igRV5rFoJ4dcNlQQrQNl85uq3fwTSzygZojm/6mbz+OG73y4KCXugTLEg==
 
 "@types/aws4@^1.5.1":
   version "1.5.1"
@@ -1855,6 +1855,14 @@ chalk@^3.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
+chalk@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-4.0.0.tgz#6e98081ed2d17faab615eb52ac66ec1fe6209e72"
+  integrity sha512-N9oWFcegS0sFr9oh1oz2d7Npos6vNoWW9HvtCg5N1KRFpUhaAhvTv5Y58g880fZaEYSNm3qDz8SU1UrGvp+n7A==
+  dependencies:
+    ansi-styles "^4.1.0"
+    supports-color "^7.1.0"
+
 character-entities-legacy@^1.0.0:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/character-entities-legacy/-/character-entities-legacy-1.1.4.tgz#94bc1845dce70a5bb9d2ecc748725661293d8fc1"
@@ -2194,7 +2202,7 @@ commondir@^1.0.1:
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
   integrity sha1-3dgA2gxmEnOTzKWVDqloo6rxJTs=
 
-compare-versions@^3.5.1:
+compare-versions@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-3.6.0.tgz#1a5689913685e5a87637b8d3ffca75514ec41d62"
   integrity sha512-W6Af2Iw1z4CB7q4uU4hv646dW9GQuBM+YpC0UvUCWSD8w90SJjp+ujJuXaEMtAXBtSqGfMPuFOVn4/+FlaqfBA==
@@ -4547,14 +4555,14 @@ https-proxy-agent@^5.0.0:
     agent-base "6"
     debug "4"
 
-husky@4.2.3:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/husky/-/husky-4.2.3.tgz#3b18d2ee5febe99e27f2983500202daffbc3151e"
-  integrity sha512-VxTsSTRwYveKXN4SaH1/FefRJYCtx+wx04sSVcOpD7N2zjoHxa+cEJ07Qg5NmV3HAK+IRKOyNVpi2YBIVccIfQ==
+husky@4.2.5:
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-4.2.5.tgz#2b4f7622673a71579f901d9885ed448394b5fa36"
+  integrity sha512-SYZ95AjKcX7goYVZtVZF2i6XiZcHknw50iXvY7b0MiGoj5RwdgRQNEHdb+gPDPCXKlzwrybjFjkL6FOj8uRhZQ==
   dependencies:
-    chalk "^3.0.0"
+    chalk "^4.0.0"
     ci-info "^2.0.0"
-    compare-versions "^3.5.1"
+    compare-versions "^3.6.0"
     cosmiconfig "^6.0.0"
     find-versions "^3.2.0"
     opencollective-postinstall "^2.0.2"
@@ -6253,10 +6261,10 @@ ns8-protect-models@^1.0.263:
     ns8-billing-core "^1.0.1185"
     uuid "^7.0.3"
 
-ns8-switchboard-interfaces@^1.0.112:
-  version "1.0.112"
-  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.112.tgz#3b82be7b3172ed7690bafe8da06500caf253d1ad"
-  integrity sha512-39tsA+bCdopdYk66Cirke2Hkbr+g65idS2fo+OMigyIjMuFd+1G4h+ABE4BzSC5doNDdJzHx+e5XDoxXDjf6hQ==
+ns8-switchboard-interfaces@^1.0.114:
+  version "1.0.114"
+  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.114.tgz#bbdeede1bf0335ed434161343bbca2157e320586"
+  integrity sha512-6gVMVmXa3W8uv2zXYbAVRWlSFalPaYdFZxD6j1ktuNmaQVNKHU8ixapyjf+33QgLBt9tRpNdLchqO8P2FmF0Bw==
   dependencies:
     ns8-protect-models "^1.0.263"
 

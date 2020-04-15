@@ -77,6 +77,7 @@ export interface OrderData {
  * Converts a generic object representing an order into a Protect model
  * @param orderData - object to convert
  */
+/* eslint-disable-next-line complexity */
 export const toOrder = (orderData: OrderData): Order => {
   const {
     addresses,

@@ -24,6 +24,7 @@ export interface MerchantData {
  * Converts a generic object representing a merchant into a Protect model
  * @param data - generic data structure representing a merchant
  */
+/* eslint-disable-next-line complexity */
 export const toMerchant = (data: MerchantData): Merchant => {
   const { name, contact, storeFrontUrl } = data;
   const merchant = new Merchant();

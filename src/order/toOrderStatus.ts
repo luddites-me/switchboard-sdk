@@ -5,6 +5,7 @@ import { Status } from 'ns8-protect-models';
  * @param orderStatus - An status to attempt to parse
  * @returns Status; defaults to 'MERCHANT_REVIEW' if not parsable
  */
+/* eslint-disable-next-line complexity */
 export const stringToProtectStatus = (orderStatus = ''): Status => {
   switch (orderStatus.toLowerCase().trim().replace('_', '')) {
     case 'approval':

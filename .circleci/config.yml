@@ -14,8 +14,8 @@ jobs:
           command: yarn build:prod
           name: Build for Production
       - run:
-          command: yarn deploy --stage=dev
-          name: Deploy Switchboard (dev)
+          command: yarn deploy --stage=test
+          name: Deploy Switchboard (test)
   deploy_prod:
     docker:
       - image: node:12
