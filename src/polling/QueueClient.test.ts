@@ -4,9 +4,9 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import 'mocha';
 import { SwitchContext, UpdateEQ8Score, UpdateOrderRisk, UpdateOrderStatus } from 'ns8-switchboard-interfaces';
+import { ProviderType } from 'ns8-protect-models';
 import { QueueClient } from './QueueClient';
 import { logger } from '../util';
-import { ProviderType } from 'ns8-protect-models';
 
 const mockAccessToken = {
   id: '7a0ab6a3-615d-43ba-85b6-feb63a299097',
