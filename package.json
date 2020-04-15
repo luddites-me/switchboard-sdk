@@ -9,7 +9,7 @@
     "is-ip": "3.1.0",
     "moment": "2.24.0",
     "ns8-protect-models": "^1.0.263",
-    "ns8-switchboard-interfaces": "^1.0.113",
+    "ns8-switchboard-interfaces": "^1.0.114",
     "prompts": "2.3.2",
     "serverless-pseudo-parameters": "2.5.0",
     "serverless-step-functions": "2.18.0",

@@ -45,8 +45,7 @@ export class QueueClient {
       action: eventType,
       fraudData: this.switchContext.data.fraudAssessments as FraudAssessment[],
       orderId: this.switchContext.data.name,
-      // TODO: restore this when switchboard-interfaces is updated
-      // platformStatus: this.switchContext.data.platformStatus,
+      platformStatus: this.switchContext.data.platformStatus,
       risk: this.switchContext.data.risk,
       score: this.getEQ8Score(),
       status: this.switchContext.data.status,

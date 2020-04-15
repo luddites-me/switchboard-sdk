@@ -6261,10 +6261,10 @@ ns8-protect-models@^1.0.263:
     ns8-billing-core "^1.0.1185"
     uuid "^7.0.3"
 
-ns8-switchboard-interfaces@^1.0.113:
-  version "1.0.113"
-  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.113.tgz#a8ea0b07a6f0625c47567bd9c995831fb0a300cb"
-  integrity sha512-9c7jeqVcOWtyGmRoXgEZLndyWn685fKR0j64y6U1cokrAp4dd9iOag3cU8gPsbcWHoAonRiRQpBHkb8B8avzrg==
+ns8-switchboard-interfaces@^1.0.114:
+  version "1.0.114"
+  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.114.tgz#bbdeede1bf0335ed434161343bbca2157e320586"
+  integrity sha512-6gVMVmXa3W8uv2zXYbAVRWlSFalPaYdFZxD6j1ktuNmaQVNKHU8ixapyjf+33QgLBt9tRpNdLchqO8P2FmF0Bw==
   dependencies:
     ns8-protect-models "^1.0.263"
 
