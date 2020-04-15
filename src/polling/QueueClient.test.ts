@@ -6,6 +6,7 @@ import 'mocha';
 import { SwitchContext, UpdateEQ8Score, UpdateOrderRisk, UpdateOrderStatus } from 'ns8-switchboard-interfaces';
 import { QueueClient } from './QueueClient';
 import { logger } from '../util';
+import { ProviderType } from 'ns8-protect-models';
 
 const mockAccessToken = {
   id: '7a0ab6a3-615d-43ba-85b6-feb63a299097',
@@ -18,6 +19,11 @@ const mockContext = ({
   merchant: {
     accessTokens: [mockAccessToken],
   },
+  apiBaseUrl: 'localhost',
+  fraudAssessments: [{
+    provider: ProviderType.EQ8,
+    score: 1
+  }],
 } as unknown) as SwitchContext;
 
 const mockApiUrl = 'localhost';
@@ -41,9 +47,9 @@ describe('queue client', () => {
 
     sinon.replace(axios, 'post', sinon.fake(fakePost));
 
-    const client = new QueueClient(mockContext, mockApiUrl);
+    const client = new QueueClient(mockContext);
 
-    expect(client.createUpdateOrderStatusEvent({} as UpdateOrderStatus)).to.eventually.be.true;
+    expect(client.createUpdateOrderStatusEvent()).to.eventually.be.true;
   });
 
   it('uses the correct api url and endpoint', async () => {
@@ -54,34 +60,34 @@ describe('queue client', () => {
 
     sinon.replace(axios, 'post', sinon.fake(fakePost));
 
-    const client = new QueueClient(mockContext, mockApiUrl);
+    const client = new QueueClient(mockContext);
 
-    expect(client.createUpdateOrderStatusEvent({} as UpdateOrderStatus)).to.eventually.be.true;
+    expect(client.createUpdateOrderStatusEvent()).to.eventually.be.true;
   });
 
   it('returns true when successfully creating an event', () => {
     sinon.replace(axios, 'post', sinon.fake.resolves({ status: 200, data: { successful: true } }));
 
-    const client = new QueueClient(mockContext, mockApiUrl);
+    const client = new QueueClient(mockContext);
 
-    expect(client.createUpdateOrderRiskEvent({} as UpdateOrderRisk)).to.eventually.be.true;
+    expect(client.createUpdateOrderRiskEvent()).to.eventually.be.true;
   });
 
   it('returns false when failing to create an event', () => {
     sinon.replace(axios, 'post', sinon.fake.rejects('Test failure'));
     sinon.replace(logger, 'error', sinon.fake()); // Replacing so it doesn't write out a huge error message
 
-    const client = new QueueClient(mockContext, mockApiUrl);
+    const client = new QueueClient(mockContext);
 
-    expect(client.createUpdateOrderStatusEvent({} as UpdateOrderStatus)).to.eventually.be.false;
+    expect(client.createUpdateOrderStatusEvent()).to.eventually.be.false;
   });
 
   it('throws if no access token is found for merchant', () => {
     sinon.replace(logger, 'error', sinon.fake()); // Replacing so it doesn't write out a huge error message
 
-    const badContext = ({ merchant: { accessTokens: [] } } as unknown) as SwitchContext;
-    const client = new QueueClient(badContext, mockApiUrl);
+    const badContext = ({ merchant: { accessTokens: [] }, apiBaseUrl: 'localhost' } as unknown) as SwitchContext;
+    const client = new QueueClient(badContext);
 
-    expect(client.createUpdateEQ8ScoreEvent({} as UpdateEQ8Score)).to.eventually.be.rejected;
+    expect(client.createUpdateEQ8ScoreEvent()).to.eventually.be.rejected;
   });
 });

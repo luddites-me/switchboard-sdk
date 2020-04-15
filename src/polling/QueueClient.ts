@@ -36,7 +36,7 @@ export class QueueClient {
    * @memberof QueueClient
    */
   private getEQ8Score = (): string => {
-    const assessments: FraudAssessment[] = this.switchContext.data.fraudAssessments as FraudAssessment[];
+    const assessments: FraudAssessment[] | undefined = this.switchContext?.data?.fraudAssessments as FraudAssessment[];
     const eq8Match = assessments?.find((a) => a.providerType === ProviderType.EQ8);
     return eq8Match?.score?.toString() || '';
   };
