@@ -39,7 +39,7 @@ export interface OrderData {
   /**
    * Required.
    */
-  name: string;
+  name?: string;
   platformCreatedAt?: string | Date;
   /**
    * Required. This should be the platform's Order Id:
@@ -98,7 +98,8 @@ export const toOrder = (orderData: OrderData): Order => {
     updatedAt,
   } = orderData;
 
-  const order = new Order({ name, currency });
+  const orderName = `${name || platformId}`;
+  const order = new Order({ name: orderName, currency });
   if (addresses) {
     order.addresses = [];
     addresses.forEach((address) => {

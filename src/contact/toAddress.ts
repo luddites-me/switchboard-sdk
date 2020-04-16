@@ -1,5 +1,5 @@
 import { Address } from 'ns8-protect-models';
-import { getCountryNameFromCountryCode, stringToProtectAddressType } from '.';
+import { getCountryNameFromCountryCode, getCountryCodeFromCountryName, stringToProtectAddressType } from '.';
 
 /**
  * Generic object representing data that can be converted to an Address.
@@ -62,10 +62,18 @@ export const toAddress = (data: AddressData): Address => {
     address.company = company;
   }
   if (country) {
-    address.country = country;
+    if (country.length === 2) {
+      address.country = getCountryNameFromCountryCode(country);
+    } else {
+      address.country = country;
+    }
   }
   if (countryCode) {
-    address.countryCode = getCountryNameFromCountryCode(countryCode);
+    if (countryCode.length === 2) {
+      address.countryCode = countryCode;
+    } else {
+      address.countryCode = getCountryCodeFromCountryName(countryCode) || getCountryCodeFromCountryName(address.country);
+    }
   }
   if (latitude) {
     address.latitude = +latitude;
