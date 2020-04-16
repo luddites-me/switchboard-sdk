@@ -155,6 +155,23 @@ export const addressAssertionMocks: AddressDataAssertion[] = [
     },
     assert: 'name',
   },
+  {
+    input: {
+      company: 'Textile Services',
+      name: 'My address',
+      type: 'billing',
+      latitude: 1,
+    },
+    assert: 'name',
+  },
+  {
+    input: {
+      company: 'Textile Services',
+      type: 'billing',
+      latitude: 1,
+    },
+    assert: 'company',
+  },
 ];
 
 describe('address convert suite', () => {

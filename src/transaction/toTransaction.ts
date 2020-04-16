@@ -18,6 +18,7 @@ export interface TransactionData {
   /**
    * Required. Should be the type of currency,
    * such as USD, EUR, JPY, GBP, etc.
+   * Max Length: 3
    */
   currency: string;
   /**
@@ -28,6 +29,9 @@ export interface TransactionData {
    * @default 'Other'
    */
   method?: string;
+  /**
+   * Max length: 100
+   */
   platformId?: string | number;
   /**
    * @default now
@@ -37,6 +41,9 @@ export interface TransactionData {
    * This should be translatable to a TransactionStatus
    */
   status?: string;
+  /**
+   * Max length: 65535
+   */
   statusDetails?: string;
 }
 
@@ -46,14 +53,14 @@ export interface TransactionData {
  */
 export const toTransaction = (data: TransactionData): Transaction => {
   const { amount, creditCard, currency, method, platformId, processedAt, status, statusDetails } = data;
-  const transaction = new Transaction({ currency });
+  const transaction = new Transaction({ currency: currency.substr(0, 3) });
   transaction.amount = +amount;
   if (creditCard) {
     transaction.creditCard = toCreditCard(creditCard);
   }
   transaction.method = stringToTransactionMethod(method);
   if (platformId) {
-    transaction.platformId = `${platformId}`;
+    transaction.platformId = `${platformId}`.substr(0, 100);
   }
   const processedAtDate = toDate(processedAt);
   if (processedAtDate) {
@@ -63,7 +70,7 @@ export const toTransaction = (data: TransactionData): Transaction => {
   }
   transaction.status = stringToTransactionStatus(status);
   if (statusDetails) {
-    transaction.statusDetails = statusDetails;
+    transaction.statusDetails = statusDetails.substr(0, 65535);
   }
   return transaction;
 };

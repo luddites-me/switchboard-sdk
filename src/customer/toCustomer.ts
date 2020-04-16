@@ -9,9 +9,21 @@ import { toDate } from '../util';
  */
 export interface CustomerData {
   birthday?: string | Date;
+  /**
+   * Max length: 200
+   */
   company?: string;
+  /**
+   * Max length: 254
+   */
   email?: string;
+  /**
+   * Max length: 50
+   */
   firstName?: string;
+  /**
+   * Max length: 1
+   */
   gender?: string;
   /**
    * This is normally set internally.
@@ -20,9 +32,12 @@ export interface CustomerData {
   isEmailVerified?: boolean;
   isPayingCustomer?: boolean;
   /**
-   * Required.
+   * Required. Max length: 50
    */
   lastName: string;
+  /**
+   * Max length: 200
+   */
   phone?: string | number;
   /**
    * Date/Time the Customer was created.
@@ -59,14 +74,23 @@ export const toCustomer = (data: CustomerData): Customer => {
     platformId,
     totalSpent,
   } = data;
-  const customer = new Customer({ email, company, firstName, lastName });
+  const customer = new Customer({ lastName: lastName.substr(0, 50) });
   const birthdayDate = toDate(birthday);
   if (birthdayDate) {
     customer.birthday = birthdayDate;
   }
+  if (company) {
+    customer.company = company.substr(0, 200);
+  }
+  if (email) {
+    customer.email = email.substr(0, 254);
+  }
+  if (firstName) {
+    customer.firstName = firstName.substr(0, 50);
+  }
   customer.gender = getGender(gender);
   if (phone) {
-    customer.phone = `${phone}`;
+    customer.phone = `${phone}`.substr(0, 200);
   }
   if (platformId) {
     customer.platformId = getUniqueCustomerId(`${platformId}`, email || '');

@@ -7,7 +7,7 @@ import { getCode, getName } from 'country-list';
  */
 export const getCountryNameFromCountryCode = (countryCode = ''): string => {
   if (!countryCode) return '';
-  return getName(countryCode) || '';
+  return (getName(countryCode) || '').substr(0, 100);
 };
 
 /**
@@ -17,5 +17,5 @@ export const getCountryNameFromCountryCode = (countryCode = ''): string => {
  */
 export const getCountryCodeFromCountryName = (countryName = ''): string => {
   if (!countryName) return '';
-  return getCode(countryName) || '';
+  return (getCode(countryName) || '').substr(0, 2);
 };
