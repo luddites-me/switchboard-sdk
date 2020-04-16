@@ -32,7 +32,7 @@ export interface AddressData {
  * Safely converts a generic object representing an address into a Protect model
  * @param data - generic object representing an address
  */
-/* eslint-disable-next-line complexity */
+/* eslint-disable-next-line complexity, sonarjs/cognitive-complexity */
 export const toAddress = (data: AddressData): Address => {
   const {
     address1,
