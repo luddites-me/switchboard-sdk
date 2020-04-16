@@ -1,6 +1,6 @@
 import { expect, use } from 'chai';
 import 'mocha';
-import { getCountryNameFromCountryCode, getCountryCodeFromCountryName } from './countryCode';
+import { getCountryCodeFromCountryName, getCountryNameFromCountryCode } from './countryCode';
 
 interface Assertion {
   input?: string;

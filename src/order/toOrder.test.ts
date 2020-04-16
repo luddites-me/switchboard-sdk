@@ -5,6 +5,7 @@
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
+import { Order } from 'ns8-protect-models';
 import { OrderData, toOrder } from './toOrder';
 import { AddressDataAssertion, addressAssertionMocks } from '../contact/toAddress.test';
 import { CustomerDataAssertion, customerAssertionMocks } from '../customer/toCustomer.test';
@@ -12,7 +13,6 @@ import { SessionDataAssertion, sessionAssertionMocks } from '../session/toSessio
 import { LineItemDataAssertion, lineItemsAssertionMocks } from './toLineItem.test';
 import { TransactionDataAssertion, transactionAssertionMocks } from '../transaction/toTransaction.test';
 import { orderMocks } from './orderMocks';
-import { Order } from 'ns8-protect-models';
 
 export interface OrderDataAssertion {
   input: OrderData;
@@ -93,7 +93,7 @@ describe('order convert suite', () => {
   });
   orderMocks.forEach((mock) => {
     expect(() => {
-      toOrder(mock as unknown as OrderData);
+      toOrder((mock as unknown) as OrderData);
     }).not.to.throw();
-  })
+  });
 });

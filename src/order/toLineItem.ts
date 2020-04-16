@@ -89,7 +89,7 @@ export const toLineItem = (data: LineItemData): LineItem => {
     lineItem.sku = sku;
   }
   if (title) {
-    lineItem.title = title.substr(0,199);
+    lineItem.title = title.substr(0, 199);
   }
   if (totalDiscount) {
     lineItem.totalDiscount = +totalDiscount;

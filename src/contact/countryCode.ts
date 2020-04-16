@@ -1,4 +1,4 @@
-import { getName, getCode } from 'country-list';
+import { getCode, getName } from 'country-list';
 
 /**
  * Safely converts a country code (e.g. 'US') to a country (e.g. 'United States')
