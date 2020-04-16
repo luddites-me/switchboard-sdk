@@ -21,6 +21,7 @@ export interface OrderData {
   /**
    * Required. Should be the type of currency,
    * such as USD, EUR, JPY, GBP, etc.
+   * Max Length: 3
    */
   currency: string;
   /**
@@ -37,17 +38,19 @@ export interface OrderData {
    */
   merchantId: string | number;
   /**
-   * Required.
+   * Required. Max Length: 100
    */
-  name: string;
+  name?: string;
   platformCreatedAt?: string | Date;
   /**
    * Required. This should be the platform's Order Id:
    *  the unique Id that identifies an order.
+   * Max Length: 100
    */
   platformId: string | number;
   /**
    * The current order status/state on the platform.
+   * Max Length: 255
    */
   platformStatus?: string;
   /**
@@ -98,7 +101,8 @@ export const toOrder = (orderData: OrderData): Order => {
     updatedAt,
   } = orderData;
 
-  const order = new Order({ name, currency });
+  const orderName = `${name || platformId}`.substr(0, 100);
+  const order = new Order({ name: orderName, currency });
   if (addresses) {
     order.addresses = [];
     addresses.forEach((address) => {
@@ -124,9 +128,9 @@ export const toOrder = (orderData: OrderData): Order => {
   if (platformCreatedAtDate) {
     order.platformCreatedAt = platformCreatedAtDate;
   }
-  order.platformId = `${platformId}`;
+  order.platformId = `${platformId}`.substr(0, 100);
   if (platformStatus) {
-    order.platformStatus = platformStatus;
+    order.platformStatus = platformStatus.substr(0, 255);
   }
   order.totalPrice = +totalPrice;
   if (session) {

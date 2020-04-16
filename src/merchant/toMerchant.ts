@@ -4,10 +4,25 @@ import { Contact, Merchant } from 'ns8-protect-models';
  * Generic object that can be converted to a Protect Contact
  */
 export interface ContactData {
+  /**
+   * Max length: 255
+   */
   email?: string;
+  /**
+   * Max length: 50
+   */
   firstName?: string;
+  /**
+   * Max length: 50
+   */
   lastName?: string;
+  /**
+   * Max length: 255
+   */
   name?: string;
+  /**
+   * Max length: 16
+   */
   phone?: string;
 }
 
@@ -16,6 +31,9 @@ export interface ContactData {
  */
 export interface MerchantData {
   contact?: ContactData;
+  /**
+   * Max length: 255
+   */
   name?: string;
   storeFrontUrl?: string;
 }
@@ -29,7 +47,7 @@ export const toMerchant = (data: MerchantData): Merchant => {
   const { name, contact, storeFrontUrl } = data;
   const merchant = new Merchant();
   if (name) {
-    merchant.name = name;
+    merchant.name = name.substr(0, 255);
   }
   if (storeFrontUrl) {
     merchant.storefrontUrl = storeFrontUrl;
@@ -38,23 +56,23 @@ export const toMerchant = (data: MerchantData): Merchant => {
     const merchantContact = new Contact();
     let any = false;
     if (contact.email) {
-      merchantContact.email = contact.email;
+      merchantContact.email = contact.email.substr(0, 255);
       any = true;
     }
     if (contact.firstName) {
-      merchantContact.firstName = contact.firstName;
+      merchantContact.firstName = contact.firstName.substr(0, 50);
       any = true;
     }
     if (contact.lastName) {
-      merchantContact.lastName = contact.lastName;
+      merchantContact.lastName = contact.lastName.substr(0, 50);
       any = true;
     }
     if (contact.name) {
-      merchantContact.name = contact.name;
+      merchantContact.name = contact.name.substr(0, 255);
       any = true;
     }
     if (contact.phone) {
-      merchantContact.phone = contact.phone;
+      merchantContact.phone = contact.phone.substr(0, 16);
       any = true;
     }
     if (any) {

@@ -7,7 +7,7 @@ import { Gender } from '../enums/Gender';
  */
 /* eslint-disable-next-line complexity */
 export const getGender = (g: string | number = 0): string => {
-  switch (g.toString().toLowerCase()) {
+  switch (g?.toString().toLowerCase()) {
     case 'm':
     case 'male':
     case '1':

@@ -10,16 +10,26 @@ import { LineItem } from 'ns8-protect-models';
  * Not all orders will have Line Items with all of this data.
  */
 export interface LineItemData {
+  /**
+   * Max length: 13
+   */
   ean13?: string;
+  /**
+   * Max length: 13
+   */
   isbn?: string;
   isGiftCard?: string | number | boolean;
+  /**
+   * Max length: 100
+   */
   manufacturer?: string;
   /**
-   * Required.
+   * Required. Max Length: 200
    */
   name: string;
   /**
    * This is the unique identifer for the Line Item on the platform.
+   * Max Length: 100
    */
   platformId?: string | number;
   platformProductId?: string | number;
@@ -31,12 +41,30 @@ export interface LineItemData {
    * Required.
    */
   quantity: string | number;
+  /**
+   * Max length: 100
+   */
   sku?: string;
+  /**
+   * Max length: 200
+   */
   title?: string;
   totalDiscount?: string | number;
+  /**
+   * Max length: 13
+   */
   upc?: string;
+  /**
+   * Max length: 100
+   */
   variantId?: string | number;
+  /**
+   * Max length: 100
+   */
   variantTitle?: string;
+  /**
+   * Max length: 100
+   */
   vendor?: string;
 }
 
@@ -64,47 +92,47 @@ export const toLineItem = (data: LineItemData): LineItem => {
     variantTitle,
     vendor,
   } = data;
-  const lineItem = new LineItem({ name });
+  const lineItem = new LineItem({ name: name.substr(0, 200) });
   if (ean13) {
-    lineItem.ean13 = ean13;
+    lineItem.ean13 = ean13.substr(0, 13);
   }
   if (isbn) {
-    lineItem.isbn = isbn;
+    lineItem.isbn = isbn.substr(0, 13);
   }
   if (isGiftCard) {
     lineItem.isGiftCard = !!isGiftCard;
   }
   if (manufacturer) {
-    lineItem.manufacturer = manufacturer;
+    lineItem.manufacturer = manufacturer.substr(0, 100);
   }
   if (platformId) {
-    lineItem.platformId = `${platformId}`;
+    lineItem.platformId = `${platformId}`.substr(0, 100);
   }
   if (platformProductId) {
-    lineItem.platformProductId = `${platformProductId}`;
+    lineItem.platformProductId = `${platformProductId}`.substr(0, 100);
   }
   lineItem.price = +price;
   lineItem.quantity = +quantity;
   if (sku) {
-    lineItem.sku = sku;
+    lineItem.sku = sku.substr(0, 13);
   }
   if (title) {
-    lineItem.title = title;
+    lineItem.title = title.substr(0, 199);
   }
   if (totalDiscount) {
     lineItem.totalDiscount = +totalDiscount;
   }
   if (upc) {
-    lineItem.upc = upc;
+    lineItem.upc = upc.substr(0, 13);
   }
   if (variantId) {
-    lineItem.variantId = `${variantId}`;
+    lineItem.variantId = `${variantId}`.substr(0, 100);
   }
   if (variantTitle) {
-    lineItem.variantTitle = variantTitle;
+    lineItem.variantTitle = variantTitle.substr(0, 100);
   }
   if (vendor) {
-    lineItem.vendor = vendor;
+    lineItem.vendor = vendor.substr(0, 100);
   }
   return lineItem;
 };

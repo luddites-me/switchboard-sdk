@@ -5,12 +5,14 @@
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
+import { Order } from 'ns8-protect-models';
 import { OrderData, toOrder } from './toOrder';
 import { AddressDataAssertion, addressAssertionMocks } from '../contact/toAddress.test';
 import { CustomerDataAssertion, customerAssertionMocks } from '../customer/toCustomer.test';
 import { SessionDataAssertion, sessionAssertionMocks } from '../session/toSession.test';
 import { LineItemDataAssertion, lineItemsAssertionMocks } from './toLineItem.test';
 import { TransactionDataAssertion, transactionAssertionMocks } from '../transaction/toTransaction.test';
+import { orderMocks } from './orderMocks';
 
 export interface OrderDataAssertion {
   input: OrderData;
@@ -67,6 +69,18 @@ export const orderAssertionMocks: OrderDataAssertion[] = [
     },
     assert: 'name',
   },
+  {
+    input: {
+      platformCreatedAt: '01/01/1979',
+      currency: 'USD',
+      merchantId: 1,
+      totalPrice: 1.23,
+      platformId: 1,
+      platformStatus: 'review',
+      status: 'approved',
+    },
+    assert: 'platformId',
+  },
 ];
 
 describe('order convert suite', () => {
@@ -76,5 +90,10 @@ describe('order convert suite', () => {
       const convert = toOrder(test.input);
       expect(convert[test.assert]).to.not.be.undefined;
     });
+  });
+  orderMocks.forEach((mock) => {
+    expect(() => {
+      toOrder((mock as unknown) as OrderData);
+    }).not.to.throw();
   });
 });

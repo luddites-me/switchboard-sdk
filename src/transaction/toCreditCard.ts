@@ -7,17 +7,38 @@ import { stringToCreditCardTransactionType } from './creditCardTransactionType';
  * Not all payment providers will have all of this data.
  */
 export interface CreditCardData {
+  /**
+   * Max length: 36
+   */
   avsResultCode?: string | number;
+  /**
+   * Max length: 10
+   */
   cardExpiration?: string;
+  /**
+   * Max length: 100
+   */
   cardHolder?: string;
+  /**
+   * Max length: 10
+   */
   creditCardBin?: string | number;
+  /**
+   * Max length: 100
+   */
   creditCardCompany?: string;
   /**
    * The full number is not expected or required.
    * This is frequently just the last 4 digits.
    */
   creditCardNumber?: string | number;
+  /**
+   * Max length: 36
+   */
   cvvResultCode?: string | number;
+  /**
+   * Max length: 100
+   */
   gateway?: string;
   /**
    * Should be convertable to a CreditCardTransactionType:
@@ -48,28 +69,28 @@ export const toCreditCard = (data: CreditCardData): CreditCard => {
   } = data;
   const creditCard = new CreditCard();
   if (avsResultCode) {
-    creditCard.avsResultCode = `${avsResultCode}`;
+    creditCard.avsResultCode = `${avsResultCode}`.substr(0, 36);
   }
   if (cardExpiration) {
-    creditCard.cardExpiration = cardExpiration;
+    creditCard.cardExpiration = cardExpiration.substr(0, 10);
   }
   if (cardHolder) {
-    creditCard.cardHolder = cardHolder;
+    creditCard.cardHolder = cardHolder.substr(0, 100);
   }
   if (creditCardBin) {
-    creditCard.creditCardBin = `${creditCardBin}`;
+    creditCard.creditCardBin = `${creditCardBin}`.substr(0, 10);
   }
   if (creditCardCompany) {
-    creditCard.creditCardCompany = creditCardCompany;
+    creditCard.creditCardCompany = creditCardCompany.substr(0, 100);
   }
   if (creditCardNumber) {
     creditCard.creditCardNumber = `${creditCardNumber}`;
   }
   if (cvvResultCode) {
-    creditCard.cvvResultCode = `${cvvResultCode}`;
+    creditCard.cvvResultCode = `${cvvResultCode}`.substr(0, 36);
   }
   if (gateway) {
-    creditCard.gateway = gateway;
+    creditCard.gateway = gateway.substr(0, 100);
   }
   creditCard.transactionType = stringToCreditCardTransactionType(transactionType);
   return creditCard;

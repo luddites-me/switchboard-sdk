@@ -28,6 +28,54 @@ export const addressAssertionMocks: AddressDataAssertion[] = [
   {
     input: {
       address1: 'Any street',
+      city: 'Ithaca',
+      company: '',
+      countryCode: 'US',
+      region: 'New York',
+      type: 'billing',
+      zip: '14850-2911',
+    },
+    assert: 'address1',
+  },
+  {
+    input: {
+      address1: 'Any street',
+      city: 'Ithaca',
+      company: '',
+      countryCode: 'United States',
+      region: 'New York',
+      type: 'billing',
+      zip: '14850-2911',
+    },
+    assert: 'address1',
+  },
+  {
+    input: {
+      address1: 'Any street',
+      city: 'Ithaca',
+      company: '',
+      region: 'New York',
+      type: 'billing',
+      zip: '14850-2911',
+    },
+    assert: 'address1',
+  },
+  {
+    input: {
+      address1: 'Any street',
+      city: 'Ithaca',
+      company: '',
+      country: 'US',
+      countryCode: 'United States',
+      region: 'New York',
+      type: 'billing',
+      zip: '14850-2911',
+    },
+    assert: 'address1',
+  },
+  {
+    input: {
+      address1: 'Any street',
       address2: 'Door 4',
       city: 'Ithaca',
       company: '',
@@ -106,6 +154,23 @@ export const addressAssertionMocks: AddressDataAssertion[] = [
       latitude: 1,
     },
     assert: 'name',
+  },
+  {
+    input: {
+      company: 'Textile Services',
+      name: 'My address',
+      type: 'billing',
+      latitude: 1,
+    },
+    assert: 'name',
+  },
+  {
+    input: {
+      company: 'Textile Services',
+      type: 'billing',
+      latitude: 1,
+    },
+    assert: 'company',
   },
 ];
 

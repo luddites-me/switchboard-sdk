@@ -1,4 +1,4 @@
-import { getName } from 'country-list';
+import { getCode, getName } from 'country-list';
 
 /**
  * Safely converts a country code (e.g. 'US') to a country (e.g. 'United States')
@@ -7,5 +7,15 @@ import { getName } from 'country-list';
  */
 export const getCountryNameFromCountryCode = (countryCode = ''): string => {
   if (!countryCode) return '';
-  return getName(countryCode) || '';
+  return (getName(countryCode) || '').substr(0, 100);
+};
+
+/**
+ * Safely converts a country name (e.g. 'United States') to a country code (e.g. 'US')
+ * @param countryName - a country code to parse
+ * @returns string
+ */
+export const getCountryCodeFromCountryName = (countryName = ''): string => {
+  if (!countryName) return '';
+  return (getCode(countryName) || '').substr(0, 2);
 };

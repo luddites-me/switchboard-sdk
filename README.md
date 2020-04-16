@@ -18,7 +18,6 @@ To get started, take a look at the documentation listed below:
 
 - [Message Queue Architecture and Polling](docs/polling.md)
 - [Serverless Configuration](docs/serverless.md)
-- [Protect SDK Switchboard](package/README.md)
 
 ## `package.json` scripts
 
