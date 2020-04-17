@@ -49,6 +49,7 @@ export interface CustomerData {
    *  the unique Id that identifies a customer.
    * If not supplied, a UUID will be generated.
    * @default new UUID
+   * Max Length: 100
    */
   platformId?: string | number;
   totalSpent?: string | number;
@@ -93,9 +94,9 @@ export const toCustomer = (data: CustomerData): Customer => {
     customer.phone = `${phone}`.substr(0, 200);
   }
   if (platformId) {
-    customer.platformId = getUniqueCustomerId(`${platformId}`, email || '');
+    customer.platformId = `${platformId}`.substr(0, 100);
   } else {
-    customer.platformId = getUniqueCustomerId('', email || '');
+    customer.platformId = getUniqueCustomerId('', email?.substr(0, 100) || '');
   }
   if (isEmailVerified) {
     customer.isEmailVerified = isEmailVerified;
