@@ -1,11 +1,13 @@
 # Protect SDK Switchboard
 
 [![CircleCI](https://circleci.com/gh/ns8inc/protect-sdk-switchboard.svg?style=svg&circle-token=0d7a67144dc51908cf0aa3ca1a025a23d64c8bef)](https://app.circleci.com/pipelines/github/ns8inc/protect-sdk-switchboard)
+[API Documentation](https://ns8inc.github.io/protect-sdk-switchboard/protect-sdk-switchboard.html) is available.
 
 ## Table of Contents
 
 - [Protect SDK Switchboard](#protect-sdk-switchboard)
   - [Getting Started](#getting-started)
+  - [Environment Variables](#environment-variables)
   - [`package.json` scripts](#packagejson-scripts)
   - [Basic Usage](#basic-usage)
     - [Utility Methods](#utility-methods)
@@ -16,21 +18,40 @@
 
 To get started, take a look at the documentation listed below:
 
-- [Message Queue Architecture and Polling](docs/polling.md)
-- [Serverless Configuration](docs/serverless.md)
+- docs
+  - [Message Queue Architecture and Polling](docs/polling.md)
+  - [API Report File for "@ns8/protect-sdk-switchboard"](docs/project-api.md)
+  - [Serverless Configuration](docs/serverless.md)
+- temp
+  - [API Report File for "@ns8/protect-sdk-switchboard"](temp/project-api.md)
+
+## Environment Variables
+
+- `AWS_SERVERLESS_YML`: The location of the serverless config. The default value does not need to be changed.
+- `AWS_SERVICE_NAME`: (Optional) name of the switchboard project.
+- `DEV_SUFFIX`: Developer initials to use in the construction of the lambda and step function ARNs.
+- `NODE_ENV`: Environment. Options are: dev, test and prod.
 
 ## `package.json` scripts
 
 - `yarn build`: Assembles `src` code into a single, minified JS module with type definitions. Exports `build` scripts into a build folder.
-- `yarn build:dev`: Builds in dev mode
-- `yarn bundle`: Runs WebPack on the `src` code
+- `yarn build:dev`: Builds in dev mode.
+- `yarn build:prod`: Builds in production mode.
+- `yarn build:project`: Compiles and bundles the `src` code.
+- `yarn build:scripts`: Compiles the build scripts.
+- `yarn bundle`: Runs WebPack on the `src` code.
 - `yarn clean`: Purges all temporary folders
-- `yarn count`: Counts lines of source code
-- `yarn deploy`: Deploys the polling lamdbas to AWS
+- `yarn count`: Counts lines of source code.
+- `yarn deploy`: Deploys the polling lamdbas to AWS.
+- `yarn docs:all`: Standardizes markdown and generates the API metadata.
+- `yarn docs:api`: Creates a `project-api` Markdown in docs and an `index.d.ts` file in dist.
+- `yarn docs:publish`: Generates end-to-end documentation for the entire project and publishes it to the `gh-pages` branch.
 - `yarn docs:standardize`: Creates or updates a new readme with a standard set of readme sections, including a toc, yarn script documention, links to repo documentation files and an NS8 license
 - `yarn generate:exports`: Generates index.ts files for all exports recursively in the 'src' folder
 - `yarn lint`: Lints the codebase and the documentation
 - `yarn lint:fix`: Lints the codebase and automatically fixes what it can
+- `yarn rebuild`: Please document the <rebuild> script.
+- `yarn rebuild:dev`: Please document the <rebuild:dev> script.
 - `yarn sortJson`: Performs aesthetic operations to make the project files easier to navigate and read
 - `yarn test`: Runs tests and calculates test coverage
 - `yarn test:coverage`: Calculates test coverage
@@ -59,35 +80,28 @@ other primitive converters to allow the interfaces to be as flexible as possible
 A basic order construction looks like this:
 
 ```ts
-import {
-  toAddress,
-  toCustomer,
-  toLineItems,
-  toOrder,
-  toSession,
-  toTransactions,
-} from "@ns8/protect-sdk-switchboard";
+import { toAddress, toCustomer, toLineItems, toOrder, toSession, toTransactions } from '@ns8/protect-sdk-switchboard';
 const order = toOrder({
-  name: "00001",
-  currency: "USD",
+  name: '00001',
+  currency: 'USD',
   merchantId: 9,
   session: toSession({
-    acceptLanguage: "en",
-    ip: "127.0.0.1",
+    acceptLanguage: 'en',
+    ip: '127.0.0.1',
     screenHeight: 400,
     screenWidth: 800,
-    userAgent: "mozilla",
+    userAgent: 'mozilla',
   }),
   addresses: [
     toAddress({
-      address1: "Any street",
-      city: "Ithaca",
-      company: "",
-      country: "United States",
-      countryCode: "US",
-      region: "New York",
-      type: "billing",
-      zip: "14850-2911",
+      address1: 'Any street',
+      city: 'Ithaca',
+      company: '',
+      country: 'United States',
+      countryCode: 'US',
+      region: 'New York',
+      type: 'billing',
+      zip: '14850-2911',
     }),
   ],
   platformId: 1,
@@ -96,43 +110,43 @@ const order = toOrder({
     toTransactions({
       amount: 10,
       creditCard,
-      currency: "USD",
-      method: "",
+      currency: 'USD',
+      method: '',
       platformId: 1,
       processedAt: baseDate,
-      status: "",
-      statusDetails: "",
+      status: '',
+      statusDetails: '',
     }),
   ],
   lineItems: [
     toLineItems({
-      ean13: "1",
+      ean13: '1',
       isGiftCard: false,
-      isbn: "1",
-      manufacturer: "GE",
-      name: "Bar",
+      isbn: '1',
+      manufacturer: 'GE',
+      name: 'Bar',
       platformId: 1,
       platformProductId: 1,
       price: 2.01,
       quantity: 7,
-      sku: "123",
-      title: "A barbell",
+      sku: '123',
+      title: 'A barbell',
       totalDiscount: 0,
-      upc: "123",
-      variantId: "1",
-      variantTitle: "A barbell",
-      vendor: "Amazon",
+      upc: '123',
+      variantId: '1',
+      variantTitle: 'A barbell',
+      vendor: 'Amazon',
     }),
   ],
   createdAt: new Date(),
   customer: toCustomer({
-    birthday: "01/01/1979",
-    company: "My Co",
-    email: "a@b.com",
-    firstName: "Bob",
-    lastName: "Smith",
-    gender: "1",
-    phone: "800555555",
+    birthday: '01/01/1979',
+    company: 'My Co',
+    email: 'a@b.com',
+    firstName: 'Bob',
+    lastName: 'Smith',
+    gender: '1',
+    phone: '800555555',
     platformId: 9,
   }),
   hasGiftCard: false,

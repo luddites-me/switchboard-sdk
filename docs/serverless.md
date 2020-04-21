@@ -49,44 +49,44 @@ RetryDefault:
       IntervalSeconds: 2
       MaxAttempts: 1
 custom:
-  integrationName: "${self:service}-${self:provider.stage}"
-  integrationTypeName: "MAGENTO"
+  integrationName: '${self:service}-${self:provider.stage}'
+  integrationTypeName: 'MAGENTO'
 functions:
   CreateOrderAction:
     handler: dist/switchboard.CreateOrderAction
-    name: "${self:custom.integrationName}-createOrderAction"
+    name: '${self:custom.integrationName}-createOrderAction'
   OnInstallEvent:
     handler: dist/switchboard.OnInstallEvent
-    name: "${self:custom.integrationName}-onInstallEvent"
+    name: '${self:custom.integrationName}-onInstallEvent'
   UninstallAction:
     handler: dist/switchboard.UninstallAction
-    name: "${self:custom.integrationName}-uninstallAction"
+    name: '${self:custom.integrationName}-uninstallAction'
   UpdateCustVerifyStatusEvent:
     handler: dist/switchboard.UpdateCustVerifyStatusEvent
-    name: "${self:custom.integrationName}-updateCustVerifyStatusEvent"
+    name: '${self:custom.integrationName}-updateCustVerifyStatusEvent'
   UpdateEQ8ScoreEvent:
     handler: dist/switchboard.UpdateEQ8ScoreEvent
-    name: "${self:custom.integrationName}-updateEQ8ScoreEvent"
+    name: '${self:custom.integrationName}-updateEQ8ScoreEvent'
   UpdateMerchantAction:
     handler: dist/switchboard.UpdateMerchantAction
-    name: "${self:custom.integrationName}-updateMerchantAction"
+    name: '${self:custom.integrationName}-updateMerchantAction'
   UpdateOrderRiskEvent:
     handler: dist/switchboard.UpdateOrderRiskEvent
-    name: "${self:custom.integrationName}-updateOrderRiskEvent"
+    name: '${self:custom.integrationName}-updateOrderRiskEvent'
   UpdateOrderStatusAction:
     handler: dist/switchboard.UpdateOrderStatusAction
-    name: "${self:custom.integrationName}-updateOrderStatusAction"
+    name: '${self:custom.integrationName}-updateOrderStatusAction'
   UpdateOrderStatusEvent:
     handler: dist/switchboard.UpdateOrderStatusEvent
-    name: "${self:custom.integrationName}-updateOrderStatusEvent"
+    name: '${self:custom.integrationName}-updateOrderStatusEvent'
   GetPollUrl:
     handler: dist/switchboard.GetPollUrl
-    name: "${self:custom.integrationTypeName}-${self:provider.stage}-getPollUrl"
+    name: '${self:custom.integrationTypeName}-${self:provider.stage}-getPollUrl'
     environment:
       STAGE: ${self:provider.stage}
   DeletePolledMessage:
     handler: dist/switchboard.DeletePolledMessage
-    name: "${self:custom.integrationTypeName}-${self:provider.stage}-deletePolledMessage"
+    name: '${self:custom.integrationTypeName}-${self:provider.stage}-deletePolledMessage'
     environment:
       STAGE: ${self:provider.stage}
 package:
@@ -100,29 +100,29 @@ plugins:
   - serverless-pseudo-parameters
 provider:
   deploymentBucket:
-    name: "${ssm:/serverless/deployment/bucket/name}"
+    name: '${ssm:/serverless/deployment/bucket/name}'
   iamRoleStatements:
-    - Action: "s3:GetObject"
+    - Action: 's3:GetObject'
       Effect: Allow
-      Resource: "arn:aws:s3:::protect-api-switch-data-${self:provider.stage}/*"
+      Resource: 'arn:aws:s3:::protect-api-switch-data-${self:provider.stage}/*'
     # Full access to queues with names that start with ${self:provider.stage}
-    - Action: "sqs:*"
+    - Action: 'sqs:*'
       Effect: Allow
-      Resource: "arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:${self:provider.stage}-*"
+      Resource: 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:${self:provider.stage}-*'
     # sqs:ListQueues to all queues in region (can't restrict to specific queues)
-    - Action: "sqs:ListQueues"
+    - Action: 'sqs:ListQueues'
       Effect: Allow
-      Resource: "arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:*"
-    - Action: "sts:AssumeRole"
+      Resource: 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:*'
+    - Action: 'sts:AssumeRole'
       Effect: Allow
-      Resource: "arn:aws:iam::#{AWS::AccountId}:role/${self:custom.integrationName}-#{AWS::Region}-lambdaRole"
+      Resource: 'arn:aws:iam::#{AWS::AccountId}:role/${self:custom.integrationName}-#{AWS::Region}-lambdaRole'
   name: aws
   region: us-west-2
   runtime: nodejs12.x
-  stage: "${opt:stage}"
+  stage: '${opt:stage}'
   timeout: 29
   versionFunctions: false
-service: "ns8-switchboard-magento2"
+service: 'ns8-switchboard-magento2'
 stepFunctions:
   stateMachines:
     CreateOrderAction:
@@ -131,88 +131,88 @@ stepFunctions:
         States:
           CreateOrderActionStart:
             End: true
-            Resource: "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-createOrderAction"
+            Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-createOrderAction'
             Retry: *ref_0
             Type: Task
-      name: "${self:custom.integrationName}-createOrderAction"
+      name: '${self:custom.integrationName}-createOrderAction'
     OnInstallEvent:
       definition:
         StartAt: OnInstallEventStart
         States:
           OnInstallEventStart:
             End: true
-            Resource: "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-onInstallEvent"
+            Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-onInstallEvent'
             Retry: *ref_0
             Type: Task
-      name: "${self:custom.integrationName}-onInstallEvent"
+      name: '${self:custom.integrationName}-onInstallEvent'
     UninstallAction:
       definition:
         StartAt: UninstallActionStart
         States:
           UninstallActionStart:
             End: true
-            Resource: "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-uninstallAction"
+            Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-uninstallAction'
             Retry: *ref_0
             Type: Task
-      name: "${self:custom.integrationName}-uninstallAction"
+      name: '${self:custom.integrationName}-uninstallAction'
     UpdateCustVerifyStatusEvent:
       definition:
         StartAt: UpdateCustVerifyStatusEventStart
         States:
           UpdateCustVerifyStatusEventStart:
             End: true
-            Resource: "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-updateCustVerifyStatusEvent"
+            Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-updateCustVerifyStatusEvent'
             Retry: *ref_0
             Type: Task
-      name: "${self:custom.integrationName}-updateCustVerifyStatusEvent"
+      name: '${self:custom.integrationName}-updateCustVerifyStatusEvent'
     UpdateEQ8ScoreEvent:
       definition:
         StartAt: UpdateEQ8ScoreEventStart
         States:
           UpdateEQ8ScoreEventStart:
             End: true
-            Resource: "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-updateEQ8ScoreEvent"
+            Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-updateEQ8ScoreEvent'
             Retry: *ref_0
             Type: Task
-      name: "${self:custom.integrationName}-updateEQ8ScoreEvent"
+      name: '${self:custom.integrationName}-updateEQ8ScoreEvent'
     UpdateMerchantAction:
       definition:
         StartAt: UpdateMerchantActionStart
         States:
           UpdateMerchantActionStart:
             End: true
-            Resource: "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-updateMerchantAction"
+            Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-updateMerchantAction'
             Retry: *ref_0
             Type: Task
-      name: "${self:custom.integrationName}-updateMerchantAction"
+      name: '${self:custom.integrationName}-updateMerchantAction'
     UpdateOrderRiskEvent:
       definition:
         StartAt: UpdateOrderRiskEventStart
         States:
           UpdateOrderRiskEventStart:
             End: true
-            Resource: "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-updateOrderRiskEvent"
+            Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-updateOrderRiskEvent'
             Retry: *ref_0
             Type: Task
-      name: "${self:custom.integrationName}-updateOrderRiskEvent"
+      name: '${self:custom.integrationName}-updateOrderRiskEvent'
     UpdateOrderStatusAction:
       definition:
         StartAt: UpdateOrderStatusActionStart
         States:
           UpdateOrderStatusActionStart:
             End: true
-            Resource: "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-updateOrderStatusAction"
+            Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-updateOrderStatusAction'
             Retry: *ref_0
             Type: Task
-      name: "${self:custom.integrationName}-updateOrderStatusAction"
+      name: '${self:custom.integrationName}-updateOrderStatusAction'
     UpdateOrderStatusEvent:
       definition:
         StartAt: UpdateOrderStatusEventStart
         States:
           UpdateOrderStatusEventStart:
             End: true
-            Resource: "arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-updateOrderStatusEvent"
+            Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-updateOrderStatusEvent'
             Retry: *ref_0
             Type: Task
-      name: "${self:custom.integrationName}-updateOrderStatusEvent"
+      name: '${self:custom.integrationName}-updateOrderStatusEvent'
 ```
