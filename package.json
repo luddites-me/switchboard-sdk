@@ -73,7 +73,7 @@
     "build:project": "tsc -d && yarn bundle",
     "build:scripts": "tsc -p tsconfig.build.json --outDir dist/build ",
     "bundle": "webpack",
-    "clean": "rimraf .awcache .tmp dist .nyc_output coverage api temp",
+    "clean": "rm -rf .awcache .tmp dist .nyc_output coverage api temp",
     "count": "cloc ./src ./build ./docs",
     "deploy": "METHOD=deploy ts-node -P ./build/tsconfig.json ./build/lambdaDeploy.ts",
     "docs:all": "yarn docs:standardize && yarn docs:api",
