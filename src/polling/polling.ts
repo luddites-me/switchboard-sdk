@@ -171,7 +171,7 @@ export const getPollUrl: LambdaHandler<PollQueueLambdaPayload, GetPollUrlResultP
     throw new Error(`Unable to assume role '${Arn}'`);
   }
 
-  const path = `/${accountId}/${queueName}?Action=ReceiveMessage&Version=2012-11-05`;
+  const path = `/${accountId}/${queueName}?Action=ReceiveMessage&MaxNumberOfMessages=10&Version=2012-11-05`;
   const signed = sign(
     {
       service: 'sqs',
