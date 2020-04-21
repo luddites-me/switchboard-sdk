@@ -185,6 +185,6 @@
       "dev": true
     }
   },
-  "types": "dist/types/index.d.ts",
+  "types": "dist/index.d.ts",
   "version": "0.2.28"
 }
