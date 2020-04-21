@@ -1,7 +1,11 @@
-/* eslint-disable no-console */
+/* eslint-disable
+  no-console,
+  sonarjs/cognitive-complexity,
+*/
 import { execSync } from 'child_process';
 import { loadEnv } from '@ns8/protect-tools-js';
 import { Environment, Method } from './deployEnums';
+
 const prompts = require('prompts');
 
 /**
@@ -9,7 +13,6 @@ const prompts = require('prompts');
  * @param params Optional list of command line params to add to the deploy
  */
 export const slsDeploy = async (params?: string): Promise<void> => {
-
   const env = loadEnv();
 
   // Get any command line arguments that might have been passed
@@ -30,12 +33,12 @@ export const slsDeploy = async (params?: string): Promise<void> => {
       stage = Environment.PROD;
     } else {
       stage = undefined;
-      console.log('Attempted to deploy to prod outside of CI. Ignoring `stage` param.')
+      console.log('Attempted to deploy to prod outside of CI. Ignoring `stage` param.');
     }
   }
 
   // If we don't yet have a stage, get it from our environment variables
-  if(!stage) {
+  if (!stage) {
     if (env.DEV_SUFFIX) {
       stage = env.DEV_SUFFIX;
     } else if (env.NODE_ENV?.toLowerCase().startsWith(Environment.TEST)) {
