@@ -64,6 +64,9 @@ jobs:
       - run:
           command: yarn deploy --stage=prod
           name: Deploy Switchboard (prod)
+      - run:
+          command: yarn docs:publish
+          name: Publish API docs to Github Pages
   publish:
     docker:
       - image: node:12

@@ -2,9 +2,10 @@ import {
   BundleMode,
   BundleTarget,
   getWebpackConfig
-} from '@ns8/protect-tools-bundle';
+} from '@ns8/protect-tools-js';
 
 const config = getWebpackConfig({
+  devtool: 'inline-source-map',
   bundleTarget: BundleTarget.NODE,
   distDirectory: './dist',
   fileName: 'index.js',
@@ -12,9 +13,7 @@ const config = getWebpackConfig({
   globals: [{ name: 'GENTLY', value: false }],
   libraryName: 'index',
   mode: BundleMode.DEVELOPMENT,
-  sourceDirectory: './src',
+  sourceDirectory: './.tmp',
 });
-
-
 
 export default config;

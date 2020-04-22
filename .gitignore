@@ -63,3 +63,5 @@ dist
 .idea/
 .serverless/
 *.bak
+api/
+temp/

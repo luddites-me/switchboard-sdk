@@ -1,3 +1,4 @@
+export * from './build';
 export * from './contact';
 export * from './customer';
 export * from './enums';
