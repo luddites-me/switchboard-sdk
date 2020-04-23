@@ -26,7 +26,7 @@ To get started, take a look at the documentation listed below:
 ## Environment Variables
 
 - `AWS_SERVERLESS_YML`: The location of the serverless config. The default value does not need to be changed.
-  - Default Value: "node_modules/@ns8/protect-sdk-switchboard/serverless."
+  - Default Value: "node_modules/@ns8/protect-sdk-switchboard/serverless.common.yml"
 - `AWS_SERVICE_NAME`: (Optional) name of the switchboard project.
   - Default Value: ""
 - `DEV_SUFFIX`: Developer initials to use in the construction of the lambda and step function ARNs.

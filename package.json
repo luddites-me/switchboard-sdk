@@ -31,7 +31,7 @@
   },
   "envDocumentation": {
     "AWS_SERVERLESS_YML": {
-      "defaultValue": "node_modules/@ns8/protect-sdk-switchboard/serverless.",
+      "defaultValue": "node_modules/@ns8/protect-sdk-switchboard/serverless.common.yml",
       "description": "The location of the serverless config. The default value does not need to be changed."
     },
     "AWS_SERVICE_NAME": {
