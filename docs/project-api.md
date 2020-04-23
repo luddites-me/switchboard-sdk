@@ -159,7 +159,7 @@ export interface LineItemData {
 }
 
 // @public
-export const logger: any;
+export const logger: import("@ns8/protect-tools-js").LogInterface;
 
 // @public
 export interface MerchantData {
