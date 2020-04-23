@@ -26,9 +26,15 @@ To get started, take a look at the documentation listed below:
 ## Environment Variables
 
 - `AWS_SERVERLESS_YML`: The location of the serverless config. The default value does not need to be changed.
+  - Default Value: "node_modules/@ns8/protect-sdk-switchboard/serverless."
 - `AWS_SERVICE_NAME`: (Optional) name of the switchboard project.
+  - Default Value: ""
 - `DEV_SUFFIX`: Developer initials to use in the construction of the lambda and step function ARNs.
+  - Default Value: "dev"
 - `NODE_ENV`: Environment. Options are: dev, test and prod.
+  - Default Value: "dev"
+- `SYNC_PEER_DEPENDENCIES`: If true, sets all project dependencies as peer dependencies
+  - Default Value: "true"
 
 ## `package.json` scripts
 
@@ -48,8 +54,6 @@ To get started, take a look at the documentation listed below:
 - `yarn generate:exports`: Generates index.ts files for all exports recursively in the 'src' folder
 - `yarn lint`: Lints the codebase and the documentation
 - `yarn lint:fix`: Lints the codebase and automatically fixes what it can
-- `yarn rebuild`: Please document the <rebuild> script.
-- `yarn rebuild:dev`: Please document the <rebuild:dev> script.
 - `yarn sortJson`: Performs aesthetic operations to make the project files easier to navigate and read
 - `yarn test`: Runs tests and calculates test coverage
 - `yarn test:coverage`: Calculates test coverage

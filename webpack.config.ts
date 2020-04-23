@@ -1,11 +1,12 @@
 import {
   BundleMode,
   BundleTarget,
+  BundleDevTool,
   getWebpackConfig
 } from '@ns8/protect-tools-js';
 
 const config = getWebpackConfig({
-  devtool: 'inline-source-map',
+  devtool: BundleDevTool.INLINE_SOURCE_MAP,
   bundleTarget: BundleTarget.NODE,
   distDirectory: './dist',
   fileName: 'index.js',

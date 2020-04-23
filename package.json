@@ -1,15 +1,18 @@
 {
   "author": "ns8inc",
   "dependencies": {
+    "@ns8/ns8-switchboard-operator": "1.0.129",
+    "@types/aws-lambda": "^8.10.49",
+    "@types/aws4": "^1.5.1",
     "aws-lambda": "^1.0.5",
-    "aws-sdk": "^2.656.0",
+    "aws-sdk": "^2.662.0",
     "aws4": "^1.9.1",
     "axios": "^0.19.2",
     "country-list": "2.2.0",
     "is-ip": "3.1.0",
     "moment": "2.24.0",
-    "ns8-protect-models": "^1.0.263",
-    "ns8-switchboard-interfaces": "^1.0.114",
+    "ns8-protect-models": "1.0.263",
+    "ns8-switchboard-interfaces": "1.0.114",
     "prompts": "2.3.2",
     "serverless-pseudo-parameters": "2.5.0",
     "serverless-step-functions": "2.18.0",
@@ -19,43 +22,33 @@
   },
   "description": "Protect Switchboard SDK",
   "devDependencies": {
-    "@ns8/protect-tools-js": "0.1.2",
-    "@types/aws-lambda": "^8.10.49",
-    "@types/aws4": "^1.5.1",
-    "@types/chai": "4.2.11",
-    "@types/chai-as-promised": "7.1.2",
+    "@ns8/protect-tools-js": "0.1.4",
     "@types/country-list": "^2.1.0",
-    "@types/mocha": "7.0.2",
-    "@types/node": "13.11.1",
     "@types/sinon": "^9.0.0",
     "@types/ua-parser-js": "0.7.33",
     "@types/uuid": "7.0.2",
-    "chai": "4.2.0",
-    "chai-as-promised": "7.1.1",
-    "cloc": "2.5.1",
-    "create-ts-index": "1.12.1",
-    "hard-source-webpack-plugin": "0.13.1",
-    "husky": "4.2.5",
-    "mocha": "7.1.1",
-    "nyc": "15.0.1",
-    "sinon": "^9.0.2",
-    "source-map-support": "0.5.16",
-    "ts-mocha": "7.0.0",
-    "ts-node": "8.8.2",
-    "webpack-cli": "3.3.11"
+    "sinon": "^9.0.2"
   },
   "envDocumentation": {
     "AWS_SERVERLESS_YML": {
+      "defaultValue": "node_modules/@ns8/protect-sdk-switchboard/serverless.",
       "description": "The location of the serverless config. The default value does not need to be changed."
     },
     "AWS_SERVICE_NAME": {
+      "defaultValue": "",
       "description": "(Optional) name of the switchboard project."
     },
     "DEV_SUFFIX": {
+      "defaultValue": "dev",
       "description": "Developer initials to use in the construction of the lambda and step function ARNs."
     },
     "NODE_ENV": {
+      "defaultValue": "dev",
       "description": "Environment. Options are: dev, test and prod."
+    },
+    "SYNC_PEER_DEPENDENCIES": {
+      "defaultValue": true,
+      "description": "If true, sets all project dependencies as peer dependencies"
     }
   },
   "files": [
@@ -65,6 +58,26 @@
   "license": "UNLICENSED",
   "main": "dist/index.js",
   "name": "@ns8/protect-sdk-switchboard",
+  "peerDependencies": {
+    "@ns8/ns8-switchboard-operator": "1.0.129",
+    "@types/aws-lambda": "^8.10.49",
+    "@types/aws4": "^1.5.1",
+    "aws-lambda": "^1.0.5",
+    "aws-sdk": "^2.662.0",
+    "aws4": "^1.9.1",
+    "axios": "^0.19.2",
+    "country-list": "2.2.0",
+    "is-ip": "3.1.0",
+    "moment": "2.24.0",
+    "ns8-protect-models": "1.0.263",
+    "ns8-switchboard-interfaces": "1.0.114",
+    "prompts": "2.3.2",
+    "serverless-pseudo-parameters": "2.5.0",
+    "serverless-step-functions": "2.18.0",
+    "typescript": "3.8.3",
+    "ua-parser-js": "0.7.21",
+    "uuid": "7.0.3"
+  },
   "repository": "https://github.com/ns8inc/protect-sdk-switchboard.git",
   "scripts": {
     "build": "yarn clean && yarn install && yarn generate:exports && yarn build:scripts && yarn build:project && yarn docs:all && yarn sortJson",
@@ -83,8 +96,6 @@
     "generate:exports": "yarn cti create ./src -w",
     "lint": "yarn eslint -c 'node_modules/@ns8/protect-tools-js/.eslintrc.yml' 'src/**/*.ts' 'docs/**/*.md'",
     "lint:fix": "yarn eslint -c 'node_modules/@ns8/protect-tools-js/.eslintrc.yml' --fix 'src/**/*.ts' 'docs/**/*.md'",
-    "rebuild": "yarn clean && yarn build",
-    "rebuild:dev": "yarn clean && yarn build:dev",
     "sortJson": "npx ./node_modules/@ns8/protect-tools-js/dist/lint/sortJson.js",
     "test": "nyc --nycrc-path 'node_modules/@ns8/protect-tools-js/nycrc.yml' mocha 'src/*/*.test.ts' && yarn count",
     "test:coverage": "nyc yarn test:debug && yarn count",
@@ -154,14 +165,6 @@
     },
     "lint:fix": {
       "description": "Lints the codebase and automatically fixes what it can",
-      "dev": true
-    },
-    "rebuild": {
-      "description": "Please document the <rebuild> script.",
-      "dev": true
-    },
-    "rebuild:dev": {
-      "description": "Please document the <rebuild:dev> script.",
       "dev": true
     },
     "sortJson": {
