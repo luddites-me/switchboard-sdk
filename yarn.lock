@@ -318,15 +318,15 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@ns8/ns8-switchboard-operator@1.0.129":
-  version "1.0.129"
-  resolved "https://registry.yarnpkg.com/@ns8/ns8-switchboard-operator/-/ns8-switchboard-operator-1.0.129.tgz#7cc44df444f4fd15377f2348b6f85d02e052164a"
-  integrity sha512-AYrxqgwN0AEjrLo7+tMWimUveBhuylKm51uLFQhjlKcMpEDAlumms4XNKtC2+gJ2UG9DI5SInXcn1BSAar90KQ==
+"@ns8/ns8-switchboard-operator@1.0.130":
+  version "1.0.130"
+  resolved "https://registry.yarnpkg.com/@ns8/ns8-switchboard-operator/-/ns8-switchboard-operator-1.0.130.tgz#88f75214f8049244611d5761fd43e04945eab0a8"
+  integrity sha512-iCYKuWQ+vM/6OD80vVNfz4X8m/uSYy/GsFRNreOGV2jQD2UroeEX47+MFD0JTqt8W3o/0Yhml+VYKZlWnVbZfQ==
   dependencies:
     aws-lambda "^1.0.5"
-    aws-sdk "^2.656.0"
-    ns8-protect-models "^1.0.263"
-    ns8-switchboard-interfaces "^1.0.111"
+    aws-sdk "^2.662.0"
+    ns8-protect-models "1.0.273"
+    ns8-switchboard-interfaces "1.0.121"
     superagent "^5.2.2"
 
 "@ns8/protect-tools-js@0.1.4":
@@ -1578,7 +1578,7 @@ aws-sdk@*, aws-sdk@^2.282.1, aws-sdk@^2.655.0:
     uuid "3.3.2"
     xml2js "0.4.19"
 
-aws-sdk@^2.656.0, aws-sdk@^2.662.0:
+aws-sdk@^2.662.0:
   version "2.662.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.662.0.tgz#c41c809648104b8aba6276e12eb7ad43a6fca40d"
   integrity sha512-emZOIKHCV2EHByRNAm7d++1ugzRpLx4WhMm+T9ydy/OyKcOGVAAMPVW0Mib5GXuWpC6A6aE7ACi3pZTjK9LMQA==
@@ -6665,29 +6665,22 @@ ns8-billing-core@^1.0.1185:
   resolved "https://registry.yarnpkg.com/ns8-billing-core/-/ns8-billing-core-1.0.1351.tgz#9a0dd476f1d3051ab6c5119f11f14603fa76bfd1"
   integrity sha512-IzVJXVp8e7ktkopu1MwtZ96zQ5SsV+cj8myvqagpZyeSbTHcywNAlhZx7rj8mk2Cb/jPUBMm6QSjdHnq8SOpEw==
 
-ns8-protect-models@1.0.263, ns8-protect-models@^1.0.263:
-  version "1.0.263"
-  resolved "https://registry.yarnpkg.com/ns8-protect-models/-/ns8-protect-models-1.0.263.tgz#feb969404496f1204e4df5a834b427266440ce8e"
-  integrity sha512-d/vjfrn2sM2cnZ6YEXvDj/a6Brg450P2FigOZv/54R2ujyq4yRh8OD5T/P3U7ucweidY+QBUu81Pi4EZZkUaSA==
+ns8-protect-models@1.0.273:
+  version "1.0.273"
+  resolved "https://registry.yarnpkg.com/ns8-protect-models/-/ns8-protect-models-1.0.273.tgz#57abec5f1b3cb3e9307a483da33ba3588b23ca6d"
+  integrity sha512-LSyO7W9xLJexNfYimwpoNRqgSLpN2uoxaO5dKXsjxNoQUq2RylqLUf/ssG3ejdfUhtubCSiIKUhQzCJfGcg9vw==
   dependencies:
     "@types/uuid" "^7.0.2"
     class-validator "^0.11.0"
     ns8-billing-core "^1.0.1185"
     uuid "^7.0.3"
 
-ns8-switchboard-interfaces@1.0.114:
-  version "1.0.114"
-  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.114.tgz#bbdeede1bf0335ed434161343bbca2157e320586"
-  integrity sha512-6gVMVmXa3W8uv2zXYbAVRWlSFalPaYdFZxD6j1ktuNmaQVNKHU8ixapyjf+33QgLBt9tRpNdLchqO8P2FmF0Bw==
+ns8-switchboard-interfaces@1.0.121:
+  version "1.0.121"
+  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.121.tgz#4490bb2bfac51bc158c6d85dc8699c1175bf1b6d"
+  integrity sha512-86Xh6HJSbYHFIcTf4L3oX0BZLL924/ua9RHUZpiN8gsRJV/wSMG4Yvnd9iN+K7RYj932NkCU91KNO1fYgGP6JA==
   dependencies:
-    ns8-protect-models "^1.0.263"
-
-ns8-switchboard-interfaces@^1.0.111:
-  version "1.0.119"
-  resolved "https://registry.yarnpkg.com/ns8-switchboard-interfaces/-/ns8-switchboard-interfaces-1.0.119.tgz#d15adfa4148dda3a37dc8939bc4c37a5b64745c1"
-  integrity sha512-LxO46TGJC3pPr8rfzqXKULYb1332esHAZYet1ngdrbeZzF+PYEw+VA3QbuPCaLtueLb4tVVeX7wSdl4geG30vQ==
-  dependencies:
-    ns8-protect-models "^1.0.263"
+    ns8-protect-models "1.0.273"
 
 nyc@15.0.1:
   version "15.0.1"
