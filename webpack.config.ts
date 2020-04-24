@@ -6,7 +6,7 @@ import {
 } from '@ns8/protect-tools-js';
 
 const config = getWebpackConfig({
-  devtool: BundleDevTool.INLINE_SOURCE_MAP,
+  devtool: BundleDevTool.EVAL,
   bundleTarget: BundleTarget.NODE,
   distDirectory: './dist',
   fileName: 'index.js',

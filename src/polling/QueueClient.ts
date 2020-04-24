@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MessageBase, SwitchContext, SwitchEventType, UpdateOrderRisk } from 'ns8-switchboard-interfaces';
+import { OrderMessage, SwitchContext, SwitchEventType } from 'ns8-switchboard-interfaces';
 import { FraudAssessment, ProviderType } from 'ns8-protect-models';
 import { logger } from '../util';
 
@@ -41,7 +41,7 @@ export class QueueClient {
   public createUpdateOrderStatusEvent = async (
     eventType: SwitchEventType = SwitchEventType.UPDATE_ORDER_STATUS,
   ): Promise<boolean> => {
-    const eventDataMessage: UpdateOrderRisk = {
+    const eventDataMessage: OrderMessage = {
       action: eventType,
       fraudData: this.switchContext.data.fraudAssessments as FraudAssessment[],
       orderId: this.switchContext.data.name,
@@ -58,9 +58,10 @@ export class QueueClient {
    * @returns True if event was created successfully, false otherwise.
    */
   public createUpdateEQ8ScoreEvent = async (): Promise<boolean> => {
-    const eventDataMessage: MessageBase = {
+    const eventDataMessage: OrderMessage = {
       action: SwitchEventType.UPDATE_EQ8_SCORE,
       orderId: this.switchContext.data.name,
+      platformStatus: this.switchContext.data.platformStatus,
       score: this.getEQ8Score(),
       status: this.switchContext.data.status,
     };
@@ -81,7 +82,7 @@ export class QueueClient {
    * @memberof QueueClient
    * @returns True if event was created successfully, false otherwise.
    */
-  private createEvent = async <T extends MessageBase>(message: T): Promise<boolean> => {
+  private createEvent = async <T extends OrderMessage>(message: T): Promise<boolean> => {
     const { merchant } = this.switchContext;
     const accessToken = merchant.accessTokens.find((token) => token.subjectType === 'MERCHANT');
     if (!accessToken) {
