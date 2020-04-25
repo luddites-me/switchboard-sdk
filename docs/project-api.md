@@ -6,11 +6,13 @@
 
 import { Address } from 'ns8-protect-models';
 import { AddressType } from 'ns8-protect-models';
+import { createLogger } from 'winston';
 import { CreatePolledMessageLambdaPayload } from 'ns8-switchboard-interfaces';
 import { CreditCard } from 'ns8-protect-models';
 import { CreditCardTransactionType } from 'ns8-protect-models';
 import { Customer } from 'ns8-protect-models';
 import { DeletePolledMessageLambdaPayload } from 'ns8-switchboard-interfaces';
+import { format } from 'winston';
 import { Handler } from 'aws-lambda';
 import { LineItem } from 'ns8-protect-models';
 import { Logger } from 'winston';
@@ -26,6 +28,7 @@ import { SwitchEventType } from 'ns8-switchboard-interfaces';
 import { Transaction } from 'ns8-protect-models';
 import { TransactionMethod } from 'ns8-protect-models';
 import { TransactionStatus } from 'ns8-protect-models';
+import { transports } from 'winston';
 
 // @public
 export interface AddressData {
@@ -58,6 +61,8 @@ export interface ContactData {
     name?: string;
     phone?: string;
 }
+
+export { createLogger }
 
 // @public
 export const createPolledMessage: Handler<CreatePolledMessageLambdaPayload, void>;
@@ -105,6 +110,8 @@ export type errorMethod = (message: string, ...args: any[]) => void;
 
 // @public
 export const existsInEnum: (enm: object, key: string, caseInsensitive?: boolean) => boolean;
+
+export { format }
 
 // @public (undocumented)
 export enum Gender {
@@ -178,8 +185,9 @@ export class Log implements LogInterface {
     logger: Logger;
 }
 
-// @public
-export const logger: import("../logger").LogInterface;
+export { Logger }
+
+export { LoggerOptions }
 
 // @public
 export interface LogInterface {
@@ -437,6 +445,8 @@ export interface TransactionData {
     status?: string;
     statusDetails?: string;
 }
+
+export { transports }
 
 // @public
 export const validateMerchantIntegration: (context: SwitchContext, integrationType: ServiceIntegrationType) => boolean;

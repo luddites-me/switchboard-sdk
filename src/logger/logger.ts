@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Logger, LoggerOptions, createLogger, format, transports } from 'winston';
 
+export { Logger, LoggerOptions, createLogger, format, transports } from 'winston';
 /**
  * The valid log levels
  * @remarks These log levels conform to standard log level definitions
