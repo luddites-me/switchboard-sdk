@@ -1,4 +1,7 @@
-/* eslint-disable no-unused-expressions */
+/* eslint-disable
+  no-unused-expressions,
+  sonarjs/no-duplicate-string,
+ */
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import 'mocha';

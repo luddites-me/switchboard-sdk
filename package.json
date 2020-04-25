@@ -96,7 +96,7 @@
     "docs:api": "npx ./node_modules/@ns8/protect-tools-js/dist/docs/generateApi.js --path=./api-extractor.json",
     "docs:publish": "npx ./node_modules/@ns8/protect-tools-js/dist/docs/generateApiDocs.js",
     "docs:standardize": "npx ./node_modules/@ns8/protect-tools-js/dist/readme/standardizeReadme.js",
-    "generate:exports": "yarn cti create ./src -w",
+    "generate:exports": "yarn cti create ./src -w -b",
     "lint": "yarn eslint -c 'node_modules/@ns8/protect-tools-js/.eslintrc.yml' 'src/**/*.ts' 'docs/**/*.md'",
     "lint:fix": "yarn eslint -c 'node_modules/@ns8/protect-tools-js/.eslintrc.yml' --fix 'src/**/*.ts' 'docs/**/*.md'",
     "sortJson": "npx ./node_modules/@ns8/protect-tools-js/dist/lint/sortJson.js",
