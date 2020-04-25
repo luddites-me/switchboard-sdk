@@ -18,7 +18,8 @@
     "serverless-step-functions": "2.18.0",
     "typescript": "3.8.3",
     "ua-parser-js": "0.7.21",
-    "uuid": "7.0.3"
+    "uuid": "7.0.3",
+    "winston": "3.2.1"
   },
   "description": "Protect Switchboard SDK",
   "devDependencies": {
@@ -27,6 +28,7 @@
     "@types/sinon": "^9.0.0",
     "@types/ua-parser-js": "0.7.33",
     "@types/uuid": "7.0.2",
+    "@types/winston": "2.4.4",
     "sinon": "^9.0.2"
   },
   "envDocumentation": {
@@ -76,7 +78,8 @@
     "serverless-step-functions": "2.18.0",
     "typescript": "3.8.3",
     "ua-parser-js": "0.7.21",
-    "uuid": "7.0.3"
+    "uuid": "7.0.3",
+    "winston": "3.2.1"
   },
   "repository": "https://github.com/ns8inc/protect-sdk-switchboard.git",
   "scripts": {
@@ -86,7 +89,7 @@
     "build:project": "tsc -d && yarn bundle",
     "build:scripts": "tsc -p tsconfig.build.json --outDir dist/build ",
     "bundle": "webpack",
-    "clean": "rm -rf .awcache .tmp dist .nyc_output coverage api temp",
+    "clean": "rimraf .awcache .tmp dist .nyc_output coverage api temp",
     "count": "cloc ./src ./build ./docs",
     "deploy": "METHOD=deploy ts-node -P ./build/tsconfig.json ./build/lambdaDeploy.ts",
     "docs:all": "yarn docs:standardize && yarn docs:api",

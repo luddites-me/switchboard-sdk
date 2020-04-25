@@ -11,6 +11,7 @@ const prompts = require('prompts');
 /**
  * Executes a deploy or undeploy to AWS
  * @param params Optional list of command line params to add to the deploy
+ * @internal
  */
 export const slsDeploy = async (params?: string): Promise<void> => {
   const env = loadEnv();

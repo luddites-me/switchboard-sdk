@@ -13,6 +13,8 @@ import { Customer } from 'ns8-protect-models';
 import { DeletePolledMessageLambdaPayload } from 'ns8-switchboard-interfaces';
 import { Handler } from 'aws-lambda';
 import { LineItem } from 'ns8-protect-models';
+import { Logger } from 'winston';
+import { LoggerOptions } from 'winston';
 import { Merchant } from 'ns8-protect-models';
 import { Order } from 'ns8-protect-models';
 import { PollQueueLambdaPayload } from 'ns8-switchboard-interfaces';
@@ -44,6 +46,9 @@ export interface AddressData {
     type: string;
     zip?: string | number;
 }
+
+// @public
+export const buildLoggerConfig: (options: LogOptions) => LoggerOptions;
 
 // @public
 export interface ContactData {
@@ -90,17 +95,13 @@ export interface CustomerData {
 }
 
 // @public
+export const DefaultLogOptions: LogOptions;
+
+// @public
 export const deletePolledMessage: Handler<DeletePolledMessageLambdaPayload, void>;
 
 // @public (undocumented)
-export enum Environment {
-    // (undocumented)
-    DEV = "dev",
-    // (undocumented)
-    PROD = "prod",
-    // (undocumented)
-    TEST = "test"
-}
+export type errorMethod = (message: string, ...args: any[]) => void;
 
 // @public
 export const existsInEnum: (enm: object, key: string, caseInsensitive?: boolean) => boolean;
@@ -124,6 +125,9 @@ export const getCountryNameFromCountryCode: (countryCode?: string) => string;
 // @public
 export const getGender: (g?: string | number) => string;
 
+// @public
+export const getLogger: (logOptions?: LogOptions, reset?: boolean) => LogInterface;
+
 // Warning: (ae-forgotten-export) The symbol "GetPollUrlResultPayload" needs to be exported by the entry point index.d.ts
 //
 // @public
@@ -131,6 +135,9 @@ export const getPollUrl: Handler<PollQueueLambdaPayload, GetPollUrlResultPayload
 
 // @public
 export const getUniqueCustomerId: (customerId: string, emailAddress: string) => string;
+
+// @public (undocumented)
+export type infoMethod = (message: string, ...args: any[]) => void;
 
 // @public (undocumented)
 export const isValidDate: (date: any) => boolean;
@@ -159,7 +166,59 @@ export interface LineItemData {
 }
 
 // @public
-export const logger: import("@ns8/protect-tools-js").LogInterface;
+export class Log implements LogInterface {
+    constructor(logOptions?: LogOptions);
+    // (undocumented)
+    error: (message: string, ...args: any[]) => void;
+    // (undocumented)
+    info: (message: string, ...args: any[]) => void;
+    // (undocumented)
+    log: (level: LogLevel, message: string, ...args: any[]) => void;
+    // (undocumented)
+    logger: Logger;
+}
+
+// @public
+export const logger: import("../logger").LogInterface;
+
+// @public
+export interface LogInterface {
+    error: errorMethod;
+    info: infoMethod;
+    log: logMethod;
+}
+
+// @public
+export enum LogLevel {
+    // (undocumented)
+    DEBUG = "debug",
+    // (undocumented)
+    ERROR = "error",
+    // (undocumented)
+    INFO = "info",
+    // (undocumented)
+    WARN = "warn"
+}
+
+// @public (undocumented)
+export type logMethod = (level: LogLevel, message: string, ...args: any[]) => void;
+
+// @public
+export interface LogOptions {
+    logLevel: LogLevel;
+    serviceName: string;
+    transports: LogOutput[];
+}
+
+// @public
+export enum LogOutput {
+    // (undocumented)
+    CONSOLE = "console",
+    // (undocumented)
+    FILE = "file",
+    // (undocumented)
+    NONE = "none"
+}
 
 // @public
 export interface MerchantData {
@@ -168,14 +227,6 @@ export interface MerchantData {
     name?: string;
     // (undocumented)
     storeFrontUrl?: string;
-}
-
-// @public (undocumented)
-export enum Method {
-    // (undocumented)
-    DEPLOY = "deploy",
-    // (undocumented)
-    REMOVE = "remove"
 }
 
 // @public
@@ -331,9 +382,6 @@ export interface SessionData {
 
 // @public
 export const sleep: (milliseconds?: number) => Promise<void>;
-
-// @public
-export const slsDeploy: (params?: string | undefined) => Promise<void>;
 
 // @public
 export const stringToCreditCardTransactionType: (creditCardTransactionType?: string) => CreditCardTransactionType;

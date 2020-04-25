@@ -6,8 +6,8 @@ import {
 } from '@ns8/protect-tools-js';
 
 const config = getWebpackConfig({
-  devtool: BundleDevTool.EVAL,
   bundleTarget: BundleTarget.NODE,
+  devtool: BundleDevTool.SOURCE_MAP,
   distDirectory: './dist',
   fileName: 'index.js',
   // Globals hack to address https://github.com/node-formidable/formidable/issues/337#issuecomment-183388869

@@ -25,6 +25,6 @@
     ]
   },
   "include": [
-    "src/build/**/*"
+    "build/**/*.ts"
   ]
 }
