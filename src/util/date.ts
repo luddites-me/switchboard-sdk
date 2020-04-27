@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import moment from 'moment';
-import { logger } from './logger';
+import { getLogger } from '../logger';
+
+const log = getLogger();
 
 /**
  *
@@ -25,7 +27,7 @@ export const toDate = (date: any = undefined): Date | undefined => {
       ret = tryRet.toDate();
     } catch (e) {
       /* istanbul ignore next */
-      logger.error(`Failed to convert ${date} to a Date`, e);
+      log.error(`Failed to convert ${date} to a Date`, e);
     }
   }
   return ret;

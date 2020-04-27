@@ -5,7 +5,9 @@ import sinon from 'sinon';
 import 'mocha';
 import { SwitchContext } from 'ns8-switchboard-interfaces';
 import { QueueClient } from './QueueClient';
-import { logger } from '../util';
+import { getLogger } from '../logger';
+
+const logger = getLogger();
 
 const mockAccessToken = {
   id: '7a0ab6a3-615d-43ba-85b6-feb63a299097',

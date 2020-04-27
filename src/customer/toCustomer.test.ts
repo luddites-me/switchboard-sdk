@@ -1,4 +1,7 @@
-/* eslint-disable no-unused-expressions */
+/* eslint-disable
+  no-unused-expressions,
+  sonarjs/no-duplicate-string,
+ */
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
@@ -81,6 +84,17 @@ export const customerAssertionMocks: CustomerDataAssertion[] = [
     input: {
       company: 'My Co',
       email: '',
+      lastName: 'Smith',
+      isEmailVerified: true,
+      isPayingCustomer: true,
+      totalSpent: 5000,
+      platformCreatedAt: '12/12/1980',
+    },
+    assert: 'lastName',
+  },
+  {
+    input: {
+      company: 'My Co',
       lastName: 'Smith',
       isEmailVerified: true,
       isPayingCustomer: true,
