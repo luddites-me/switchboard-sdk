@@ -1,11 +1,12 @@
+// eslint-disable
 import { CreditCardTransactionType } from 'ns8-protect-models';
 
 /**
  * Safely converts a string to a CreditCardTransactionType
  * @param creditCardTransactionType - a credit card transaction type to attempt to parse
  * @returns CreditCardTransactionType; defaults to 'AUTHORIZATION' if not parsable
+ * @public
  */
-/* eslint-disable-next-line complexity */
 export const stringToCreditCardTransactionType = (creditCardTransactionType = ''): CreditCardTransactionType => {
   switch (creditCardTransactionType.toLowerCase().trim()) {
     case 'authorize':

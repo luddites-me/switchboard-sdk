@@ -8,11 +8,18 @@ import moment from 'moment';
 import 'mocha';
 import { isValidDate, toDate } from './date';
 
+/**
+ * Describes how date info sets should look for test assertions
+ * @internal
+ */
 interface Assertion {
   input?: any;
   output?: Date;
 }
 
+/**
+ * Assertions to test for date logic
+ */
 const tests: Assertion[] = [
   {
     input: '01/01/1979',

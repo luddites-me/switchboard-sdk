@@ -14,6 +14,10 @@ import { LineItemDataAssertion, lineItemsAssertionMocks } from './toLineItem.tes
 import { TransactionDataAssertion, transactionAssertionMocks } from '../transaction/toTransaction.test';
 import { orderMocks } from './orderMocks';
 
+/**
+ * Describes how Order conversion data sets should look for test assertions
+ * @internal
+ */
 export interface OrderDataAssertion {
   input: OrderData;
   assert: string;
@@ -25,6 +29,10 @@ const session = sessionAssertionMocks.map((mock: SessionDataAssertion) => mock.i
 const lineItems = lineItemsAssertionMocks.map((mock: LineItemDataAssertion) => mock.input);
 const transactions = transactionAssertionMocks.map((mock: TransactionDataAssertion) => mock.input);
 
+/**
+ * Assertions to test for Order Conversion data logic
+ * @internal
+ */
 export const orderAssertionMocks: OrderDataAssertion[] = [
   {
     input: {

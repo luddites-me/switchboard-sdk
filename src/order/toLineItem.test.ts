@@ -7,11 +7,19 @@ import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
 import { LineItemData, toLineItem } from './toLineItem';
 
+/**
+ * Describes how Line Item data sets should look for test assertions
+ * @internal
+ */
 export interface LineItemDataAssertion {
   input: LineItemData;
   assert: string;
 }
 
+/**
+ * Assertions to test for Line Item data logic
+ * @internal
+ */
 export const lineItemsAssertionMocks: LineItemDataAssertion[] = [
   {
     input: {

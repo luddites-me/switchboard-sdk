@@ -5,7 +5,9 @@ import { toDate } from '../util';
 
 /**
  * Generic object representing a credit card.
+ * @remarks
  * All properties are optional unless otherwise documented.
+ * @public
  */
 export interface CustomerData {
   birthday?: string | Date;
@@ -58,6 +60,7 @@ export interface CustomerData {
 /**
  * Converts a generic object representing a customer into a Protect model
  * @param data - generic data structure representing a customer
+ * @public
  */
 /* eslint-disable-next-line complexity */
 export const toCustomer = (data: CustomerData): Customer => {

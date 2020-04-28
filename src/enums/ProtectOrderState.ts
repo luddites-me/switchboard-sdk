@@ -1,3 +1,7 @@
+/**
+ * States an order can exist in per Protect
+ * @public
+ */
 export enum ProtectOrderState {
   APPROVED = 'ns8_approved',
   CANCELED = 'canceled',

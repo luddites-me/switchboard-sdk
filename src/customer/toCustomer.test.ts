@@ -7,11 +7,19 @@ import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
 import { CustomerData, toCustomer } from './toCustomer';
 
+/**
+ * Describes how Customer data sets should look for test assertions
+ * @internal
+ */
 export interface CustomerDataAssertion {
   input: CustomerData;
   assert: string;
 }
 
+/**
+ * Assertions to test for Customer data logic
+ * @internal
+ */
 export const customerAssertionMocks: CustomerDataAssertion[] = [
   {
     input: {

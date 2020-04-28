@@ -6,8 +6,10 @@ import { CreditCardData, toCreditCard } from './toCreditCard';
 
 /**
  * Generic object representing a Transaction.
+ * @remarks
  * All properties are optional unless otherwise documented.
  * Not all transactions will have all of this data.
+ * @public
  */
 export interface TransactionData {
   /**
@@ -50,6 +52,7 @@ export interface TransactionData {
 /**
  * Converts a generic object representing a transaction into a Protect model
  * @param data - generic transaction data
+ * @public
  */
 export const toTransaction = (data: TransactionData): Transaction => {
   const { amount, creditCard, currency, method, platformId, processedAt, status, statusDetails } = data;

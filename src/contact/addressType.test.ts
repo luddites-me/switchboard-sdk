@@ -4,11 +4,18 @@ import 'mocha';
 import { AddressType } from 'ns8-protect-models';
 import { stringToProtectAddressType } from './addressType';
 
+/**
+ * Describes how test input/output sets should look for address assertions
+ */
 interface AddressAssertion {
   input?: string;
   output: AddressType;
 }
 
+/**
+ * Tests that validate contact address logic
+ * @internal
+ */
 export const tests: AddressAssertion[] = [
   {
     input: 'billing',

@@ -1,10 +1,13 @@
+// eslint-disable
 import { CreditCard } from 'ns8-protect-models';
 import { stringToCreditCardTransactionType } from './creditCardTransactionType';
 
 /**
  * Generic object representing a credit card.
+ * @remarks
  * All properties are optional unless otherwise documented.
  * Not all payment providers will have all of this data.
+ * @public
  */
 export interface CreditCardData {
   /**
@@ -53,8 +56,8 @@ export interface CreditCardData {
 /**
  * Converts a generic object representing a credit card into a Protect model
  * @param data - an object to convert
+ * @public
  */
-/* eslint-disable-next-line complexity */
 export const toCreditCard = (data: CreditCardData): CreditCard => {
   const {
     avsResultCode,

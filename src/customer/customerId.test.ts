@@ -4,11 +4,17 @@ import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
 import { getUniqueCustomerId } from './customerId';
 
+/**
+ * Describes how Customer Id data sets should look for address assertions
+ */
 interface CustomerIdDataAssertion {
   id: string;
   email: string;
 }
 
+/**
+ * Assertions to test for Customer Id logic
+ */
 const customerIdAssertionMocks: CustomerIdDataAssertion[] = [
   {
     id: '',

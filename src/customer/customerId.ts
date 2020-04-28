@@ -4,7 +4,10 @@ import { v4 as uuidv4, v5 as uuidv5 } from 'uuid';
  * Validates that a provided customer id is present, else generates a unique UUID for the customer
  * @param customerId - The ID value provided by the platform. Pass `''` if none is available.
  * @param emailAddress - an email address, if any is available. Pass `''` if none is available.
- * @returns either (a) the original customer Id, if set or (b) a unique UUID based on the email address or (c) a random, unique UUID
+ * @returns a UUID value as a string
+ * @remarks
+ * The value returned can be: (a) the original customer Id, if set or (b) a unique UUID based on the email address or (c) a random, unique UUID
+ * @public
  */
 export const getUniqueCustomerId = (customerId: string, emailAddress: string): string => {
   let id = customerId;

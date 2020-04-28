@@ -6,11 +6,19 @@ import { expect, use } from 'chai';
 import 'mocha';
 import { AddressData, toAddress } from './toAddress';
 
+/**
+ * Basic data structure for address data assertions
+ * @internal
+ */
 export interface AddressDataAssertion {
   input: AddressData;
   assert: string;
 }
 
+/**
+ * Mock data utilizes for address testing
+ * @internal
+ */
 export const addressAssertionMocks: AddressDataAssertion[] = [
   {
     input: {

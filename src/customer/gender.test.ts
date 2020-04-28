@@ -4,11 +4,17 @@ import 'mocha';
 import { getGender } from './gender';
 import { Gender } from '../enums/Gender';
 
+/**
+ * Describes how data sets should look for gender assertions
+ */
 interface Assertion {
   input?: string | number;
   output: Gender;
 }
 
+/**
+ * Test data to validate gender logic
+ */
 const tests: Assertion[] = [
   {
     input: 1,

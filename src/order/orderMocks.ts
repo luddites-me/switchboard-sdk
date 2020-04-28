@@ -1,3 +1,7 @@
+/**
+ * Order data mocks for automated testing
+ * @internal
+ */
 export const orderMocks = [
   {
     addresses: [

@@ -7,11 +7,19 @@ import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
 import { MerchantData, toMerchant } from './toMerchant';
 
+/**
+ * Describes how Merchant data sets should look for test assertions
+ * @internal
+ */
 export interface MerchantDataAssertion {
   input: MerchantData;
   assert: string;
 }
 
+/**
+ * Assertions to test for Merchant data logic
+ * @internal
+ */
 export const merchantAssertionMocks: MerchantDataAssertion[] = [
   {
     input: {

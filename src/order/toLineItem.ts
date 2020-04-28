@@ -4,10 +4,12 @@
 import { LineItem } from 'ns8-protect-models';
 
 /**
- * Generic object representing a line item:
- *  the items a customer has ordered.
+ * Generic object representing a line item: the items a customer has ordered.
+ *
+ * @remarks
  * All properties are optional unless otherwise documented.
  * Not all orders will have Line Items with all of this data.
+ * @public
  */
 export interface LineItemData {
   /**
@@ -71,6 +73,7 @@ export interface LineItemData {
 /**
  * Converts a generic object representing a line item into a Protect model
  * @param data - object to transform
+ * @public
  */
 /* eslint-disable-next-line complexity */
 export const toLineItem = (data: LineItemData): LineItem => {

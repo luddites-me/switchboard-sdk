@@ -9,6 +9,7 @@ const CREATE_QUEUE_MESSAGE_ENDPOINT = '/protect/eventqueue/create';
 
 /**
  * Used to create events on the queue.
+ * @public
  */
 export class QueueClient {
   private readonly switchContext: SwitchContext;

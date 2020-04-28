@@ -6,6 +6,10 @@ import { TransactionMethod, TransactionStatus } from 'ns8-protect-models';
 import { TransactionData, toTransaction } from './toTransaction';
 import { creditCardAssertionMocks } from './toCreditCard.test';
 
+/**
+ * Describes how Transaction data sets should look for test assertions
+ * @internal
+ */
 export interface TransactionDataAssertion {
   input: TransactionData;
   assert: string;
@@ -14,6 +18,10 @@ export interface TransactionDataAssertion {
 const creditCard = creditCardAssertionMocks.map((mock) => mock.input)[0];
 const baseDate = '01/01/1979';
 
+/**
+ * Assertions to test for Transaction logic
+ * @internal
+ */
 export const transactionAssertionMocks: TransactionDataAssertion[] = [
   {
     input: {
