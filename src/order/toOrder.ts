@@ -1,4 +1,4 @@
-// eslint-disable
+/* eslint-disable */
 import { Order } from 'ns8-protect-models';
 import { toDate } from '../util';
 import { AddressData, toAddress } from '../contact/toAddress';

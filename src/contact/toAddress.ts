@@ -47,7 +47,6 @@ export interface AddressData {
    *  Billing, Shipping, Device (case-insensitive)
    * Converter will attempt to loosely parse the passed string,
    * if an exact match cannot be found.
-   * @default 'Device'
    */
   type: string;
   /**

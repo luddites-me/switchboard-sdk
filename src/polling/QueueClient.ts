@@ -27,9 +27,6 @@ export class QueueClient {
 
   /**
    * Extracts the EQ8 score from the fraud assessment data, if available
-   *
-   * @private
-   * @memberof QueueClient
    */
   private getEQ8Score = (): string => {
     const assessments: FraudAssessment[] | undefined = this.switchContext.data.fraudAssessments as FraudAssessment[];
@@ -80,9 +77,6 @@ export class QueueClient {
 
   /**
    * Executes the call to SQS to create the new message.
-   *
-   * @private
-   * @memberof QueueClient
    * @returns True if event was created successfully, false otherwise.
    */
   private createEvent = async <T extends OrderMessage>(message: T): Promise<boolean> => {

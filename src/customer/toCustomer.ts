@@ -43,14 +43,12 @@ export interface CustomerData {
   phone?: string | number;
   /**
    * Date/Time the Customer was created.
-   * @default now
    */
   platformCreatedAt?: string | Date;
   /**
    * This should be the platform's Customer Id:
    *  the unique Id that identifies a customer.
    * If not supplied, a UUID will be generated.
-   * @default new UUID
    * Max Length: 100
    */
   platformId?: string | number;

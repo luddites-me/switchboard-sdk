@@ -28,7 +28,6 @@ export interface TransactionData {
    *  CC, COD, Check, Bank Wire, Other (case-insensitive)
    * Converter will attempt to loosely parse the passed string,
    *  if an exact match cannot be found.
-   * @default 'Other'
    */
   method?: string;
   /**
@@ -36,7 +35,7 @@ export interface TransactionData {
    */
   platformId?: string | number;
   /**
-   * @default now
+   * Default to now
    */
   processedAt?: string | Date;
   /**

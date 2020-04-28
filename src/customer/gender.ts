@@ -1,4 +1,4 @@
-// eslint-disable
+/* eslint-disable */
 import { Gender } from '../enums/Gender';
 
 /**

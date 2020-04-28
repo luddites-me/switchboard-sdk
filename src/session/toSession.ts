@@ -1,4 +1,4 @@
-// eslint-disable
+/* eslint-disable */
 import { Session } from 'ns8-protect-models';
 import { UAParser } from 'ua-parser-js';
 

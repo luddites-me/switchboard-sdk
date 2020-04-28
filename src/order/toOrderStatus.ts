@@ -1,4 +1,4 @@
-// eslint-disable
+/* eslint-disable */
 import { Status } from 'ns8-protect-models';
 
 /**
