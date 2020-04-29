@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Order } from 'ns8-protect-models';
 import { toDate } from '../util';
 import { AddressData, toAddress } from '../contact/toAddress';
@@ -9,8 +10,10 @@ import { stringToProtectStatus } from './toOrderStatus';
 
 /**
  * Generic object representing an order.
+ * @remarks
  * All properties are optional unless otherwise documented.
  * Not all Orders will have all of this data.
+ * @public
  */
 export interface OrderData {
   /**
@@ -79,8 +82,8 @@ export interface OrderData {
 /**
  * Converts a generic object representing an order into a Protect model
  * @param orderData - object to convert
+ * @public
  */
-/* eslint-disable-next-line complexity */
 export const toOrder = (orderData: OrderData): Order => {
   const {
     addresses,

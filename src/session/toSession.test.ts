@@ -4,11 +4,19 @@ import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
 import { SessionData, toSession } from './toSession';
 
+/**
+ * Describes how Session data sets should look for test assertions
+ * @internal
+ */
 export interface SessionDataAssertion {
   input: SessionData;
   assert: string;
 }
 
+/**
+ * Assertions to test for Session data logic
+ * @internal
+ */
 export const sessionAssertionMocks: SessionDataAssertion[] = [
   {
     input: {

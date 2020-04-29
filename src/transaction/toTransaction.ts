@@ -6,8 +6,10 @@ import { CreditCardData, toCreditCard } from './toCreditCard';
 
 /**
  * Generic object representing a Transaction.
+ * @remarks
  * All properties are optional unless otherwise documented.
  * Not all transactions will have all of this data.
+ * @public
  */
 export interface TransactionData {
   /**
@@ -26,7 +28,6 @@ export interface TransactionData {
    *  CC, COD, Check, Bank Wire, Other (case-insensitive)
    * Converter will attempt to loosely parse the passed string,
    *  if an exact match cannot be found.
-   * @default 'Other'
    */
   method?: string;
   /**
@@ -34,7 +35,7 @@ export interface TransactionData {
    */
   platformId?: string | number;
   /**
-   * @default now
+   * Default to now
    */
   processedAt?: string | Date;
   /**
@@ -50,6 +51,7 @@ export interface TransactionData {
 /**
  * Converts a generic object representing a transaction into a Protect model
  * @param data - generic transaction data
+ * @public
  */
 export const toTransaction = (data: TransactionData): Transaction => {
   const { amount, creditCard, currency, method, platformId, processedAt, status, statusDetails } = data;

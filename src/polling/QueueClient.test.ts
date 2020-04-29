@@ -7,8 +7,14 @@ import { SwitchContext } from 'ns8-switchboard-interfaces';
 import { QueueClient } from './QueueClient';
 import { getLogger } from '../logger';
 
+/**
+ * Logger to utilize in testing
+ */
 const logger = getLogger();
 
+/**
+ * Mock access tokens for polling logic tests
+ */
 const mockAccessToken = {
   id: '7a0ab6a3-615d-43ba-85b6-feb63a299097',
   expires: null,
@@ -16,6 +22,9 @@ const mockAccessToken = {
   subjectType: 'MERCHANT',
 };
 
+/**
+ * Mock context to replicate Lambda context
+ */
 const mockContext = ({
   apiBaseUrl: 'localhost',
   data: {
@@ -51,6 +60,9 @@ const mockContext = ({
   },
 } as unknown) as SwitchContext;
 
+/**
+ * Mock a Lambda context without score details
+ */
 const mockContextWithoutScore = ({
   apiBaseUrl: 'localhost',
   data: {
@@ -68,8 +80,14 @@ const mockContextWithoutScore = ({
   },
 } as unknown) as SwitchContext;
 
+/**
+ * API URL for mock requests
+ */
 const mockApiUrl = 'localhost';
 
+/**
+ * Mock response for requests
+ */
 const mockResponseSuccess: AxiosResponse = {
   status: 200,
   data: { successful: true },

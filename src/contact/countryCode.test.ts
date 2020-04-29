@@ -2,11 +2,17 @@ import { expect, use } from 'chai';
 import 'mocha';
 import { getCountryCodeFromCountryName, getCountryNameFromCountryCode } from './countryCode';
 
+/**
+ * Basic data structure for tests
+ */
 interface Assertion {
   input?: string;
   output: string;
 }
 
+/**
+ * Input/Output sets for Country Code data tests
+ */
 const countryCodes: Assertion[] = [
   {
     input: 'us',
@@ -25,6 +31,9 @@ const countryCodes: Assertion[] = [
   },
 ];
 
+/**
+ * Input/Output sets for Country Name data tests
+ */
 const countryNames: Assertion[] = [
   {
     input: 'United States of America',

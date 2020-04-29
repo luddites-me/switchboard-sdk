@@ -5,7 +5,9 @@ import { toDate } from '../util';
 
 /**
  * Generic object representing a credit card.
+ * @remarks
  * All properties are optional unless otherwise documented.
+ * @public
  */
 export interface CustomerData {
   birthday?: string | Date;
@@ -41,14 +43,12 @@ export interface CustomerData {
   phone?: string | number;
   /**
    * Date/Time the Customer was created.
-   * @default now
    */
   platformCreatedAt?: string | Date;
   /**
    * This should be the platform's Customer Id:
    *  the unique Id that identifies a customer.
    * If not supplied, a UUID will be generated.
-   * @default new UUID
    * Max Length: 100
    */
   platformId?: string | number;
@@ -58,6 +58,7 @@ export interface CustomerData {
 /**
  * Converts a generic object representing a customer into a Protect model
  * @param data - generic data structure representing a customer
+ * @public
  */
 /* eslint-disable-next-line complexity */
 export const toCustomer = (data: CustomerData): Customer => {

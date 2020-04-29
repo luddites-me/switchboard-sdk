@@ -5,11 +5,19 @@ import 'mocha';
 import { CreditCardTransactionType } from 'ns8-protect-models';
 import { CreditCardData, toCreditCard } from './toCreditCard';
 
+/**
+ * Describes how Credit Card data sets should look for test assertions
+ * @internal
+ */
 export interface CreditCardAssertion {
   input: CreditCardData;
   assert: string;
 }
 
+/**
+ * Assertions to test for Credit Card logic
+ * @internal
+ */
 export const creditCardAssertionMocks: CreditCardAssertion[] = [
   {
     input: {

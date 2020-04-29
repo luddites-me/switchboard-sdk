@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Session } from 'ns8-protect-models';
 import { UAParser } from 'ua-parser-js';
 
@@ -5,8 +6,10 @@ const isIp = require('is-ip');
 
 /**
  * Generic object representing a session.
+ * @remarks
  * All properties are optional unless otherwise documented.
  * Not all sessions will have all of this data.
+ * @public
  */
 export interface SessionData {
   acceptLanguage?: string;
@@ -26,8 +29,8 @@ export interface SessionData {
  * Converts a generic object representing a session into a Protect model
  * @throws if IP Address or User Agent is invalid
  * @param data - object to convert
+ * @public
  */
-/* eslint-disable-next-line complexity */
 export const toSession = (data: SessionData): Session => {
   const { acceptLanguage, ip, screenHeight, screenWidth, userAgent } = data;
   if (!ip || !isIp(ip)) {

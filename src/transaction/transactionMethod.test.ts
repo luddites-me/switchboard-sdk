@@ -4,11 +4,19 @@ import 'mocha';
 import { TransactionMethod } from 'ns8-protect-models';
 import { stringToTransactionMethod } from './transactionMethod';
 
+/**
+ * Describes how Transaction Method sets should look for test assertions
+ * @internal
+ */
 interface Assertion {
   input?: string;
   output: TransactionMethod;
 }
 
+/**
+ * Assertions to test for Transaction Method logic
+ * @internal
+ */
 const tests: Assertion[] = [
   {
     input: 'bankwire',

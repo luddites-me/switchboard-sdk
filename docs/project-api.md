@@ -108,12 +108,14 @@ export const deletePolledMessage: Handler<DeletePolledMessageLambdaPayload, void
 // @public (undocumented)
 export type errorMethod = (message: string, ...args: any[]) => void;
 
-// @public
+// Warning: (ae-internal-missing-underscore) The name "existsInEnum" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
 export const existsInEnum: (enm: object, key: string, caseInsensitive?: boolean) => boolean;
 
 export { format }
 
-// @public (undocumented)
+// @public
 export enum Gender {
     // (undocumented)
     FEMALE = "F",
@@ -123,13 +125,19 @@ export enum Gender {
     UNKNOWN = "U"
 }
 
-// @public
+// Warning: (ae-internal-missing-underscore) The name "getCountryCodeFromCountryName" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
 export const getCountryCodeFromCountryName: (countryName?: string) => string;
 
-// @public
+// Warning: (ae-internal-missing-underscore) The name "getCountryNameFromCountryCode" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
 export const getCountryNameFromCountryCode: (countryCode?: string) => string;
 
-// @public
+// Warning: (ae-internal-missing-underscore) The name "getGender" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
 export const getGender: (g?: string | number) => string;
 
 // @public
@@ -146,7 +154,7 @@ export const getUniqueCustomerId: (customerId: string, emailAddress: string) => 
 // @public (undocumented)
 export type infoMethod = (message: string, ...args: any[]) => void;
 
-// @public (undocumented)
+// @public
 export const isValidDate: (date: any) => boolean;
 
 // @public
@@ -261,7 +269,9 @@ export interface OrderData {
     updatedAt?: string | Date;
 }
 
-// @public (undocumented)
+// Warning: (ae-internal-missing-underscore) The name "orderMocks" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
 export const orderMocks: {
     addresses: {
         address1: string;
@@ -350,7 +360,7 @@ export const orderMocks: {
     updatedAt: number;
 }[];
 
-// @public (undocumented)
+// @public
 export enum ProtectOrderState {
     // (undocumented)
     APPROVED = "ns8_approved",
@@ -360,7 +370,7 @@ export enum ProtectOrderState {
     MERCHANT_REVIEW = "ns8_merchant_review"
 }
 
-// @public (undocumented)
+// @public
 export enum ProtectOrderUpdateStatus {
     // (undocumented)
     CREATED = "created",
@@ -388,13 +398,17 @@ export interface SessionData {
     userAgent: string;
 }
 
-// @public
+// Warning: (ae-internal-missing-underscore) The name "sleep" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
 export const sleep: (milliseconds?: number) => Promise<void>;
 
 // @public
 export const stringToCreditCardTransactionType: (creditCardTransactionType?: string) => CreditCardTransactionType;
 
-// @public
+// Warning: (ae-internal-missing-underscore) The name "stringToProtectAddressType" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
 export const stringToProtectAddressType: (addressType?: string) => AddressType;
 
 // @public
@@ -406,7 +420,9 @@ export const stringToTransactionMethod: (transactionMethod?: string) => Transact
 // @public
 export const stringToTransactionStatus: (transactionStatus?: string) => TransactionStatus;
 
-// @public
+// Warning: (ae-internal-missing-underscore) The name "toAddress" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
 export const toAddress: (data: AddressData) => Address;
 
 // @public

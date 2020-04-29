@@ -1,11 +1,12 @@
+/* eslint-disable */
 import { TransactionMethod } from 'ns8-protect-models';
 
 /**
  * Safely converts a string to a TransactionMethod
  * @param transactionMethod - a transaction method to attempt to parse
  * @returns TransactionMethod; defaults to 'OTHER' if not parsable
+ * @public
  */
-/* eslint-disable-next-line complexity */
 export const stringToTransactionMethod = (transactionMethod = ''): TransactionMethod => {
   const method = transactionMethod.toLowerCase().trim().replace(' ', '').replace('_', '');
   switch (method) {

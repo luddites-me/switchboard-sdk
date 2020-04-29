@@ -2,6 +2,7 @@ import { Contact, Merchant } from 'ns8-protect-models';
 
 /**
  * Generic object that can be converted to a Protect Contact
+ * @public
  */
 export interface ContactData {
   /**
@@ -28,6 +29,7 @@ export interface ContactData {
 
 /**
  * Generic object that can be converted to a Protect Merchant
+ * @public
  */
 export interface MerchantData {
   contact?: ContactData;

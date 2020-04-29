@@ -4,11 +4,19 @@ import 'mocha';
 import { TransactionStatus } from 'ns8-protect-models';
 import { stringToTransactionStatus } from './transactionStatus';
 
+/**
+ * Describes how Transaction Status sets should look for test assertions
+ * @internal
+ */
 interface Assertion {
   input?: string;
   output: TransactionStatus;
 }
 
+/**
+ * Assertions to test for Transaction Status logic
+ * @internal
+ */
 const tests: Assertion[] = [
   {
     input: 'error',

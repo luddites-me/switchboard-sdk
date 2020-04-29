@@ -7,6 +7,7 @@ import { ServiceIntegrationType } from 'ns8-protect-models';
  * @param integrationType - a known service integration type
  * @throws if no match is found
  * @returns true if a match is found
+ * @public
  */
 export const validateMerchantIntegration = (
   context: SwitchContext,

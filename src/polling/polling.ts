@@ -102,6 +102,7 @@ const createPollingQueueIfNotExist = async (event: PollQueueLambdaPayload): Prom
  *
  * @param event - attributes used to identify the merchant-specific queue and the
  * message to be deleted
+ * @public
  */
 export const createPolledMessage: LambdaHandler<CreatePolledMessageLambdaPayload, void> = async (
   event: CreatePolledMessageLambdaPayload,
@@ -123,6 +124,7 @@ export const createPolledMessage: LambdaHandler<CreatePolledMessageLambdaPayload
  *
  * @param event - attributes used to identify the merchant-specific queue and the
  * message to be deleted
+ * @public
  */
 export const deletePolledMessage: LambdaHandler<DeletePolledMessageLambdaPayload, void> = async (
   event: DeletePolledMessageLambdaPayload,
@@ -143,6 +145,7 @@ export const deletePolledMessage: LambdaHandler<DeletePolledMessageLambdaPayload
  * Get a URL that can be used to poll/receive new messages from the queue.
  *
  * @param event - attributes used to identify the merchant-specific queue
+ * @public
  */
 export const getPollUrl: LambdaHandler<PollQueueLambdaPayload, GetPollUrlResultPayload> = async (
   event: PollQueueLambdaPayload,

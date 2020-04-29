@@ -4,6 +4,7 @@ import { getCountryCodeFromCountryName, getCountryNameFromCountryCode, stringToP
 /**
  * Generic object representing data that can be converted to an Address.
  * All properties are optional unless otherwise documented.
+ * @public
  */
 export interface AddressData {
   /**
@@ -46,7 +47,6 @@ export interface AddressData {
    *  Billing, Shipping, Device (case-insensitive)
    * Converter will attempt to loosely parse the passed string,
    * if an exact match cannot be found.
-   * @default 'Device'
    */
   type: string;
   /**
@@ -58,6 +58,7 @@ export interface AddressData {
 /**
  * Safely converts a generic object representing an address into a Protect model
  * @param data - generic object representing an address
+ * @internal
  */
 /* eslint-disable-next-line complexity, sonarjs/cognitive-complexity */
 export const toAddress = (data: AddressData): Address => {

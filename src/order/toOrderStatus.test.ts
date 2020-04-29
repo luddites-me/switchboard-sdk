@@ -4,11 +4,19 @@ import 'mocha';
 import { Status } from 'ns8-protect-models';
 import { stringToProtectStatus } from './toOrderStatus';
 
+/**
+ * Describes how Order Status data sets should look for test assertions
+ * @internal
+ */
 interface OrderStatusAssertion {
   input?: string;
   output: Status;
 }
 
+/**
+ * Assertions to test for Order Status data logic
+ * @internal
+ */
 export const tests: OrderStatusAssertion[] = [
   {
     input: 'approval',
