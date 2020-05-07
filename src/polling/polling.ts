@@ -175,7 +175,7 @@ export const getPollUrl: LambdaHandler<PollQueueLambdaPayload, GetPollUrlResultP
     })
     .promise();
   if (Credentials == null) {
-    throw new Error("Unable to assume role '$x{Arn}'");
+    throw new Error(`Unable to assume role '${Arn}'`);
   }
 
   const path = `/${accountId}/${queueName}?Action=ReceiveMessage&MaxNumberOfMessages=10&Version=2012-11-05`;
