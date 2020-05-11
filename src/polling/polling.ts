@@ -107,6 +107,8 @@ const createPollingQueueIfNotExist = async (event: PollQueueLambdaPayload): Prom
 export const createPolledMessage: LambdaHandler<CreatePolledMessageLambdaPayload, void> = async (
   event: CreatePolledMessageLambdaPayload,
 ): Promise<void> => {
+  await createPollingQueueIfNotExist(event);
+
   const sqsClient = new SQS();
   const { QueueUrl } = await sqsClient.getQueueUrl({ QueueName: getQueueName(event) }).promise();
   if (QueueUrl == null) {
@@ -129,6 +131,8 @@ export const createPolledMessage: LambdaHandler<CreatePolledMessageLambdaPayload
 export const deletePolledMessage: LambdaHandler<DeletePolledMessageLambdaPayload, void> = async (
   event: DeletePolledMessageLambdaPayload,
 ): Promise<void> => {
+  await createPollingQueueIfNotExist(event);
+
   const sqsClient = new SQS();
   const { QueueUrl } = await sqsClient.getQueueUrl({ QueueName: getQueueName(event) }).promise();
   if (QueueUrl == null) {
