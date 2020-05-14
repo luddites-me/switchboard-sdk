@@ -1,5 +1,11 @@
 import { Address } from 'ns8-protect-models';
-import { getCountryCodeFromCountryName, getCountryNameFromCountryCode, stringToProtectAddressType } from '.';
+import {
+  getCountryCodeFromCountryName,
+  getCountryNameFromCountryCode,
+  getRegionCodeFromRegionName,
+  isRegionCodeValid,
+  stringToProtectAddressType,
+} from '.';
 
 /**
  * Generic object representing data that can be converted to an Address.
@@ -119,8 +125,10 @@ export const toAddress = (data: AddressData): Address => {
   if (region) {
     address.region = region.substr(0, 100);
   }
-  if (regionCode) {
+  if (regionCode && isRegionCodeValid(countryCode, regionCode)) {
     address.regionCode = regionCode.substring(0, 6);
+  } else {
+    address.regionCode = getRegionCodeFromRegionName(countryCode, region);
   }
   address.type = stringToProtectAddressType(type);
   if (zip) {
