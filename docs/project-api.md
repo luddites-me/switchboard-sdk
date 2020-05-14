@@ -149,10 +149,16 @@ export const getLogger: (logOptions?: LogOptions, reset?: boolean) => LogInterfa
 export const getPollUrl: Handler<PollQueueLambdaPayload, GetPollUrlResultPayload>;
 
 // @public
+export const getRegionCodeFromRegionName: (countryCode?: string, regionName?: string) => string;
+
+// @public
 export const getUniqueCustomerId: (customerId: string, emailAddress: string) => string;
 
 // @public (undocumented)
 export type infoMethod = (message: string, ...args: any[]) => void;
+
+// @public
+export const isRegionCodeValid: (countryCode?: string, regionCode?: string) => boolean;
 
 // @public
 export const isValidDate: (date: any) => boolean;
