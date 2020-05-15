@@ -2,7 +2,7 @@
   no-unused-expressions,
   sonarjs/no-duplicate-string,
 */
-import { expect, use } from 'chai';
+import { expect } from 'chai';
 import 'mocha';
 import { AddressData, toAddress } from './toAddress';
 
@@ -150,6 +150,14 @@ export const addressAssertionMocks: AddressDataAssertion[] = [
       type: 'billing',
       zip: '14850-2911',
       latitude: 1,
+    },
+    assert: 'regionCode',
+  },
+  {
+    input: {
+      countryCode: 'US',
+      region: 'North Carolina',
+      type: 'billing',
     },
     assert: 'regionCode',
   },

@@ -5452,6 +5452,11 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
+iso-3166@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/iso-3166/-/iso-3166-3.0.1.tgz#5e704f4e53fdb7d26e9ca25a2d8a88f683cc403c"
+  integrity sha512-tprC/B5rwftt8mD2BwvKLU097UtsZm8C1pnqMjyxE9Wity7ayo3ujXTIFYZWfpJl02uo6c7hIDrf7UANglyBjg==
+
 iso8601-duration@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/iso8601-duration/-/iso8601-duration-1.2.0.tgz#5fa6fc180a8fe95ad6a6721c9bdd9069cb59e80e"
