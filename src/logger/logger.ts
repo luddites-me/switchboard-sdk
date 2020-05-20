@@ -1,7 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+/* istanbul ignore next */
 import { Logger, LoggerOptions, createLogger, format, transports } from 'winston';
 
-export { Logger, LoggerOptions, createLogger, format, transports } from 'winston';
+export {
+  Logger,
+  LoggerOptions,
+  /* istanbul ignore next */
+  createLogger,
+  /* istanbul ignore next */
+  format,
+  /* istanbul ignore next */
+  transports,
+} from 'winston';
+
 /**
  * The valid log levels
  * @remarks These log levels conform to standard log level definitions
