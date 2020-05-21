@@ -1,5 +1,4 @@
 custom:
-  integrationId: '${file(../switchboard.json):integrationId}'
   integrationName: '${self:service}-${self:provider.stage}'
 functions:
   onDisableExtensionEvent:
@@ -30,12 +29,12 @@ provider:
   deploymentBucket:
     name: '${ssm:/serverless/deployment/bucket/name}'
   environment:
-    ACCESS_TOKEN: '${ssm:/extensions/${self:custom.integrationId}/${self:provider.stage}/access-token~true}'
-    DOMAIN: '${ssm:/extensions/${self:custom.integrationId}/${self:provider.stage}/domain}'
-    PARTNER_ID: '${ssm:/extensions/${self:custom.integrationId}/${self:provider.stage}/partner-id}'
-    PASSWORD: '${ssm:/extensions/${self:custom.integrationId}/${self:provider.stage}/password~true}'
-    SECRET_KEY: '${ssm:/extensions/${self:custom.integrationId}/${self:provider.stage}/secret-key~true}'
-    USERNAME: '${ssm:/extensions/${self:custom.integrationId}/${self:provider.stage}/username}'
+    ACCESS_TOKEN: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/access-token~true}'
+    DOMAIN: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/domain}'
+    PARTNER_ID: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/partner-id}'
+    PASSWORD: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/password~true}'
+    SECRET_KEY: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/secret-key~true}'
+    USERNAME: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/username}'
   iamRoleStatements:
     - Action: 's3:GetObject'
       Effect: Allow
