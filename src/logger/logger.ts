@@ -1,7 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Logger, LoggerOptions, createLogger, format, transports } from 'winston';
 
-export { Logger, LoggerOptions, createLogger, format, transports } from 'winston';
+/**
+ * NOTE: these properties need to be explicitly exported for downstream consumers.
+ * Since they come from a 3rd party library, we can safely ignore them from code coverage.
+ */
+export {
+  Logger,
+  LoggerOptions,
+  /* istanbul ignore next */
+  createLogger,
+  /* istanbul ignore next */
+  format,
+  /* istanbul ignore next */
+  transports,
+} from 'winston';
+
 /**
  * The valid log levels
  * @remarks These log levels conform to standard log level definitions

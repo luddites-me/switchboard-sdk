@@ -1,0 +1,98 @@
+custom:
+  integrationName: '${self:service}-${self:provider.stage}'
+functions:
+  onDisableExtensionEvent:
+    handler: dist/app.onDisableExtensionEventHandler
+    name: '${self:custom.integrationName}-onDisableExtensionEvent'
+  onEnableExtensionEvent:
+    handler: dist/app.onEnableExtensionEventHandler
+    name: '${self:custom.integrationName}-onEnableExtensionEvent'
+  onUpdateExtensionMerchantEvent:
+    handler: dist/app.onUpdateExtensionMerchantEventHandler
+    name: '${self:custom.integrationName}-onUpdateExtensionMerchantEvent'
+  onUpdateExtensionOrderEvent:
+    handler: dist/app.onUpdateExtensionOrderEventHandler
+    name: '${self:custom.integrationName}-onUpdateExtensionOrderEvent'
+  onWebhookAction:
+    handler: dist/app.onWebhookActionHandler
+    name: '${self:custom.integrationName}-onWebhookAction'
+package:
+  exclude:
+    - ./**
+  include:
+    - dist/**
+    - serverless.yml
+plugins:
+  - serverless-step-functions
+  - serverless-pseudo-parameters
+provider:
+  deploymentBucket:
+    name: '${ssm:/serverless/deployment/bucket/name}'
+  environment:
+    ACCESS_TOKEN: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/access-token~true}'
+    DOMAIN: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/domain}'
+    PARTNER_ID: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/partner-id}'
+    PASSWORD: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/password~true}'
+    SECRET_KEY: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/secret-key~true}'
+    USERNAME: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/username}'
+  iamRoleStatements:
+    - Action: 's3:GetObject'
+      Effect: Allow
+      Resource: 'arn:aws:s3:::protect-api-switch-data-${self:provider.stage}/*'
+  name: aws
+  region: us-west-2
+  runtime: nodejs12.x
+  stackTags:
+    ns8.configured-by: protect-sdk-switchboard
+    ns8.stage: '${self:provider.stage}'
+    ns8.usecase: ${self:custom.integrationName}
+  stage: '${opt:stage, env:DEV_NAME}'
+  timeout: 30
+  versionFunctions: false
+stepFunctions:
+  stateMachines:
+    onDisableExtensionEvent:
+      definition:
+        StartAt: onDisableExtensionEventStart
+        States:
+          onDisableExtensionEventStart:
+            End: true
+            Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-onDisableExtensionEvent'
+            Type: Task
+      name: '${self:custom.integrationName}-onDisableExtensionEvent'
+    onEnableExtensionEvent:
+      definition:
+        StartAt: onEnableExtensionEventStart
+        States:
+          onEnableExtensionEventStart:
+            End: true
+            Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-onEnableExtensionEvent'
+            Type: Task
+      name: '${self:custom.integrationName}-onEnableExtensionEvent'
+    onUpdateExtensionMerchantEvent:
+      definition:
+        StartAt: onUpdateExtensionMerchantEventStart
+        States:
+          onUpdateExtensionMerchantEventStart:
+            End: true
+            Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-onUpdateExtensionMerchantEvent'
+            Type: Task
+      name: '${self:custom.integrationName}-onUpdateExtensionMerchantEvent'
+    onUpdateExtensionOrderEvent:
+      definition:
+        StartAt: onUpdateExtensionOrderEventStart
+        States:
+          onUpdateExtensionOrderEventStart:
+            End: true
+            Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-onUpdateExtensionOrderEvent'
+            Type: Task
+      name: '${self:custom.integrationName}-onUpdateExtensionOrderEvent'
+    onWebhookAction:
+      definition:
+        StartAt: onWebhookActionStart
+        States:
+          onWebhookActionStart:
+            End: true
+            Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-onWebhookAction'
+            Type: Task
+      name: '${self:custom.integrationName}-onWebhookAction'

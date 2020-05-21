@@ -56,4 +56,9 @@ provider:
   stage: '${opt:stage}'
   timeout: 29
   versionFunctions: false
+  stackTags:
+    'ns8.configured-by': protect-sdk-switchboard
+    'ns8.usecase': protect-sdk-switchboard
+    'ns8.stage': ${self:provider.stage}
+
 service: protect-switchboard-sdk
