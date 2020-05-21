@@ -4,7 +4,7 @@ import { Logger, LoggerOptions, createLogger, format, transports } from 'winston
 /**
  * NOTE: these properties need to be explicitly exported for downstream consumers.
  * Since they come from a 3rd party library, we can safely ignore them from code coverage.
-*/
+ */
 export {
   Logger,
   LoggerOptions,
