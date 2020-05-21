@@ -336,10 +336,10 @@
     ns8-switchboard-interfaces "1.0.126"
     superagent "^5.2.2"
 
-"@ns8/protect-tools-js@0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@ns8/protect-tools-js/-/protect-tools-js-0.1.5.tgz#d41c3dbadf6f4304e099cd04d19471f17d5fa8c7"
-  integrity sha512-+g5H5GbvRmGW3yT0tX0WZvQahK0Fi7s/PFuSJnKZkV9LUsHJb45L0ZHJGtLs2oSpy37LLSA8UDBSbDnGMCd6Eg==
+"@ns8/protect-tools-js@0.1.6":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@ns8/protect-tools-js/-/protect-tools-js-0.1.6.tgz#5714fc12bfcd842a2504d68d5bc40f7f78ba8e7f"
+  integrity sha512-s/USSkmqibuo6y2XtVmq6kLDOhmHTnWqqb75CMjMEuVacgTE81sCPUhMAtHYUn29scM7Gwk5/fAV6uorN5k/mg==
   dependencies:
     "@istanbuljs/nyc-config-typescript" "1.0.1"
     "@microsoft/api-documenter" "7.8.2"
@@ -361,7 +361,7 @@
     chai-as-promised "7.1.1"
     cloc "2.5.1"
     concurrently "5.2.0"
-    create-ts-index "1.13.2"
+    create-ts-index "1.13.3"
     dotenv-extended "2.8.0"
     eslint "7.0.0"
     eslint-config-airbnb-base "14.1.0"
@@ -1579,10 +1579,10 @@ aws-lambda@^1.0.6:
     js-yaml "^3.13.1"
     watchpack "^2.0.0-beta.10"
 
-aws-sdk@*, aws-sdk@^2.282.1, aws-sdk@^2.680.0, aws-sdk@^2.681.0:
-  version "2.681.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.681.0.tgz#09eeedb5ca49813dfc637908abe408ae114a6824"
-  integrity sha512-/p8CDJ7LZvB1i4WrJrb32FUbbPdiZFZSN6FI2lv7s/scKypmuv/iJ9kpx6QWSWQZ72kJ3Njk/0o7GuVlw0jHXw==
+aws-sdk@*, aws-sdk@^2.282.1, aws-sdk@^2.680.0, aws-sdk@^2.682.0:
+  version "2.682.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.682.0.tgz#3c2dd46ea4ef8856c124a48368efc85ffe828589"
+  integrity sha512-1eVkM/L53Vi68h07EbPh/1MqL0xI7sKssJAcFACLsBISJTqogxOrIocqPlVoQoprUFK4KiSL5ucK88KwkyoCUA==
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
@@ -2707,10 +2707,10 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-ts-index@1.13.2:
-  version "1.13.2"
-  resolved "https://registry.yarnpkg.com/create-ts-index/-/create-ts-index-1.13.2.tgz#e8b2f335d425b3fda8c56969e807099e90ef5006"
-  integrity sha512-NG/rBpwP+A8zUXr7yOME5CiJtq3fYOih9CgBhTEYWmc/skFlfTUa0rcQ9ny8snDDI2chmAeXBzfr/SYPP7J8HA==
+create-ts-index@1.13.3:
+  version "1.13.3"
+  resolved "https://registry.yarnpkg.com/create-ts-index/-/create-ts-index-1.13.3.tgz#5983a3db20b1ecfcf79ee0da3b53f168c29cfc3f"
+  integrity sha512-GRYyJKzPhFryY+yx54VIlzLQuA8Qs/keldSrs4heD+lfhmhgecYoR7xsFkFUYi3l/3ycaW1q5WH8TkxxnoFchQ==
   dependencies:
     chalk "^2.4.1"
     commander "^2.19.0"
@@ -6720,9 +6720,9 @@ npm-run-path@^2.0.0:
     path-key "^2.0.0"
 
 ns8-billing-core@^1.0.1185:
-  version "1.0.1702"
-  resolved "https://registry.yarnpkg.com/ns8-billing-core/-/ns8-billing-core-1.0.1702.tgz#0f0f08d347700759e53efb06cd698750a9f669d9"
-  integrity sha512-yluzcEgpmItyZHCQAHETm6lVHkDoEeknjZccSnm6zTKrk+hJqeToS4WyXU+5HnsOrGOz/BCak6Q91WR6G6cAzg==
+  version "1.0.1707"
+  resolved "https://registry.yarnpkg.com/ns8-billing-core/-/ns8-billing-core-1.0.1707.tgz#d4725bf703d11169036c379aa18b900ffae2c196"
+  integrity sha512-mjm57TIE/Jd9VmwZ6KfXd5knOGH2P4u4kJbpS6DYPYDwiSrksRUVORmRbY2aLLB+MeHmg7zPGdikcG9wZZWZWg==
 
 ns8-protect-models@1.0.281:
   version "1.0.281"
