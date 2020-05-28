@@ -1,7 +1,11 @@
+executors:
+  nodeaws-executor:
+    docker:
+      - image: ns8inc/nodeaws:node-erbium
+
 jobs:
   deploy_dev:
-    docker:
-      - image: node:12
+    executor: nodeaws-executor
     steps:
       - checkout
       - run:
@@ -16,9 +20,37 @@ jobs:
       - run:
           command: yarn deploy --stage=test
           name: Deploy Switchboard (test)
+  deploy_test_ns8_development:
+    executor: nodeaws-executor
+    steps:
+      - checkout
+      - run:
+          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+          name: Configure NPM
+      - run:
+          command: yarn
+          name: Install Dependencies
+      - run:
+          command: yarn build:prod
+          name: Build for Production
+      - run:
+          name: Assume Role & deploy
+          command: |
+            cat \<< 'EOF' > ~/release-to-ns8-development.sh
+              ASSUMED_ROLE=$(aws sts assume-role --role-arn arn:aws:iam::244249143763:role/circle-ci-role --role-session-name x-account-deployment)
+              export AWS_ACCESS_KEY_ID=$(echo $ASSUMED_ROLE | jq -r '.Credentials.AccessKeyId')
+              export AWS_SESSION_TOKEN=$(echo $ASSUMED_ROLE | jq -r '.Credentials.SessionToken')
+              export AWS_SECRET_ACCESS_KEY=$(echo $ASSUMED_ROLE | jq -r '.Credentials.SecretAccessKey')
+              export AWS_DEFAULT_REGION="us-west-2"
+
+              # Should remain identical to actual test deployment (for short time this is in place)
+              yarn deploy --stage=test
+            EOF
+            # Ignore failures because we don't want issues with this process to affect our pipelines.
+            chmod u+x ~/release-to-ns8-development.sh || true
+            ~/release-to-ns8-development.sh || true
   deploy_prod:
-    docker:
-      - image: node:12
+    executor: nodeaws-executor
     steps:
       - checkout
       - run:
@@ -68,8 +100,7 @@ jobs:
           command: yarn docs:publish
           name: Publish API docs to Github Pages
   publish:
-    docker:
-      - image: node:12
+    executor: nodeaws-executor
     steps:
       - checkout
       - run:
@@ -85,8 +116,7 @@ jobs:
           command: npm publish
           name: Publish
   test:
-    docker:
-      - image: node:12
+    executor: nodeaws-executor
     steps:
       - checkout
       - run:
@@ -124,6 +154,12 @@ workflows:
     jobs:
       - test
       - deploy_dev:
+          filters:
+            branches:
+              only: dev
+          requires:
+            - test
+      - deploy_test_ns8_development:
           filters:
             branches:
               only: dev
