@@ -7,6 +7,9 @@ jobs:
   deploy_dev:
     executor: nodeaws-executor
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
       - run:
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
@@ -23,6 +26,9 @@ jobs:
   deploy_test_ns8_development:
     executor: nodeaws-executor
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
       - run:
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
@@ -52,6 +58,9 @@ jobs:
   deploy_prod:
     executor: nodeaws-executor
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
       - run:
           command: |
@@ -102,6 +111,9 @@ jobs:
   publish:
     executor: nodeaws-executor
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
       - run:
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
@@ -118,6 +130,9 @@ jobs:
   test:
     executor: nodeaws-executor
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
       - run:
           command: |
