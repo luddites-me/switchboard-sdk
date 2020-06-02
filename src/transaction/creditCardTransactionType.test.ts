@@ -1,7 +1,6 @@
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-import 'mocha';
 import { CreditCardTransactionType } from 'ns8-protect-models';
+import { testSdkEnumConversion } from '@ns8/protect-tools-js';
+
 import { stringToCreditCardTransactionType } from './creditCardTransactionType';
 
 /**
@@ -10,7 +9,7 @@ import { stringToCreditCardTransactionType } from './creditCardTransactionType';
  */
 interface Assertion {
   input?: string;
-  output: CreditCardTransactionType;
+  assert: CreditCardTransactionType;
 }
 
 /**
@@ -19,47 +18,43 @@ interface Assertion {
 const tests: Assertion[] = [
   {
     input: 'authorization',
-    output: CreditCardTransactionType.AUTHORIZATION,
+    assert: CreditCardTransactionType.AUTHORIZATION,
   },
   {
     input: 'authorize',
-    output: CreditCardTransactionType.AUTHORIZATION,
+    assert: CreditCardTransactionType.AUTHORIZATION,
   },
   {
     input: 'capture',
-    output: CreditCardTransactionType.CAPTURE,
+    assert: CreditCardTransactionType.CAPTURE,
   },
   {
     input: 'refund',
-    output: CreditCardTransactionType.REFUND,
+    assert: CreditCardTransactionType.REFUND,
   },
   {
     input: 'sale',
-    output: CreditCardTransactionType.SALE,
+    assert: CreditCardTransactionType.SALE,
   },
   {
     input: 'order',
-    output: CreditCardTransactionType.SALE,
+    assert: CreditCardTransactionType.SALE,
   },
   {
     input: 'void',
-    output: CreditCardTransactionType.VOID,
+    assert: CreditCardTransactionType.VOID,
   },
   {
     input: 'unknown',
-    output: CreditCardTransactionType.AUTHORIZATION,
+    assert: CreditCardTransactionType.AUTHORIZATION,
   },
   {
-    output: CreditCardTransactionType.AUTHORIZATION,
+    assert: CreditCardTransactionType.AUTHORIZATION,
   },
 ];
 
-describe('credit card transaction type suite', () => {
-  use(chaiAsPromised);
-  tests.forEach((test) => {
-    it(`converts "${test.input}" to CreditCardTransactionType.${test.output.toUpperCase()}`, () => {
-      const convert = stringToCreditCardTransactionType(test.input);
-      expect(convert).to.equal(test.output);
-    });
-  });
+testSdkEnumConversion({
+  conversionFunction: stringToCreditCardTransactionType,
+  targetEnum: 'CreditCardTransactionType',
+  tests,
 });

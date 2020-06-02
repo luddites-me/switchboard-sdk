@@ -1,6 +1,4 @@
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-import 'mocha';
+import { testSdkEnumConversion } from '@ns8/protect-tools-js';
 import { TransactionMethod } from 'ns8-protect-models';
 import { stringToTransactionMethod } from './transactionMethod';
 
@@ -10,7 +8,7 @@ import { stringToTransactionMethod } from './transactionMethod';
  */
 interface Assertion {
   input?: string;
-  output: TransactionMethod;
+  assert: TransactionMethod;
 }
 
 /**
@@ -20,59 +18,55 @@ interface Assertion {
 const tests: Assertion[] = [
   {
     input: 'bankwire',
-    output: TransactionMethod.BANK_WIRE,
+    assert: TransactionMethod.BANK_WIRE,
   },
   {
     input: 'cc',
-    output: TransactionMethod.CC,
+    assert: TransactionMethod.CC,
   },
   {
     input: 'creditcard',
-    output: TransactionMethod.CC,
+    assert: TransactionMethod.CC,
   },
   {
     input: 'check',
-    output: TransactionMethod.CHECK,
+    assert: TransactionMethod.CHECK,
   },
   {
     input: 'checkmo',
-    output: TransactionMethod.CHECK,
+    assert: TransactionMethod.CHECK,
   },
   {
     input: 'check',
-    output: TransactionMethod.CHECK,
+    assert: TransactionMethod.CHECK,
   },
   {
     input: 'cod',
-    output: TransactionMethod.COD,
+    assert: TransactionMethod.COD,
   },
   {
     input: 'cashondelivery',
-    output: TransactionMethod.COD,
+    assert: TransactionMethod.COD,
   },
   {
     input: 'moneyorder',
-    output: TransactionMethod.COD,
+    assert: TransactionMethod.COD,
   },
   {
     input: 'other',
-    output: TransactionMethod.OTHER,
+    assert: TransactionMethod.OTHER,
   },
   {
     input: '',
-    output: TransactionMethod.OTHER,
+    assert: TransactionMethod.OTHER,
   },
   {
-    output: TransactionMethod.OTHER,
+    assert: TransactionMethod.OTHER,
   },
 ];
 
-describe('transaction method suite', () => {
-  use(chaiAsPromised);
-  tests.forEach((test) => {
-    it(`converts "${test.input}" to CreditCardTransactionType.${test.output.toUpperCase()}`, () => {
-      const convert = stringToTransactionMethod(test.input);
-      expect(convert).to.equal(test.output);
-    });
-  });
+testSdkEnumConversion({
+  conversionFunction: stringToTransactionMethod,
+  targetEnum: 'TransactionMethod',
+  tests,
 });

@@ -1,10 +1,7 @@
-/* eslint-disable
-  no-unused-expressions,
-  sonarjs/cognitive-complexity,
-*/
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-import 'mocha';
+/* eslint-disable sonarjs/cognitive-complexity */
+
+import { testSdkModelConversion } from '@ns8/protect-tools-js';
+
 import { LineItemData, toLineItem } from './toLineItem';
 
 /**
@@ -64,12 +61,8 @@ export const lineItemsAssertionMocks: LineItemDataAssertion[] = [
   },
 ];
 
-describe('line item convert suite', () => {
-  use(chaiAsPromised);
-  lineItemsAssertionMocks.forEach((test) => {
-    it(`converts CustomerData to Customer matching ${test.assert}`, () => {
-      const convert = toLineItem(test.input);
-      expect(convert[test.assert]).to.not.be.undefined;
-    });
-  });
+testSdkModelConversion({
+  conversionFunction: toLineItem,
+  mocks: lineItemsAssertionMocks,
+  targetModel: 'LineItem',
 });

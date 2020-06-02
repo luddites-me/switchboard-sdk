@@ -1,10 +1,7 @@
-/* eslint-disable
-  no-unused-expressions,
-  sonarjs/no-duplicate-string,
- */
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-import 'mocha';
+/* eslint-disable sonarjs/no-duplicate-string */
+
+import { testSdkModelConversion } from '@ns8/protect-tools-js';
+
 import { CustomerData, toCustomer } from './toCustomer';
 
 /**
@@ -113,12 +110,8 @@ export const customerAssertionMocks: CustomerDataAssertion[] = [
   },
 ];
 
-describe('customer convert suite', () => {
-  use(chaiAsPromised);
-  customerAssertionMocks.forEach((test) => {
-    it(`converts CustomerData to Customer matching ${test.assert}`, () => {
-      const convert = toCustomer(test.input);
-      expect(convert[test.assert]).to.not.be.undefined;
-    });
-  });
+testSdkModelConversion({
+  conversionFunction: toCustomer,
+  mocks: customerAssertionMocks,
+  targetModel: 'Customer',
 });

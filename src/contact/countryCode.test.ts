@@ -1,5 +1,5 @@
-import { expect, use } from 'chai';
-import 'mocha';
+import { testSdkStringConversion } from '@ns8/protect-tools-js';
+
 import { getCountryCodeFromCountryName, getCountryNameFromCountryCode } from './countryCode';
 
 /**
@@ -7,7 +7,7 @@ import { getCountryCodeFromCountryName, getCountryNameFromCountryCode } from './
  */
 interface Assertion {
   input?: string;
-  output: string;
+  assert: string;
 }
 
 /**
@@ -16,18 +16,18 @@ interface Assertion {
 const countryCodes: Assertion[] = [
   {
     input: 'us',
-    output: 'United States of America',
+    assert: 'United States of America',
   },
   {
     input: 'unknown',
-    output: '',
+    assert: '',
   },
   {
     input: '',
-    output: '',
+    assert: '',
   },
   {
-    output: '',
+    assert: '',
   },
 ];
 
@@ -37,32 +37,29 @@ const countryCodes: Assertion[] = [
 const countryNames: Assertion[] = [
   {
     input: 'United States of America',
-    output: 'US',
+    assert: 'US',
   },
   {
     input: 'unknown',
-    output: '',
+    assert: '',
   },
   {
     input: '',
-    output: '',
+    assert: '',
   },
   {
-    output: '',
+    assert: '',
   },
 ];
 
-describe('country name suite', () => {
-  countryCodes.forEach((test) => {
-    it(`converts "${test.input}" to "${test.output}"`, () => {
-      const convert = getCountryNameFromCountryCode(test.input);
-      expect(convert).to.equal(test.output);
-    });
-  });
-  countryNames.forEach((test) => {
-    it(`converts "${test.input}" to "${test.output}"`, () => {
-      const convert = getCountryCodeFromCountryName(test.input);
-      expect(convert).to.equal(test.output);
-    });
-  });
+testSdkStringConversion({
+  conversionFunction: getCountryNameFromCountryCode,
+  strings: countryCodes,
+  targetString: 'country code',
+});
+
+testSdkStringConversion({
+  conversionFunction: getCountryCodeFromCountryName,
+  strings: countryNames,
+  targetString: 'country name',
 });

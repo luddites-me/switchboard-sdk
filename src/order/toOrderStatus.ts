@@ -2,8 +2,8 @@
 import { Status } from 'ns8-protect-models';
 
 /**
- * Safely converts a string to an Status
- * @param orderStatus - An status to attempt to parse
+ * Safely converts a string to a Status
+ * @param orderStatus - A status to attempt to parse
  * @returns Status; defaults to 'MERCHANT_REVIEW' if not parsable
  * @public
  */

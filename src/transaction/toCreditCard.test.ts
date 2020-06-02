@@ -1,8 +1,6 @@
-/* eslint-disable no-unused-expressions */
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-import 'mocha';
 import { CreditCardTransactionType } from 'ns8-protect-models';
+import { testSdkModelConversion } from '@ns8/protect-tools-js';
+
 import { CreditCardData, toCreditCard } from './toCreditCard';
 
 /**
@@ -59,12 +57,8 @@ export const creditCardAssertionMocks: CreditCardAssertion[] = [
   },
 ];
 
-describe('credit card convert suite', () => {
-  use(chaiAsPromised);
-  creditCardAssertionMocks.forEach((test) => {
-    it(`converts CreditCardData to CreditCard matching ${test.assert}`, () => {
-      const convert = toCreditCard(test.input);
-      expect(convert[test.assert]).to.not.be.undefined;
-    });
-  });
+testSdkModelConversion({
+  conversionFunction: toCreditCard,
+  mocks: creditCardAssertionMocks,
+  targetModel: 'CreditCard',
 });

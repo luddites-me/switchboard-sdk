@@ -1,9 +1,7 @@
-/* eslint-disable
-  no-unused-expressions,
-  sonarjs/no-duplicate-string,
-*/
-import { expect } from 'chai';
-import 'mocha';
+/* eslint-disable sonarjs/no-duplicate-string */
+
+import { testSdkModelConversion } from '@ns8/protect-tools-js';
+
 import { AddressData, toAddress } from './toAddress';
 
 /**
@@ -190,11 +188,8 @@ export const addressAssertionMocks: AddressDataAssertion[] = [
   },
 ];
 
-describe('address convert suite', () => {
-  addressAssertionMocks.forEach((test) => {
-    it(`converts AddressData to Address matching ${test.assert}`, () => {
-      const convert = toAddress(test.input);
-      expect(convert[test.assert]).to.not.be.undefined;
-    });
-  });
+testSdkModelConversion({
+  conversionFunction: toAddress,
+  mocks: addressAssertionMocks,
+  targetModel: 'Address',
 });

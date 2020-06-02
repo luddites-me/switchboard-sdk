@@ -25,7 +25,7 @@
   },
   "description": "Protect Switchboard SDK",
   "devDependencies": {
-    "@ns8/protect-tools-js": "0.1.7",
+    "@ns8/protect-tools-js": "0.1.8",
     "@types/country-list": "^2.1.0",
     "@types/sinon": "^9.0.4",
     "@types/ua-parser-js": "0.7.33",
