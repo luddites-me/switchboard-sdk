@@ -1,7 +1,5 @@
-/* eslint-disable no-unused-expressions */
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-import 'mocha';
+import { testSdkModelConversion } from '@ns8/protect-tools-js';
+
 import { SessionData, toSession } from './toSession';
 
 /**
@@ -51,16 +49,8 @@ export const sessionAssertionMocks: SessionDataAssertion[] = [
   },
 ];
 
-describe('session convert suite', () => {
-  use(chaiAsPromised);
-  sessionAssertionMocks.forEach((test) => {
-    it(`converts SessionData to Session matching ${test.assert}`, () => {
-      if (test.assert === 'throws') {
-        expect(() => toSession(test.input)).to.throw();
-      } else {
-        const convert = toSession(test.input);
-        expect(convert[test.assert]).to.not.be.undefined;
-      }
-    });
-  });
+testSdkModelConversion({
+  conversionFunction: toSession,
+  mocks: sessionAssertionMocks,
+  targetModel: 'Session',
 });

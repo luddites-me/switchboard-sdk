@@ -1,10 +1,7 @@
-/* eslint-disable
-  no-unused-expressions,
-  sonarjs/no-duplicate-string
-*/
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-import 'mocha';
+/* eslint-disable sonarjs/no-duplicate-string */
+
+import { testSdkModelConversion } from '@ns8/protect-tools-js';
+
 import { MerchantData, toMerchant } from './toMerchant';
 
 /**
@@ -89,12 +86,8 @@ export const merchantAssertionMocks: MerchantDataAssertion[] = [
   },
 ];
 
-describe('merchant convert suite', () => {
-  use(chaiAsPromised);
-  merchantAssertionMocks.forEach((test) => {
-    it(`converts MerchantData to Merchant matching ${test.assert}`, () => {
-      const convert = toMerchant(test.input);
-      expect(convert[test.assert]).to.not.be.undefined;
-    });
-  });
+testSdkModelConversion({
+  conversionFunction: toMerchant,
+  mocks: merchantAssertionMocks,
+  targetModel: 'Merchant',
 });

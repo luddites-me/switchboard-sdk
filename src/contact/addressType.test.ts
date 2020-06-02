@@ -1,7 +1,6 @@
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-import 'mocha';
 import { AddressType } from 'ns8-protect-models';
+import { testSdkEnumConversion } from '@ns8/protect-tools-js';
+
 import { stringToProtectAddressType } from './addressType';
 
 /**
@@ -9,7 +8,7 @@ import { stringToProtectAddressType } from './addressType';
  */
 interface AddressAssertion {
   input?: string;
-  output: AddressType;
+  assert: AddressType;
 }
 
 /**
@@ -19,35 +18,31 @@ interface AddressAssertion {
 export const tests: AddressAssertion[] = [
   {
     input: 'billing',
-    output: AddressType.BILLING,
+    assert: AddressType.BILLING,
   },
   {
     input: 'shipping',
-    output: AddressType.SHIPPING,
+    assert: AddressType.SHIPPING,
   },
   {
     input: 'device',
-    output: AddressType.DEVICE,
+    assert: AddressType.DEVICE,
   },
   {
-    output: AddressType.DEVICE,
+    assert: AddressType.DEVICE,
   },
   {
     input: 'unknown',
-    output: AddressType.DEVICE,
+    assert: AddressType.DEVICE,
   },
   {
     input: '',
-    output: AddressType.DEVICE,
+    assert: AddressType.DEVICE,
   },
 ];
 
-describe('address type suite', () => {
-  use(chaiAsPromised);
-  tests.forEach((test) => {
-    it(`converts "${test.input}" to AddressType.${test.output.toUpperCase()}`, () => {
-      const convert = stringToProtectAddressType(test.input);
-      expect(convert).to.equal(test.output);
-    });
-  });
+testSdkEnumConversion({
+  conversionFunction: stringToProtectAddressType,
+  targetEnum: 'AddressType',
+  tests,
 });

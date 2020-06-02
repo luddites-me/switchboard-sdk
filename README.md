@@ -76,7 +76,7 @@ cast the string to an enum and has sane defaults if parsing is not possible.
 ### Utility Methods
 
 Beneath the data model conversion utilities are a number of core utilities that are exposed for convenience if needed. All of the utility methods are
-utilized internall within the data model methods, but you can call them directly. These methods range from date parsers, enum parsers, validators and
+utilized internally within the data model methods, but you can call them directly. These methods range from date parsers, enum parsers, validators and
 other primitive converters to allow the interfaces to be as flexible as possible.
 
 ### Examples

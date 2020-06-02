@@ -1,7 +1,4 @@
-/* eslint-disable no-unused-expressions */
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-import 'mocha';
+import { testSdkModelConversion } from '@ns8/protect-tools-js';
 import { TransactionMethod, TransactionStatus } from 'ns8-protect-models';
 import { TransactionData, toTransaction } from './toTransaction';
 import { creditCardAssertionMocks } from './toCreditCard.test';
@@ -70,12 +67,8 @@ export const transactionAssertionMocks: TransactionDataAssertion[] = [
   },
 ];
 
-describe('transaction convert suite', () => {
-  use(chaiAsPromised);
-  transactionAssertionMocks.forEach((test) => {
-    it(`converts TransactionData to Transaction matching ${test.assert}`, () => {
-      const convert = toTransaction(test.input);
-      expect(convert[test.assert]).to.not.be.undefined;
-    });
-  });
+testSdkModelConversion({
+  conversionFunction: toTransaction,
+  mocks: transactionAssertionMocks,
+  targetModel: 'Transaction',
 });
