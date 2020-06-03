@@ -7,6 +7,30 @@ RetryDefault:
       MaxAttempts: 1
 custom:
   integrationName: '${self:service}-${self:provider.stage}'
+  alerts:
+    stages:
+       - test
+      - prod
+    dashboards: true
+    nameTemplate: $[functionName]-$[metricName]-Alarm
+    prefixTemplate: $[stackName]
+    properties:
+      alarmActions:
+        - ${self:custom.${self:provider.stage}.pagerDutyArn}
+        - ${self:custom.${self:provider.stage}.slackNotificationArn}
+      alarmDescription: |
+        Error Alarm for Magento Lambda Functions
+    definitions:
+      functionErrors:
+        namespace: 'AWS/Lambda'
+        threshold: 0
+        statistic: Minimum
+        period: 300
+        evaluationPeriods: 1
+        datapointsToAlarm: 1
+        comparisonOperator: GreaterThanThreshold
+    alarms:
+      - functionErrors
 functions:
   CreateOrderAction:
     handler: dist/index.CreateOrderAction
@@ -44,6 +68,7 @@ package:
 plugins:
   - serverless-step-functions
   - serverless-pseudo-parameters
+  - serverless-plugin-aws-alerts
 provider:
   deploymentBucket:
     name: '${ssm:/serverless/deployment/bucket/name}'
