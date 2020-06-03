@@ -9,8 +9,9 @@ custom:
   integrationName: '${self:service}-${self:provider.stage}'
   alerts:
     stages:
-       - test
+      - test
       - prod
+      - dev-ctd
     dashboards: true
     nameTemplate: $[functionName]-$[metricName]-Alarm
     prefixTemplate: $[stackName]
@@ -19,18 +20,28 @@ custom:
         - ${self:custom.${self:provider.stage}.pagerDutyArn}
         - ${self:custom.${self:provider.stage}.slackNotificationArn}
       alarmDescription: |
-        Error Alarm for Magento Lambda Functions
+        Error Alarm for Lambda Functions based on the Switchboard SDK
     definitions:
       functionErrors:
         namespace: 'AWS/Lambda'
-        threshold: 0
-        statistic: Minimum
+        threshold: 1
+        statistic: Sum
         period: 300
         evaluationPeriods: 1
         datapointsToAlarm: 1
         comparisonOperator: GreaterThanThreshold
+      functionDuration:
+        namespace: 'AWS/Lambda'
+        metric: Duration
+        threshold: 500
+        statistic: Maximum
+        period: 60
+        evaluationPeriods: 1
+        comparisonOperator: GreaterThanOrEqualToThreshold
+        treatMissingData: missing
     alarms:
       - functionErrors
+      - functionDuration
 functions:
   CreateOrderAction:
     handler: dist/index.CreateOrderAction
