@@ -748,10 +748,10 @@
   resolved "https://registry.yarnpkg.com/@types/argparse/-/argparse-1.0.38.tgz#a81fd8606d481f873a3800c6ebae4f1d768a56a9"
   integrity sha512-ebDJ9b0e702Yr7pWgB0jzm+CX4Srzz8RcXtLJDJB+BSccqMa36uyH/zUsSYao5+BD1ytv3k3rPYCq4mAE1hsXA==
 
-"@types/aws-lambda@^8.10.51":
-  version "8.10.51"
-  resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.51.tgz#7ad774507a3cf1d2e949ca305380c23b5af635a0"
-  integrity sha512-XK7RerpXj4r+IO0r7qIeNqUSU6L4qhPMwNhISxozJJiUX/jdXj9WYzTShRVisEcUQHXgJ4TTBqTArM8f9Mjb8g==
+"@types/aws-lambda@^8.10.52":
+  version "8.10.52"
+  resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.52.tgz#b019cc7e1819eaf86a9166383951d5ec4aa2d32e"
+  integrity sha512-Gm8hzCpdDj4/wlS8HA6nPPM5nHTF3Wjv/d6n7J2fdcJF4GtAIMbG7Wm8xKXY02K/Yqo8fzGw7PfbbkP9IeVlCg==
 
 "@types/aws4@^1.5.1":
   version "1.5.1"
