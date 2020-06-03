@@ -25,7 +25,6 @@ package:
 plugins:
   - serverless-step-functions
   - serverless-pseudo-parameters
-  - serverless-plugin-aws-alerts
 provider:
   deploymentBucket:
     name: '${ssm:/serverless/deployment/bucket/name}'
