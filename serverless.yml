@@ -23,14 +23,24 @@ custom:
     definitions:
       functionErrors:
         namespace: 'AWS/Lambda'
-        threshold: 0
-        statistic: Minimum
+        threshold: 1
+        statistic: Sum
         period: 300
         evaluationPeriods: 1
         datapointsToAlarm: 1
         comparisonOperator: GreaterThanThreshold
+      functionDuration:
+        namespace: 'AWS/Lambda/Switchboard'
+        metric: Duration
+        threshold: 500
+        statistic: Maximum
+        period: 60
+        evaluationPeriods: 1
+        comparisonOperator: GreaterThanOrEqualToThreshold
+        treatMissingData: missing
     alarms:
       - functionErrors
+      - functionDuration
 functions:
   CreatePolledMessage:
     environment:
