@@ -7,9 +7,6 @@ jobs:
   deploy_dev:
     executor: nodeaws-executor
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
       - run:
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
@@ -26,9 +23,6 @@ jobs:
   deploy_test_ns8_development:
     executor: nodeaws-executor
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
       - run:
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
@@ -82,7 +76,7 @@ jobs:
       - run:
           command: |
             if ! git push -u origin master --follow-tags; then
-              echo "Push failed. Please delete and re-add this CircleCI deploy key to your repo with write access:"
+              echo "Push failed. Please add this CircleCI deploy key to your repo with write access:"
               ssh-keygen -y -f ~/.ssh/id_rsa
               exit 1
             fi
@@ -111,9 +105,6 @@ jobs:
   publish:
     executor: nodeaws-executor
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
       - run:
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
@@ -130,9 +121,6 @@ jobs:
   test:
     executor: nodeaws-executor
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
       - run:
           command: |
