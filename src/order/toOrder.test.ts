@@ -2,10 +2,10 @@
   no-unused-expressions,
   sonarjs/no-duplicate-string,
 */
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
+import { expect } from 'chai';
 import 'mocha';
-import { Order } from 'ns8-protect-models';
+import { testSdkModelConversion } from '@ns8/protect-tools-js';
+
 import { OrderData, toOrder } from './toOrder';
 import { AddressDataAssertion, addressAssertionMocks } from '../contact/toAddress.test';
 import { CustomerDataAssertion, customerAssertionMocks } from '../customer/toCustomer.test';
@@ -91,17 +91,18 @@ export const orderAssertionMocks: OrderDataAssertion[] = [
   },
 ];
 
-describe('order convert suite', () => {
-  use(chaiAsPromised);
-  orderAssertionMocks.forEach((test) => {
-    it(`converts OrderData to Order matching ${test.assert}`, () => {
-      const convert = toOrder(test.input);
-      expect(convert[test.assert]).to.not.be.undefined;
-    });
-  });
+testSdkModelConversion({
+  conversionFunction: toOrder,
+  mocks: orderAssertionMocks,
+  targetModel: 'Order',
+});
+
+describe('Order casting and conversion suite', () => {
   orderMocks.forEach((mock) => {
-    expect(() => {
-      toOrder((mock as unknown) as OrderData);
-    }).not.to.throw();
+    it('should not throw when the data is cast', () => {
+      expect(() => {
+        toOrder((mock as unknown) as OrderData);
+      }).not.to.throw();
+    });
   });
 });

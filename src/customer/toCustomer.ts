@@ -4,7 +4,7 @@ import { getUniqueCustomerId } from './customerId';
 import { toDate } from '../util';
 
 /**
- * Generic object representing a credit card.
+ * Generic object representing a customer.
  * @remarks
  * All properties are optional unless otherwise documented.
  * @public
