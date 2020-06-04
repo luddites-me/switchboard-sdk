@@ -2,7 +2,7 @@
   "author": "ns8inc",
   "dependencies": {
     "@ns8/ns8-switchboard-operator": "1.0.134",
-    "@types/aws-lambda": "^8.10.52",
+    "@types/aws-lambda": "^8.10.53",
     "@types/aws4": "^1.5.1",
     "aws-lambda": "^1.0.6",
     "aws-sdk": "^2.689.0",
@@ -64,7 +64,7 @@
   "name": "@ns8/protect-sdk-switchboard",
   "peerDependencies": {
     "@ns8/ns8-switchboard-operator": "1.0.134",
-    "@types/aws-lambda": "^8.10.52",
+    "@types/aws-lambda": "^8.10.53",
     "@types/aws4": "^1.5.1",
     "aws-lambda": "^1.0.6",
     "aws-sdk": "^2.689.0",
