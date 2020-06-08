@@ -11,12 +11,12 @@ if (!awsServiceName)
     `A valid environment variable value for "AWS_SERVICE_NAME" must be set. "${awsServiceName}" is not valid.`,
   );
 
-const commonYmlPath = env.AWS_SERVERLESS_YML || 'node_modules/@ns8/protect-sdk-switchboard/serverless.common.yml';
+const platformYmlPath = env.AWS_SERVERLESS_YML || 'node_modules/@ns8/protect-sdk-switchboard/serverless.platform.yml';
 const deployYmlPath = path.relative(process.cwd(), 'sls.deploy.yml');
 
 let serverlessYml = `service: '${awsServiceName}'\r\n`;
-const commonYml = readFileSync(commonYmlPath, 'utf8');
-serverlessYml += commonYml;
+const platformYml = readFileSync(platformYmlPath, 'utf8');
+serverlessYml += platformYml;
 writeFileSync(deployYmlPath, serverlessYml);
 
 slsDeploy('--config sls.deploy.yml');
