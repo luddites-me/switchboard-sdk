@@ -57,7 +57,8 @@
   },
   "files": [
     "dist",
-    "serverless.common.yml"
+    "serverless.extension.yml",
+    "serverless.platform.yml"
   ],
   "license": "UNLICENSED",
   "main": "dist/index.js",
