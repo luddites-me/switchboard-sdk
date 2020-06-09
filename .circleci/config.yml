@@ -82,12 +82,6 @@ jobs:
             fi
           name: Tag Release in GitHub
       - run:
-          command: |
-            git checkout dev
-            git merge -m 'Merge branch `master` into `dev`' master
-            git push origin dev
-          name: Merge Changes Back to Development Branch
-      - run:
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
           name: Configure NPM
       - run:
@@ -159,18 +153,19 @@ workflows:
       - deploy_dev:
           filters:
             branches:
-              only: dev
+              only: master
           requires:
             - test
       - deploy_test_ns8_development:
           filters:
             branches:
-              only: dev
-          requires:
-            - test
-      - deploy_prod:
-          filters:
-            branches:
               only: master
           requires:
             - test
+# TODO: determine how to set this up to run manually
+#      - deploy_prod:
+#          filters:
+#            branches:
+#              only: master
+#          requires:
+#            - test
