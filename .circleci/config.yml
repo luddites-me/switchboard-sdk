@@ -162,10 +162,9 @@ workflows:
               only: master
           requires:
             - test
-# TODO: determine how to set this up to run manually
-#      - deploy_prod:
-#          filters:
-#            branches:
-#              only: master
-#          requires:
-#            - test
+      - deploy_prod:
+         filters:
+           branches:
+             only: master
+         requires:
+           - test
