@@ -32,7 +32,7 @@ custom:
       functionDuration:
         namespace: 'AWS/Lambda'
         metric: Duration
-        threshold: 500
+        threshold: 6000
         statistic: Maximum
         period: 60
         evaluationPeriods: 1

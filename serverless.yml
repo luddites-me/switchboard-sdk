@@ -32,7 +32,7 @@ custom:
       functionDuration:
         namespace: 'AWS/Lambda/Switchboard'
         metric: Duration
-        threshold: 500
+        threshold: 2500
         statistic: Maximum
         period: 60
         evaluationPeriods: 1
