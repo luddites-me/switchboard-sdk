@@ -6,7 +6,7 @@ import { MerchantData, toMerchant } from './toMerchant';
 
 /**
  * Describes how Merchant data sets should look for test assertions
- * @internal
+ * @public
  */
 export interface MerchantDataAssertion {
   input: MerchantData;
@@ -15,7 +15,7 @@ export interface MerchantDataAssertion {
 
 /**
  * Assertions to test for Merchant data logic
- * @internal
+ * @public
  */
 export const merchantAssertionMocks: MerchantDataAssertion[] = [
   {

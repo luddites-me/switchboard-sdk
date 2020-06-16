@@ -6,7 +6,7 @@ import { CustomerData, toCustomer } from './toCustomer';
 
 /**
  * Describes how Customer data sets should look for test assertions
- * @internal
+ * @public
  */
 export interface CustomerDataAssertion {
   input: CustomerData;
@@ -15,7 +15,7 @@ export interface CustomerDataAssertion {
 
 /**
  * Assertions to test for Customer data logic
- * @internal
+ * @public
  */
 export const customerAssertionMocks: CustomerDataAssertion[] = [
   {

@@ -4,7 +4,7 @@
  * @param key - a key to find within the enum
  * @param caseInsensitive - option to perform a case insensitive match default false,
  * @returns true if a match is found
- * @internal
+ * @public
  */
 export const existsInEnum = (enm: object, key: string, caseInsensitive = false): boolean => {
   if (caseInsensitive) {

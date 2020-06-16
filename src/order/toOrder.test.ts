@@ -15,7 +15,7 @@ import { asyncForEach } from '../util';
 
 /**
  * Describes how Order conversion data sets should look for test assertions
- * @internal
+ * @public
  */
 export interface OrderDataAssertion {
   input: OrderData;
@@ -30,7 +30,7 @@ const transactions = transactionAssertionMocks.map((mock: TransactionDataAsserti
 
 /**
  * Assertions to test for Order Conversion data logic
- * @internal
+ * @public
  */
 export const orderAssertionMocks: OrderDataAssertion[] = [
   {

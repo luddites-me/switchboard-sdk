@@ -4,7 +4,7 @@ import { SessionData, toSession } from './toSession';
 
 /**
  * Describes how Session data sets should look for test assertions
- * @internal
+ * @public
  */
 export interface SessionDataAssertion {
   input: SessionData;
@@ -13,7 +13,7 @@ export interface SessionDataAssertion {
 
 /**
  * Assertions to test for Session data logic
- * @internal
+ * @public
  */
 export const sessionAssertionMocks: SessionDataAssertion[] = [
   {

@@ -4,7 +4,7 @@ import { stringToTransactionStatus } from './transactionStatus';
 
 /**
  * Describes how Transaction Status sets should look for test assertions
- * @internal
+ * @public
  */
 interface Assertion {
   input?: string;
@@ -13,7 +13,7 @@ interface Assertion {
 
 /**
  * Assertions to test for Transaction Status logic
- * @internal
+ * @public
  */
 const tests: Assertion[] = [
   {

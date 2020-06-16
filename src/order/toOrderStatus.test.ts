@@ -5,7 +5,7 @@ import { stringToProtectStatus } from './toOrderStatus';
 
 /**
  * Describes how Order Status data sets should look for test assertions
- * @internal
+ * @public
  */
 interface OrderStatusAssertion {
   input?: string;
@@ -14,7 +14,7 @@ interface OrderStatusAssertion {
 
 /**
  * Assertions to test for Order Status data logic
- * @internal
+ * @public
  */
 export const tests: OrderStatusAssertion[] = [
   {

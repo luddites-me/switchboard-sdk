@@ -13,7 +13,7 @@ interface AddressAssertion {
 
 /**
  * Tests that validate contact address logic
- * @internal
+ * @public
  */
 export const tests: AddressAssertion[] = [
   {

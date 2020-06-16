@@ -5,7 +5,7 @@ import { creditCardAssertionMocks } from './toCreditCard.test';
 
 /**
  * Describes how Transaction data sets should look for test assertions
- * @internal
+ * @public
  */
 export interface TransactionDataAssertion {
   input: TransactionData;
@@ -17,7 +17,7 @@ const baseDate = '01/01/1979';
 
 /**
  * Assertions to test for Transaction logic
- * @internal
+ * @public
  */
 export const transactionAssertionMocks: TransactionDataAssertion[] = [
   {

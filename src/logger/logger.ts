@@ -45,6 +45,11 @@ export enum TransportType {
   API = 'api',
 }
 
+/**
+ * A transport definition
+ * @remarks Specify a transport type and a log level. Multiple transports can be defined.
+ * @public
+ */
 export interface Transports {
   type: TransportType;
   logLevel: LogLevel;
@@ -194,9 +199,6 @@ export class Log implements LogInterface {
       ?.filter((t) => t.type === TransportType.FILE)
       .forEach((t) => {
         const fileName = `${config.name}_${t.logLevel}.log`;
-        // if (!existsSync(fileName)) {
-        //   writeFileSync(fileName, `${new Date()}`);
-        // }
         const logToFile = (logObject: ILogObject) => {
           appendFileSync(fileName, `${JSON.stringify(logObject)}\n`);
         };
@@ -263,7 +265,7 @@ export class Log implements LogInterface {
 
 /**
  * Internal handle on a static instance of a logger
- * @internal
+ * @public
  */
 let staticLogger: LogInterface;
 

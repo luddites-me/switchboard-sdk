@@ -6,7 +6,7 @@ import { AddressData, toAddress } from './toAddress';
 
 /**
  * Basic data structure for address data assertions
- * @internal
+ * @public
  */
 export interface AddressDataAssertion {
   input: AddressData;
@@ -15,7 +15,7 @@ export interface AddressDataAssertion {
 
 /**
  * Mock data utilizes for address testing
- * @internal
+ * @public
  */
 export const addressAssertionMocks: AddressDataAssertion[] = [
   {

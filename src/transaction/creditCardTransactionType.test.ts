@@ -5,7 +5,7 @@ import { stringToCreditCardTransactionType } from './creditCardTransactionType';
 
 /**
  * Describes how Transaction data sets should look for test assertions
- * @internal
+ * @public
  */
 interface Assertion {
   input?: string;

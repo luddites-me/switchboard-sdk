@@ -4,7 +4,7 @@ import { stringToTransactionMethod } from './transactionMethod';
 
 /**
  * Describes how Transaction Method sets should look for test assertions
- * @internal
+ * @public
  */
 interface Assertion {
   input?: string;
@@ -13,7 +13,7 @@ interface Assertion {
 
 /**
  * Assertions to test for Transaction Method logic
- * @internal
+ * @public
  */
 const tests: Assertion[] = [
   {

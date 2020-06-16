@@ -5,7 +5,7 @@ import { CreditCardData, toCreditCard } from './toCreditCard';
 
 /**
  * Describes how Credit Card data sets should look for test assertions
- * @internal
+ * @public
  */
 export interface CreditCardAssertion {
   input: CreditCardData;
@@ -14,7 +14,7 @@ export interface CreditCardAssertion {
 
 /**
  * Assertions to test for Credit Card logic
- * @internal
+ * @public
  */
 export const creditCardAssertionMocks: CreditCardAssertion[] = [
   {

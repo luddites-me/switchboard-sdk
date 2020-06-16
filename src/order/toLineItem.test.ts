@@ -6,7 +6,7 @@ import { LineItemData, toLineItem } from './toLineItem';
 
 /**
  * Describes how Line Item data sets should look for test assertions
- * @internal
+ * @public
  */
 export interface LineItemDataAssertion {
   input: LineItemData;
@@ -15,7 +15,7 @@ export interface LineItemDataAssertion {
 
 /**
  * Assertions to test for Line Item data logic
- * @internal
+ * @public
  */
 export const lineItemsAssertionMocks: LineItemDataAssertion[] = [
   {

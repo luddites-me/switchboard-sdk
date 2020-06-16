@@ -6,19 +6,16 @@
 
 import { Address } from 'ns8-protect-models';
 import { AddressType } from 'ns8-protect-models';
-import { createLogger } from 'winston';
 import { CreatePolledMessageLambdaPayload } from 'ns8-switchboard-interfaces';
 import { CreditCard } from 'ns8-protect-models';
 import { CreditCardTransactionType } from 'ns8-protect-models';
 import { Customer } from 'ns8-protect-models';
 import { DeletePolledMessageLambdaPayload } from 'ns8-switchboard-interfaces';
-import { format } from 'winston';
 import { Handler } from 'aws-lambda';
+import { ILogObject } from 'tslog';
 import { ISettingsParam } from 'tslog';
 import { LineItem } from 'ns8-protect-models';
-import { Logger } from 'winston';
-import { Logger as Logger_2 } from 'tslog';
-import { LoggerOptions } from 'winston';
+import { Logger } from 'tslog';
 import { Merchant } from 'ns8-protect-models';
 import { Order } from 'ns8-protect-models';
 import { PollQueueLambdaPayload } from 'ns8-switchboard-interfaces';
@@ -30,7 +27,6 @@ import { SwitchEventType } from 'ns8-switchboard-interfaces';
 import { Transaction } from 'ns8-protect-models';
 import { TransactionMethod } from 'ns8-protect-models';
 import { TransactionStatus } from 'ns8-protect-models';
-import { transports } from 'winston';
 
 // @public
 export interface AddressData {
@@ -52,9 +48,10 @@ export interface AddressData {
     zip?: string | number;
 }
 
-// Warning: (ae-internal-missing-underscore) The name "buildLoggerConfig" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
+export const asyncForEach: (array: any[], callback: any) => Promise<void>;
+
+// @public
 export const buildLoggerConfig: (options?: LogOptions | undefined) => ISettingsParam;
 
 // @public
@@ -65,8 +62,6 @@ export interface ContactData {
     name?: string;
     phone?: string;
 }
-
-export { createLogger }
 
 // @public
 export const createPolledMessage: Handler<CreatePolledMessageLambdaPayload, void>;
@@ -103,25 +98,17 @@ export interface CustomerData {
     totalSpent?: string | number;
 }
 
-// Warning: (ae-internal-missing-underscore) The name "DefaultLogOptions" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export const DefaultLogOptions: ISettingsParam;
 
 // @public
 export const deletePolledMessage: Handler<DeletePolledMessageLambdaPayload, void>;
 
-// Warning: (ae-internal-missing-underscore) The name "errorMethod" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export type errorMethod = (message: string, error: Error, ...args: any[]) => void;
 
-// Warning: (ae-internal-missing-underscore) The name "existsInEnum" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export const existsInEnum: (enm: object, key: string, caseInsensitive?: boolean) => boolean;
-
-export { format }
 
 // @public
 export enum Gender {
@@ -133,19 +120,13 @@ export enum Gender {
     UNKNOWN = "U"
 }
 
-// Warning: (ae-internal-missing-underscore) The name "getCountryCodeFromCountryName" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export const getCountryCodeFromCountryName: (countryName?: string) => string;
 
-// Warning: (ae-internal-missing-underscore) The name "getCountryNameFromCountryCode" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export const getCountryNameFromCountryCode: (countryCode?: string) => string;
 
-// Warning: (ae-internal-missing-underscore) The name "getGender" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export const getGender: (g?: string | number) => string;
 
 // @public
@@ -162,10 +143,12 @@ export const getRegionCodeFromRegionName: (countryCode?: string, regionName?: st
 // @public
 export const getUniqueCustomerId: (customerId: string, emailAddress: string) => string;
 
-// Warning: (ae-internal-missing-underscore) The name "infoMethod" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+export { ILogObject }
+
+// @public
 export type infoMethod = (message: string, ...args: any[]) => void;
+
+export { ISettingsParam }
 
 // @public
 export const isRegionCodeValid: (countryCode?: string, regionCode?: string) => boolean;
@@ -199,25 +182,26 @@ export interface LineItemData {
 // @public
 export class Log implements LogInterface {
     constructor(logOptions?: LogOptions);
+    debug: (message: string, ...args: any[]) => void;
     error: (message: string, error: Error, ...args: any[]) => void;
+    fatal: (message: string, error: Error, ...args: any[]) => void;
     info: (message: string, ...args: any[]) => void;
     log: (level: LogLevel, message: string, ...args: any[]) => void;
     // (undocumented)
-    logger: Logger_2;
+    logger: Logger;
+    warn: (message: string, ...args: any[]) => void;
 }
 
 export { Logger }
 
-export { LoggerOptions }
-
 // @public
 export interface LogInterface {
-    // Warning: (ae-incompatible-release-tags) The symbol "error" is marked as @public, but its signature references "errorMethod" which is marked as @internal
+    debug: infoMethod;
     error: errorMethod;
-    // Warning: (ae-incompatible-release-tags) The symbol "info" is marked as @public, but its signature references "infoMethod" which is marked as @internal
+    fatal: errorMethod;
     info: infoMethod;
-    // Warning: (ae-incompatible-release-tags) The symbol "log" is marked as @public, but its signature references "logMethod" which is marked as @internal
     log: logMethod;
+    warn: infoMethod;
 }
 
 // @public
@@ -238,28 +222,14 @@ export enum LogLevel {
     WARN = "warn"
 }
 
-// Warning: (ae-internal-missing-underscore) The name "logMethod" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export type logMethod = (level: LogLevel, message: string, ...args: any[]) => void;
 
 // @public
 export interface LogOptions {
     logLevel: LogLevel;
     serviceName: string;
-    transports: LogOutput[];
-}
-
-// @public
-export enum LogOutput {
-    // (undocumented)
-    API = "api",
-    // (undocumented)
-    CONSOLE = "console",
-    // (undocumented)
-    FILE = "file",
-    // (undocumented)
-    NONE = "none"
+    transports?: Transports[];
 }
 
 // @public
@@ -295,9 +265,7 @@ export interface OrderData {
     updatedAt?: string | Date;
 }
 
-// Warning: (ae-internal-missing-underscore) The name "orderMocks" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export const orderMocks: {
     addresses: {
         address1: string;
@@ -424,17 +392,13 @@ export interface SessionData {
     userAgent: string;
 }
 
-// Warning: (ae-internal-missing-underscore) The name "sleep" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export const sleep: (milliseconds?: number) => Promise<void>;
 
 // @public
 export const stringToCreditCardTransactionType: (creditCardTransactionType?: string) => CreditCardTransactionType;
 
-// Warning: (ae-internal-missing-underscore) The name "stringToProtectAddressType" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export const stringToProtectAddressType: (addressType?: string) => AddressType;
 
 // @public
@@ -446,9 +410,7 @@ export const stringToTransactionMethod: (transactionMethod?: string) => Transact
 // @public
 export const stringToTransactionStatus: (transactionStatus?: string) => TransactionStatus;
 
-// Warning: (ae-internal-missing-underscore) The name "toAddress" should be prefixed with an underscore because the declaration is marked as @internal
-//
-// @internal
+// @public
 export const toAddress: (data: AddressData) => Address;
 
 // @public
@@ -461,7 +423,7 @@ export const toCustomer: (data: CustomerData) => Customer;
 export const toDate: (date?: any) => Date | undefined;
 
 // @public
-export const toLineItem: (data: LineItemData) => Promise<LineItem>;
+export const toLineItem: (data: LineItemData) => LineItem;
 
 // @public
 export const toMerchant: (data: MerchantData) => Merchant;
@@ -488,7 +450,25 @@ export interface TransactionData {
     statusDetails?: string;
 }
 
-export { transports }
+// @public
+export interface Transports {
+    // (undocumented)
+    logLevel: LogLevel;
+    // (undocumented)
+    type: TransportType;
+}
+
+// @public
+export enum TransportType {
+    // (undocumented)
+    API = "api",
+    // (undocumented)
+    CONSOLE = "console",
+    // (undocumented)
+    FILE = "file",
+    // (undocumented)
+    NONE = "none"
+}
 
 // @public
 export const validateMerchantIntegration: (context: SwitchContext, integrationType: ServiceIntegrationType) => boolean;

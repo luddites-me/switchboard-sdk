@@ -10,7 +10,7 @@ import { isValidDate, toDate } from './date';
 
 /**
  * Describes how date info sets should look for test assertions
- * @internal
+ * @public
  */
 interface Assertion {
   input?: any;
