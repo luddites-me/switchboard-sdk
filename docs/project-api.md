@@ -49,7 +49,7 @@ export interface AddressData {
 }
 
 // @public
-export const asyncForEach: (array: any[], callback: any) => Promise<void>;
+export const asyncForEach: (array?: any[] | undefined, callback?: any) => Promise<void>;
 
 // @public
 export const buildLoggerConfig: (options?: LogOptions | undefined) => ISettingsParam;
