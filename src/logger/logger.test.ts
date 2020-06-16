@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import { SdkTestAssertionType, testSdkAssertion } from '@ns8/protect-tools-js';
-import { Log, LogLevel, getLogger, TransportType } from './logger';
+import { Log, LogLevel, TransportType, getLogger } from './logger';
 
 const serviceName = 'unit-test';
 const message = 'This is a message';

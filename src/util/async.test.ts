@@ -3,7 +3,7 @@
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import 'mocha';
-import { sleep, asyncForEach } from './async';
+import { asyncForEach, sleep } from './async';
 
 // Sleep tests
 describe('sleep', () => {
@@ -30,7 +30,9 @@ describe('asyncForEach', () => {
   });
 
   it('async operates over empty array', async () => {
-    await asyncForEach([], async (i: number) => { return i; });
+    await asyncForEach([], async (i: number) => {
+      return i;
+    });
     expect('').to.be.string;
   });
 

@@ -2,7 +2,7 @@
   no-unused-expressions,
   sonarjs/no-duplicate-string,
 */
-import { testSdkModelConversion, testSdkAssertion, SdkTestAssertionType } from '@ns8/protect-tools-js';
+import { SdkTestAssertionType, testSdkAssertion, testSdkModelConversion } from '@ns8/protect-tools-js';
 
 import { OrderData, toOrder } from './toOrder';
 import { AddressDataAssertion, addressAssertionMocks } from '../contact/toAddress.test';
@@ -98,15 +98,17 @@ testSdkModelConversion({
 
 testSdkAssertion({
   name: 'Casting Orders',
-  assertions: [{
-    assertionFunction: async () => {
-      return asyncForEach(orderMocks, async (mock) => {
-        return toOrder((mock as unknown) as OrderData);
-      });
+  assertions: [
+    {
+      assertionFunction: async () => {
+        return asyncForEach(orderMocks, async (mock) => {
+          return toOrder((mock as unknown) as OrderData);
+        });
+      },
+      name: 'should not throw when the data is cast',
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
     },
-    name: 'should not throw when the data is cast',
-    assertion: SdkTestAssertionType.TO_NOT_THROW,
-  }],
+  ],
 });
 
 const validateMock: OrderData = {
@@ -128,32 +130,36 @@ const validateMock: OrderData = {
 
 testSdkAssertion({
   name: 'Tests validation rules',
-  assertions: [{
-    name: 'ISBN is invalid',
-    assertionFunction: async () => {
-      const mock: OrderData = JSON.parse(JSON.stringify(validateMock));
-      if (!mock.lineItems) return Promise.reject(new Error('Failed test'));
-      mock.lineItems[0].isbn = '1';
-      return toOrder(mock);
+  assertions: [
+    {
+      name: 'ISBN is invalid',
+      assertionFunction: async () => {
+        const mock: OrderData = JSON.parse(JSON.stringify(validateMock));
+        if (!mock.lineItems) return Promise.reject(new Error('Failed test'));
+        mock.lineItems[0].isbn = '1';
+        return toOrder(mock);
+      },
+      assertion: SdkTestAssertionType.TO_THROW,
     },
-    assertion: SdkTestAssertionType.TO_THROW,
-  },{
-    name: 'IP Address is invalid',
-    assertionFunction: async () => {
-      const mock: OrderData = JSON.parse(JSON.stringify(validateMock));
-      if (!mock.session) return Promise.reject(new Error('Failed test'));
-      mock.session.ip = 'x!2'
-      return toOrder(mock);
+    {
+      name: 'IP Address is invalid',
+      assertionFunction: async () => {
+        const mock: OrderData = JSON.parse(JSON.stringify(validateMock));
+        if (!mock.session) return Promise.reject(new Error('Failed test'));
+        mock.session.ip = 'x!2';
+        return toOrder(mock);
+      },
+      assertion: SdkTestAssertionType.TO_THROW,
     },
-    assertion: SdkTestAssertionType.TO_THROW,
-  },{
-    name: 'User Agent is invalid',
-    assertionFunction: async () => {
-      const mock: OrderData = JSON.parse(JSON.stringify(validateMock));
-      if (!mock.session) return Promise.reject(new Error('Failed test'));
-      mock.session.userAgent = '';
-      return toOrder(mock);
+    {
+      name: 'User Agent is invalid',
+      assertionFunction: async () => {
+        const mock: OrderData = JSON.parse(JSON.stringify(validateMock));
+        if (!mock.session) return Promise.reject(new Error('Failed test'));
+        mock.session.userAgent = '';
+        return toOrder(mock);
+      },
+      assertion: SdkTestAssertionType.TO_THROW,
     },
-    assertion: SdkTestAssertionType.TO_THROW,
-  }],
+  ],
 });

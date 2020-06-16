@@ -6,6 +6,7 @@
  * @returns true if a match is found
  * @public
  */
+// eslint-disable-next-line @typescript-eslint/ban-types
 export const existsInEnum = (enm: object, key: string, caseInsensitive = false): boolean => {
   if (caseInsensitive) {
     return Object.values(enm).some((v) => v.toString().toLowerCase().trim() === key.toLowerCase().trim());

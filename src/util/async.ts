@@ -15,7 +15,8 @@ export const sleep = async (milliseconds = 1000): Promise<void> => {
  */
 export const asyncForEach = async (array?: any[], callback?: any): Promise<void> => {
   if (!array || !callback) return;
+  /* eslint-disable-next-line no-restricted-syntax */
   for await (const val of array) {
     await callback(val, array);
   }
-}
+};
