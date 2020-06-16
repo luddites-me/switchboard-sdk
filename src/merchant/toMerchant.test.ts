@@ -87,7 +87,7 @@ export const merchantAssertionMocks: MerchantDataAssertion[] = [
 ];
 
 testSdkModelConversion({
-  conversionFunction: toMerchant,
+  conversionFunction: async (input) => toMerchant(input),
   mocks: merchantAssertionMocks,
   targetModel: 'Merchant',
 });

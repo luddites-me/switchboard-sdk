@@ -2,9 +2,7 @@
   no-unused-expressions,
   sonarjs/no-duplicate-string,
 */
-import { expect } from 'chai';
-import 'mocha';
-import { testSdkModelConversion } from '@ns8/protect-tools-js';
+import { testSdkModelConversion, testSdkAssertion, SdkTestAssertionType } from '@ns8/protect-tools-js';
 
 import { OrderData, toOrder } from './toOrder';
 import { AddressDataAssertion, addressAssertionMocks } from '../contact/toAddress.test';
@@ -13,6 +11,7 @@ import { SessionDataAssertion, sessionAssertionMocks } from '../session/toSessio
 import { LineItemDataAssertion, lineItemsAssertionMocks } from './toLineItem.test';
 import { TransactionDataAssertion, transactionAssertionMocks } from '../transaction/toTransaction.test';
 import { orderMocks } from './orderMocks';
+import { asyncForEach } from '../util';
 
 /**
  * Describes how Order conversion data sets should look for test assertions
@@ -92,17 +91,69 @@ export const orderAssertionMocks: OrderDataAssertion[] = [
 ];
 
 testSdkModelConversion({
-  conversionFunction: toOrder,
+  conversionFunction: async (input) => toOrder(input),
   mocks: orderAssertionMocks,
   targetModel: 'Order',
 });
 
-describe('Order casting and conversion suite', () => {
-  orderMocks.forEach((mock) => {
-    it('should not throw when the data is cast', () => {
-      expect(() => {
-        toOrder((mock as unknown) as OrderData);
-      }).not.to.throw();
-    });
-  });
+testSdkAssertion({
+  name: 'Casting Orders',
+  assertions: [{
+    assertionFunction: async () => {
+      return asyncForEach(orderMocks, async (mock) => {
+        return toOrder((mock as unknown) as OrderData);
+      });
+    },
+    name: 'should not throw when the data is cast',
+    assertion: SdkTestAssertionType.TO_NOT_THROW,
+  }],
+});
+
+const validateMock: OrderData = {
+  addresses,
+  createdAt: '01/01/1979',
+  currency: 'USD',
+  customer,
+  hasGiftCard: false,
+  lineItems,
+  merchantId: '1',
+  name: 'My order',
+  platformCreatedAt: '01/01/1979',
+  platformId: 1,
+  session,
+  totalPrice: '1.0',
+  transactions,
+  updatedAt: '01/01/1979',
+};
+
+testSdkAssertion({
+  name: 'Tests validation rules',
+  assertions: [{
+    name: 'ISBN is invalid',
+    assertionFunction: async () => {
+      const mock: OrderData = JSON.parse(JSON.stringify(validateMock));
+      if (!mock.lineItems) return Promise.reject(new Error('Failed test'));
+      mock.lineItems[0].isbn = '1';
+      return toOrder(mock);
+    },
+    assertion: SdkTestAssertionType.TO_THROW,
+  },{
+    name: 'IP Address is invalid',
+    assertionFunction: async () => {
+      const mock: OrderData = JSON.parse(JSON.stringify(validateMock));
+      if (!mock.session) return Promise.reject(new Error('Failed test'));
+      mock.session.ip = 'x!2'
+      return toOrder(mock);
+    },
+    assertion: SdkTestAssertionType.TO_THROW,
+  },{
+    name: 'User Agent is invalid',
+    assertionFunction: async () => {
+      const mock: OrderData = JSON.parse(JSON.stringify(validateMock));
+      if (!mock.session) return Promise.reject(new Error('Failed test'));
+      mock.session.userAgent = '';
+      return toOrder(mock);
+    },
+    assertion: SdkTestAssertionType.TO_THROW,
+  }],
 });

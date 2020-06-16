@@ -63,7 +63,7 @@ export const tests: OrderStatusAssertion[] = [
 ];
 
 testSdkEnumConversion({
-  conversionFunction: stringToProtectStatus,
+  conversionFunction: async (input) => stringToProtectStatus(input),
   targetEnum: 'Status',
   tests,
 });

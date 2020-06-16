@@ -50,7 +50,7 @@ export const sessionAssertionMocks: SessionDataAssertion[] = [
 ];
 
 testSdkModelConversion({
-  conversionFunction: toSession,
+  conversionFunction: async (input) => toSession(input),
   mocks: sessionAssertionMocks,
   targetModel: 'Session',
 });

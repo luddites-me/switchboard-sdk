@@ -1,140 +1,221 @@
 /* eslint-disable no-unused-expressions */
-import { expect } from 'chai';
-import 'mocha';
-import { Log, LogLevel, LogOutput, getLogger } from './logger';
+import { SdkTestAssertionType, testSdkAssertion } from '@ns8/protect-tools-js';
+import { Log, LogLevel, getLogger, TransportType } from './logger';
 
 const serviceName = 'unit-test';
 const message = 'This is a message';
+const error = new Error(message);
 
-describe('Logging', () => {
-  it('logs using the default settings', () => {
-    const log = new Log();
-    log.error(message, { test: 'logs using the default settings' });
-    expect(true).to.be.true;
-  });
-
-  it('info logs', () => {
-    const log = new Log({
-      logLevel: LogLevel.INFO,
-      serviceName,
-      transports: [LogOutput.CONSOLE],
-    });
-    log.info(message, { test: 'info logs' });
-    expect(true).to.be.true;
-  });
-
-  it('error logs', () => {
-    const log = new Log({
-      logLevel: LogLevel.ERROR,
-      serviceName,
-      transports: [LogOutput.CONSOLE],
-    });
-    log.error(message, { test: 'error logs' });
-    expect(true).to.be.true;
-  });
-
-  it('automatically adds console logging', () => {
-    process.env.NODE_ENV = 'dev';
-    const log = new Log({
-      logLevel: LogLevel.ERROR,
-      serviceName,
-      transports: [LogOutput.FILE],
-    });
-    log.error(message, { test: 'automatically adds console logging' });
-    expect(true).to.be.true;
-  });
-
-  it('logs nothing', () => {
-    process.env.NODE_ENV = 'production';
-    const log = new Log({
-      logLevel: LogLevel.ERROR,
-      serviceName,
-      transports: [LogOutput.NONE],
-    });
-    log.error(message, { test: 'logs nothing' });
-    expect(true).to.be.true;
-  });
-
-  it('custom logs debug', () => {
-    const log = new Log({
-      logLevel: LogLevel.DEBUG,
-      serviceName,
-      transports: [LogOutput.CONSOLE],
-    });
-    log.log(LogLevel.DEBUG, message, { test: 'custom logs debug' });
-    expect(true).to.be.true;
-  });
-
-  it('custom logs warn', () => {
-    const log = new Log({
-      logLevel: LogLevel.WARN,
-      serviceName,
-      transports: [LogOutput.CONSOLE],
-    });
-    log.log(LogLevel.WARN, message, { test: 'custom logs warn' });
-    expect(true).to.be.true;
-  });
-
-  it('custom logs error', () => {
-    const log = new Log({
-      logLevel: LogLevel.ERROR,
-      serviceName,
-      transports: [LogOutput.CONSOLE],
-    });
-    log.log(LogLevel.ERROR, message, { test: 'custom logs error' });
-    expect(true).to.be.true;
-  });
-
-  it('custom logs info', () => {
-    const log = new Log({
-      logLevel: LogLevel.INFO,
-      serviceName,
-      transports: [LogOutput.CONSOLE],
-    });
-    log.log(LogLevel.INFO, message, { test: 'custom logs info' });
-    expect(true).to.be.true;
-  });
-
-  it('static logs using the default options', () => {
-    const log = getLogger();
-    log.info(message, { test: 'static logs using the default options' });
-    expect(true).to.be.true;
-  });
-
-  it('static logs to console', () => {
-    const log = getLogger({ logLevel: LogLevel.INFO, serviceName, transports: [LogOutput.CONSOLE] }, true);
-    log.info(message, { test: 'static logs to console' });
-    expect(true).to.be.true;
-  });
-
-  it('static logs to console again using the same instance', () => {
-    const log = getLogger({
-      logLevel: LogLevel.INFO,
-      serviceName,
-      transports: [LogOutput.CONSOLE],
-    });
-    log.info(message, {
-      test: 'static logs to console again using the same instance',
-    });
-    expect(true).to.be.true;
-  });
-
-  it('static logs to file', () => {
-    const log = getLogger({ logLevel: LogLevel.INFO, serviceName, transports: [LogOutput.FILE] }, true);
-    log.info(message, { test: 'static logs to file' });
-    expect(true).to.be.true;
-  });
-
-  it('static logs to file and console', () => {
-    const log = getLogger(
-      {
-        logLevel: LogLevel.INFO,
-        serviceName,
-        transports: [LogOutput.FILE, LogOutput.FILE],
+testSdkAssertion({
+  name: 'Logger Suite',
+  assertions: [
+    {
+      name: 'logs using the default settings',
+      assertionFunction: async () => {
+        const log = new Log();
+        return log.error(message, error, { test: message });
       },
-      true,
-    );
-    log.info(message, { test: 'static logs to file and console' });
-    expect(true).to.be.true;
-  });
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'info logs',
+      assertionFunction: async () => {
+        const log = new Log({
+          logLevel: LogLevel.INFO,
+          serviceName,
+          transports: [{ type: TransportType.CONSOLE, logLevel: LogLevel.INFO }],
+        });
+        return log.info(message, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'error logs',
+      assertionFunction: async () => {
+        const log = new Log({
+          logLevel: LogLevel.ERROR,
+          serviceName,
+          transports: [{ type: TransportType.CONSOLE, logLevel: LogLevel.ERROR }],
+        });
+        return log.error(message, error, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'debug logs',
+      assertionFunction: async () => {
+        const log = new Log({
+          logLevel: LogLevel.DEBUG,
+          serviceName,
+          transports: [{ type: TransportType.CONSOLE, logLevel: LogLevel.DEBUG }],
+        });
+        return log.debug(message, error, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'warn logs',
+      assertionFunction: async () => {
+        const log = new Log({
+          logLevel: LogLevel.WARN,
+          serviceName,
+          transports: [{ type: TransportType.CONSOLE, logLevel: LogLevel.WARN }],
+        });
+        return log.warn(message, error, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'fatal logs',
+      assertionFunction: async () => {
+        const log = new Log({
+          logLevel: LogLevel.FATAL,
+          serviceName,
+          transports: [{ type: TransportType.CONSOLE, logLevel: LogLevel.FATAL }],
+        });
+        return log.fatal(message, error, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'automatically adds console logging',
+      assertionFunction: async () => {
+        process.env.NODE_ENV = 'dev';
+        const log = new Log({
+          logLevel: LogLevel.ERROR,
+          serviceName,
+          transports: [{ type: TransportType.FILE, logLevel: LogLevel.ERROR }],
+        });
+        return log.error(message, error, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'logs nothing',
+      assertionFunction: async () => {
+        process.env.NODE_ENV = 'production';
+        const log = new Log({
+          logLevel: LogLevel.ERROR,
+          serviceName,
+          transports: [{ type: TransportType.NONE, logLevel: LogLevel.ERROR }],
+        });
+        return log.error(message, error, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'custom logs debug',
+      assertionFunction: async () => {
+        const log = new Log({
+          logLevel: LogLevel.DEBUG,
+          serviceName,
+          transports: [{ type: TransportType.CONSOLE, logLevel: LogLevel.DEBUG }],
+        });
+        return log.log(LogLevel.DEBUG, message, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'custom logs warn',
+      assertionFunction: async () => {
+        const log = new Log({
+          logLevel: LogLevel.WARN,
+          serviceName,
+          transports: [{ type: TransportType.CONSOLE, logLevel: LogLevel.WARN }],
+        });
+        return log.log(LogLevel.WARN, message, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'custom logs error',
+      assertionFunction: async () => {
+        const log = new Log({
+          logLevel: LogLevel.ERROR,
+          serviceName,
+          transports: [{ type: TransportType.CONSOLE, logLevel: LogLevel.ERROR }],
+        });
+        return log.log(LogLevel.ERROR, message, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'custom logs info',
+      assertionFunction: async () => {
+        const log = new Log({
+          logLevel: LogLevel.INFO,
+          serviceName,
+          transports: [{ type: TransportType.CONSOLE, logLevel: LogLevel.INFO }],
+        });
+        return log.log(LogLevel.INFO, message, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'static logs using the default options',
+      assertionFunction: async () => {
+        const log = getLogger();
+        return log.info(message, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'static logs to console',
+      assertionFunction: async () => {
+        const log = getLogger(
+          {
+            logLevel: LogLevel.INFO,
+            serviceName,
+            transports: [{ type: TransportType.CONSOLE, logLevel: LogLevel.INFO }],
+          },
+          true,
+        );
+        return log.info(message, { test: 'static logs to console' });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'static logs to console again using the same instance',
+      assertionFunction: async () => {
+        const log = getLogger({
+          logLevel: LogLevel.INFO,
+          serviceName,
+          transports: [{ type: TransportType.CONSOLE, logLevel: LogLevel.INFO }],
+        });
+        return log.info(message, {
+          test: 'static logs to console again using the same instance',
+        });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'static logs to file',
+      assertionFunction: async () => {
+        const log = getLogger(
+          { logLevel: LogLevel.INFO, serviceName, transports: [{ type: TransportType.FILE, logLevel: LogLevel.INFO }] },
+          true,
+        );
+        return log.info(message, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'static logs to file and console',
+      assertionFunction: async () => {
+        const log = getLogger(
+          {
+            logLevel: LogLevel.INFO,
+            serviceName,
+            transports: [
+              { type: TransportType.FILE, logLevel: LogLevel.INFO },
+              { type: TransportType.CONSOLE, logLevel: LogLevel.INFO },
+            ],
+          },
+          true,
+        );
+        return log.info(message, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+  ],
 });

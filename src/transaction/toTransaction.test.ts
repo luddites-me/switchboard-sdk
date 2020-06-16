@@ -68,7 +68,7 @@ export const transactionAssertionMocks: TransactionDataAssertion[] = [
 ];
 
 testSdkModelConversion({
-  conversionFunction: toTransaction,
+  conversionFunction: async (input) => toTransaction(input),
   mocks: transactionAssertionMocks,
   targetModel: 'Transaction',
 });

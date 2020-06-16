@@ -14,8 +14,10 @@ import { Customer } from 'ns8-protect-models';
 import { DeletePolledMessageLambdaPayload } from 'ns8-switchboard-interfaces';
 import { format } from 'winston';
 import { Handler } from 'aws-lambda';
+import { ISettingsParam } from 'tslog';
 import { LineItem } from 'ns8-protect-models';
 import { Logger } from 'winston';
+import { Logger as Logger_2 } from 'tslog';
 import { LoggerOptions } from 'winston';
 import { Merchant } from 'ns8-protect-models';
 import { Order } from 'ns8-protect-models';
@@ -50,8 +52,10 @@ export interface AddressData {
     zip?: string | number;
 }
 
-// @public
-export const buildLoggerConfig: (options: LogOptions) => LoggerOptions;
+// Warning: (ae-internal-missing-underscore) The name "buildLoggerConfig" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
+export const buildLoggerConfig: (options?: LogOptions | undefined) => ISettingsParam;
 
 // @public
 export interface ContactData {
@@ -99,14 +103,18 @@ export interface CustomerData {
     totalSpent?: string | number;
 }
 
-// @public
-export const DefaultLogOptions: LogOptions;
+// Warning: (ae-internal-missing-underscore) The name "DefaultLogOptions" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
+export const DefaultLogOptions: ISettingsParam;
 
 // @public
 export const deletePolledMessage: Handler<DeletePolledMessageLambdaPayload, void>;
 
-// @public (undocumented)
-export type errorMethod = (message: string, ...args: any[]) => void;
+// Warning: (ae-internal-missing-underscore) The name "errorMethod" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
+export type errorMethod = (message: string, error: Error, ...args: any[]) => void;
 
 // Warning: (ae-internal-missing-underscore) The name "existsInEnum" should be prefixed with an underscore because the declaration is marked as @internal
 //
@@ -141,7 +149,7 @@ export const getCountryNameFromCountryCode: (countryCode?: string) => string;
 export const getGender: (g?: string | number) => string;
 
 // @public
-export const getLogger: (logOptions?: LogOptions, reset?: boolean) => LogInterface;
+export const getLogger: (logOptions?: LogOptions | undefined, reset?: boolean) => LogInterface;
 
 // Warning: (ae-forgotten-export) The symbol "GetPollUrlResultPayload" needs to be exported by the entry point index.d.ts
 //
@@ -154,7 +162,9 @@ export const getRegionCodeFromRegionName: (countryCode?: string, regionName?: st
 // @public
 export const getUniqueCustomerId: (customerId: string, emailAddress: string) => string;
 
-// @public (undocumented)
+// Warning: (ae-internal-missing-underscore) The name "infoMethod" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
 export type infoMethod = (message: string, ...args: any[]) => void;
 
 // @public
@@ -189,14 +199,11 @@ export interface LineItemData {
 // @public
 export class Log implements LogInterface {
     constructor(logOptions?: LogOptions);
-    // (undocumented)
-    error: (message: string, ...args: any[]) => void;
-    // (undocumented)
+    error: (message: string, error: Error, ...args: any[]) => void;
     info: (message: string, ...args: any[]) => void;
-    // (undocumented)
     log: (level: LogLevel, message: string, ...args: any[]) => void;
     // (undocumented)
-    logger: Logger;
+    logger: Logger_2;
 }
 
 export { Logger }
@@ -205,8 +212,11 @@ export { LoggerOptions }
 
 // @public
 export interface LogInterface {
+    // Warning: (ae-incompatible-release-tags) The symbol "error" is marked as @public, but its signature references "errorMethod" which is marked as @internal
     error: errorMethod;
+    // Warning: (ae-incompatible-release-tags) The symbol "info" is marked as @public, but its signature references "infoMethod" which is marked as @internal
     info: infoMethod;
+    // Warning: (ae-incompatible-release-tags) The symbol "log" is marked as @public, but its signature references "logMethod" which is marked as @internal
     log: logMethod;
 }
 
@@ -217,12 +227,20 @@ export enum LogLevel {
     // (undocumented)
     ERROR = "error",
     // (undocumented)
+    FATAL = "fatal",
+    // (undocumented)
     INFO = "info",
+    // (undocumented)
+    SILLY = "silly",
+    // (undocumented)
+    TRACE = "trace",
     // (undocumented)
     WARN = "warn"
 }
 
-// @public (undocumented)
+// Warning: (ae-internal-missing-underscore) The name "logMethod" should be prefixed with an underscore because the declaration is marked as @internal
+//
+// @internal
 export type logMethod = (level: LogLevel, message: string, ...args: any[]) => void;
 
 // @public
@@ -234,6 +252,8 @@ export interface LogOptions {
 
 // @public
 export enum LogOutput {
+    // (undocumented)
+    API = "api",
     // (undocumented)
     CONSOLE = "console",
     // (undocumented)
@@ -441,13 +461,13 @@ export const toCustomer: (data: CustomerData) => Customer;
 export const toDate: (date?: any) => Date | undefined;
 
 // @public
-export const toLineItem: (data: LineItemData) => LineItem;
+export const toLineItem: (data: LineItemData) => Promise<LineItem>;
 
 // @public
 export const toMerchant: (data: MerchantData) => Merchant;
 
 // @public
-export const toOrder: (orderData: OrderData) => Order;
+export const toOrder: (orderData: OrderData) => Promise<Order>;
 
 // @public
 export const toSession: (data: SessionData) => Session;

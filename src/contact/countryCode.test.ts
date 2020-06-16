@@ -53,13 +53,13 @@ const countryNames: Assertion[] = [
 ];
 
 testSdkStringConversion({
-  conversionFunction: getCountryNameFromCountryCode,
+  conversionFunction: async (input) => getCountryNameFromCountryCode(input),
   strings: countryCodes,
   targetString: 'country code',
 });
 
 testSdkStringConversion({
-  conversionFunction: getCountryCodeFromCountryName,
+  conversionFunction: async (input) => getCountryCodeFromCountryName(input),
   strings: countryNames,
   targetString: 'country name',
 });

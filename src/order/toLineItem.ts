@@ -100,7 +100,7 @@ export const toLineItem = (data: LineItemData): LineItem => {
     lineItem.ean13 = ean13.substr(0, 13);
   }
   if (isbn) {
-    lineItem.isbn = isbn.substr(0, 13);
+    lineItem.isbn = isbn.split('-').join('').substr(0, 13);
   }
   if (isGiftCard) {
     lineItem.isGiftCard = !!isGiftCard;

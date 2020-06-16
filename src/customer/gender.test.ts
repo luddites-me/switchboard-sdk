@@ -53,7 +53,7 @@ const tests: Assertion[] = [
 ];
 
 testSdkEnumConversion({
-  conversionFunction: getGender,
+  conversionFunction: async (input) => getGender(input),
   targetEnum: 'Gender',
   tests,
 });

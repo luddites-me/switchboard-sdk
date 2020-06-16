@@ -9,3 +9,10 @@
 export const sleep = async (milliseconds = 1000): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
+
+export const asyncForEach = async (array, callback) => {
+  if (!array || !callback) { return; }
+  for (let index = 0; index < array.length; index++) {
+    await callback(array[index], index, array);
+  }
+}

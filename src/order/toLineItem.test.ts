@@ -22,7 +22,7 @@ export const lineItemsAssertionMocks: LineItemDataAssertion[] = [
     input: {
       ean13: '1',
       isGiftCard: false,
-      isbn: '1',
+      isbn: '978-3-16-148410-0',
       manufacturer: 'GE',
       name: 'Bar',
       platformId: 1,
@@ -62,7 +62,7 @@ export const lineItemsAssertionMocks: LineItemDataAssertion[] = [
 ];
 
 testSdkModelConversion({
-  conversionFunction: toLineItem,
+  conversionFunction: async (input) => toLineItem(input),
   mocks: lineItemsAssertionMocks,
   targetModel: 'LineItem',
 });

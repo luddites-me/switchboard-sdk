@@ -4,52 +4,7 @@ executors:
       - image: ns8inc/nodeaws:node-erbium
 
 jobs:
-  deploy_dev:
-    executor: nodeaws-executor
-    steps:
-      - checkout
-      - run:
-          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-          name: Configure NPM
-      - run:
-          command: yarn
-          name: Install Dependencies
-      - run:
-          command: yarn build:prod
-          name: Build for Production
-      - run:
-          command: yarn deploy --stage=test
-          name: Deploy Switchboard (test)
   deploy_test_ns8_development:
-    executor: nodeaws-executor
-    steps:
-      - checkout
-      - run:
-          command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
-          name: Configure NPM
-      - run:
-          command: yarn
-          name: Install Dependencies
-      - run:
-          command: yarn build:prod
-          name: Build for Production
-      - run:
-          name: Assume Role & deploy
-          command: |
-            cat \<< 'EOF' > ~/release-to-ns8-development.sh
-              ASSUMED_ROLE=$(aws sts assume-role --role-arn arn:aws:iam::244249143763:role/circle-ci-role --role-session-name x-account-deployment)
-              export AWS_ACCESS_KEY_ID=$(echo $ASSUMED_ROLE | jq -r '.Credentials.AccessKeyId')
-              export AWS_SESSION_TOKEN=$(echo $ASSUMED_ROLE | jq -r '.Credentials.SessionToken')
-              export AWS_SECRET_ACCESS_KEY=$(echo $ASSUMED_ROLE | jq -r '.Credentials.SecretAccessKey')
-              export AWS_DEFAULT_REGION="us-west-2"
-
-              # Should remain identical to actual test deployment (for short time this is in place)
-              yarn deploy --stage=test
-            EOF
-            # Ignore failures because we don't want issues with this process to affect our pipelines.
-            chmod u+x ~/release-to-ns8-development.sh || true
-            ~/release-to-ns8-development.sh || true
-  deploy_prod:
     executor: nodeaws-executor
     steps:
       - add_ssh_keys:
@@ -60,6 +15,9 @@ jobs:
           command: |
             set +eo pipefail
             if git log | head -n 2 | tail -n 1 | grep 'Author: CircleCI'; then
+              circleci step halt
+            fi
+            if git log | head -n 2 | tail -n 1 | grep 'Author: dependabot'; then
               circleci step halt
             fi
           name: Skip if CI Made the Last Commit
@@ -90,17 +48,63 @@ jobs:
       - run:
           command: yarn build:prod
           name: Build for Production
-        # TODO: figure out how to run this manually
-        #- run:
-        #    command: yarn deploy --stage=prod
-        #    name: Deploy Switchboard (prod)
       - run:
           command: yarn docs:publish
           name: Publish API docs to Github Pages
-  publish:
+      - run:
+          command: npm publish
+          name: Publish
+      - run:
+          name: Assume Role & deploy
+          command: |
+            cat \<< 'EOF' > ~/release-to-ns8-development.sh
+              ASSUMED_ROLE=$(aws sts assume-role --role-arn arn:aws:iam::244249143763:role/circle-ci-role --role-session-name x-account-deployment)
+              export AWS_ACCESS_KEY_ID=$(echo $ASSUMED_ROLE | jq -r '.Credentials.AccessKeyId')
+              export AWS_SESSION_TOKEN=$(echo $ASSUMED_ROLE | jq -r '.Credentials.SessionToken')
+              export AWS_SECRET_ACCESS_KEY=$(echo $ASSUMED_ROLE | jq -r '.Credentials.SecretAccessKey')
+              export AWS_DEFAULT_REGION="us-west-2"
+
+              # Should remain identical to actual test deployment (for short time this is in place)
+              yarn deploy --stage=test
+            EOF
+            # Ignore failures because we don't want issues with this process to affect our pipelines.
+            chmod u+x ~/release-to-ns8-development.sh || true
+            ~/release-to-ns8-development.sh || true
+  deploy_prod:
     executor: nodeaws-executor
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
+      - run:
+          command: |
+            set +eo pipefail
+            if git log | head -n 2 | tail -n 1 | grep 'Author: CircleCI'; then
+              circleci step halt
+            fi
+            if git log | head -n 2 | tail -n 1 | grep 'Author: dependabot'; then
+              circleci step halt
+            fi
+          name: Skip if CI Made the Last Commit
+      - run:
+          command: |
+            git config user.email noreply@ns8.com
+            git config user.name 'CircleCI'
+          name: Setup Git
+      - run:
+          command: |
+            yarn config set version-tag-prefix ''
+            yarn version --patch
+          name: Bump Version
+      - run:
+          command: |
+            if ! git push -u origin master --follow-tags; then
+              echo "Push failed. Please add this CircleCI deploy key to your repo with write access:"
+              ssh-keygen -y -f ~/.ssh/id_rsa
+              exit 1
+            fi
+          name: Tag Release in GitHub
       - run:
           command: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
           name: Configure NPM
@@ -109,10 +113,10 @@ jobs:
           name: Install Dependencies
       - run:
           command: yarn build:prod
-          name: Build
+          name: Build for Production
       - run:
-          command: npm publish
-          name: Publish
+          command: yarn deploy --stage=prod
+          name: Deploy Switchboard (prod)
   test:
     executor: nodeaws-executor
     steps:
@@ -140,30 +144,20 @@ jobs:
 version: 2.1
 
 workflows:
-  publish:
-    jobs:
-      - publish:
-          filters:
-            branches:
-              ignore: /.*/
-            tags:
-              only: /^\d+\.\d+\.\d+$/
   test_and_deploy:
     jobs:
       - test
-      - deploy_dev:
-          filters:
-            branches:
-              only: master
-          requires:
-            - test
       - deploy_test_ns8_development:
           filters:
+            tags:
+              only: /^\d+\.\d+\.\d+$/
             branches:
               only: master
+              ignore: /.*/
           requires:
             - test
       - deploy_prod:
+          type: approval
           filters:
             branches:
               only: master

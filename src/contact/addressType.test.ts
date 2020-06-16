@@ -42,7 +42,7 @@ export const tests: AddressAssertion[] = [
 ];
 
 testSdkEnumConversion({
-  conversionFunction: stringToProtectAddressType,
+  conversionFunction: async (input: string) => stringToProtectAddressType(input),
   targetEnum: 'AddressType',
   tests,
 });

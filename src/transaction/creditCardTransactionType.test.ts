@@ -54,7 +54,7 @@ const tests: Assertion[] = [
 ];
 
 testSdkEnumConversion({
-  conversionFunction: stringToCreditCardTransactionType,
+  conversionFunction: async (input) => stringToCreditCardTransactionType(input),
   targetEnum: 'CreditCardTransactionType',
   tests,
 });

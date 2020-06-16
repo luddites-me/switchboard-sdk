@@ -66,7 +66,7 @@ const tests: Assertion[] = [
 ];
 
 testSdkEnumConversion({
-  conversionFunction: stringToTransactionMethod,
+  conversionFunction: async (input) => stringToTransactionMethod(input),
   targetEnum: 'TransactionMethod',
   tests,
 });

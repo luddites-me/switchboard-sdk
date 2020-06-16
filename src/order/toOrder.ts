@@ -7,6 +7,9 @@ import { CustomerData, toCustomer } from '../customer/toCustomer';
 import { SessionData, toSession } from '../session/toSession';
 import { LineItemData, toLineItem } from './toLineItem';
 import { stringToProtectStatus } from './toOrderStatus';
+import { getLogger } from '../logger';
+
+const logger = getLogger();
 
 /**
  * Generic object representing an order.
@@ -84,7 +87,7 @@ export interface OrderData {
  * @param orderData - object to convert
  * @public
  */
-export const toOrder = (orderData: OrderData): Order => {
+export const toOrder = async (orderData: OrderData): Promise<Order> => {
   const {
     addresses,
     createdAt,
@@ -153,5 +156,14 @@ export const toOrder = (orderData: OrderData): Order => {
     order.updatedAt = updateAtDate;
   }
 
+  const errors = await order.getValidationErrors();
+  if (errors.length > 0) {
+    const message: string[] = [];
+    errors.forEach(e => {
+      message.push(e.toString());
+    })
+    logger.warn('Order validation failed', errors);
+    throw new Error(`Order validation failed: ${message.join('\r\n')}`);
+  }
   return order;
 };

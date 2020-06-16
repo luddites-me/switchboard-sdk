@@ -111,7 +111,7 @@ export const customerAssertionMocks: CustomerDataAssertion[] = [
 ];
 
 testSdkModelConversion({
-  conversionFunction: toCustomer,
+  conversionFunction: async (input) => toCustomer(input),
   mocks: customerAssertionMocks,
   targetModel: 'Customer',
 });

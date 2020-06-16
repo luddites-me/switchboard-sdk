@@ -58,7 +58,7 @@ export const creditCardAssertionMocks: CreditCardAssertion[] = [
 ];
 
 testSdkModelConversion({
-  conversionFunction: toCreditCard,
+  conversionFunction: async (input) => toCreditCard(input),
   mocks: creditCardAssertionMocks,
   targetModel: 'CreditCard',
 });

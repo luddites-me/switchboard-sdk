@@ -189,7 +189,7 @@ export const addressAssertionMocks: AddressDataAssertion[] = [
 ];
 
 testSdkModelConversion({
-  conversionFunction: toAddress,
+  conversionFunction: async (input) => toAddress(input),
   mocks: addressAssertionMocks,
   targetModel: 'Address',
 });
