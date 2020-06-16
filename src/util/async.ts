@@ -13,9 +13,9 @@ export const sleep = async (milliseconds = 1000): Promise<void> => {
 /**
  * Mechanism to perform async/await operations over an array
  */
-export const asyncForEach = async (array: any[], callback: any): Promise<void> => {
+export const asyncForEach = async (array?: any[], callback?: any): Promise<void> => {
   if (!array || !callback) return;
-  for (let index: number = 0; index < array.length; index += 1) {
-    await callback(array[index], index, array);
+  for await (const val of array) {
+    await callback(val, array);
   }
 }

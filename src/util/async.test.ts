@@ -24,17 +24,18 @@ describe('asyncForEach', () => {
   use(chaiAsPromised);
 
   it('async operates over every member of an array', async () => {
-    await asyncForEach([1, 2, 3, 4], async (i: number) => { return i; });
+    await asyncForEach([1, 2, 3, 4], async (i: number) => {
+      expect(i).to.be.greaterThan(0);
+    });
+  });
+
+  it('async operates over empty array', async () => {
+    await asyncForEach([], async (i: number) => { return i; });
     expect('').to.be.string;
   });
 
-  it('async operates over null array', async () => {
-    await asyncForEach(null, async (i: number) => { return i; });
-    expect('').to.be.string;
-  });
-
-  it('async operates over null callback', async () => {
-    await asyncForEach(null, null);
+  it('async operates over null params', async () => {
+    await asyncForEach();
     expect('').to.be.string;
   });
 });
