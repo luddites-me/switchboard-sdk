@@ -80,10 +80,7 @@ jobs:
       - run:
           command: |
             set +eo pipefail
-            if git log | head -n 2 | tail -n 1 | grep 'Author: CircleCI'; then
-              circleci step halt
-            fi
-            if git log | head -n 2 | tail -n 1 | grep 'Author: dependabot'; then
+            if git log | head -n 2 | tail -n 1 | grep -E 'Author: (CircleCI|dependabot)'; then
               circleci step halt
             fi
           name: Skip if CI Made the Last Commit
