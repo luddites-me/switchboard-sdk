@@ -166,12 +166,9 @@ export const toOrder = async (orderData: OrderData): Promise<Order> => {
 export const validateOrder = async (order: Order): Promise<Order> => {
   const errors = await order.getValidationErrors();
   if (errors.length > 0) {
-    const message: string[] = [];
-    errors.forEach(e => {
-      message.push(e.toString());
-    })
+    const message: string = errors.map(e => e.toString()).join('\r\n');
     logger.warn('Order validation failed', errors);
-    throw new Error(`Order validation failed: ${message.join('\r\n')}`);
+    throw new Error(`Order validation failed: ${message}`);
   }
   return order;
 }
