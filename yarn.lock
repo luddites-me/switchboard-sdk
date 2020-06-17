@@ -476,9 +476,9 @@
     colors "~1.2.1"
 
 "@serverless/cli@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@serverless/cli/-/cli-1.5.0.tgz#d9e700f0e180d5245aec1d97844fcfb1fc6feb9b"
-  integrity sha512-hGYbsI/Gf9RFTTZS4yXvufDAv/lk6ae8PGBbjZySEtlx/zqA31PgNaWBqWjCo3+KMfpcq8abDaxiJbsu4OfWew==
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@serverless/cli/-/cli-1.5.1.tgz#10d5573ad467c8000ee41540fbae591301a941fb"
+  integrity sha512-YUVPGutE8VEbIPCb6aHfePec5kKA1iaiMyLb8snXWYDLy/EWW1Dkff/DiLgeNEy6jqV4n+9lng92re+tMi+U6g==
   dependencies:
     "@serverless/core" "^1.1.2"
     "@serverless/template" "^1.1.3"
@@ -501,9 +501,9 @@
     shortid "^2.2.14"
 
 "@serverless/components@^2.30.15":
-  version "2.30.15"
-  resolved "https://registry.yarnpkg.com/@serverless/components/-/components-2.30.15.tgz#14bc50edb66367b193e1806404f2378abb1e3ec6"
-  integrity sha512-1K8L1DV1pUEYeBtUyJZfCSpfzBuuvCEPwAuu/D89g4Lxlp5DcrnkXUItKFf1sprTR/20q3tS9iKdcgPsU5QFCA==
+  version "2.30.16"
+  resolved "https://registry.yarnpkg.com/@serverless/components/-/components-2.30.16.tgz#2ce6cdfa5eda39acc24a7501807a4a7cedc89f84"
+  integrity sha512-vlVzEwZTVflGcqHcraidFWEYqbOzNEh44eNfZhDJ6fBaN4WygR93bLxyq+tujFyVTs43EfDRBTxemY5cSbrcjw==
   dependencies:
     "@serverless/inquirer" "^1.1.0"
     "@serverless/platform-client" "^0.25.7"
@@ -663,9 +663,9 @@
     traverse "^0.6.6"
 
 "@serverless/utils-china@^0.1.13":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@serverless/utils-china/-/utils-china-0.1.14.tgz#40b75877df6682f37e44ce0e4639c9a0cc76bff3"
-  integrity sha512-M1/bvs/ZhqPfj1yqdsyxu4yIWtCXHd+a5Av/ZXef1deTn1zJHO+ZJdOtvFzWHb0Sr7sX4p2ZHD/vGj0Rve/Pzg==
+  version "0.1.15"
+  resolved "https://registry.yarnpkg.com/@serverless/utils-china/-/utils-china-0.1.15.tgz#932eeb4badda18b69f04a17f8a8be0cca8b16a99"
+  integrity sha512-f7yPv3fJ2UNfo+w/O+Pt/vlHyCqzR8OAIbPnUi9wJD7AnK+95KK6tEEhDRSE/E+qpa5AbUN3cAJ00ih1HrGYAw==
   dependencies:
     "@tencent-sdk/capi" "0.2.15-alpha.0"
     dijkstrajs "^1.0.1"
@@ -676,7 +676,6 @@
     object-assign "^4.1.1"
     protobufjs "^6.9.0"
     socket.io-client "^2.3.0"
-    socket.io-stream "^0.9.1"
     winston "^3.2.1"
 
 "@serverless/utils@^1.1.0":
@@ -970,9 +969,9 @@
   integrity sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==
 
 "@types/tapable@*":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.5.tgz#9adbc12950582aa65ead76bffdf39fe0c27a3c02"
-  integrity sha512-/gG2M/Imw7cQFp8PGvz/SwocNrmKFjFsm5Pb8HdbHkZ1K8pmuPzOX4VeVoiEecFCVf4CsN1r3/BRvx+6sNqwtQ==
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.6.tgz#a9ca4b70a18b270ccb2bc0aaafefd1d486b7ea74"
+  integrity sha512-W+bw9ds02rAQaMvaLYxAbJ6cvguW/iJXNT6lTssS1ps6QdrMKttqEAMEG/b5CR8TZl3/L7/lH0ZV5nNR1LXikA==
 
 "@types/ua-parser-js@0.7.33":
   version "0.7.33"
@@ -2573,7 +2572,7 @@ compare-versions@^3.6.0:
   resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-3.6.0.tgz#1a5689913685e5a87637b8d3ffca75514ec41d62"
   integrity sha512-W6Af2Iw1z4CB7q4uU4hv646dW9GQuBM+YpC0UvUCWSD8w90SJjp+ujJuXaEMtAXBtSqGfMPuFOVn4/+FlaqfBA==
 
-component-bind@1.0.0, component-bind@~1.0.0:
+component-bind@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/component-bind/-/component-bind-1.0.0.tgz#00c608ab7dcd93897c0009651b1d3a8e1e73bbd1"
   integrity sha1-AMYIq33Nk4l8AAllGx06jh5zu9E=
@@ -2937,13 +2936,6 @@ debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
   integrity sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
   dependencies:
     ms "2.0.0"
-
-debug@~2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.2.0.tgz#f87057e995b1a1f6ae6a4960664137bc56f039da"
-  integrity sha1-+HBX6ZWxofauaklgZkE3vFbwOdo=
-  dependencies:
-    ms "0.7.1"
 
 decamelize@^1.2.0:
   version "1.2.0"
@@ -6600,11 +6592,6 @@ move-concurrently@^1.0.1:
     rimraf "^2.5.4"
     run-queue "^1.0.3"
 
-ms@0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
-  integrity sha1-nNE8A62/8ltl7/3nzoZO6VIBcJg=
-
 ms@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
@@ -8577,14 +8564,6 @@ socket.io-parser@~3.3.0:
     component-emitter "1.2.1"
     debug "~3.1.0"
     isarray "2.0.1"
-
-socket.io-stream@^0.9.1:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/socket.io-stream/-/socket.io-stream-0.9.1.tgz#421258316288b83ac693b0d43efd09d6d43aba97"
-  integrity sha1-QhJYMWKIuDrGk7DUPv0J1tQ6upc=
-  dependencies:
-    component-bind "~1.0.0"
-    debug "~2.2.0"
 
 sort-keys-length@^1.0.0:
   version "1.0.1"

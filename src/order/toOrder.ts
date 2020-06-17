@@ -155,7 +155,15 @@ export const toOrder = async (orderData: OrderData): Promise<Order> => {
   if (updateAtDate) {
     order.updatedAt = updateAtDate;
   }
+  return validateOrder(order);
+};
 
+/**
+ * Validates an order object and throw if any validation errors are found
+ * @param order - object to validate
+ * @public
+ */
+export const validateOrder = async (order: Order): Promise<Order> => {
   const errors = await order.getValidationErrors();
   if (errors.length > 0) {
     const message: string[] = [];
@@ -166,4 +174,4 @@ export const toOrder = async (orderData: OrderData): Promise<Order> => {
     throw new Error(`Order validation failed: ${message.join('\r\n')}`);
   }
   return order;
-};
+}

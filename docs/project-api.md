@@ -473,5 +473,8 @@ export enum TransportType {
 // @public
 export const validateMerchantIntegration: (context: SwitchContext, integrationType: ServiceIntegrationType) => boolean;
 
+// @public
+export const validateOrder: (order: Order) => Promise<Order>;
+
 
 ```

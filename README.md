@@ -22,6 +22,7 @@ To get started, take a look at the documentation listed below:
   - [Message Queue Architecture and Polling](docs/polling.md)
   - [API Report File for "@ns8/protect-sdk-switchboard"](docs/project-api.md)
   - [Serverless Configuration](docs/serverless.md)
+  - [Validation](docs/validation.md)
 
 ## Environment Variables
 
