@@ -6,7 +6,6 @@ Protect API uses the [`class-validator`](https://github.com/typestack/class-vali
 
 ```ts
 export class Post {
-
     @Length(10, 20)
     title: string;
 
@@ -27,11 +26,25 @@ export class Post {
     @IsDate()
     createDate: Date;
 }
+
+...
+
+const x = new Post();
+x.email = 'foo@bar.com';
+const xValid = await x.isValid(); //true
+
+const y = new Post();
+y.email = 'foobarcom';
+const yValid = await x.isValid(); //false
 ```
 
 ## Implementation
 
-The Switchboard SDK consumes the [`ns8-protect-models`](https://github.com/ns8inc/ns8-protect-models) project, which is simply an export of the protect-api models folder. This allows the SDK to convert the loosely type `{name}Data` classes into the strongly typed model classes that Protect expects. Since `ns8-protect-models` is an exported (and therefore transpiled to JavaScript) project, the decorators and attributes defined in the original source code are not transferred to the compiled code, which means that `class-validator` cannot independently and by itself be used to validate a Protect model. Further, the use of multiple instances of `class-validator` (one from `ns8-protect-models` and the other from `protect-sdk-switchboard`) is not currently supported. For these reasons, the validation is entirely delegated to `ns8-protect-api` and exposed to downstream consumers via two key methods: `isValid` and `getValidationErrors` (see [`IValidatable`](https://github.com/ns8inc/ns8-protect-api/blob/master/src/core/data/model/interface/IValidatable.ts)). [`ValidationErrors`](https://github.com/typestack/class-validator/blob/master/src/validation/ValidationError.ts) include the full validation context as provided by `class-validator`. With the exception of the `Order` class, all protect models that together comprise an instance of an Order implement this interface and these methods. As the `Order` class implements a separate interface, this class exposes these two methods directly (and not by the direction of its implemented interface). On `Order`, the `isValid` and `getValidationErrors` methods validate the entire Order object, its properties, its related classes and all related classes properties and sub-properties.
+The Switchboard SDK consumes the [`ns8-protect-models`](https://github.com/ns8inc/ns8-protect-models) project, which is simply an export of the protect-api models folder. This allows the SDK to convert the loosely type `{name}Data` classes into the strongly typed model classes that Protect expects. Since `ns8-protect-models` is an exported (and therefore transpiled to JavaScript) project, the decorators and attributes defined in the original source code are not transferred to the compiled code, which means that `class-validator` cannot independently and by itself be used to validate a Protect model.
+
+Further, the use of multiple instances of `class-validator` (one from `ns8-protect-models` and the other from `protect-sdk-switchboard`) is not currently supported. For these reasons, the validation is entirely delegated to `ns8-protect-api` and exposed to downstream consumers via two key methods: `isValid` and `getValidationErrors` (see [`IValidatable`](https://github.com/ns8inc/ns8-protect-api/blob/master/src/core/data/model/interface/IValidatable.ts)). [`ValidationErrors`](https://github.com/typestack/class-validator/blob/master/src/validation/ValidationError.ts) include the full validation context as provided by `class-validator`.
+
+With the exception of the `Order` class, all protect models that together comprise an instance of an Order implement this interface and these methods. As the `Order` class implements a separate interface, this class exposes these two methods directly (and not by the direction of its implemented interface). On `Order`, the `isValid` and `getValidationErrors` methods validate the entire Order object, its properties, its related classes and all related classes properties and sub-properties.
 
 From within the Switchboard SDK, the underlying implementation of the validation logic is applied only to the [`toOrder`](../src/order/toOrder.ts#L158) method at the conclusion of all data conversions. This allows all nested objects to be fully populated in order that on validation failure, the reported errors will include every failure for every property on the entire object. Therefore, it is strongly recommended to either convert raw data objects using `toOrder` or to manually validate the order using [`validateOrder`](../src/order/toOrder.ts#L166).
 
