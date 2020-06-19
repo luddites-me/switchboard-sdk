@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import moment from 'moment';
-import { getLogger } from '../logger';
+import { getStepLogger } from '../logger';
 
-const log = getLogger();
+const log = getStepLogger();
 
 /**
  * Determines if a date input is a valid date representation

@@ -105,6 +105,14 @@ export const DefaultLogOptions: ISettingsParam;
 export const deletePolledMessage: Handler<DeletePolledMessageLambdaPayload, void>;
 
 // @public
+export enum DisplayType {
+    // (undocumented)
+    json = "json",
+    // (undocumented)
+    pretty = "pretty"
+}
+
+// @public
 export type errorMethod = (message: string, error: Error, ...args: any[]) => void;
 
 // @public
@@ -139,6 +147,9 @@ export const getPollUrl: Handler<PollQueueLambdaPayload, GetPollUrlResultPayload
 
 // @public
 export const getRegionCodeFromRegionName: (countryCode?: string, regionName?: string) => string;
+
+// @public
+export const getStepLogger: (name?: string | undefined) => LogInterface;
 
 // @public
 export const getUniqueCustomerId: (customerId: string, emailAddress: string) => string;
@@ -230,6 +241,7 @@ export interface LogOptions {
     logLevel: LogLevel;
     serviceName: string;
     transports?: Transports[];
+    type?: DisplayType;
 }
 
 // @public

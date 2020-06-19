@@ -8,35 +8,33 @@ Protect API uses the [`class-validator`](https://github.com/typestack/class-vali
 export class Post {
     @Length(10, 20)
     title: string;
-
     @Contains("hello")
     text: string;
-
     @IsInt()
     @Min(0)
     @Max(10)
     rating: number;
-
     @IsEmail()
     email: string;
-
     @IsFQDN()
     site: string;
-
     @IsDate()
     createDate: Date;
 }
-
 ...
-
 const x = new Post();
 x.email = 'foo@bar.com';
 const xValid = await x.isValid(); //true
-
 const y = new Post();
 y.email = 'foobarcom';
 const yValid = await x.isValid(); //false
 ```
+
+## Table of Contents
+
+- [Validation](#validation)
+  - [Implementation](#implementation)
+  - [Testing](#testing)
 
 ## Implementation
 

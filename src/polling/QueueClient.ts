@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { OrderMessage, SwitchContext, SwitchEventType } from 'ns8-switchboard-interfaces';
 import { FraudAssessment, ProviderType } from 'ns8-protect-models';
-import { getLogger } from '../logger';
+import { getStepLogger } from '../logger';
 
-const logger = getLogger();
+const logger = getStepLogger();
 
 const CREATE_QUEUE_MESSAGE_ENDPOINT = '/protect/eventqueue/create';
 

@@ -3,7 +3,7 @@
   no-unused-expressions,
 */
 import { ILogObject, ISettingsParam, Logger } from 'tslog';
-import { appendFileSync } from 'fs';
+import { appendFile } from 'fs';
 
 /**
  * NOTE: these properties need to be explicitly exported for downstream consumers.
@@ -46,13 +46,21 @@ export enum TransportType {
 }
 
 /**
- * A transport definition
- * @remarks Specify a transport type and a log level. Multiple transports can be defined.
+ * Defines a specific output type, which is log level + location
  * @public
  */
 export interface Transports {
   type: TransportType;
   logLevel: LogLevel;
+}
+
+/**
+ * Render method for log messages
+ * @public
+ */
+export enum DisplayType {
+  json = 'json',
+  pretty = 'pretty',
 }
 
 /**
@@ -72,23 +80,28 @@ export interface LogOptions {
    * An optional collection of all required output targets
    */
   transports?: Transports[];
+  /**
+   * An optional type for rendering. Choices are `pretty` and `json`. Default is `json`.
+   */
+  type?: DisplayType;
 }
 
 /**
  * The default configuration if none is provided.
- * @defaultValue {@link LogLevel.ERROR} and {@link LogOutput.FILE}
+ * @defaultValue {@link LogLevel.ERROR} and {@link TransportType.FILE}
  * @public
  */
 export const DefaultLogOptions: ISettingsParam = {
-  displayInstanceName: true,
+  displayDateTime: true,
   displayFunctionName: true,
-  displayLogLevel: true,
+  displayInstanceName: true,
   displayLoggerName: true,
+  displayLogLevel: true,
   name: 'js-tools',
-  setCallerAsLoggerName: true,
-  minLevel: LogLevel.ERROR,
-  printLogMessageInNewLine: true,
   overwriteConsole: true,
+  printLogMessageInNewLine: true,
+  setCallerAsLoggerName: true,
+  type: 'json',
 };
 
 /**
@@ -104,6 +117,9 @@ export const buildLoggerConfig = (options?: LogOptions): ISettingsParam => {
   }
   if (options?.logLevel) {
     ret.minLevel = options.logLevel;
+  }
+  if (options?.type) {
+    ret.type = options.type;
   }
   return ret;
 };
@@ -198,9 +214,12 @@ export class Log implements LogInterface {
     logOptions?.transports
       ?.filter((t) => t.type === TransportType.FILE)
       .forEach((t) => {
-        const fileName = `${config.name}_${t.logLevel}.log`;
         const logToFile = (logObject: ILogObject) => {
-          appendFileSync(fileName, `${JSON.stringify(logObject)}\n`);
+          /* istanbul ignore next */
+          config.name = config.name || 'ns8';
+          const name = config.name.replace('/', '-');
+          // eslint-disable-next-line @typescript-eslint/no-empty-function
+          appendFile(`${name}_${t.logLevel}.log`, `${JSON.stringify(logObject)}\n`, () => {});
         };
         this.logger.attachTransport(
           {
@@ -265,7 +284,7 @@ export class Log implements LogInterface {
 
 /**
  * Internal handle on a static instance of a logger
- * @public
+ * @internal
  */
 let staticLogger: LogInterface;
 
@@ -281,4 +300,25 @@ export const getLogger = (logOptions?: LogOptions, reset = false): LogInterface 
   /* istanbul ignore next */
   staticLogger = staticLogger || new Log(logOptions);
   return staticLogger;
+};
+
+/**
+ * Fetches an instance of a logger.
+ * @remarks The returned logger will always be a new instance, with the same configuration.
+ * @public
+ * @param name - Script/project/method running this logger
+ */
+export const getStepLogger = (name?: string): LogInterface => {
+  return getLogger(
+    {
+      logLevel: LogLevel.INFO,
+      serviceName: name || 'ns8-switchboard',
+      transports: [
+        { logLevel: LogLevel.INFO, type: TransportType.CONSOLE },
+        { logLevel: LogLevel.FATAL, type: TransportType.FILE },
+      ],
+      type: DisplayType.pretty,
+    },
+    true,
+  );
 };

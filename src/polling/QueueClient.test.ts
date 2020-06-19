@@ -5,12 +5,12 @@ import sinon from 'sinon';
 import 'mocha';
 import { SwitchContext } from 'ns8-switchboard-interfaces';
 import { QueueClient } from './QueueClient';
-import { getLogger } from '../logger';
+import { getStepLogger } from '../logger';
 
 /**
  * Logger to utilize in testing
  */
-const logger = getLogger();
+const logger = getStepLogger();
 
 /**
  * Mock access tokens for polling logic tests

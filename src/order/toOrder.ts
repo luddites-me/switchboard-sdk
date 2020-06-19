@@ -7,9 +7,9 @@ import { CustomerData, toCustomer } from '../customer/toCustomer';
 import { SessionData, toSession } from '../session/toSession';
 import { LineItemData, toLineItem } from './toLineItem';
 import { stringToProtectStatus } from './toOrderStatus';
-import { getLogger } from '../logger';
+import { getStepLogger } from '../logger';
 
-const logger = getLogger();
+const logger = getStepLogger();
 
 /**
  * Generic object representing an order.

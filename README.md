@@ -32,6 +32,8 @@ To get started, take a look at the documentation listed below:
   - Default Value: ""
 - `DEV_SUFFIX`: Developer initials to use in the construction of the lambda and step function ARNs.
   - Default Value: "dev"
+- `IGNORE_PEER_DEPENDENCIES`: A list of packages to exclude from peer dependencies.
+  - Default Value: "@types/aws-lambda,@types/aws4,aws-lambda,aws-sdk,aws4,serverless-plugin-aws-alerts,serverless-pseudo-parameters,serverless-step-functions"
 - `NODE_ENV`: Environment. Options are: dev, test and prod.
   - Default Value: "dev"
 - `SYNC_PEER_DEPENDENCIES`: If true, sets all project dependencies as peer dependencies

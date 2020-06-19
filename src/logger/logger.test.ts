@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import { SdkTestAssertionType, testSdkAssertion } from '@ns8/protect-tools-js';
-import { Log, LogLevel, TransportType, getLogger } from './logger';
+import { Log, LogLevel, TransportType, getLogger, getStepLogger } from './logger';
 
 const serviceName = 'unit-test';
 const message = 'This is a message';
@@ -154,7 +154,15 @@ testSdkAssertion({
     {
       name: 'static logs using the default options',
       assertionFunction: async () => {
-        const log = getLogger();
+        const log = getStepLogger('switchboard-sdk/test');
+        return log.info(message, { test: message });
+      },
+      assertion: SdkTestAssertionType.TO_NOT_THROW,
+    },
+    {
+      name: 'static logs using the default options with no name',
+      assertionFunction: async () => {
+        const log = getStepLogger();
         return log.info(message, { test: message });
       },
       assertion: SdkTestAssertionType.TO_NOT_THROW,
