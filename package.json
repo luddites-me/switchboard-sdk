@@ -1,5 +1,8 @@
 {
   "author": "ns8inc",
+  "bin": {
+    "switchboardStepDeploy": "./dist/build/stepDeploy.js"
+  },
   "dependencies": {
     "@ns8/ns8-switchboard-operator": "1.0.136",
     "@types/aws-lambda": "8.10.56",

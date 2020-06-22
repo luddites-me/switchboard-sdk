@@ -5,6 +5,7 @@
 - [Serverless Configuration](#serverless-configuration)
   - [Installation](#installation)
   - [Using the `lambdaDeploy` script](#using-the-lambdadeploy-script)
+  - [Using the `stepDeploy` script](#using-the-stepdeploy-script)
     - [The Local `serverless.yml` Configuration File](#the-local-serverlessyml-configuration-file)
 
 ## Installation
@@ -19,13 +20,25 @@ Since the example build scripts below rely on `ts-node`, you might also want to 
 
 ## Using the `lambdaDeploy` script
 
-The `protect-sdk-switchboard` repo has a fairly straightforward script located at `build/lambdaDeploy.ts` that shells out to the AWS serverless CLI command (`sls`). It will delploy the lambdas defined in your `serverless.yml` file to an AWS stack of step functions with a stage value of `test`, `prod`, or whatever the value of your ENV `DEV_SUFFIX` variable is (a three-letter string identifying you). The default stage value for this script is `test`.
+The `protect-sdk-switchboard` repo has a fairly straightforward script located at `build/lambdaDeploy.ts` that shells out to the AWS serverless CLI command (`sls`). It will deploy the lambdas defined in your `serverless.yml` file to an AWS stack of step functions with a stage value of `test`, `prod`, or whatever the value of your ENV `DEV_SUFFIX` variable is (a three-letter string identifying you). The default stage value for this script is `test`.
 Here's how you would consume the build script from your integration repo's `package.json` that has `@ns8/protect-sdk-switchboard` as a dependency:
 
 ```json
 {
   "deploy": "METHOD=deploy ts-node -P ./build/tsconfig.json ./node_modules/@ns8/protect-switchboard-sdk/build/lambdaDeploy.ts",
   "undeploy": "METHOD=remove ts-node -P ./build/tsconfig.json ./node_modules/@ns8/protect-switchboard-sdk/build/lambdaDeploy.ts"
+}
+```
+
+## Using the `stepDeploy` script
+
+The `protect-sdk-switchboard` repo has a fairly straightforward script located at `build/stepDeploy.ts` that shells out to the AWS serverless CLI command (`sls`). It will deploy the lambdas defined in the `serverless.platform.yml` file provided by this repo to an AWS stack of step functions with a stage value of `test`, `prod`, or whatever the value of your ENV `DEV_SUFFIX` variable is (a three-letter string identifying you). The stage value for this script is determined by the `DEV_SUFFIX` or `NODE_ENV` environment variables. It will default to `dev` if no environment variables are set.
+Here's how you would consume the build script from your integration repo's `package.json` that has `@ns8/protect-sdk-switchboard` as a dependency:
+
+```json
+{
+  "deploy": "METHOD=deploy switchboardStepDeploy",
+  "undeploy": "METHOD=remove switchboardStepDeploy"
 }
 ```
 
