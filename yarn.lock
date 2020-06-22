@@ -8246,10 +8246,10 @@ serverless-pseudo-parameters@2.5.0:
   resolved "https://registry.yarnpkg.com/serverless-pseudo-parameters/-/serverless-pseudo-parameters-2.5.0.tgz#f30bf34db166e4b8b22144a8e65aca71b90dd1e6"
   integrity sha512-A/O49AR8LL6jlnPSmnOTYgL1KqVgskeRla4sVDeS/r5dHFJlwOU5MgFilc7aaQP8NWAwRJANaIS9oiSE3I+VUA==
 
-serverless-step-functions@2.21.0:
-  version "2.21.0"
-  resolved "https://registry.yarnpkg.com/serverless-step-functions/-/serverless-step-functions-2.21.0.tgz#94beb93a364bcab0822bc2975f3db922f5387bb3"
-  integrity sha512-hfoxJu5ffmQ3dK8xQ3Njp9d4ZTwPtedcV77krV3qhh2ZFVqKqruHeTf7UYTVYW+EHzBFvXATJsXXsk55S1WYBw==
+serverless-step-functions@2.21.1:
+  version "2.21.1"
+  resolved "https://registry.yarnpkg.com/serverless-step-functions/-/serverless-step-functions-2.21.1.tgz#49090d626a988cb6aa30971d0fbe592daec28791"
+  integrity sha512-0jbHFaLLezeQh5VUX6SWZzKk+6pKjDrtoYizC1486yqPMMYyBpTZT+5MucdefeLkXtdznvmXKo+4X5j1TshO2A==
   dependencies:
     "@hapi/joi" "^15.0.2"
     asl-validator "^1.7.0"
