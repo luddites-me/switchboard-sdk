@@ -2,8 +2,8 @@
   no-unused-expressions,
   @typescript-eslint/no-explicit-any,
 */
+import { SdkTestAssertionType, testSdkAssertion } from '@ns8/protect-tools-js';
 import { isValidDate, toDate } from './date';
-import { testSdkAssertion, SdkTestAssertionType } from '@ns8/protect-tools-js';
 
 testSdkAssertion({
   name: 'date Suite',
@@ -31,5 +31,5 @@ testSdkAssertion({
       },
       assertion: SdkTestAssertionType.IS_FALSE,
     },
-  ]
+  ],
 });

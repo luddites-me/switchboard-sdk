@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
+import { SdkTestAssertionType, testExecutionTime, testSdkAssertion } from '@ns8/protect-tools-js';
 import { asyncForEach, sleep } from './async';
-import { testExecutionTime, testSdkAssertion, SdkTestAssertionType } from '@ns8/protect-tools-js';
 
 testExecutionTime('sleeps for 5000ms', sleep, 5000);
 
@@ -32,5 +32,5 @@ testSdkAssertion({
       },
       assertion: SdkTestAssertionType.TO_NOT_THROW,
     },
-  ]
+  ],
 });
