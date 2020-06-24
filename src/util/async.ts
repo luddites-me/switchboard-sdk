@@ -6,7 +6,7 @@
  * @param milliseconds - the number of milliseconds to wait
  * @public
  */
-export const sleep = async (milliseconds = 1000): Promise<void> => {
+export const sleep = async (milliseconds: number): Promise<void> => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 };
 
