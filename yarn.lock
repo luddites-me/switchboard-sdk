@@ -9337,6 +9337,13 @@ tslog@2.5.0:
   dependencies:
     source-map-support "^0.5.19"
 
+tslog@2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/tslog/-/tslog-2.6.0.tgz#102be375fae28980173731cdef535d2a97ce26cd"
+  integrity sha512-31mp/EtWLD7O+1U73d+4/wFZCAl7G+LM+m0Kr09aSmWnYyU8lgJ/wQTuyl06rgRd6Ts9pUeLZfBw7pDsTPb69g==
+  dependencies:
+    source-map-support "^0.5.19"
+
 tsutils@^3.17.1:
   version "3.17.1"
   resolved "https://registry.yarnpkg.com/tsutils/-/tsutils-3.17.1.tgz#ed719917f11ca0dee586272b2ac49e015a2dd759"
