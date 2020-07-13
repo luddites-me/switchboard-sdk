@@ -30,7 +30,7 @@ custom:
         datapointsToAlarm: 1
         comparisonOperator: GreaterThanThreshold
       functionDuration:
-        namespace: 'AWS/Lambda/Switchboard'
+        namespace: 'AWS/Lambda'
         metric: Duration
         threshold: 2500
         statistic: Maximum
