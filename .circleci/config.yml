@@ -22,12 +22,6 @@ jobs:
           command: yarn build:prod
           name: Build for Production
       - run:
-          command: yarn docs:publish
-          name: Publish API docs to Github Pages
-      - run:
-          command: npm publish
-          name: Publish
-      - run:
           command: yarn deploy --stage=dev
           name: Deploy Switchboard (dev)
       - run:
@@ -67,6 +61,12 @@ jobs:
       - run:
           command: yarn build:prod
           name: Build for Production
+      - run:
+          command: yarn docs:publish
+          name: Publish API docs to Github Pages
+      - run:
+          command: npm publish
+          name: Publish
       - assume-role/assume-role:
           account-id: "529464811624"
           role-name: circle-ci-role
