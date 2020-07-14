@@ -7,6 +7,10 @@ RetryDefault:
       MaxAttempts: 1
 custom:
   integrationName: '${self:service}-${self:provider.stage}'
+  test:
+    pagerDutyArn: arn:aws:sns:us-west-2:244249143763:pager_duty
+  prod:
+    pagerDutyArn: arn:aws:sns:us-west-2:529464811624:ns8_alerts
   alerts:
     stages:
       - test
@@ -17,7 +21,6 @@ custom:
     properties:
       alarmActions:
         - ${self:custom.${self:provider.stage}.pagerDutyArn}
-        - ${self:custom.${self:provider.stage}.slackNotificationArn}
       alarmDescription: |
         Error Alarm for Polling Lambda Functions
     definitions:
