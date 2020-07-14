@@ -13,34 +13,6 @@ jobs:
             - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
       - run:
-          command: |
-            set +eo pipefail
-            if git log | head -n 2 | tail -n 1 | grep 'Author: CircleCI'; then
-              circleci step halt
-            fi
-            if git log | head -n 2 | tail -n 1 | grep 'Author: dependabot'; then
-              circleci step halt
-            fi
-          name: Skip if CI Made the Last Commit
-      - run:
-          command: |
-            git config user.email noreply@ns8.com
-            git config user.name 'CircleCI'
-          name: Setup Git
-      - run:
-          command: |
-            yarn config set version-tag-prefix ''
-            yarn version --patch
-          name: Bump Version
-      - run:
-          command: |
-            if ! git push -u origin master --follow-tags; then
-              echo "Push failed. Please add this CircleCI deploy key to your repo with write access:"
-              ssh-keygen -y -f ~/.ssh/id_rsa
-              exit 1
-            fi
-          name: Tag Release in GitHub
-      - run:
           command: echo "//registry.npmjs.org/:_authToken=${NS8_GLOBAL_NPM_TOKEN}" > ~/.npmrc
           name: Configure NPM
       - run:
@@ -68,13 +40,6 @@ jobs:
           fingerprints:
             - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
-      - run:
-          command: |
-            set +eo pipefail
-            if git log | head -n 2 | tail -n 1 | grep -E 'Author: (CircleCI|dependabot)'; then
-              circleci step halt
-            fi
-          name: Skip if CI Made the Last Commit
       - run:
           command: |
             git config user.email noreply@ns8.com
