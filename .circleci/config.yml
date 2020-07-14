@@ -147,7 +147,7 @@ workflows:
           requires:
             - test
           context: org-global
-      - deploy_prod:
+      - approve:
           type: approval
           filters:
             branches:
@@ -155,3 +155,6 @@ workflows:
           requires:
             - test
           context: org-global
+      - deploy_prod:
+          requires:
+            - approve
