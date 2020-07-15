@@ -12,6 +12,8 @@ export const sleep = async (milliseconds: number): Promise<void> => {
 
 /**
  * Mechanism to perform async/await operations over an array
+ * @param array - The array to call the async operatior for
+ * @param callback - The function we want to apply
  */
 export const asyncForEach = async (array?: any[], callback?: any): Promise<void> => {
   if (!array || !callback) return;
