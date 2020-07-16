@@ -107,7 +107,7 @@ workflows:
             tags:
               only: /^\d+\.\d+\.\d+$/
             branches:
-              only: ctdoriott/ch36575/investigate-alarm-errors-determine-resolutions-circle
+              only: master
               ignore: /.*/
           requires:
             - test
@@ -116,7 +116,7 @@ workflows:
           type: approval
           filters:
             branches:
-              only: ctdoriott/ch36575/investigate-alarm-errors-determine-resolutions-circle
+              only: master
           requires:
             - test
           context: org-global
