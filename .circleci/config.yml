@@ -121,5 +121,6 @@ workflows:
             - test
           context: org-global
       - deploy_prod:
+          context: org-global
           requires:
             - approve
