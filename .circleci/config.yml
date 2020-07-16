@@ -35,6 +35,15 @@ jobs:
             - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
       - run:
+          command: echo "//registry.npmjs.org/:_authToken=${NS8_GLOBAL_NPM_TOKEN}" > ~/.npmrc
+          name: Configure NPM
+      - run:
+          command: yarn
+          name: Install Dependencies
+      - run:
+          command: yarn build:prod
+          name: Build for Production
+      - run:
           command: |
             git config user.email noreply@ns8.com
             git config user.name 'CircleCI'
@@ -52,15 +61,6 @@ jobs:
               exit 1
             fi
           name: Tag Release in GitHub
-      - run:
-          command: echo "//registry.npmjs.org/:_authToken=${NS8_GLOBAL_NPM_TOKEN}" > ~/.npmrc
-          name: Configure NPM
-      - run:
-          command: yarn
-          name: Install Dependencies
-      - run:
-          command: yarn build:prod
-          name: Build for Production
       - run:
           command: yarn docs:publish
           name: Publish API docs to Github Pages
@@ -107,7 +107,7 @@ workflows:
             tags:
               only: /^\d+\.\d+\.\d+$/
             branches:
-              only: master
+              only: ctdoriott/ch36575/investigate-alarm-errors-determine-resolutions-circle
               ignore: /.*/
           requires:
             - test
