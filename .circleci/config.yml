@@ -2,8 +2,6 @@ executors:
   nodeaws-executor:
     docker:
       - image: ns8inc/nodeaws:node-erbium
-orbs:
-  assume-role: airswap/assume-role@0.2.0
 jobs:
   deploy_test_and_dev:
     executor: nodeaws-executor
@@ -51,11 +49,24 @@ jobs:
       - run:
           command: |
             yarn config set version-tag-prefix ''
-            yarn version --patch
+            current_version="$(jq -r .version package.json)"
+
+            while
+              new_version="$(jq -r .version package.json)"
+              [[ "$(git tag | grep -c $new_version)" -gt "0" ]]
+            do yarn version --no-git-tag-version --patch; done
+            if [ "$new_version" = "$current_version" ]; then
+              # Someone manually bumped the version in package.json, so don't bump, only tag.
+              git tag $new_version
+            else
+              # Reset then bump and tag like usual.
+              git checkout package.json
+              yarn version --new-version $new_version
+            fi
           name: Bump Version
       - run:
           command: |
-            if ! git push -u origin master --follow-tags; then
+            if ! git push -u origin master --tags; then
               echo "Push failed. Please add this CircleCI deploy key to your repo with write access:"
               ssh-keygen -y -f ~/.ssh/id_rsa
               exit 1
@@ -73,6 +84,26 @@ jobs:
       - run:
           command: yarn deploy --stage=prod
           name: Deploy Switchboard (prod)
+  publish:
+    executor: nodeaws-executor
+    steps:
+      - checkout
+      - run:
+          command: echo "//registry.npmjs.org/:_authToken=${NS8_GLOBAL_NPM_TOKEN}" > ~/.npmrc
+          name: Configure NPM
+      - run:
+          command: yarn
+          name: Install Dependencies
+      - run:
+          command: |
+            version=$(jq -r .version package.json)
+            echo "export VERSION=$version" >> $BASH_ENV
+          name: Get Version
+      - run:
+          command: |
+            yarn gren release -m -t $VERSION -T $GITHUB_ACCESS_TOKEN
+            yarn gren release -o -t $VERSION -T $GITHUB_ACCESS_TOKEN
+          name: Create GitHub Release
   test:
     executor: nodeaws-executor
     steps:
@@ -96,30 +127,38 @@ jobs:
       - run:
           command: yarn test:coverage
           name: Run Tests
+orbs:
+  assume-role: airswap/assume-role@0.2.0
 version: 2.1
 workflows:
+  publish:
+    jobs:
+      - publish:
+          context: org-global
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^\d+\.\d+\.\d+$/
   test_and_deploy:
     jobs:
       - test:
           context: org-global
       - deploy_test_and_dev:
+          context: org-global
           filters:
-            tags:
-              only: /^\d+\.\d+\.\d+$/
             branches:
               only: master
-              ignore: /.*/
           requires:
             - test
-          context: org-global
       - approve:
-          type: approval
+          context: org-global
           filters:
             branches:
               only: master
           requires:
             - test
-          context: org-global
+          type: approval
       - deploy_prod:
           context: org-global
           requires:
