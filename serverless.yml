@@ -44,6 +44,11 @@ custom:
     alarms:
       - functionErrors
       - functionDuration
+  commonResourceStage: ${self:custom.commonResourceStageLookup.${self:provider.stage}, "dev-all"}
+  commonResourceStageLookup:
+    #dev-<name>: dev-all
+    test: test
+    prod: prod
 functions:
   CreatePolledMessage:
     environment:
@@ -73,23 +78,9 @@ plugins:
 provider:
   deploymentBucket:
     name: '${ssm:/serverless/deployment/bucket/name}'
-  iamRoleStatements:
-    - Action: 's3:GetObject'
-      Effect: Allow
-      Resource: 'arn:aws:s3:::protect-api-switch-data-${self:provider.stage}/*'
-      # Full access to queues with names that start with ${self:provider.stage}
-    - Action: 'sqs:*'
-      Effect: Allow
-      Resource: 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:${self:provider.stage}-*'
-    - Action: 'sts:AssumeRole'
-      Effect: Allow
-      Resource: 'arn:aws:iam::#{AWS::AccountId}:role/${self:custom.integrationName}-#{AWS::Region}-lambdaRole'
-      # sqs:ListQueues to all queues in region (can't restrict to specific queues)
-    - Action: 'sqs:ListQueues'
-      Effect: Allow
-      Resource: 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:*'
   name: aws
   region: us-west-2
+  role: arn:aws:iam::#{AWS::AccountId}:role/protect-switchboard-sdk-${self:custom.commonResourceStage}-lambdaRole
   runtime: nodejs12.x
   stage: '${opt:stage}'
   timeout: 29
