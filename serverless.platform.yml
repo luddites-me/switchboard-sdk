@@ -44,11 +44,6 @@ custom:
     alarms:
       - functionErrors
       - functionDuration
-  commonResourceStage: ${self:custom.commonResourceStageLookup.${self:provider.stage}, "dev-all"}
-  commonResourceStageLookup:
-    #dev-<name>: dev-all
-    test: test
-    prod: prod
 functions:
   CreateOrderAction:
     handler: dist/index.CreateOrderAction
@@ -90,9 +85,18 @@ plugins:
 provider:
   deploymentBucket:
     name: '${ssm:/serverless/deployment/bucket/name}'
+  iamRoleStatements:
+    - Action: 's3:GetObject'
+      Effect: Allow
+      Resource: 'arn:aws:s3:::protect-api-switch-data-${self:provider.stage}/*'
+    - Action: 'sqs:*'
+      Effect: Allow
+      Resource: 'arn:aws:sqs:#{AWS::Region}:#{AWS::AccountId}:${self:provider.stage}-*'
+    - Action: 'sts:AssumeRole'
+      Effect: Allow
+      Resource: 'arn:aws:iam::#{AWS::AccountId}:role/${self:custom.integrationName}-#{AWS::Region}-lambdaRole'
   name: aws
   region: us-west-2
-  role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-lambdaRole
   runtime: nodejs12.x
   stage: '${opt:stage}'
   timeout: 29
@@ -114,7 +118,6 @@ stepFunctions:
             Retry: *ref_0
             Type: Task
       name: '${self:custom.integrationName}-createOrderAction'
-      role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
     OnInstallEvent:
       definition:
         StartAt: OnInstallEventStart
@@ -125,7 +128,6 @@ stepFunctions:
             Retry: *ref_0
             Type: Task
       name: '${self:custom.integrationName}-onInstallEvent'
-      role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
     UninstallAction:
       definition:
         StartAt: UninstallActionStart
@@ -136,7 +138,6 @@ stepFunctions:
             Retry: *ref_0
             Type: Task
       name: '${self:custom.integrationName}-uninstallAction'
-      role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
     UpdateCustVerifyStatusEvent:
       definition:
         StartAt: UpdateCustVerifyStatusEventStart
@@ -147,7 +148,6 @@ stepFunctions:
             Retry: *ref_0
             Type: Task
       name: '${self:custom.integrationName}-updateCustVerifyStatusEvent'
-      role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
     UpdateEQ8ScoreEvent:
       definition:
         StartAt: UpdateEQ8ScoreEventStart
@@ -158,7 +158,6 @@ stepFunctions:
             Retry: *ref_0
             Type: Task
       name: '${self:custom.integrationName}-updateEQ8ScoreEvent'
-      role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
     UpdateMerchantAction:
       definition:
         StartAt: UpdateMerchantActionStart
@@ -169,7 +168,6 @@ stepFunctions:
             Retry: *ref_0
             Type: Task
       name: '${self:custom.integrationName}-updateMerchantAction'
-      role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
     UpdateOrderRiskEvent:
       definition:
         StartAt: UpdateOrderRiskEventStart
@@ -180,7 +178,6 @@ stepFunctions:
             Retry: *ref_0
             Type: Task
       name: '${self:custom.integrationName}-updateOrderRiskEvent'
-      role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
     UpdateOrderStatusAction:
       definition:
         StartAt: UpdateOrderStatusActionStart
@@ -191,7 +188,6 @@ stepFunctions:
             Retry: *ref_0
             Type: Task
       name: '${self:custom.integrationName}-updateOrderStatusAction'
-      role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
     UpdateOrderStatusEvent:
       definition:
         StartAt: UpdateOrderStatusEventStart
@@ -202,4 +198,3 @@ stepFunctions:
             Retry: *ref_0
             Type: Task
       name: '${self:custom.integrationName}-updateOrderStatusEvent'
-      role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole

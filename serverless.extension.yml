@@ -1,9 +1,4 @@
 custom:
-  commonResourceStage: ${self:custom.commonResourceStageLookup.${self:provider.stage}, "dev-all"}
-  commonResourceStageLookup:
-    #dev-<name>: dev-all
-    test: test
-    prod: prod
   integrationName: '${self:service}-${self:provider.stage}'
 functions:
   onDisableExtensionEvent:
@@ -40,9 +35,12 @@ provider:
     PASSWORD: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/password~true}'
     SECRET_KEY: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/secret-key~true}'
     USERNAME: '${ssm:/extensions/${self:custom.integrationName}/${self:provider.stage}/username}'
+  iamRoleStatements:
+    - Action: 's3:GetObject'
+      Effect: Allow
+      Resource: 'arn:aws:s3:::protect-api-switch-data-${self:provider.stage}/*'
   name: aws
   region: us-west-2
-  role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-lambdaRole
   runtime: nodejs12.x
   stackTags:
     ns8.configured-by: protect-sdk-switchboard
@@ -62,7 +60,6 @@ stepFunctions:
             Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-onDisableExtensionEvent'
             Type: Task
       name: '${self:custom.integrationName}-onDisableExtensionEvent'
-      role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
     onEnableExtensionEvent:
       definition:
         StartAt: onEnableExtensionEventStart
@@ -72,7 +69,6 @@ stepFunctions:
             Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-onEnableExtensionEvent'
             Type: Task
       name: '${self:custom.integrationName}-onEnableExtensionEvent'
-      role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
     onUpdateExtensionMerchantEvent:
       definition:
         StartAt: onUpdateExtensionMerchantEventStart
@@ -82,7 +78,6 @@ stepFunctions:
             Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-onUpdateExtensionMerchantEvent'
             Type: Task
       name: '${self:custom.integrationName}-onUpdateExtensionMerchantEvent'
-      role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
     onUpdateExtensionOrderEvent:
       definition:
         StartAt: onUpdateExtensionOrderEventStart
@@ -92,7 +87,6 @@ stepFunctions:
             Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-onUpdateExtensionOrderEvent'
             Type: Task
       name: '${self:custom.integrationName}-onUpdateExtensionOrderEvent'
-      role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
     onWebhookAction:
       definition:
         StartAt: onWebhookActionStart
@@ -102,4 +96,3 @@ stepFunctions:
             Resource: 'arn:aws:lambda:#{AWS::Region}:#{AWS::AccountId}:function:${self:custom.integrationName}-onWebhookAction'
             Type: Task
       name: '${self:custom.integrationName}-onWebhookAction'
-      role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
