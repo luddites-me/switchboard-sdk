@@ -22,7 +22,7 @@
     "serverless-pseudo-parameters": "2.5.0",
     "serverless-step-functions": "2.21.1",
     "tslog": "2.6.1",
-    "typescript": "3.9.6",
+    "typescript": "3.9.7",
     "ua-parser-js": "0.7.21",
     "uuid": "8.3.0"
   },
@@ -84,7 +84,7 @@
     "ns8-switchboard-interfaces": "1.0.132",
     "prompts": "2.3.2",
     "tslog": "2.6.1",
-    "typescript": "3.9.6",
+    "typescript": "3.9.7",
     "ua-parser-js": "0.7.21",
     "uuid": "8.3.0"
   },
