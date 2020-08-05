@@ -10824,10 +10824,10 @@ tslog@2.5.0:
   dependencies:
     source-map-support "^0.5.19"
 
-tslog@2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/tslog/-/tslog-2.6.1.tgz#80671f75d2d7da36c6634ed9a57c939640072d06"
-  integrity sha512-uJ3LZlBj2dIcBNfmNfKrHNDufCryELZxJytWX9CzwdyupIJdgnyc3lnFPOoakMx7s/RP7Sq7caFPq4cdm8SDSA==
+tslog@2.6.3:
+  version "2.6.3"
+  resolved "https://registry.yarnpkg.com/tslog/-/tslog-2.6.3.tgz#14fe6a8dcf6d1cb15f76fcb5f45606ee31ed9eba"
+  integrity sha512-FKaIfK2FGcVxgyOyVtYM1Or4NEOMuF0m7dDExL1o9AxsqPrV5ft1xcFYEvYXc/7uAvOZ1VCqfZk35mK+cZ7i2w==
   dependencies:
     source-map-support "^0.5.19"
 
