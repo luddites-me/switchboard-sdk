@@ -4,7 +4,7 @@
     "switchboardStepDeploy": "./dist/build/stepDeploy.js"
   },
   "dependencies": {
-    "@ns8/ns8-switchboard-operator": "1.0.136",
+    "@ns8/ns8-switchboard-operator": "1.0.151",
     "@types/aws-lambda": "8.10.59",
     "@types/aws4": "1.5.1",
     "aws-lambda": "1.0.6",
@@ -15,8 +15,8 @@
     "is-ip": "3.1.0",
     "iso-3166": "3.0.1",
     "moment": "2.27.0",
-    "ns8-protect-models": "1.0.291",
-    "ns8-switchboard-interfaces": "1.0.132",
+    "ns8-protect-models": "1.0.305-cd.8749736e0401b04f012a2fda54d8e7f00b5ca9aa.0",
+    "ns8-switchboard-interfaces": "1.0.139",
     "prompts": "2.3.2",
     "serverless-plugin-aws-alerts": "1.6.1",
     "serverless-pseudo-parameters": "2.5.0",
@@ -28,7 +28,7 @@
   },
   "description": "Protect Switchboard SDK",
   "devDependencies": {
-    "@ns8/protect-tools-js": "1.0.14",
+    "@ns8/protect-tools-js": "1.0.29",
     "@types/country-list": "2.1.0",
     "@types/sinon": "9.0.4",
     "@types/ua-parser-js": "0.7.33",
@@ -50,7 +50,8 @@
       "description": "Developer initials to use in the construction of the lambda and step function ARNs."
     },
     "IGNORE_MARKDOWN_FILES": {
-      "description": "Please document the <IGNORE_MARKDOWN_FILES> variable"
+      "defaultValue": ".serverless,.git,temp",
+      "description": "A comma-delimited list of markdown files to exclude from processing"
     },
     "IGNORE_PEER_DEPENDENCIES": {
       "defaultValue": "@types/aws-lambda,@types/aws4,aws-lambda,aws-sdk,aws4,serverless-plugin-aws-alerts,serverless-pseudo-parameters,serverless-step-functions",
@@ -74,14 +75,14 @@
   "main": "dist/index.js",
   "name": "@ns8/protect-sdk-switchboard",
   "peerDependencies": {
-    "@ns8/ns8-switchboard-operator": "1.0.136",
+    "@ns8/ns8-switchboard-operator": "1.0.151",
     "axios": "0.19.2",
     "country-list": "2.2.0",
     "is-ip": "3.1.0",
     "iso-3166": "3.0.1",
     "moment": "2.27.0",
-    "ns8-protect-models": "1.0.291",
-    "ns8-switchboard-interfaces": "1.0.132",
+    "ns8-protect-models": "1.0.305-cd.8749736e0401b04f012a2fda54d8e7f00b5ca9aa.0",
+    "ns8-switchboard-interfaces": "1.0.139",
     "prompts": "2.3.2",
     "tslog": "2.6.3",
     "typescript": "3.9.7",

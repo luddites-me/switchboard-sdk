@@ -405,7 +405,7 @@ export interface SessionData {
 }
 
 // @public
-export const sleep: (milliseconds?: number) => Promise<void>;
+export const sleep: (milliseconds: number) => Promise<void>;
 
 // @public
 export const stringToCreditCardTransactionType: (creditCardTransactionType?: string) => CreditCardTransactionType;
