@@ -26,6 +26,9 @@ jobs:
     executor: nodeaws-executor
     steps:
       - checkout
+      - add_ssh_keys:
+          fingerprints:
+            - "77:0b:17:b2:eb:5a:1d:4f:39:df:d1:ef:2f:a5:69:34"
       - run:
           command: echo "//registry.npmjs.org/:_authToken=${NS8_GLOBAL_NPM_TOKEN}" > ~/.npmrc
           name: Configure NPM
@@ -142,7 +145,7 @@ workflows:
     jobs:
       - approve:
           context: org-global
-          filters: 
+          filters:
             branches:
               ignore: /.*/
             tags:
