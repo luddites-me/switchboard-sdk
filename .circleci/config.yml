@@ -6,9 +6,6 @@ jobs:
   deploy_test_and_dev:
     executor: nodeaws-executor
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
       - run:
           command: echo "//registry.npmjs.org/:_authToken=${NS8_GLOBAL_NPM_TOKEN}" > ~/.npmrc
@@ -25,12 +22,9 @@ jobs:
       - run:
           command: yarn deploy --stage=test
           name: Deploy Switchboard (test)
-  deploy_prod:
+  prep_release:
     executor: nodeaws-executor
     steps:
-      - add_ssh_keys:
-          fingerprints:
-            - "9f:0b:68:b4:5b:ce:aa:60:94:0a:a5:66:43:7a:3a:df"
       - checkout
       - run:
           command: echo "//registry.npmjs.org/:_authToken=${NS8_GLOBAL_NPM_TOKEN}" > ~/.npmrc
@@ -78,6 +72,19 @@ jobs:
       - run:
           command: npm publish
           name: Publish
+  deploy_prod:
+    executor: nodeaws-executor
+    steps:
+      - checkout
+      - run:
+          command: echo "//registry.npmjs.org/:_authToken=${NS8_GLOBAL_NPM_TOKEN}" > ~/.npmrc
+          name: Configure NPM
+      - run:
+          command: yarn
+          name: Install Dependencies
+      - run:
+          command: yarn build:prod
+          name: Build for Production
       - assume-role/assume-role:
           account-id: "529464811624"
           role-name: circle-ci-role
@@ -133,6 +140,14 @@ version: 2.1
 workflows:
   publish:
     jobs:
+      - approve:
+          context: org-global
+          filters: 
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^\d+\.\d+\.\d+$/
+          type: approval
       - publish:
           context: org-global
           filters:
@@ -140,6 +155,8 @@ workflows:
               ignore: /.*/
             tags:
               only: /^\d+\.\d+\.\d+$/
+          requires:
+            - approve
   test_and_deploy:
     jobs:
       - test:
@@ -151,6 +168,13 @@ workflows:
               only: master
           requires:
             - test
+      - prep_release:
+          context: org-global
+          filters:
+            branches:
+              only: master
+          requires:
+            - deploy_test_and_dev
       - approve:
           context: org-global
           filters:
