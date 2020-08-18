@@ -171,14 +171,22 @@ workflows:
               only: master
           requires:
             - test
-      - prep_release:
+      - approve_prep_release:
           context: org-global
           filters:
             branches:
               only: master
           requires:
             - deploy_test_and_dev
-      - approve:
+          type: approval
+      - prep_release:
+          context: org-global
+          filters:
+            branches:
+              only: master
+          requires:
+            - approve_prep_release
+      - approve_deploy_prod:
           context: org-global
           filters:
             branches:
@@ -189,4 +197,4 @@ workflows:
       - deploy_prod:
           context: org-global
           requires:
-            - approve
+            - approve_deploy_prod
