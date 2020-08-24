@@ -30,7 +30,7 @@
   "devDependencies": {
     "@ns8/protect-tools-js": "1.0.29",
     "@types/country-list": "2.1.0",
-    "@types/sinon": "9.0.4",
+    "@types/sinon": "9.0.5",
     "@types/ua-parser-js": "0.7.33",
     "@types/uuid": "8.3.0",
     "github-release-notes": "^0.17.3",
