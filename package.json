@@ -21,7 +21,7 @@
     "serverless-plugin-aws-alerts": "1.6.1",
     "serverless-pseudo-parameters": "2.5.0",
     "serverless-step-functions": "2.23.0",
-    "tslog": "2.7.1",
+    "tslog": "2.8.0",
     "typescript": "3.9.7",
     "ua-parser-js": "0.7.21",
     "uuid": "8.3.0"
@@ -84,7 +84,7 @@
     "ns8-protect-models": "1.0.305-cd.57480625a14187c1458c9670a0d20cf4c35fd184.0",
     "ns8-switchboard-interfaces": "1.0.140-cd.cbd0fe2.0",
     "prompts": "2.3.2",
-    "tslog": "2.7.1",
+    "tslog": "2.8.0",
     "typescript": "3.9.7",
     "ua-parser-js": "0.7.21",
     "uuid": "8.3.0"
