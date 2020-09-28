@@ -8039,6 +8039,13 @@ ns8-billing-core@^1.0.1980:
   resolved "https://registry.yarnpkg.com/ns8-billing-core/-/ns8-billing-core-1.0.2036.tgz#1d6decc15f1339b97f383517ad98cf0ab6612ef7"
   integrity sha512-+i+hWHVYg6u9FISRlUQBY4jqlxUnvwxjArBWwrXM5DEgMWS7xH7QiXF4U3YMWSRPsAWm8PeR5UykiIfZSn1ssg==
 
+ns8-protect-models@1.0.305:
+  version "1.0.305"
+  resolved "https://registry.yarnpkg.com/ns8-protect-models/-/ns8-protect-models-1.0.305.tgz#516a0da09ec21a448bae21d922e777702f4bb225"
+  integrity sha512-1PeH9tSUawsNNK2JhHI7MsRhnbAf8XMWhPvTPFHpgOETHegEi9b7bkQlBGU8sKsXXwfCdCLNAG4MaUCDYoaGwA==
+  dependencies:
+    ns8-billing-core "^1.0.1980"
+
 ns8-protect-models@1.0.305-cd.57480625a14187c1458c9670a0d20cf4c35fd184.0:
   version "1.0.305-cd.57480625a14187c1458c9670a0d20cf4c35fd184.0"
   resolved "https://registry.yarnpkg.com/ns8-protect-models/-/ns8-protect-models-1.0.305-cd.57480625a14187c1458c9670a0d20cf4c35fd184.0.tgz#78b9881fad1acad26f6e856bda9961cb440d4e50"
