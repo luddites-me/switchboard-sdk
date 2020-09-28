@@ -23,7 +23,7 @@
     "serverless-step-functions": "2.23.0",
     "tslog": "2.8.0",
     "typescript": "3.9.7",
-    "ua-parser-js": "0.7.21",
+    "ua-parser-js": "0.7.22",
     "uuid": "8.3.0"
   },
   "description": "Protect Switchboard SDK",
@@ -86,7 +86,7 @@
     "prompts": "2.3.2",
     "tslog": "2.8.0",
     "typescript": "3.9.7",
-    "ua-parser-js": "0.7.21",
+    "ua-parser-js": "0.7.22",
     "uuid": "8.3.0"
   },
   "repository": "https://github.com/ns8inc/protect-sdk-switchboard.git",
