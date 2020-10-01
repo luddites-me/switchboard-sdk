@@ -6,7 +6,7 @@ import {
   CreatePolledMessageLambdaPayload,
   DeletePolledMessageLambdaPayload,
   PollQueueLambdaPayload,
-} from 'ns8-switchboard-interfaces';
+} from '..';
 
 /**
  * This is how long a URL returned from GetPollUrl will work before returning

@@ -1,4 +1,4 @@
-import { testSdkEnumConversion } from '@ns8/protect-tools-js';
+import { testSdkEnumConversion } from '@luddites-me/ts-tools';
 
 import { getGender } from './gender';
 import { Gender } from '../enums/Gender';

@@ -1,5 +1,5 @@
-import { AddressType } from 'ns8-protect-models';
-import { testSdkEnumConversion } from '@ns8/protect-tools-js';
+import { AddressType } from '..';
+import { testSdkEnumConversion } from '@luddites-me/ts-tools';
 
 import { stringToProtectAddressType } from './addressType';
 

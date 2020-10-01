@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { CreditCard } from 'ns8-protect-models';
+import { CreditCard } from '..';
 import { stringToCreditCardTransactionType } from './creditCardTransactionType';
 
 /**

@@ -1,6 +1,6 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 
-import { testSdkModelConversion } from '@ns8/protect-tools-js';
+import { testSdkModelConversion } from '@luddites-me/ts-tools';
 
 import { AddressData, toAddress } from './toAddress';
 

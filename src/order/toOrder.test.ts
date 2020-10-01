@@ -2,7 +2,7 @@
   no-unused-expressions,
   sonarjs/no-duplicate-string,
 */
-import { SdkTestAssertionType, testSdkAssertion, testSdkModelConversion } from '@ns8/protect-tools-js';
+import { SdkTestAssertionType, testSdkAssertion, testSdkModelConversion } from '@luddites-me/ts-tools';
 
 import { OrderData, toOrder } from './toOrder';
 import { AddressDataAssertion, addressAssertionMocks } from '../contact/toAddress.test';

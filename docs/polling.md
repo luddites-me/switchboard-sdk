@@ -1,6 +1,6 @@
 # Message Queue Architecture and Polling
 
-The `protect-sdk-switchboard` provides message queueing functionality (via AWS SQS) in order to ensure a greater degree of reliability and architectural decoupling between the [NS8 Protect API](https://github.com/ns8inc/ns8-protect-api) and the merchant platform. There are currently two top-level functions that a merchant integration can use to improve the reliability of messaging back into to their platform.
+The `protect-sdk-switchboard` provides message queueing functionality (via AWS SQS) in order to ensure a greater degree of reliability and architectural decoupling between the [LUDDITES Protect API](https://github.com/luddites-me/luddites-protect-api) and the merchant platform. There are currently two top-level functions that a merchant integration can use to improve the reliability of messaging back into to their platform.
 
 ## Table of Contents
 

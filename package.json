@@ -1,44 +1,46 @@
 {
-  "author": "ns8inc",
+  "author": "luddites-me",
   "bin": {
     "switchboardStepDeploy": "./dist/build/stepDeploy.js"
   },
   "dependencies": {
-    "@ns8/ns8-switchboard-operator": "1.0.152",
-    "@types/aws-lambda": "8.10.62",
+    "@types/aws-lambda": "8.10.63",
     "@types/aws4": "1.5.1",
+    "@types/superagent": "4.1.10",
     "aws-lambda": "1.0.6",
-    "aws-sdk": "2.747.0",
-    "aws4": "1.10.0",
+    "aws-sdk": "2.764.0",
+    "aws4": "1.10.1",
     "axios": "0.20.0",
+    "class-validator": "0.12.2",
     "country-list": "2.2.0",
     "is-ip": "3.1.0",
     "iso-3166": "3.0.1",
-    "moment": "2.27.0",
-    "ns8-protect-models": "1.0.305-cd.57480625a14187c1458c9670a0d20cf4c35fd184.0",
-    "ns8-switchboard-interfaces": "1.0.140-cd.cbd0fe2.0",
+    "moment": "2.29.0",
+    "ns8-billing-core": "1.0.2056",
     "prompts": "2.3.2",
     "serverless-plugin-aws-alerts": "1.6.1",
     "serverless-pseudo-parameters": "2.5.0",
-    "serverless-step-functions": "2.23.0",
-    "tslog": "2.8.0",
-    "typescript": "3.9.7",
-    "ua-parser-js": "0.7.21",
+    "serverless-step-functions": "2.26.0",
+    "superagent": "6.1.0",
+    "tslog": "2.9.0",
+    "typescript": "4.0.3",
+    "ua-parser-js": "0.7.22",
+    "url": "0.11.0",
     "uuid": "8.3.0"
   },
   "description": "Protect Switchboard SDK",
   "devDependencies": {
-    "@ns8/protect-tools-js": "1.0.29",
+    "@luddites-me/ts-tools": "1.1.1",
     "@types/country-list": "2.1.0",
-    "@types/sinon": "9.0.5",
+    "@types/sinon": "9.0.7",
     "@types/ua-parser-js": "0.7.33",
     "@types/uuid": "8.3.0",
     "github-release-notes": "^0.17.3",
-    "sinon": "9.0.3"
+    "sinon": "9.1.0"
   },
   "envDocumentation": {
     "AWS_SERVERLESS_YML": {
-      "defaultValue": "node_modules/@ns8/protect-sdk-switchboard/serverless.platform.yml",
+      "defaultValue": "node_modules/@luddites-me/switchboard-sdk/serverless.platform.yml",
       "description": "The location of the serverless config. This should be either `serverless.platform.yml` for platform integration switchboards or `serverless.extension.yml` for extension switchboards."
     },
     "AWS_SERVICE_NAME": {
@@ -71,25 +73,22 @@
     "serverless.extension.yml",
     "serverless.platform.yml"
   ],
-  "license": "UNLICENSED",
+  "license": "The Unlicense",
   "main": "dist/index.js",
-  "name": "@ns8/protect-sdk-switchboard",
+  "name": "@luddites-me/switchboard-sdk",
   "peerDependencies": {
-    "@ns8/ns8-switchboard-operator": "1.0.152",
     "axios": "0.20.0",
     "country-list": "2.2.0",
     "is-ip": "3.1.0",
     "iso-3166": "3.0.1",
     "moment": "2.27.0",
-    "ns8-protect-models": "1.0.305-cd.57480625a14187c1458c9670a0d20cf4c35fd184.0",
-    "ns8-switchboard-interfaces": "1.0.140-cd.cbd0fe2.0",
     "prompts": "2.3.2",
     "tslog": "2.8.0",
     "typescript": "3.9.7",
     "ua-parser-js": "0.7.21",
     "uuid": "8.3.0"
   },
-  "repository": "https://github.com/ns8inc/protect-sdk-switchboard.git",
+  "repository": "https://github.com/luddites-me/switchboard-sdk.git",
   "scripts": {
     "build": "yarn clean && yarn install && yarn generate:exports && yarn build:scripts && yarn build:project && yarn docs:all && yarn sortJson",
     "build:dev": "yarn && NODE_ENV=dev yarn build && yarn link",
@@ -97,18 +96,18 @@
     "build:project": "tsc -d && yarn bundle",
     "build:scripts": "tsc -p tsconfig.build.json --outDir dist/build ",
     "bundle": "webpack",
-    "clean": "rimraf .awcache .tmp dist .nyc_output coverage api temp *.log",
+    "clean": "npx rimraf .awcache .tmp dist .nyc_output coverage api temp ",
     "count": "cloc ./src ./build ./docs",
     "deploy": "METHOD=deploy ts-node -P ./build/tsconfig.json ./build/lambdaDeploy.ts",
     "docs:all": "yarn docs:standardize && yarn docs:api",
-    "docs:api": "npx ./node_modules/@ns8/protect-tools-js/dist/docs/generateApi.js --path=./api-extractor.json",
-    "docs:publish": "npx ./node_modules/@ns8/protect-tools-js/dist/docs/generateApiDocs.js",
-    "docs:standardize": "npx ./node_modules/@ns8/protect-tools-js/dist/readme/standardizeReadme.js",
-    "generate:exports": "yarn cti create ./src -w -b",
-    "lint": "yarn eslint -c 'node_modules/@ns8/protect-tools-js/.eslintrc.yml' 'src/**/*.ts' 'docs/**/*.md'",
-    "lint:fix": "yarn eslint -c 'node_modules/@ns8/protect-tools-js/.eslintrc.yml' --fix 'src/**/*.ts' 'docs/**/*.md'",
-    "sortJson": "npx ./node_modules/@ns8/protect-tools-js/dist/lint/sortJson.js",
-    "test": "nyc --nycrc-path 'node_modules/@ns8/protect-tools-js/.nycrc.yml' mocha 'src/*/*.test.ts' && yarn count",
+    "docs:api": "npx ./node_modules/@luddites-me/ts-tools/dist/docs/generateApi.js --path=./api-extractor.json",
+    "docs:publish": "npx ./node_modules/@luddites-me/ts-tools/dist/docs/generateApiDocs.js",
+    "docs:standardize": "npx ./node_modules/@luddites-me/ts-tools/dist/readme/standardizeReadme.js",
+    "generate:exports": "npx cti create ./src -w -b",
+    "lint": "yarn eslint -c 'node_modules/@luddites-me/ts-tools/.eslintrc.yml' 'src/**/*.ts' 'docs/**/*.md'",
+    "lint:fix": "yarn eslint -c 'node_modules/@luddites-me/ts-tools/.eslintrc.yml' --fix 'src/**/*.ts' 'docs/**/*.md'",
+    "sortJson": "npx ./node_modules/@luddites-me/ts-tools/dist/lint/sortJson.js",
+    "test": "nyc --nycrc-path 'node_modules/@luddites-me/ts-tools/.nycrc.yml' mocha 'src/*/*.test.ts' && yarn count",
     "test:coverage": "nyc yarn test:debug && yarn count",
     "test:debug": "mocha -r ts-node/register 'src/*/*.test.ts'",
     "undeploy": "METHOD=undeploy ts-node -P ./build/tsconfig.json ./build/lambdaDeploy.ts"
@@ -163,7 +162,7 @@
       "dev": true
     },
     "docs:standardize": {
-      "description": "Creates or updates a new readme with a standard set of readme sections, including a toc, yarn script documention, links to repo documentation files and an NS8 license",
+      "description": "Creates or updates a new readme with a standard set of readme sections, including a toc, yarn script documention, links to repo documentation files and a license",
       "dev": true
     },
     "generate:exports": {

@@ -10,7 +10,7 @@ custom:
   test:
     pagerDutyArn: arn:aws:sns:us-west-2:244249143763:pager_duty
   prod:
-    pagerDutyArn: arn:aws:sns:us-west-2:529464811624:ns8_alerts
+    pagerDutyArn: arn:aws:sns:us-west-2:529464811624:luddites_alerts
   alerts:
     stages:
       - test
@@ -98,9 +98,9 @@ provider:
   timeout: 29
   versionFunctions: false
   stackTags:
-    'ns8.configured-by': protect-sdk-switchboard
-    'ns8.usecase': ${self:custom.integrationName}
-    'ns8.stage': ${self:provider.stage}
+    'luddites.configured-by': protect-sdk-switchboard
+    'luddites.usecase': ${self:custom.integrationName}
+    'luddites.stage': ${self:provider.stage}
 
 stepFunctions:
   stateMachines:
@@ -203,4 +203,3 @@ stepFunctions:
             Type: Task
       name: '${self:custom.integrationName}-updateOrderStatusEvent'
       role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
-

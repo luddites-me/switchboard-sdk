@@ -1,5 +1,5 @@
-import { SwitchContext } from 'ns8-switchboard-interfaces';
-import { ServiceIntegrationType } from 'ns8-protect-models';
+import { SwitchContext } from '..';
+import { ServiceIntegrationType } from '..';
 
 /**
  * Asserts that the merchant has the expected integration

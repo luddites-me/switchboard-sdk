@@ -13,7 +13,7 @@
 Pull the `protect-sdk-switchboard` repo into your integration as a dependency by running:
 
 ```bash
-yarn add @ns8/protect-switchboard-sdk
+yarn add @luddites-me/protect-switchboard-sdk
 ```
 
 Since the example build scripts below rely on `ts-node`, you might also want to run `yarn add ts-node` as well.
@@ -21,19 +21,19 @@ Since the example build scripts below rely on `ts-node`, you might also want to 
 ## Using the `lambdaDeploy` script
 
 The `protect-sdk-switchboard` repo has a fairly straightforward script located at `build/lambdaDeploy.ts` that shells out to the AWS serverless CLI command (`sls`). It will deploy the lambdas defined in your `serverless.yml` file to an AWS stack of step functions with a stage value of `test`, `prod`, or whatever the value of your ENV `DEV_SUFFIX` variable is (a three-letter string identifying you). The default stage value for this script is `test`.
-Here's how you would consume the build script from your integration repo's `package.json` that has `@ns8/protect-sdk-switchboard` as a dependency:
+Here's how you would consume the build script from your integration repo's `package.json` that has `@luddites-me/protect-sdk-switchboard` as a dependency:
 
 ```json
 {
-  "deploy": "METHOD=deploy ts-node -P ./build/tsconfig.json ./node_modules/@ns8/protect-switchboard-sdk/build/lambdaDeploy.ts",
-  "undeploy": "METHOD=remove ts-node -P ./build/tsconfig.json ./node_modules/@ns8/protect-switchboard-sdk/build/lambdaDeploy.ts"
+  "deploy": "METHOD=deploy ts-node -P ./build/tsconfig.json ./node_modules/@luddites-me/protect-switchboard-sdk/build/lambdaDeploy.ts",
+  "undeploy": "METHOD=remove ts-node -P ./build/tsconfig.json ./node_modules/@luddites-me/protect-switchboard-sdk/build/lambdaDeploy.ts"
 }
 ```
 
 ## Using the `stepDeploy` script
 
 The `protect-sdk-switchboard` repo has a fairly straightforward script located at `build/stepDeploy.ts` that shells out to the AWS serverless CLI command (`sls`). It will deploy the lambdas defined in the `serverless.platform.yml` file provided by this repo to an AWS stack of step functions with a stage value of `test`, `prod`, or whatever the value of your ENV `DEV_SUFFIX` variable is (a three-letter string identifying you). The stage value for this script is determined by the `DEV_SUFFIX` or `NODE_ENV` environment variables. It will default to `dev` if no environment variables are set.
-Here's how you would consume the build script from your integration repo's `package.json` that has `@ns8/protect-sdk-switchboard` as a dependency:
+Here's how you would consume the build script from your integration repo's `package.json` that has `@luddites-me/protect-sdk-switchboard` as a dependency:
 
 ```json
 {
@@ -45,7 +45,7 @@ Here's how you would consume the build script from your integration repo's `pack
 ### The Local `serverless.yml` Configuration File
 
 The `sls` command assumes you have a `serverless.yml` file in the root of your repository. See the aws [serverless](https://serverless.com/framework/docs/providers/aws/cli-reference/) cli reference for more information on configuration and usage.
-For your reference, below is a `serverless.yml` file copied `@ns8/protect-switchboard-magento`. There are a few things to note about the `serverless.yml` config file:
+For your reference, below is a `serverless.yml` file copied `@luddites-me/protect-switchboard-magento`. There are a few things to note about the `serverless.yml` config file:
 
 - inside brackets, `self` refers to the yaml configuration, allowing you to reference properties within the file
 - inside brackets, `opt` refers to options passed in via the `sls` cli. For example, if `sls` is called like this: `sls --stage=xyz`, then `{opt.stage}` in the `serverless.yml` resolves to `xyz`.
@@ -135,7 +135,7 @@ provider:
   stage: '${opt:stage}'
   timeout: 29
   versionFunctions: false
-service: 'ns8-switchboard-magento2'
+service: 'luddites-switchboard-magento2'
 stepFunctions:
   stateMachines:
     CreateOrderAction:

@@ -10,7 +10,7 @@ custom:
   test:
     pagerDutyArn: arn:aws:sns:us-west-2:244249143763:pager_duty
   prod:
-    pagerDutyArn: arn:aws:sns:us-west-2:529464811624:ns8_alerts
+    pagerDutyArn: arn:aws:sns:us-west-2:529464811624:luddites_alerts
   alerts:
     stages:
       - test
@@ -86,9 +86,8 @@ provider:
   timeout: 29
   versionFunctions: false
   stackTags:
-    'ns8.configured-by': protect-sdk-switchboard
-    'ns8.usecase': protect-sdk-switchboard
-    'ns8.stage': ${self:provider.stage}
+    'luddites.configured-by': protect-sdk-switchboard
+    'luddites.usecase': protect-sdk-switchboard
+    'luddites.stage': ${self:provider.stage}
 
 service: protect-switchboard-sdk
-

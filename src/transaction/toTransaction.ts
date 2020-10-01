@@ -1,4 +1,4 @@
-import { Transaction } from 'ns8-protect-models';
+import { Transaction } from '..';
 import { stringToTransactionMethod } from './transactionMethod';
 import { toDate } from '../util/date';
 import { stringToTransactionStatus } from './transactionStatus';

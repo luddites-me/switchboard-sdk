@@ -1,4 +1,5 @@
-import { Contact, Merchant } from 'ns8-protect-models';
+import { Contact } from '..';
+import { Merchant } from '../models/Merchant';
 
 /**
  * Generic object that can be converted to a Protect Contact

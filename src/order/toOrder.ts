@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Order } from 'ns8-protect-models';
+import { Order } from '..';
 import { toDate } from '../util';
 import { AddressData, toAddress } from '../contact/toAddress';
 import { TransactionData, toTransaction } from '../transaction/toTransaction';

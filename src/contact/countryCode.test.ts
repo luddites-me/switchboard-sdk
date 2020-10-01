@@ -1,4 +1,4 @@
-import { testSdkStringConversion } from '@ns8/protect-tools-js';
+import { testSdkStringConversion } from '@luddites-me/ts-tools';
 
 import { getCountryCodeFromCountryName, getCountryNameFromCountryCode } from './countryCode';
 

@@ -45,9 +45,9 @@ provider:
   role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-lambdaRole
   runtime: nodejs12.x
   stackTags:
-    ns8.configured-by: protect-sdk-switchboard
-    ns8.stage: '${self:provider.stage}'
-    ns8.usecase: ${self:custom.integrationName}
+    luddites.configured-by: protect-sdk-switchboard
+    luddites.stage: '${self:provider.stage}'
+    luddites.usecase: ${self:custom.integrationName}
   stage: '${opt:stage, env:DEV_NAME}'
   timeout: 30
   versionFunctions: false
@@ -103,4 +103,3 @@ stepFunctions:
             Type: Task
       name: '${self:custom.integrationName}-onWebhookAction'
       role: arn:aws:iam::#{AWS::AccountId}:role/${self:service}-${self:custom.commonResourceStage}-stepFunctionRole
-

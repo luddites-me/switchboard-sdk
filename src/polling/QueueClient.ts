@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { OrderMessage, SwitchContext, SwitchEventType } from 'ns8-switchboard-interfaces';
-import { FraudAssessment, ProviderType } from 'ns8-protect-models';
+import { OrderMessage, SwitchContext, SwitchEventType } from '..';
+import { FraudAssessment, ProviderType } from '..';
 import { getStepLogger } from '../logger';
 
 const logger = getStepLogger();

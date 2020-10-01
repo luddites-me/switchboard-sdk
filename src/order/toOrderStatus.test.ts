@@ -1,5 +1,5 @@
-import { Status } from 'ns8-protect-models';
-import { testSdkEnumConversion } from '@ns8/protect-tools-js';
+import { Status } from '..';
+import { testSdkEnumConversion } from '@luddites-me/ts-tools';
 
 import { stringToProtectStatus } from './toOrderStatus';
 

@@ -1,4 +1,4 @@
-import { Customer } from 'ns8-protect-models';
+import { Customer } from '..';
 import { getGender } from './gender';
 import { getUniqueCustomerId } from './customerId';
 import { toDate } from '../util';

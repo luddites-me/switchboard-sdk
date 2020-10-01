@@ -1,18 +1,18 @@
 # Protect SDK Switchboard
 
-[![CircleCI](https://circleci.com/gh/ns8inc/protect-sdk-switchboard.svg?style=svg&circle-token=0d7a67144dc51908cf0aa3ca1a025a23d64c8bef)](https://app.circleci.com/pipelines/github/ns8inc/protect-sdk-switchboard)
-[API Documentation](https://ns8inc.github.io/protect-sdk-switchboard/protect-sdk-switchboard.html) is available.
+[![CircleCI](https://circleci.com/gh/luddites-me/protect-sdk-switchboard.svg?style=svg&circle-token=0d7a67144dc51908cf0aa3ca1a025a23d64c8bef)](https://app.circleci.com/pipelines/github/luddites-me/protect-sdk-switchboard)
+[API Documentation](https://luddites-me.github.io/protect-sdk-switchboard/protect-sdk-switchboard.html) is available.
 
 ## Table of Contents
 
-- [Protect SDK Switchboard](#protect-sdk-switchboard)
-  - [Getting Started](#getting-started)
-  - [Environment Variables](#environment-variables)
-  - [`package.json` scripts](#packagejson-scripts)
-  - [Basic Usage](#basic-usage)
-    - [Utility Methods](#utility-methods)
-    - [Examples](#examples)
-  - [License](#license)
+- [Table of Contents](#table-of-contents)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [`package.json` scripts](#packagejson-scripts)
+- [Basic Usage](#basic-usage)
+  - [Utility Methods](#utility-methods)
+  - [Examples](#examples)
+- [License](#license)
 
 ## Getting Started
 
@@ -20,14 +20,14 @@ To get started, take a look at the documentation listed below:
 
 - docs
   - [Message Queue Architecture and Polling](docs/polling.md)
-  - [API Report File for "@ns8/protect-sdk-switchboard"](docs/project-api.md)
+  - [API Report File for "@luddites-me/protect-sdk-switchboard"](docs/project-api.md)
   - [Serverless Configuration](docs/serverless.md)
   - [Validation](docs/validation.md)
 
 ## Environment Variables
 
 - `AWS_SERVERLESS_YML`: The location of the serverless config. This should be either `serverless.platform.yml` for platform integration switchboards or `serverless.extension.yml` for extension switchboards.
-  - Default Value: "node_modules/@ns8/protect-sdk-switchboard/serverless.platform.yml"
+  - Default Value: "node_modules/@luddites-me/protect-sdk-switchboard/serverless.platform.yml"
 - `AWS_SERVICE_NAME`: (Optional) name of the switchboard project.
   - Default Value: ""
 - `DEV_SUFFIX`: Developer initials to use in the construction of the lambda and step function ARNs.
@@ -55,7 +55,7 @@ To get started, take a look at the documentation listed below:
 - `yarn docs:all`: Standardizes markdown and generates the API metadata.
 - `yarn docs:api`: Creates a `project-api` Markdown in docs and an `index.d.ts` file in dist.
 - `yarn docs:publish`: Generates end-to-end documentation for the entire project and publishes it to the `gh-pages` branch.
-- `yarn docs:standardize`: Creates or updates a new readme with a standard set of readme sections, including a toc, yarn script documention, links to repo documentation files and an NS8 license
+- `yarn docs:standardize`: Creates or updates a new readme with a standard set of readme sections, including a toc, yarn script documention, links to repo documentation files and a license
 - `yarn generate:exports`: Generates index.ts files for all exports recursively in the 'src' folder
 - `yarn lint`: Lints the codebase and the documentation
 - `yarn lint:fix`: Lints the codebase and automatically fixes what it can
@@ -87,7 +87,7 @@ other primitive converters to allow the interfaces to be as flexible as possible
 A basic order construction looks like this:
 
 ```ts
-import { toAddress, toCustomer, toLineItems, toOrder, toSession, toTransactions } from '@ns8/protect-sdk-switchboard';
+import { toAddress, toCustomer, toLineItems, toOrder, toSession, toTransactions } from '@luddites-me/protect-sdk-switchboard';
 const order = toOrder({
   name: '00001',
   currency: 'USD',
@@ -165,4 +165,4 @@ const order = toOrder({
 ## License
 
 See [License](./LICENSE)
-© [ns8inc](https://ns8.com)
+© [Luddites](https://github.com/luddites-me)

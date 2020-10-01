@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Session } from 'ns8-protect-models';
+import { Session } from '..';
 import { UAParser } from 'ua-parser-js';
 
 const isIp = require('is-ip');

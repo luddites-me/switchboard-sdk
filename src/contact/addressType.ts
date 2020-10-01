@@ -1,4 +1,4 @@
-import { AddressType } from 'ns8-protect-models';
+import { AddressType } from '..';
 
 /**
  * Safely converts a string to an AddressType

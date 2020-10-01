@@ -37,8 +37,10 @@ package-lock.json
 # Output of 'npm pack'
 *.tgz
 
-# Yarn Integrity file
+# Yarn
 .yarn-integrity
+.yarn/cache/
+.yarn/unplugged/
 
 # dotenv environment variables file
 .env

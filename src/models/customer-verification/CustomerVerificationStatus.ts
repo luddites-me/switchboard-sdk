@@ -1,0 +1,6 @@
+export enum CustomerVerificationStatus {
+  EMAIL_SENT = 'EMAIL_SENT',
+  CUSTOMER_DENIED = 'CUSTOMER_DENIED',
+  SMS_SEND = 'SMS_SEND',
+  SMS_VERIFIED = 'SMS_VERIFIED',
+}

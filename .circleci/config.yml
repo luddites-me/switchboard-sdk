@@ -1,14 +1,14 @@
 executors:
   nodeaws-executor:
     docker:
-      - image: ns8inc/nodeaws:node-erbium
+      - image: luddites-me/nodeaws:node-erbium
 jobs:
   deploy_test_and_dev:
     executor: nodeaws-executor
     steps:
       - checkout
       - run:
-          command: echo "//registry.npmjs.org/:_authToken=${NS8_GLOBAL_NPM_TOKEN}" > ~/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=${LUDDITES_GLOBAL_NPM_TOKEN}" > ~/.npmrc
           name: Configure NPM
       - run:
           command: yarn
@@ -30,7 +30,7 @@ jobs:
           fingerprints:
             - "77:0b:17:b2:eb:5a:1d:4f:39:df:d1:ef:2f:a5:69:34"
       - run:
-          command: echo "//registry.npmjs.org/:_authToken=${NS8_GLOBAL_NPM_TOKEN}" > ~/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=${LUDDITES_GLOBAL_NPM_TOKEN}" > ~/.npmrc
           name: Configure NPM
       - run:
           command: yarn
@@ -40,7 +40,7 @@ jobs:
           name: Build for Production
       - run:
           command: |
-            git config user.email noreply@ns8.com
+            git config user.email noreply@luddites-me.com
             git config user.name 'CircleCI'
           name: Setup Git
       - run:
@@ -80,7 +80,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: echo "//registry.npmjs.org/:_authToken=${NS8_GLOBAL_NPM_TOKEN}" > ~/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=${LUDDITES_GLOBAL_NPM_TOKEN}" > ~/.npmrc
           name: Configure NPM
       - run:
           command: yarn
@@ -99,7 +99,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: echo "//registry.npmjs.org/:_authToken=${NS8_GLOBAL_NPM_TOKEN}" > ~/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=${LUDDITES_GLOBAL_NPM_TOKEN}" > ~/.npmrc
           name: Configure NPM
       - run:
           command: yarn
@@ -126,7 +126,7 @@ jobs:
             fi
           name: Skip if CI Made the Last Commit
       - run:
-          command: echo "//registry.npmjs.org/:_authToken=${NS8_GLOBAL_NPM_TOKEN}" > ~/.npmrc
+          command: echo "//registry.npmjs.org/:_authToken=${LUDDITES_GLOBAL_NPM_TOKEN}" > ~/.npmrc
           name: Configure NPM
       - run:
           command: yarn

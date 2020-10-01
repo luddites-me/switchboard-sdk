@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import path from 'path';
 import { readFileSync, writeFileSync } from 'fs';
-import { loadEnv } from '@ns8/protect-tools-js';
+import { loadEnv } from '@luddites-me/ts-tools';
 import { slsDeploy } from './slsDeploy';
 
 const env = loadEnv();
@@ -14,7 +14,7 @@ if (!awsServiceName)
 
 const platformYmlPath =
   env.AWS_SERVERLESS_YML ||
-  'node_modules/@ns8/protect-sdk-switchboard/serverless.platform.yml';
+  'node_modules/@luddites-me/protect-sdk-switchboard/serverless.platform.yml';
 const deployYmlPath = path.relative(process.cwd(), 'sls.deploy.yml');
 
 let serverlessYml = `service: '${awsServiceName}'\r\n`;

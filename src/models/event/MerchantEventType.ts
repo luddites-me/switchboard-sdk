@@ -1,0 +1,5 @@
+export enum MerchantEventType {
+  ON_INSTALL = 'ON_INSTALL',
+  ON_UNINSTALL = 'ON_UNINSTALL',
+  ON_REINSTALL = 'ON_REINSTALL',
+}

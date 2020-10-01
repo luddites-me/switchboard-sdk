@@ -2,7 +2,7 @@
   no-unused-expressions,
   @typescript-eslint/no-explicit-any,
 */
-import { SdkTestAssertionType, testSdkAssertion } from '@ns8/protect-tools-js';
+import { SdkTestAssertionType, testSdkAssertion } from '@luddites-me/ts-tools';
 import { isValidDate, toDate } from './date';
 
 testSdkAssertion({

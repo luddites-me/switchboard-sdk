@@ -3,7 +3,7 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import 'mocha';
-import { SwitchContext } from 'ns8-switchboard-interfaces';
+import { SwitchContext } from '..';
 import { QueueClient } from './QueueClient';
 import { getStepLogger } from '../logger';
 
@@ -133,7 +133,7 @@ describe('queue client', () => {
     expect(client.createUpdateOrderRiskEvent()).to.eventually.be.true;
   });
 
-  it('returns true when successfully creating an event without an NS8 Score', () => {
+  it('returns true when successfully creating an event without an LUDDITES Score', () => {
     sinon.replace(axios, 'post', sinon.fake.resolves({ status: 200, data: { successful: true } }));
 
     const client = new QueueClient(mockContextWithoutScore);

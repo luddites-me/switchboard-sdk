@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import { SdkTestAssertionType, testSdkAssertion } from '@ns8/protect-tools-js';
+import { SdkTestAssertionType, testSdkAssertion } from '@luddites-me/ts-tools';
 import { Log, LogLevel, TransportType, getLogger, getStepLogger } from './logger';
 
 const serviceName = 'unit-test';

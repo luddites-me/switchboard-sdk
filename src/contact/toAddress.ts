@@ -1,4 +1,4 @@
-import { Address } from 'ns8-protect-models';
+import { Address } from '..';
 import {
   getCountryCodeFromCountryName,
   getCountryNameFromCountryCode,

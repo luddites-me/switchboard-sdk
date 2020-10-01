@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-expressions */
-import { SdkTestAssertionType, testExecutionTime, testSdkAssertion } from '@ns8/protect-tools-js';
+import { SdkTestAssertionType, testExecutionTime, testSdkAssertion } from '@luddites-me/ts-tools';
 import { asyncForEach, sleep } from './async';
 
 testExecutionTime('sleeps for 5000ms', sleep, 5000);

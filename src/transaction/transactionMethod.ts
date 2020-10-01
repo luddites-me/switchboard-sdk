@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { TransactionMethod } from 'ns8-protect-models';
+import { TransactionMethod } from '..';
 
 /**
  * Safely converts a string to a TransactionMethod

@@ -1,0 +1,11 @@
+export enum RiskFactorCategory {
+  DEFAULT = 'DEFAULT',
+  BILLING = 'BILLING',
+  EMAIL = 'EMAIL',
+  IP = 'IP',
+  PAYMENT = 'PAYMENT',
+  SESSION = 'SESSION',
+  SHIPPING = 'SHIPPING',
+  BEHAVIOR =  'BEHAVIOR',
+  USER_AGENT = 'USER_AGENT',
+}

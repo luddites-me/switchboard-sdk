@@ -1,7 +1,7 @@
 /* eslint-disable
   sonarjs/cognitive-complexity,
 */
-import { LineItem } from 'ns8-protect-models';
+import { LineItem } from '..';
 
 /**
  * Generic object representing a line item: the items a customer has ordered.

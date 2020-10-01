@@ -1,4 +1,4 @@
-import { testSdkModelConversion } from '@ns8/protect-tools-js';
+import { testSdkModelConversion } from '@luddites-me/ts-tools';
 
 import { SessionData, toSession } from './toSession';
 

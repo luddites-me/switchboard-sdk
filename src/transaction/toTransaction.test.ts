@@ -1,5 +1,5 @@
-import { testSdkModelConversion } from '@ns8/protect-tools-js';
-import { TransactionMethod, TransactionStatus } from 'ns8-protect-models';
+import { testSdkModelConversion } from '@luddites-me/ts-tools';
+import { TransactionMethod, TransactionStatus } from '..';
 import { TransactionData, toTransaction } from './toTransaction';
 import { creditCardAssertionMocks } from './toCreditCard.test';
 

@@ -216,7 +216,7 @@ export class Log implements LogInterface {
       .forEach((t) => {
         const logToFile = (logObject: ILogObject) => {
           /* istanbul ignore next */
-          config.name = config.name || 'ns8';
+          config.name = config.name || 'luddites';
           const name = config.name.replace('/', '-');
           // eslint-disable-next-line @typescript-eslint/no-empty-function
           appendFile(`${name}_${t.logLevel}.log`, `${JSON.stringify(logObject)}\n`, () => {});
@@ -312,7 +312,7 @@ export const getStepLogger = (name?: string): LogInterface => {
   return getLogger(
     {
       logLevel: LogLevel.INFO,
-      serviceName: name || 'ns8-switchboard',
+      serviceName: name || 'luddites-switchboard',
       transports: [
         { logLevel: LogLevel.INFO, type: TransportType.CONSOLE },
         { logLevel: LogLevel.FATAL, type: TransportType.FILE },

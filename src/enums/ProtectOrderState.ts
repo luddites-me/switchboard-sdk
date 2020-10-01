@@ -3,7 +3,7 @@
  * @public
  */
 export enum ProtectOrderState {
-  APPROVED = 'ns8_approved',
+  APPROVED = 'approved',
   CANCELED = 'canceled',
-  MERCHANT_REVIEW = 'ns8_merchant_review',
+  MERCHANT_REVIEW = 'merchant_review',
 }

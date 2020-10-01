@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { TransactionStatus } from 'ns8-protect-models';
+import { TransactionStatus } from '..';
 
 /**
  * Safely converts a string to a TransactionStatus

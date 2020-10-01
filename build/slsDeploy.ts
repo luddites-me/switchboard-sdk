@@ -3,7 +3,7 @@
   sonarjs/cognitive-complexity,
 */
 import { execSync } from 'child_process';
-import { loadEnv } from '@ns8/protect-tools-js';
+import { loadEnv } from '@luddites-me/ts-tools';
 import { Environment, Method } from './deployEnums';
 
 const prompts = require('prompts');

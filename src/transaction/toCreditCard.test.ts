@@ -1,5 +1,5 @@
-import { CreditCardTransactionType } from 'ns8-protect-models';
-import { testSdkModelConversion } from '@ns8/protect-tools-js';
+import { CreditCardTransactionType } from '..';
+import { testSdkModelConversion } from '@luddites-me/ts-tools';
 
 import { CreditCardData, toCreditCard } from './toCreditCard';
 

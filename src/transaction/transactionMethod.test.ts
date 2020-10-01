@@ -1,5 +1,5 @@
-import { testSdkEnumConversion } from '@ns8/protect-tools-js';
-import { TransactionMethod } from 'ns8-protect-models';
+import { testSdkEnumConversion } from '@luddites-me/ts-tools';
+import { TransactionMethod } from '..';
 import { stringToTransactionMethod } from './transactionMethod';
 
 /**

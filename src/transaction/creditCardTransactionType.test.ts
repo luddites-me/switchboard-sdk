@@ -1,5 +1,5 @@
-import { CreditCardTransactionType } from 'ns8-protect-models';
-import { testSdkEnumConversion } from '@ns8/protect-tools-js';
+import { CreditCardTransactionType } from '..';
+import { testSdkEnumConversion } from '@luddites-me/ts-tools';
 
 import { stringToCreditCardTransactionType } from './creditCardTransactionType';
 

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Status } from 'ns8-protect-models';
+import { Status } from '..';
 
 /**
  * Safely converts a string to a Status
