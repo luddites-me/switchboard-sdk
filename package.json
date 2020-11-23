@@ -20,7 +20,7 @@
     "prompts": "2.3.2",
     "serverless-plugin-aws-alerts": "1.6.1",
     "serverless-pseudo-parameters": "2.5.0",
-    "serverless-step-functions": "2.26.0",
+    "serverless-step-functions": "2.29.0",
     "superagent": "6.1.0",
     "tslog": "2.9.0",
     "typescript": "4.0.5",

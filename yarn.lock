@@ -7391,9 +7391,9 @@ serverless-pseudo-parameters@2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/serverless-pseudo-parameters/-/serverless-pseudo-parameters-2.5.0.tgz#f30bf34db166e4b8b22144a8e65aca71b90dd1e6"
 
-serverless-step-functions@2.26.0:
-  version "2.26.0"
-  resolved "https://registry.yarnpkg.com/serverless-step-functions/-/serverless-step-functions-2.26.0.tgz#3abf3d3958c22d0d96d852d28d3c2441a2451d86"
+serverless-step-functions@2.29.0:
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/serverless-step-functions/-/serverless-step-functions-2.29.0.tgz#3fcf5f581d34cd1ee207f9e77545f68018fa3040"
   dependencies:
     "@hapi/joi" "^15.0.2"
     asl-validator "^1.8.0"
