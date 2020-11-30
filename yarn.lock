@@ -841,9 +841,9 @@
     "@types/mime" "*"
     "@types/node" "*"
 
-"@types/sinon@9.0.7":
-  version "9.0.7"
-  resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-9.0.7.tgz#c277e19cf9eb0c71106e785650f1e5c299262302"
+"@types/sinon@9.0.9":
+  version "9.0.9"
+  resolved "https://registry.yarnpkg.com/@types/sinon/-/sinon-9.0.9.tgz#115843b491583f924080f684b6d0d7438344f73c"
   dependencies:
     "@types/sinonjs__fake-timers" "*"
 
