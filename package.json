@@ -4,7 +4,7 @@
     "switchboardStepDeploy": "./dist/build/stepDeploy.js"
   },
   "dependencies": {
-    "@types/aws-lambda": "8.10.63",
+    "@types/aws-lambda": "8.10.70",
     "@types/aws4": "1.5.1",
     "@types/superagent": "4.1.10",
     "aws-lambda": "1.0.6",
