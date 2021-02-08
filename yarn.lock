@@ -8221,9 +8221,9 @@ tslog@2.8.0:
   dependencies:
     source-map-support "^0.5.19"
 
-tslog@2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/tslog/-/tslog-2.9.0.tgz#0c9cbf902d2a3c48b7c6652e7f06bf964777df5e"
+tslog@3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/tslog/-/tslog-3.1.1.tgz#e5b87cc1fa4d6d9c45c03f0b3643e80b9af30dcf"
   dependencies:
     source-map-support "^0.5.19"
 
