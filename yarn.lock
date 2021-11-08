@@ -4621,9 +4621,9 @@ isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
 
-iso-3166@3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/iso-3166/-/iso-3166-3.0.1.tgz#5e704f4e53fdb7d26e9ca25a2d8a88f683cc403c"
+iso-3166@4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/iso-3166/-/iso-3166-4.0.1.tgz#aa6b3c27f3fed101494f13b1564ff1e75630ee0c"
 
 isobject@^2.0.0:
   version "2.1.0"
