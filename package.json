@@ -15,7 +15,7 @@
     "country-list": "2.2.0",
     "is-ip": "3.1.0",
     "iso-3166": "3.0.1",
-    "moment": "2.29.0",
+    "moment": "2.29.3",
     "ns8-billing-core": "1.0.2056",
     "prompts": "2.3.2",
     "serverless-plugin-aws-alerts": "1.6.1",
