@@ -13,7 +13,7 @@
     "axios": "1.2.0",
     "class-validator": "0.12.2",
     "country-list": "2.2.0",
-    "is-ip": "3.1.0",
+    "is-ip": "5.0.0",
     "iso-3166": "4.1.0",
     "moment": "2.29.4",
     "ns8-billing-core": "1.0.2056",
@@ -79,7 +79,7 @@
   "peerDependencies": {
     "axios": "1.2.0",
     "country-list": "2.2.0",
-    "is-ip": "3.1.0",
+    "is-ip": "5.0.0",
     "iso-3166": "4.1.0",
     "moment": "2.27.0",
     "prompts": "2.3.2",
