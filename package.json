@@ -16,7 +16,7 @@
     "is-ip": "3.1.0",
     "iso-3166": "4.1.0",
     "moment": "2.29.4",
-    "ns8-billing-core": "1.0.2056",
+    "ns8-billing-core": "1.0.2150",
     "prompts": "2.3.2",
     "serverless-plugin-aws-alerts": "1.6.1",
     "serverless-pseudo-parameters": "2.5.0",
