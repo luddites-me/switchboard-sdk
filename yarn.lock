@@ -8403,9 +8403,9 @@ typpy@2.3.11:
   dependencies:
     function.name "^1.0.3"
 
-ua-parser-js@0.7.22:
-  version "0.7.22"
-  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.22.tgz#960df60a5f911ea8f1c818f3747b99c6e177eae3"
+ua-parser-js@1.0.33:
+  version "1.0.33"
+  resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-1.0.33.tgz#f21f01233e90e7ed0f059ceab46eb190ff17f8f4"
 
 uc.micro@^1.0.1, uc.micro@^1.0.5:
   version "1.0.6"
