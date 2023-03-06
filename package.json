@@ -24,7 +24,7 @@
     "superagent": "6.1.0",
     "tslog": "4.2.0",
     "typescript": "4.0.5",
-    "ua-parser-js": "0.7.22",
+    "ua-parser-js": "1.0.34",
     "url": "0.11.0",
     "uuid": "9.0.0"
   },
